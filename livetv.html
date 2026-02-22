@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Stream - Pro Player</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-ZFYWLM9B1C');
+    </script>
+
+    <style>
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background-color: #0f0f0f; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; font-family: sans-serif;
+            overflow-x: hidden;
+        }
+
+        .player-container {
+            width: 95%;
+            max-width: 900px;
+            position: relative;
+            background: #000;
+            border: 2px solid #333;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Desktop Layout - লোগো হাইড করার জন্য */
+        iframe {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            border: none;
+            top: -105px; /* ডেস্কটপে উপরের অংশ ঢাকার জন্য */
+            height: calc(100% + 150px); 
+        }
+
+        /* MOBILE FIX: লাল চিহ্নিত অংশটুকু ঢাকার জন্য বিশেষ কোড */
+        @media (max-width: 600px) {
+            .player-container {
+                width: 100%;
+                border-radius: 0;
+                border: none;
+            }
+            .video-wrapper {
+                padding-top: 68%; /* মোবাইলে চ্যানেলের লিস্ট দেখানোর জন্য হাইড বাড়ানো হয়েছে */
+            }
+            iframe {
+                /* মোবাইলে লোগো এবং অ্যাপ বাটন ঢাকতে 'top' এর মান বাড়ানো হয়েছে */
+                top: -130px; 
+                height: calc(100% + 180px);
+                width: 100%;
+            }
+        }
+
+        /* Loading UI */
+        #loading-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 100; color: white;
+        }
+
+        .loader {
+            border: 4px solid #222;
+            border-top: 4px solid #ff0000;
+            border-radius: 50%;
+            width: 40px; height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .instruction-note {
+            margin-top: 20px;
+            color: #ccc;
+            font-size: 14px;
+            text-align: center;
+            background: rgba(255, 0, 0, 0.1);
+            padding: 12px 20px;
+            border-left: 4px solid #ff0000;
+            width: 90%;
+            max-width: 900px;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="player-container">
+        <div id="loading-overlay">
+            <div style="text-align: center;">
+                <div class="loader" style="margin: 0 auto 10px;"></div>
+                <p>LOADING PLAYER...</p>
+            </div>
+        </div>
+
+        <div class="video-wrapper">
+            <iframe 
+                id="live-iframe"
+                src="https://plusbox.tv/#T%20Sports%20HD" 
+                allowfullscreen 
+                scrolling="no">
+            </iframe>
+        </div>
+    </div>
+
+    <div class="instruction-note">
+        <strong>নির্দেশনা:</strong> প্লেয়ার লোড হলে নিচের লিস্ট থেকে <strong>TSports</strong> সিলেক্ট করুন। 
+    </div>
+
+    <script>
+        const frame = document.getElementById('live-iframe');
+        const overlay = document.getElementById('loading-overlay');
+
+        frame.onload = function() {
+            setTimeout(() => {
+                overlay.style.transition = "opacity 0.5s";
+                overlay.style.opacity = "0";
+                setTimeout(() => overlay.style.display = "none", 500);
+            }, 3000); 
+        };
+    </script>
+
+</body>
+</html>

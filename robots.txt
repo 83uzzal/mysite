@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://www.usaoffers.online/sitemap_index.xml
