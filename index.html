@@ -239,11 +239,11 @@
     display: none;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    padding: 12px 8px;
-    background: #0d1117; /* dark professional background */
-    border-radius: 16px;
-    box-shadow: 0 0 15px rgba(0,255,255,0.4); /* subtle neon glow */
+    gap: 14px;
+    padding: 14px 10px;
+    background: #0d1117; /* dark background for contrast */
+    border-radius: 18px;
+    box-shadow: 0 0 18px rgba(0,255,255,0.4);
     overflow: hidden;
     position: relative;
 }
@@ -256,52 +256,69 @@
 
 /* Navbar Links */
 .mobile-navbar .nav-link {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
     text-transform: uppercase;
     padding: 8px 14px;
     border-radius: 8px;
-    color: #0ff; /* neon cyan */
+    color: #0ff;
+    background: linear-gradient(90deg,#0ff,#00e6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     position: relative;
     z-index: 1;
+    letter-spacing: 1.2px;
     transition: transform 0.2s ease, text-shadow 0.2s ease;
-    letter-spacing: 1px;
 }
 
-/* Hover Glow */
+/* Smooth Underline Hover Animation */
+.mobile-navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 3px;
+    border-radius: 2px;
+    background: #0ff;
+    transition: width 0.3s ease;
+}
+
+.mobile-navbar .nav-link:hover::after {
+    width: 100%;
+}
+
 .mobile-navbar .nav-link:hover {
-    text-shadow:
-        0 0 6px #0ff,
-        0 0 12px #0ff;
+    text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
     transform: scale(1.1);
 }
 
 /* ---------- Card Styling ---------- */
 .card {
     position: relative;
-    border-radius: 18px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 0 12px rgba(0,255,255,0.3);
-    margin: 15px 10px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 0 18px rgba(0,255,255,0.3);
+    margin: 18px 12px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     background: #111;
 }
 
 .card img {
     width: 100%;
-    border-radius: 18px;
+    border-radius: 20px;
     display: block;
     filter: brightness(0.9);
-    transition: transform 0.2s ease;
+    transition: transform 0.25s ease;
 }
 
 .card:hover img {
-    transform: scale(1.03);
+    transform: scale(1.04);
 }
 
 .card .card-content {
     position: absolute;
-    bottom: 15px;
+    bottom: 18px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -312,29 +329,29 @@
 
 /* Card Title */
 .card .card-title {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 800;
-    margin-bottom: 8px;
-    text-shadow: 0 0 4px rgba(0,255,255,0.5);
+    margin-bottom: 10px;
+    text-shadow: 0 0 6px rgba(0,255,255,0.5), 0 0 12px rgba(0,255,255,0.3);
 }
 
 /* Card Button */
 .card .card-button {
-    background: #0ff; /* solid neon cyan button */
-    padding: 10px 20px;
-    border-radius: 25px;
+    background: linear-gradient(90deg,#0ff,#00e6ff);
+    padding: 12px 24px;
+    border-radius: 28px;
     font-weight: 700;
     color: #111;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 0 10px rgba(0,255,255,0.3);
-    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 12px rgba(0,255,255,0.3);
+    transition: all 0.25s ease-in-out;
     cursor: pointer;
 }
 
 .card .card-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0,255,255,0.5);
+    transform: scale(1.08);
+    box-shadow: 0 0 22px rgba(0,255,255,0.6);
 }
     </style>
 </head>
