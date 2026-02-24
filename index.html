@@ -126,8 +126,15 @@
             display: flex; align-items: center; justify-content: center;
             z-index: 100;
         }
+		
+		.top-nav a {
+            white-space: nowrap;   /* prevent text from wrapping mid-word */
+            overflow: hidden;      /* hide overflow */
+            text-overflow: ellipsis; /* optional: add ... if too long */
+        }
+		
         .nav-link {
-            font-size: 12px; font-weight: 900; text-transform: uppercase;
+            font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;
             letter-spacing: 2px; color: rgba(255, 255, 255, 0.7);
             transition: 0.3s; padding: 0 20px;
         }
@@ -218,7 +225,11 @@
 
         @media (max-width: 640px) {
             .offer-card { width: 90vw; height: 70vh; }
-            .top-nav { width: 95%; }
+                .top-nav { 
+        width: 95%; 
+        flex-wrap: wrap;  /* new */
+        justify-content: space-around; /* optional: space links evenly */
+                         }
             .btn-claim { min-width: 180px; font-size: 12px; }
         }
     </style>
@@ -243,8 +254,8 @@
 <!-- MOBILE NAVBAR -->
 <nav class="top-nav mobile-navbar">
     <a href="offers.html" class="nav-link">OFFERS</a>
-    <a href="MoviePremiere.html" class="nav-link">MOVIE ▶</a>
-    <a href="CineAsia.html" class="nav-link">CINE 🎞️</a>
+    <a href="MoviePremiere.html" class="nav-link">MOVIE</a>
+    <a href="CineAsia.html" class="nav-link">CINE ASIA</a>
     <a href="about.html" class="nav-link">ABOUT</a>
     <a href="contact.html" class="nav-link">CONTACT</a>
 </nav>
