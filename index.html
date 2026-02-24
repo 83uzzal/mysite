@@ -233,131 +233,147 @@
             .btn-claim { min-width: 180px; font-size: 12px; }
         }
 		
-		/* Mobile Navbar Default */
-		
 /* ---------- Mobile Navbar Container ---------- */
 .mobile-navbar {
     display: none;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    padding: 14px 8px;
-    background: #0d0d0d;
-    border-radius: 16px;
-    box-shadow: 0 0 20px #0ff, 0 0 40px #0ff inset;
-    overflow: hidden;
+    gap: 14px;
+    padding: 16px 10px;
+    background: #0b0b0b; /* Dark for neon contrast */
+    border-radius: 20px;
     position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 25px #0ff, 0 0 50px #f0f inset;
 }
 
-/* Neon Streak Animation */
+/* Neon Gradient Background Streak */
 .mobile-navbar::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(120deg, #00ffff, #ff00ff, #ffcc00, #00ff99);
-    background-size: 400% 400%;
-    animation: streakMove 6s linear infinite;
+    top: -60%;
+    left: -60%;
+    width: 220%;
+    height: 220%;
+    background: conic-gradient(from 0deg, #0ff, #f0f, #ff0, #0ff);
+    border-radius: 50%;
+    animation: neonStreak 10s linear infinite;
     mix-blend-mode: screen;
+    filter: blur(35px);
     pointer-events: none;
 }
 
-/* Media Query for Mobile */
+/* Mobile Responsive */
 @media (max-width: 768px) {
     .desktop-navbar { display: none; }
     .mobile-navbar { display: flex; flex-wrap: wrap; }
 }
 
-/* Nav Link Base */
+/* Navbar Links */
 .mobile-navbar .nav-link {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 900;
     text-transform: uppercase;
-    padding: 8px 14px;
-    border-radius: 8px;
+    padding: 10px 16px;
+    border-radius: 12px;
     color: #fff;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     transition: transform 0.3s ease, text-shadow 0.3s ease;
+    background: linear-gradient(45deg,#0ff,#f0f,#ff0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1.2px;
 }
 
-/* Individual Neon Gradient */
-.mobile-navbar a:nth-child(1) { background: linear-gradient(45deg,#0ff,#f0f,#ff0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(2) { background: linear-gradient(45deg,#ff0,#0f0,#0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(3) { background: linear-gradient(45deg,#f0f,#ff0,#0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(4) { background: linear-gradient(45deg,#0f0,#0ff,#f0f); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(5) { background: linear-gradient(45deg,#ff0,#f0f,#0f0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-
-/* Glow + Hover Animation */
+/* Neon Glow Hover */
 .mobile-navbar .nav-link:hover {
-    text-shadow: 0 0 8px #fff, 0 0 16px #0ff, 0 0 24px #f0f, 0 0 32px #ff0;
-    transform: scale(1.15);
+    text-shadow: 
+        0 0 10px #fff,
+        0 0 20px #0ff,
+        0 0 30px #f0f,
+        0 0 40px #ff0;
+    transform: scale(1.2);
 }
 
-/* Streak Keyframes */
-@keyframes streakMove {
-    0% { transform: rotate(0deg) translate(0,0); }
-    100% { transform: rotate(360deg) translate(0,0); }
+/* Neon Streak Animation */
+@keyframes neonStreak {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* ---------- Card Styling ---------- */
 .card {
     position: relative;
-    border-radius: 20px;
+    border-radius: 22px;
     overflow: hidden;
-    box-shadow: 0 0 15px #0ff, 0 0 40px #f0f inset;
-    margin: 18px 12px;
+    box-shadow: 0 0 20px #0ff, 0 0 50px #f0f inset;
+    margin: 20px 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: #111;
 }
 
+/* Card Image */
 .card img {
     width: 100%;
-    border-radius: 20px;
+    border-radius: 22px;
     display: block;
-    filter: brightness(0.9);
+    filter: brightness(0.85);
+    transition: transform 0.3s ease;
 }
 
+.card:hover img {
+    transform: scale(1.05);
+}
+
+/* Card Content */
 .card .card-content {
     position: absolute;
-    bottom: 20px;
+    bottom: 22px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     color: #fff;
     width: 90%;
-    z-index: 1;
+    z-index: 2;
 }
 
 /* Card Title Neon Glow */
 .card .card-title {
-    font-size: 17px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    text-shadow: 0 0 6px #0ff, 0 0 12px #f0f, 0 0 18px #ff0;
+    font-size: 18px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    text-shadow:
+        0 0 6px #0ff,
+        0 0 12px #f0f,
+        0 0 20px #ff0,
+        0 0 28px #0ff;
 }
 
 /* Card Button Neon Glow */
 .card .card-button {
     background: linear-gradient(90deg, #0ff, #f0f, #ff0);
-    padding: 12px 24px;
-    border-radius: 30px;
-    font-weight: 800;
+    padding: 14px 28px;
+    border-radius: 32px;
+    font-weight: 900;
     color: #111;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 0 10px #0ff, 0 0 20px #f0f, 0 0 30px #ff0;
+    box-shadow:
+        0 0 12px #0ff,
+        0 0 24px #f0f,
+        0 0 36px #ff0;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
 
 .card .card-button:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #0ff, 0 0 40px #f0f, 0 0 60px #ff0;
+    transform: scale(1.15);
+    box-shadow:
+        0 0 24px #0ff,
+        0 0 48px #f0f,
+        0 0 72px #ff0;
 }
-
     </style>
 </head>
 <body>
