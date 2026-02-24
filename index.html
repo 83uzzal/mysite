@@ -240,58 +240,36 @@
     display: none;
     justify-content: center;
     align-items: center;
-    gap: 12px;
-    padding: 14px 10px;
+    gap: 14px;
+    padding: 16px 10px;
     background: #0b0b0b;
     border-radius: 20px;
-    box-shadow: 0 0 20px #0ff, 0 0 40px #f0f inset;
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px #0ff, 0 0 40px #f0f inset;
 }
 
-/* Animated Neon Circle Streak Behind Navbar */
-.mobile-navbar::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: conic-gradient(from 0deg, #0ff, #f0f, #ff0, #0ff);
-    border-radius: 50%;
-    animation: neonCircle 8s linear infinite;
-    mix-blend-mode: screen;
-    pointer-events: none;
-    filter: blur(30px);
-}
-
-/* Media Query for Mobile */
 @media (max-width: 768px) {
     .desktop-navbar { display: none; }
     .mobile-navbar { display: flex; flex-wrap: wrap; }
 }
 
-/* Nav Link Base */
 .mobile-navbar .nav-link {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 900;
     text-transform: uppercase;
     padding: 10px 16px;
     border-radius: 10px;
-    color: #fff;
     position: relative;
-    z-index: 2;
-    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    z-index: 1;
+    color: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(45deg,#0ff,#f0f,#ff0);
+    transition: transform 0.3s ease;
 }
 
-/* Individual Neon Gradient Text */
-.mobile-navbar a:nth-child(1) { background: linear-gradient(45deg,#0ff,#f0f,#ff0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(2) { background: linear-gradient(45deg,#ff0,#0ff,#f0f); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(3) { background: linear-gradient(45deg,#f0f,#ff0,#0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(4) { background: linear-gradient(45deg,#0ff,#0f0,#f0f); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(5) { background: linear-gradient(45deg,#ff0,#f0f,#0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-
-/* Hover Glow + Pulse Animation */
+/* Glow on Hover */
 .mobile-navbar .nav-link:hover {
     text-shadow:
         0 0 8px #fff,
@@ -299,75 +277,26 @@
         0 0 24px #f0f,
         0 0 32px #ff0;
     transform: scale(1.2);
-    animation: pulseGlow 1.2s infinite alternate;
 }
 
-/* Neon Circle Animation Keyframes */
-@keyframes neonCircle {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Hover Pulse Keyframes */
-@keyframes pulseGlow {
-    0% { text-shadow: 0 0 8px #fff, 0 0 16px #0ff, 0 0 24px #f0f, 0 0 32px #ff0; }
-    100% { text-shadow: 0 0 14px #fff, 0 0 28px #0ff, 0 0 42px #f0f, 0 0 56px #ff0; }
-}
-
-/* ---------- Card Styling ---------- */
-.card {
-    position: relative;
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 0 20px #0ff, 0 0 50px #f0f inset;
-    margin: 18px 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: #111;
-}
-
-.card img {
-    width: 100%;
-    border-radius: 22px;
-    display: block;
-    filter: brightness(0.85);
-}
-
-.card .card-content {
+/* Particle Container */
+.mobile-navbar .particle {
     position: absolute;
-    bottom: 22px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: #fff;
-    width: 90%;
-    z-index: 2;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #0ff;
+    box-shadow: 0 0 6px #0ff, 0 0 12px #f0f;
+    pointer-events: none;
+    animation: moveParticle 3s linear infinite;
+    opacity: 0.8;
 }
 
-/* Card Title Neon Glow */
-.card .card-title {
-    font-size: 18px;
-    font-weight: 900;
-    margin-bottom: 12px;
-    text-shadow: 0 0 6px #0ff, 0 0 12px #f0f, 0 0 20px #ff0, 0 0 28px #0ff;
-}
-
-/* Card Button Neon Glow */
-.card .card-button {
-    background: linear-gradient(90deg, #0ff, #f0f, #ff0);
-    padding: 14px 28px;
-    border-radius: 32px;
-    font-weight: 900;
-    color: #111;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 0 12px #0ff, 0 0 24px #f0f, 0 0 36px #ff0;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-}
-
-.card .card-button:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 24px #0ff, 0 0 48px #f0f, 0 0 72px #ff0;
+/* Particle Animation Keyframes */
+@keyframes moveParticle {
+    0% { transform: translate(0,0) scale(1); opacity: 0.8; }
+    50% { transform: translate(var(--dx), var(--dy)) scale(0.6); opacity: 0.4; }
+    100% { transform: translate(0,0) scale(1); opacity: 0.8; }
 }
 
     </style>
