@@ -299,6 +299,18 @@
     100% { transform: translate(0,0) scale(1); opacity: 0.8; }
 }
 
+// Neon particles around each nav link
+document.querySelectorAll('.mobile-navbar .nav-link').forEach(link => {
+    for(let i=0;i<8;i++){
+        let particle = document.createElement('span');
+        particle.classList.add('particle');
+        // Random movement range
+        particle.style.setProperty('--dx', `${Math.random()*40-20}px`);
+        particle.style.setProperty('--dy', `${Math.random()*40-20}px`);
+        link.appendChild(particle);
+    }
+});
+
     </style>
 </head>
 <body>
