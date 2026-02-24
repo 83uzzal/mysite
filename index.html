@@ -66,342 +66,156 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    
     <style>
-        :root {
-            --gold: #ffcc00;
-            --orange-glow: #ff5c00;
-            --bg: #030303;
+        :root { --gold: #ffcc00; --orange-glow: #ff5c00; --bg: #030303; }
+        body { background-image: url('images/banar/background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; background-color: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; align-items: center; }
+        
+        body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; opacity: 0; z-index: 9999; pointer-events: none; }
+        .thunder-flash::after { animation: flash 0.5s ease-out; }
+
+        @keyframes flash {
+            0% { opacity: 0; }
+            10% { opacity: 0.8; }
+            20% { opacity: 0.2; }
+            30% { opacity: 0.9; }
+            100% { opacity: 0; }
         }
 
-        body {
-            background-image: url('images/banar/background.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-color: var(--bg);
-            color: #fff;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-			overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5); 
-            z-index: -2; 
-        }
-
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: -2; }
         .syncopate { font-family: 'Syncopate', sans-serif; }
-
-        .bg-text-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            z-index: -1; 
-            pointer-events: none;
-            opacity: 0.1; 
-        }
-        .bg-word {
-            font-family: 'Archivo Black', sans-serif;
-            font-size: 15vw; line-height: 0.9;
-            -webkit-text-stroke: 1.5px white; 
-            color: transparent;
-            text-transform: uppercase; white-space: nowrap;
-        }
-
-        .top-nav {
-            position: fixed; top: 30px; width: 65%; max-width: 1100px; height: 60px;
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px;
-            display: flex; align-items: center; justify-content: center;
-            z-index: 100;
-        }
-		
-		.top-nav a {
-            white-space: nowrap;   /* prevent text from wrapping mid-word */
-            overflow: hidden;      /* hide overflow */
-            text-overflow: ellipsis; /* optional: add ... if too long */
-        }
-		
-        .nav-link {
-            font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase;
-            letter-spacing: 2px; color: rgba(255, 255, 255, 0.7);
-            transition: 0.3s; padding: 0 20px;
-        }
+        .bg-text-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: -1; pointer-events: none; opacity: 0.1; }
+        .bg-word { font-family: 'Archivo Black', sans-serif; font-size: 15vw; line-height: 0.9; -webkit-text-stroke: 1.5px white; color: transparent; text-transform: uppercase; white-space: nowrap; }
+        .top-nav { position: fixed; top: 30px; width: 65%; max-width: 1100px; height: 60px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px; display: flex; align-items: center; justify-content: center; z-index: 100; }
+        .nav-link { font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255, 255, 255, 0.7); transition: 0.3s; padding: 0 20px; }
         .nav-link:hover { color: var(--gold); }
-		
-		/* Desktop & Mobile Navbar */
-          .desktop-navbar { display: flex; }
-          .mobile-navbar { display: none; }
-
-        @media (max-width: 768px) {
-         .desktop-navbar { display: none; }
-         .mobile-navbar { display: flex; }
-        }
-
-        .carousel-container {
-            flex: 1; display: flex; align-items: center; justify-content: center;
-            z-index: 10;
-			padding-top: 10px;
-        }
-        .offer-card {
-            width: 450px;
-            height: 620px;
-            background: rgba(15, 15, 15, 0.8);
-            backdrop-filter: blur(15px);
-            border-radius: 40px; overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 204, 0, 0.4);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-        }
-
-        .offer-card img {
-            object-fit: cover;
-            object-position: center;
-            transform: scale(1.0);
-            opacity: 0.6;
-            transition: transform 0.5s ease;
-        }
-
-        .card-content {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            padding: 50px;
-            background: linear-gradient(to top, rgba(0,0,0,1) 45%, transparent);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .btn-claim {
-            background: linear-gradient(90deg, #ffb800 0%, #ff5c00 100%);
-            color: #000;
-            width: auto;
-            min-width: 220px;
-            max-width: 280px;
-            padding: 14px 24px;
-            border-radius: 50px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 13px;
-            margin-top: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 15px rgba(255, 92, 0, 0.3);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-claim:hover { 
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 12px 25px rgba(255, 92, 0, 0.5);
-            filter: brightness(1.1);
-        }
-
+        .desktop-navbar { display: flex; }
+        .mobile-navbar { display: none; }
+        @media (max-width: 768px) { .desktop-navbar { display: none; } .mobile-navbar { display: flex; } }
+        .carousel-container { flex: 1; display: flex; align-items: center; justify-content: center; z-index: 10; padding-top: 10px; }
+        .offer-card { width: 450px; height: 620px; background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(15px); border-radius: 40px; overflow: hidden; position: relative; border: 1px solid rgba(255, 204, 0, 0.4); box-shadow: 0 40px 100px rgba(0,0,0,0.8); }
+        .offer-card img { object-fit: cover; object-position: center; transform: scale(1.0); opacity: 0.6; transition: transform 0.5s ease; }
+        .card-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px; background: linear-gradient(to top, rgba(0,0,0,1) 45%, transparent); text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .btn-claim { background: linear-gradient(90deg, #ffb800 0%, #ff5c00 100%); color: #000; width: auto; min-width: 220px; max-width: 280px; padding: 14px 24px; border-radius: 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; margin-top: 25px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 8px 15px rgba(255, 92, 0, 0.3); border: none; cursor: pointer; }
+        .btn-claim:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 12px 25px rgba(255, 92, 0, 0.5); filter: brightness(1.1); }
         #dynamic-text { transition: all 0.6s ease-in-out; }
         .fade-out { opacity: 0; transform: translateY(-15px); }
         .fade-in { opacity: 1; transform: translateY(0); }
+        .locker-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); display: none; justify-content: center; align-items: center; z-index: 10000; padding: 10px; }
+        @media (max-width: 640px) { .offer-card { width: 90vw; height: 70vh; } .top-nav { width: 95%; flex-wrap: wrap; justify-content: space-around; } .btn-claim { min-width: 180px; font-size: 12px; } }
 
-        /* CONTENT LOCKER OVERLAY STYLE */
-        .locker-overlay { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0, 0, 0, 0.92); display: none; 
-            justify-content: center; align-items: center; z-index: 10000; padding: 10px; 
+        /* --- SIDEBAR CSS --- */
+        .side-wrapper { position: fixed; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 25px; z-index: 50; }
+        .left-side { left: 25px; }
+        .right-side { right: 25px; }
+        .side-ad { width: 160px; height: 280px; border-radius: 14px; overflow: hidden; background: #000; position: relative; cursor: pointer; animation: sideFloat 4s ease-in-out infinite; }
+        .side-ad::before { content:''; position:absolute; width:150%; height:150%; background:conic-gradient(transparent,transparent,var(--gold)); animation:sideRotate 4s linear infinite; z-index:1; }
+        .side-ad::after { content:''; position:absolute; inset:3px; background:#000; border-radius:12px; z-index:2; }
+        .side-ad img { width:100%; height:100%; object-fit:cover; position:relative; z-index:3; transition:.4s; }
+        .side-ad:hover img { transform:scale(1.08); }
+        @keyframes sideRotate { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+        @keyframes sideFloat { 0%, 100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+
+        /* --- MOVIE POSTERS CSS --- */
+        .movie-poster { 
+            position: fixed; 
+            top: 55%; 
+            transform: translateY(-50%); 
+            width: 190px; 
+            height: 290px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(255, 204, 0, 0.4); 
+            overflow: hidden; 
+            z-index: 60;
+            background: #000;
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+        }
+        
+        .poster-visible { 
+            opacity: 1; 
+            pointer-events: auto;
+            animation: glitchReveal 0.4s ease-out forwards;
         }
 
-        @media (max-width: 640px) {
-            .offer-card { width: 90vw; height: 70vh; }
-                .top-nav { 
-        width: 95%; 
-        flex-wrap: wrap;  /* new */
-        justify-content: space-around; /* optional: space links evenly */
-                         }
-            .btn-claim { min-width: 180px; font-size: 12px; }
+        .poster-exit {
+            animation: moveAndVanish 0.8s ease-in forwards !important;
         }
-		
-/* ---------- Mobile Navbar Container ---------- */
-/* ---------- Mobile Navbar Container ---------- */
-.mobile-navbar {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 10px;
-    background: #0d1117; /* dark background for contrast */
-    border-radius: 18px;
-    box-shadow: 0 0 18px rgba(0,255,255,0.4);
-    overflow: hidden;
-    position: relative;
-}
 
-/* Media Query for Mobile */
-@media (max-width: 768px) {
-    .desktop-navbar { display: none; }
-    .mobile-navbar { display: flex; flex-wrap: wrap; }
-}
+        @keyframes glitchReveal {
+            0% { opacity: 0; transform: translateY(-50%) scale(1.2); filter: brightness(3); }
+            50% { opacity: 1; transform: translateY(-50%) scale(0.95); filter: brightness(1.1); }
+            100% { opacity: 1; transform: translateY(-50%) scale(1); }
+        }
 
-/* Navbar Links */
-.mobile-navbar .nav-link {
-    font-size: 15px;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 8px 14px;
-    border-radius: 8px;
-    color: #0ff;
-    background: linear-gradient(90deg,#0ff,#00e6ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    position: relative;
-    z-index: 1;
-    letter-spacing: 1.2px;
-    transition: transform 0.2s ease, text-shadow 0.2s ease;
-}
+        @keyframes moveAndVanish {
+            0% { transform: translateY(-50%) scale(1); opacity: 1; }
+            30% { transform: translateY(-52%) translateX(5px) scale(1.02); filter: brightness(1.5); }
+            60% { transform: translateY(-48%) translateX(-5px) scale(0.98); }
+            100% { transform: translateY(-20%) scale(0.5); opacity: 0; filter: blur(10px); }
+        }
 
-/* Smooth Underline Hover Animation */
-.mobile-navbar .nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 3px;
-    border-radius: 2px;
-    background: #0ff;
-    transition: width 0.3s ease;
-}
+        .left-poster { left: 18%; }
+        .right-poster { right: 18%; }
+        .movie-poster img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); transition: 0.3s; }
+        .movie-poster:hover { transform: translateY(-53%) scale(1.05); border-color: var(--gold); }
 
-.mobile-navbar .nav-link:hover::after {
-    width: 100%;
-}
-
-.mobile-navbar .nav-link:hover {
-    text-shadow: 0 0 6px #0ff, 0 0 12px #0ff;
-    transform: scale(1.1);
-}
-
-/* ---------- Card Styling ---------- */
-.card {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 0 18px rgba(0,255,255,0.3);
-    margin: 18px 12px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    background: #111;
-}
-
-.card img {
-    width: 100%;
-    border-radius: 20px;
-    display: block;
-    filter: brightness(0.9);
-    transition: transform 0.25s ease;
-}
-
-.card:hover img {
-    transform: scale(1.04);
-}
-
-.card .card-content {
-    position: absolute;
-    bottom: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    color: #fff;
-    width: 90%;
-    z-index: 1;
-}
-
-/* Card Title */
-.card .card-title {
-    font-size: 17px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    text-shadow: 0 0 6px rgba(0,255,255,0.5), 0 0 12px rgba(0,255,255,0.3);
-}
-
-/* Card Button */
-.card .card-button {
-    background: linear-gradient(90deg,#0ff,#00e6ff);
-    padding: 12px 24px;
-    border-radius: 28px;
-    font-weight: 700;
-    color: #111;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 0 12px rgba(0,255,255,0.3);
-    transition: all 0.25s ease-in-out;
-    cursor: pointer;
-}
-
-.card .card-button:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 22px rgba(0,255,255,0.6);
-}
+        @media(max-width: 1500px) { .movie-poster { width: 150px; height: 230px; } }
+        @media(max-width: 1300px) { .movie-poster { display:none; } } 
     </style>
 </head>
 <body>
-
     <div class="bg-text-container">
         <div class="bg-word">PREMIUM</div>
         <div class="bg-word">ACCESS</div>
         <div class="bg-word">EXCLUSIVE</div>
     </div>
 
-<!-- DESKTOP NAVBAR -->
-<nav class="top-nav desktop-navbar">
-    <a href="offers.html" class="nav-link">LATEST OFFERS »</a>
-    <a href="MoviePremiere.html" class="nav-link">MOVIE PREMIERE ▶</a>
-    <a href="CineAsia.html" class="nav-link">CINE ASIA 🎞️</a>
-    <a href="about.html" class="nav-link">ABOUT US 👁️</a>
-    <a href="contact.html" class="nav-link">CONTACT ✉</a>
-</nav>
+    <nav class="top-nav desktop-navbar">
+        <a href="offers.html" class="nav-link">LATEST OFFERS »</a>
+        <a href="MoviePremiere.html" class="nav-link">MOVIE PREMIERE ▶</a>
+        <a href="CineAsia.html" class="nav-link">CINE ASIA 🎞️</a>
+        <a href="about.html" class="nav-link">ABOUT US 👁️</a>
+        <a href="contact.html" class="nav-link">CONTACT ✉</a>
+    </nav>
 
-<!-- Mobile Navbar -->
-<nav class="mobile-navbar">
-    <a href="offers.html" class="nav-link">LATEST OFFERS</a>
-    <a href="movie.html" class="nav-link">MOVIE PREMIERE</a>
-    <a href="cine.html" class="nav-link">CINE ASIA</a>
-    <a href="about.html" class="nav-link">ABOUT</a>
-    <a href="contact.html" class="nav-link">CONTACT</a>
-</nav>
+    <div class="side-wrapper left-side">
+        <div class="side-ad" onclick="show_locker()"><img src="images/banar/amazon_banner.png"></div>
+        <div class="side-ad" onclick="show_locker()"><img src="images/banar/target_banner.png"></div>
+    </div>
+
+    <div class="side-wrapper right-side">
+        <div class="side-ad" onclick="show_locker()"><img src="images/banar/walmart_banner.png"></div>
+        <div class="side-ad" onclick="show_locker()"><img src="images/banar/netflix_banner.png"></div>
+    </div>
+
+    <div id="poster-left" class="movie-poster left-poster">
+        <img src="" alt="Left Movie"> 
+    </div>
+
+    <div id="poster-right" class="movie-poster right-poster">
+        <img src="" alt="Right Movie"> 
+    </div>
 
     <main class="carousel-container">
         <div class="offer-card">
             <img src="images/banar/box-pic.png" class="absolute inset-0 w-full h-full" alt="Card UI">
-            
             <div class="card-content">
                 <div id="dynamic-text">
                     <p class="text-[11px] font-black tracking-[0.5em] text-yellow-400 mb-3">SECURE ASSET</p>
                     <h2 id="asset-name" class="syncopate text-5xl mb-6">AMAZON<br>$500</h2>
                 </div>
-                
                 <button class="btn-claim" onclick="show_locker();">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.62 0-2.89.96-3.59 2.1L12 5.14l-.41-.74C10.89 3.26 9.62 2.3 8 2.3c-1.66 0-3 1.34-3 3 0 .35.07.69.18 1H3c-1.1 0-2 .9-2 2v2c0 .55.45 1 1 1h1v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10h1c.55 0 1-.45 1-1V8c0-1.1-.9-2-2-2zM15 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L15 4.3zM8 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L8 4.3zM3 8h8v2H3V8zm2 12V10h6v10H5zm14 0h-6V10h6v10zm2-10h-8V8h8v2z"/>
-                    </svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.62 0-2.89.96-3.59 2.1L12 5.14l-.41-.74C10.89 3.26 9.62 2.3 8 2.3c-1.66 0-3 1.34-3 3 0 .35.07.69.18 1H3c-1.1 0-2 .9-2 2v2c0 .55.45 1 1 1h1v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10h1c.55 0 1-.45 1-1V8c0-1.1-.9-2-2-2zM15 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L15 4.3zM8 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L8 4.3zM3 8h8v2H3V8zm2 12V10h6v10H5zm14 0h-6V10h6v10zm2-10h-8V8h8v2z"/></svg>
                     <span>UNLOCK OFFERS</span>
                 </button>
             </div>
         </div>
     </main>
 
-    <div id="lockerBox" class="locker-overlay">
+     <div id="lockerBox" class="locker-overlay">
         <div class="bg-[#0c0c0e] w-full max-w-sm rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 p-6">
             <div class="text-center mb-6">
                 <div class="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
@@ -466,11 +280,60 @@
     </div>
   </div>
 
-
-      </div>
-    </div>
-
     <script>
+        // --- MOVIE POSTERS ROTATION SYSTEM ---
+        const moviePairs = [
+            ["images/Avatar Fire and Ash.png", "images/Sinners.jpg"],
+            ["images/The Sun Rises on Us All.png", "images/Dhurandhar.png"],
+            ["images/Vadh 2.png", "images/Konya (2026).png"]
+        ];
+        
+        let pairIndex = 0;
+
+        function triggerThunderCycle() {
+            const body = document.body;
+            const leftPoster = document.getElementById('poster-left');
+            const rightPoster = document.getElementById('poster-right');
+
+            // 1. Prepare next set of images before flash
+            leftPoster.querySelector('img').src = moviePairs[pairIndex][0];
+            rightPoster.querySelector('img').src = moviePairs[pairIndex][1];
+
+            // 2. Reset classes
+            leftPoster.classList.remove('poster-visible', 'poster-exit');
+            rightPoster.classList.remove('poster-visible', 'poster-exit');
+
+            // 3. Lightning Flash
+            body.classList.add('thunder-flash');
+            
+            // 4. Reveal current pair
+            setTimeout(() => {
+                leftPoster.classList.add('poster-visible');
+                rightPoster.classList.add('poster-visible');
+            }, 200);
+
+            setTimeout(() => body.classList.remove('thunder-flash'), 600);
+
+            // 5. Vibration Move before vanish (at 5 seconds)
+            setTimeout(() => {
+                leftPoster.classList.add('poster-exit');
+                rightPoster.classList.add('poster-exit');
+            }, 5000);
+
+            // 6. Complete Vanish & Prepare Index for next cycle
+            setTimeout(() => {
+                leftPoster.classList.remove('poster-visible', 'poster-exit');
+                rightPoster.classList.remove('poster-visible', 'poster-exit');
+                
+                // Move to next pair for next trigger
+                pairIndex = (pairIndex + 1) % moviePairs.length;
+            }, 6000);
+        }
+
+        setInterval(triggerThunderCycle, 12000);
+        setTimeout(triggerThunderCycle, 2000);
+
+        // --- ASSET TEXT SYSTEM ---
         const assets = [
             { name: "AMAZON", value: "$500" },
             { name: "NETFLIX", value: "$500" },
@@ -489,22 +352,20 @@
                 assetName.innerHTML = `${assets[currentIndex].name}<br>${assets[currentIndex].value}`;
                 textWrapper.classList.remove('fade-out');
                 textWrapper.classList.add('fade-in');
-            }, 600); 
+            }, 600);
         }
         setInterval(updateText, 3500);
 
-        // --- LOCKER FUNCTIONS ---
         function show_locker() {
-            const locker = document.getElementById('lockerBox');
-            locker.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; 
+            document.getElementById('lockerBox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
         window.onclick = function(event) {
             const locker = document.getElementById('lockerBox');
             if (event.target == locker) {
                 locker.style.display = "none";
-                document.body.style.overflow = 'auto'; 
+                document.body.style.overflow = 'auto';
             }
         }
     </script>
