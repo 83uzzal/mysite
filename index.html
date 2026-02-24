@@ -84,8 +84,9 @@
             color: #fff;
             font-family: 'Inter', sans-serif;
             margin: 0;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
+			overflow-y: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -131,6 +132,15 @@
             transition: 0.3s; padding: 0 20px;
         }
         .nav-link:hover { color: var(--gold); }
+		
+		/* Desktop & Mobile Navbar */
+          .desktop-navbar { display: flex; }
+          .mobile-navbar { display: none; }
+
+        @media (max-width: 768px) {
+         .desktop-navbar { display: none; }
+         .mobile-navbar { display: flex; }
+        }
 
         .carousel-container {
             flex: 1; display: flex; align-items: center; justify-content: center;
@@ -221,13 +231,23 @@
         <div class="bg-word">EXCLUSIVE</div>
     </div>
 
-    <nav class="top-nav">
-        <a href="offers.html" class="nav-link">LATEST OFFERS »</a>
-        <a href="MoviePremiere.html" class="nav-link">MOVIE PREMIERE ▶</a>
-        <a href="CineAsia.html" class="nav-link">CINE ASIA 🎞️</a>
-        <a href="about.html" class="nav-link">ABOUT US 👁️</a>
-        <a href="contact.html" class="nav-link">CONTACT ✉</a>
-    </nav>
+<!-- DESKTOP NAVBAR -->
+<nav class="top-nav desktop-navbar">
+    <a href="offers.html" class="nav-link">LATEST OFFERS »</a>
+    <a href="MoviePremiere.html" class="nav-link">MOVIE PREMIERE ▶</a>
+    <a href="CineAsia.html" class="nav-link">CINE ASIA 🎞️</a>
+    <a href="about.html" class="nav-link">ABOUT US 👁️</a>
+    <a href="contact.html" class="nav-link">CONTACT ✉</a>
+</nav>
+
+<!-- MOBILE NAVBAR -->
+<nav class="top-nav mobile-navbar">
+    <a href="offers.html" class="nav-link">OFFERS</a>
+    <a href="MoviePremiere.html" class="nav-link">MOVIE ▶</a>
+    <a href="CineAsia.html" class="nav-link">CINE 🎞️</a>
+    <a href="about.html" class="nav-link">ABOUT</a>
+    <a href="contact.html" class="nav-link">CONTACT</a>
+</nav>
 
     <main class="carousel-container">
         <div class="offer-card">
@@ -265,7 +285,7 @@
             </div>
 
 <div class="space-y-2">
-        <a href="https://www.hiphi.site/21GFG1GL/9RKKD7P" target="_blank" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
+        <a href="https://www.hiphi.site/21GFG1GL/9RKKD7P" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
           <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fab fa-amazon text-sm"></i></div>
           <div class="flex-grow">
             <div class="text-[11px] font-bold text-white uppercase leading-none">Black Friday $500 Amazon Card</div>
@@ -274,7 +294,7 @@
           <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
         </a>
 
-        <a href="https://www.wetcj.site/21GFG1GL/8CG4NSJ" target="_blank" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
+        <a href="https://www.wetcj.site/21GFG1GL/8CG4NSJ" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
           <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fas fa-tv text-sm"></i></div>
           <div class="flex-grow">
             <div class="text-[11px] font-bold text-white uppercase leading-none">$500 Netflix Gift Card</div>
@@ -282,7 +302,7 @@
           </div>
           <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
         </a>
-        <a href="https://www.jobox.site/21GFG1GL/7QXNHQC" target="_blank" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
+        <a href="https://www.jobox.site/21GFG1GL/7QXNHQC" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
           <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fas fa-file-invoice-dollar text-sm"></i></div>
           <div class="flex-grow">
             <div class="text-[11px] font-bold text-white uppercase leading-none">Unemployment Support Form</div>
@@ -290,7 +310,7 @@
           </div>
           <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
         </a>
-        <a href="https://www.wetcj.site/21GFG1GL/845ZSM9" target="_blank" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
+        <a href="https://www.wetcj.site/21GFG1GL/845ZSM9" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
           <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fas fa-shopping-cart text-sm"></i></div>
           <div class="flex-grow">
             <div class="text-[11px] font-bold text-white uppercase leading-none">$500 Target Gift Card</div>
@@ -298,7 +318,7 @@
           </div>
           <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
         </a>
-        <a href="https://www.eggm.site/21GFG1GL/B2247WM" target="_blank" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
+        <a href="https://www.eggm.site/21GFG1GL/B2247WM" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
           <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fas fa-microchip text-sm"></i></div>
           <div class="flex-grow">
             <div class="text-[11px] font-bold text-white uppercase leading-none">IC Algorithm Signup</div>
@@ -314,10 +334,7 @@
     </div>
   </div>
 
-        <div class="mt-5 pt-4 border-t border-white/5 flex justify-center space-x-5 text-[7px] font-bold text-gray-600 uppercase tracking-widest">
-          <span><i class="fas fa-lock mr-1 text-red-600"></i> Secure</span>
-          <span><i class="fas fa-shield-alt mr-1 text-red-600"></i> Encrypted</span><br><br>
-        </div>
+
       </div>
     </div>
 
