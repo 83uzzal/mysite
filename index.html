@@ -164,6 +164,52 @@
 
         @media(max-width: 1500px) { .movie-poster { width: 150px; height: 230px; } }
         @media(max-width: 1300px) { .movie-poster { display:none; } } 
+		
+		/* ---------- Mobile Navbar Container ---------- */
+.mobile-navbar {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 10px;
+    background: #0d1117;
+    border-radius: 18px;
+    box-shadow: 0 0 18px rgba(0,255,255,0.4);
+    width: 95%;
+    margin-top: 20px;
+    position: relative;
+    z-index: 101;
+}
+
+@media (max-width: 768px) {
+    .desktop-navbar { display: none !important; }
+    .mobile-navbar { display: flex !important; flex-wrap: wrap; }
+    
+    /* Hide Side Banners on Mobile to prevent overlap */
+    .side-wrapper { display: none !important; }
+    
+    /* Center the main card on mobile */
+    .carousel-container { padding-top: 80px; }
+}
+
+.mobile-navbar .nav-link {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #0ff;
+    background: linear-gradient(90deg,#0ff,#00e6ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 5px 8px;
+}
+
+function triggerThunderCycle() {
+    // If the screen is small, don't run the poster rotation to save performance
+    if (window.innerWidth < 1300) return; 
+
+    const body = document.body;
+    // ... rest of your code ...
+}
     </style>
 </head>
 <body>
@@ -180,6 +226,14 @@
         <a href="about.html" class="nav-link">ABOUT US 👁️</a>
         <a href="contact.html" class="nav-link">CONTACT ✉</a>
     </nav>
+
+<nav class="mobile-navbar">
+    <a href="offers.html" class="nav-link">LATEST OFFERS</a>
+    <a href="movie.html" class="nav-link">MOVIE PREMIERE</a>
+    <a href="cine.html" class="nav-link">CINE ASIA</a>
+    <a href="about.html" class="nav-link">ABOUT</a>
+    <a href="contact.html" class="nav-link">CONTACT</a>
+</nav>
 
     <div class="side-wrapper left-side">
         <div class="side-ad" onclick="show_locker()"><img src="images/banar/amazon_banner.png"></div>
