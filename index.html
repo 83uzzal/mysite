@@ -232,6 +232,70 @@
                          }
             .btn-claim { min-width: 180px; font-size: 12px; }
         }
+		
+		/* Mobile Navbar Default */
+.mobile-navbar {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background: linear-gradient(90deg, #0f2027, #203a43, #2c5364); /* Dark gradient background */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .desktop-navbar { display: none; }
+    .mobile-navbar { display: flex; flex-wrap: wrap; }
+}
+
+/* Common nav-link style */
+.mobile-navbar .nav-link {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    color: #fff; /* fallback */
+}
+
+/* Individual gradient colors for each link */
+.mobile-navbar a:nth-child(1) {
+    background: linear-gradient(45deg, #ff5c00, #ffcc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.mobile-navbar a:nth-child(2) {
+    background: linear-gradient(45deg, #00ffcc, #00ccff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.mobile-navbar a:nth-child(3) {
+    background: linear-gradient(45deg, #ff00ff, #ff5caa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.mobile-navbar a:nth-child(4) {
+    background: linear-gradient(45deg, #00ccff, #0055ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.mobile-navbar a:nth-child(5) {
+    background: linear-gradient(45deg, #ffcc00, #ff9900);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Hover effect for glowing */
+.mobile-navbar .nav-link:hover {
+    text-shadow: 0 0 8px #fff, 0 0 15px #ffcc00;
+    transform: scale(1.1);
+}
+
     </style>
 </head>
 <body>
@@ -251,11 +315,11 @@
     <a href="contact.html" class="nav-link">CONTACT ✉</a>
 </nav>
 
-<!-- MOBILE NAVBAR -->
-<nav class="top-nav mobile-navbar">
+<!-- Mobile Navbar -->
+<nav class="mobile-navbar">
     <a href="offers.html" class="nav-link">LATEST OFFERS</a>
-    <a href="MoviePremiere.html" class="nav-link">MOVIE PREMIERE</a>
-    <a href="CineAsia.html" class="nav-link">CINE ASIA</a>
+    <a href="movie.html" class="nav-link">MOVIE PREMIERE</a>
+    <a href="cine.html" class="nav-link">CINE ASIA</a>
     <a href="about.html" class="nav-link">ABOUT</a>
     <a href="contact.html" class="nav-link">CONTACT</a>
 </nav>
