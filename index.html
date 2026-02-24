@@ -241,15 +241,15 @@
     justify-content: center;
     align-items: center;
     gap: 12px;
-    padding: 14px 10px;
-    background: #0b0b0b;
-    border-radius: 20px;
-    box-shadow: 0 0 20px #0ff, 0 0 40px #f0f inset;
+    padding: 14px 8px;
+    background: #0d0d0d;
+    border-radius: 16px;
+    box-shadow: 0 0 20px #0ff, 0 0 40px #0ff inset;
     overflow: hidden;
     position: relative;
 }
 
-/* Animated Neon Circle Streak Behind Navbar */
+/* Neon Streak Animation */
 .mobile-navbar::before {
     content: '';
     position: absolute;
@@ -257,12 +257,11 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: conic-gradient(from 0deg, #0ff, #f0f, #ff0, #0ff);
-    border-radius: 50%;
-    animation: neonCircle 8s linear infinite;
+    background: linear-gradient(120deg, #00ffff, #ff00ff, #ffcc00, #00ff99);
+    background-size: 400% 400%;
+    animation: streakMove 6s linear infinite;
     mix-blend-mode: screen;
     pointer-events: none;
-    filter: blur(30px);
 }
 
 /* Media Query for Mobile */
@@ -276,50 +275,39 @@
     font-size: 14px;
     font-weight: 900;
     text-transform: uppercase;
-    padding: 10px 16px;
-    border-radius: 10px;
+    padding: 8px 14px;
+    border-radius: 8px;
     color: #fff;
     position: relative;
-    z-index: 2;
+    z-index: 1;
     transition: transform 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* Individual Neon Gradient Text */
+/* Individual Neon Gradient */
 .mobile-navbar a:nth-child(1) { background: linear-gradient(45deg,#0ff,#f0f,#ff0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(2) { background: linear-gradient(45deg,#ff0,#0ff,#f0f); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.mobile-navbar a:nth-child(2) { background: linear-gradient(45deg,#ff0,#0f0,#0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
 .mobile-navbar a:nth-child(3) { background: linear-gradient(45deg,#f0f,#ff0,#0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(4) { background: linear-gradient(45deg,#0ff,#0f0,#f0f); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
-.mobile-navbar a:nth-child(5) { background: linear-gradient(45deg,#ff0,#f0f,#0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.mobile-navbar a:nth-child(4) { background: linear-gradient(45deg,#0f0,#0ff,#f0f); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.mobile-navbar a:nth-child(5) { background: linear-gradient(45deg,#ff0,#f0f,#0f0); -webkit-background-clip: text; -webkit-text-fill-color: transparent;}
 
-/* Hover Glow + Pulse Animation */
+/* Glow + Hover Animation */
 .mobile-navbar .nav-link:hover {
-    text-shadow:
-        0 0 8px #fff,
-        0 0 16px #0ff,
-        0 0 24px #f0f,
-        0 0 32px #ff0;
-    transform: scale(1.2);
-    animation: pulseGlow 1.2s infinite alternate;
+    text-shadow: 0 0 8px #fff, 0 0 16px #0ff, 0 0 24px #f0f, 0 0 32px #ff0;
+    transform: scale(1.15);
 }
 
-/* Neon Circle Animation Keyframes */
-@keyframes neonCircle {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Hover Pulse Keyframes */
-@keyframes pulseGlow {
-    0% { text-shadow: 0 0 8px #fff, 0 0 16px #0ff, 0 0 24px #f0f, 0 0 32px #ff0; }
-    100% { text-shadow: 0 0 14px #fff, 0 0 28px #0ff, 0 0 42px #f0f, 0 0 56px #ff0; }
+/* Streak Keyframes */
+@keyframes streakMove {
+    0% { transform: rotate(0deg) translate(0,0); }
+    100% { transform: rotate(360deg) translate(0,0); }
 }
 
 /* ---------- Card Styling ---------- */
 .card {
     position: relative;
-    border-radius: 22px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 0 20px #0ff, 0 0 50px #f0f inset;
+    box-shadow: 0 0 15px #0ff, 0 0 40px #f0f inset;
     margin: 18px 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     background: #111;
@@ -327,47 +315,47 @@
 
 .card img {
     width: 100%;
-    border-radius: 22px;
+    border-radius: 20px;
     display: block;
-    filter: brightness(0.85);
+    filter: brightness(0.9);
 }
 
 .card .card-content {
     position: absolute;
-    bottom: 22px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     color: #fff;
     width: 90%;
-    z-index: 2;
+    z-index: 1;
 }
 
 /* Card Title Neon Glow */
 .card .card-title {
-    font-size: 18px;
-    font-weight: 900;
-    margin-bottom: 12px;
-    text-shadow: 0 0 6px #0ff, 0 0 12px #f0f, 0 0 20px #ff0, 0 0 28px #0ff;
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-shadow: 0 0 6px #0ff, 0 0 12px #f0f, 0 0 18px #ff0;
 }
 
 /* Card Button Neon Glow */
 .card .card-button {
     background: linear-gradient(90deg, #0ff, #f0f, #ff0);
-    padding: 14px 28px;
-    border-radius: 32px;
-    font-weight: 900;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 800;
     color: #111;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 0 12px #0ff, 0 0 24px #f0f, 0 0 36px #ff0;
+    box-shadow: 0 0 10px #0ff, 0 0 20px #f0f, 0 0 30px #ff0;
     transition: all 0.3s ease-in-out;
     cursor: pointer;
 }
 
 .card .card-button:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 24px #0ff, 0 0 48px #f0f, 0 0 72px #ff0;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #0ff, 0 0 40px #f0f, 0 0 60px #ff0;
 }
 
     </style>
