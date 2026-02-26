@@ -8,144 +8,196 @@
     <meta name="description" content="Download Amadeus DigitalDNA software. Official resources for Amadeus Dhaka Office users and SECO selling platform members. Secure DDNA installer for Windows.">
     <meta name="keywords" content="ddna, amadeus ddna, digital dna, amadeus software, seco, selling platform, amadeus, dhaka office, amadeus dhaka office, amadeus local office">
     <link rel="canonical" href="https://www.usaoffers.online/ddna.html" />
-
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --button-gradient: linear-gradient(to right, #00b09b, #96c93d);
-            --glass-bg: rgba(255, 255, 255, 0.95);
+            --am-navy: #000835; 
+            --btn-green: linear-gradient(90deg, #00b894 0%, #9be15d 100%);
+            --title-purple: #5b53a3;
+            --bg-light: #f4f7f9;
         }
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: var(--primary-gradient);
+        * { box-sizing: border-box; }
+        
+        html, body {
             margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            overflow: hidden; 
+        }
+
+        .main-wrapper {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* বাম পাশের প্যানেল: এখন ঠিক অর্ধেক (50%) জায়গা নেবে */
+        .brand-side {
+            flex: 0 0 50%; 
+            background-color: var(--am-navy);
+            /* আপনার ইমেজের ফাইল নাম এখানে 'amadeus.png' রাখা হয়েছে */
+            background-image: url('images/amadeus1.png'); 
+            background-size: cover;
+            background-position: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ডান পাশের প্যানেল: বাকি অর্ধেক জায়গা */
+        .content-side {
+            flex: 0 0 50%;
+            background-color: var(--bg-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            color: #2d3436;
+            padding: 40px;
         }
 
-        .container {
-            text-align: center;
-            background: var(--glass-bg);
+        /* সাদা কার্ড ডিজাইন */
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 520px;
             padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            max-width: 550px;
-            width: 92%;
-            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+            text-align: center;
         }
 
-        .badge {
-            display: inline-block;
-            background: #e1f5fe;
-            color: #0288d1;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            margin-bottom: 15px;
+        /* ব্র্যান্ড হেডার */
+        .brand-header {
+            margin-bottom: 25px;
+        }
+
+        .brand-header h1 {
+            color: var(--am-navy);
+            font-size: 2.2rem;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        .brand-header p {
+            color: #636e72;
+            font-size: 1rem;
+            margin: 5px 0 0 0;
+            font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        h1 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            background: -webkit-linear-gradient(#764ba2, #667eea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .divider {
+            height: 1px;
+            background: #eee;
+            margin: 20px auto;
+            width: 70%;
+        }
+
+        .status-badge {
+            background: #e1f5fe;
+            color: #0288d1;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            color: var(--title-purple);
+            font-size: 2rem;
+            margin: 0 0 15px 0;
         }
 
         .description {
-            font-size: 17px;
-            margin-bottom: 30px;
-            line-height: 1.6;
             color: #636e72;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 35px;
         }
 
-        .btn-download {
+        /* ডাউনলোড বাটন */
+        .btn-dl {
             display: inline-block;
-            padding: 18px 45px;
-            background: var(--button-gradient);
-            color: #fff;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 50px;
+            background: var(--btn-green);
+            color: white;
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0, 176, 155, 0.4);
+            padding: 18px 60px;
+            border-radius: 60px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(0, 184, 148, 0.3);
             transition: all 0.3s ease;
-            margin-bottom: 20px;
         }
 
-        .btn-download:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 176, 155, 0.6);
+        .btn-dl:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 184, 148, 0.4);
         }
 
-        /* SEO Keyword Section (Visually subtle but crawlable) */
-        .seo-footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            font-size: 13px;
-            color: #b2bec3;
-        }
-
-        .seo-links {
+        /* ট্যাগগুলো */
+        .tag-row {
+            margin-top: 40px;
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
-            list-style: none;
-            padding: 0;
+            flex-wrap: wrap;
         }
 
-        .seo-links li {
-            background: #f1f2f6;
-            padding: 4px 10px;
-            border-radius: 4px;
+        .tag-item {
+            background: #f1f3f5;
+            color: #adb5bd;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
         }
 
-        footer {
-            margin-top: 30px;
-            font-weight: bold;
-            color: #636e72;
+        /* রেসপনসিভ (ট্যাবলেট ও মোবাইল) */
+        @media (max-width: 1024px) {
+            .main-wrapper { flex-direction: column; overflow-y: auto; }
+            .brand-side { flex: none; height: 40vh; width: 100%; }
+            .content-side { flex: none; width: 100%; padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
-    <amp-auto-ads type="adsense" data-ad-client="ca-pub-2006668019827952"></amp-auto-ads>
 
-    <main class="container">
-        <div class="badge">Official Distribution</div>
-        <h1>Amadeus DigitalDNA</h1>
-        
-        <p class="description">
-            Securely download the latest <strong>Digital DNA (DDNA)</strong> installer. Required for the <strong>Amadeus Software SECO</strong> selling platform connect.
-        </p>
-        
-        <a href="https://www.accounts.amadeus.com/LoginService/ddna/plugins/win32/DigitalDNA.msi" 
-           class="btn-download" 
-           download>
-            Download Now
-        </a>
+    <div class="main-wrapper">
+        <section class="brand-side"></section>
 
-        <div class="seo-footer">
-            <ul class="seo-links">
-                <li>Amadeus DDNA</li>
-                <li>Digital DNA</li>
-                <li>SECO Platform</li>
-                <li>Amadeus Software</li>
-             </ul>
-        </div>
+        <section class="content-side">
+            <div class="card">
+                <div class="brand-header">
+                    <h1>Amadeus</h1>
+                    <p>Selling Platform Connect</p>
+                </div>
 
-        <footer>
+                <div class="divider"></div>
 
-        </footer>
-    </main>
+                <div class="status-badge">Official Distribution</div>
+                
+                <h2>Amadeus DigitalDNA</h2>
+                
+                <p class="description">
+                    Securely download the latest <strong>Digital DNA (DDNA)</strong> installer. 
+                    Required for the <strong>Amadeus Software SECO</strong> selling platform connect.
+                </p>
 
-    </body>
+                <a href="https://www.accounts.amadeus.com/LoginService/ddna/plugins/win32/DigitalDNA.msi" class="btn-dl">
+                    Download Now
+                </a>
+
+                <div class="tag-row">
+                    <span class="tag-item">Amadeus DDNA</span>
+                    <span class="tag-item">Digital DNA</span>
+                    <span class="tag-item">SECO Platform</span>
+                    <span class="tag-item">Amadeus Dhaka</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
 </html>
