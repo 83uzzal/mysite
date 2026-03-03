@@ -5,13 +5,10 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Google Add -->
 <meta name="google-adsense-account" content="ca-pub-2006668019827952">
-<!-- Google Add -->
-
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4871005247843204"
      crossorigin="anonymous"></script>
-	 
+     
 <title>USAOffers, Free USA Offers & Gift Card Deals (100% Legit)</title>
 <link rel="canonical" href="https://www.usaoffers.online/" />
 
@@ -34,12 +31,9 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" href="/favicon-32x32.png">
-	<!-- Google Add -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2006668019827952"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4871005247843204"
      crossorigin="anonymous"></script>
-	<!-- Google Add -->
-	
-<link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/app.css">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
 <script>
@@ -164,8 +158,8 @@
 
         @media(max-width: 1500px) { .movie-poster { width: 150px; height: 230px; } }
         @media(max-width: 1300px) { .movie-poster { display:none; } } 
-		
-		/* ---------- Mobile Navbar Container ---------- */
+        
+        /* ---------- Mobile Navbar Container ---------- */
 .mobile-navbar {
     display: none;
     justify-content: center;
@@ -184,36 +178,112 @@
 @media (max-width: 768px) {
     .desktop-navbar { display: none !important; }
     .mobile-navbar { display: flex !important; flex-wrap: wrap; }
-    
-    /* Hide Side Banners on Mobile to prevent overlap */
     .side-wrapper { display: none !important; }
-    
-    /* Center the main card on mobile */
     .carousel-container { padding-top: 80px; }
 }
 
-.mobile-navbar .nav-link {
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #0ff;
-    background: linear-gradient(90deg,#0ff,#00e6ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 5px 8px;
+/* SIDE SLIDER POPUP CSS - FIXED IMAGE CUTTING */
+.slider-popup {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 550px;
+    background: #1a2e26;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 0 50px rgba(0,0,0,0.9);
+    z-index: 20001;
+    overflow: hidden;
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: sideBlink 1.5s infinite alternate;
 }
 
-function triggerThunderCycle() {
-    // If the screen is small, don't run the poster rotation to save performance
-    if (window.innerWidth < 1300) return; 
+.slider-popup img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important; /* Prevents text from being cut off */
+    display: block;
+}
 
-    const body = document.body;
-    // ... rest of your code ...
+@keyframes sideBlink {
+    from { border-color: #ffcc00; box-shadow: 0 0 20px rgba(255, 204, 0, 0.5); }
+    to { border-color: #fff; box-shadow: 0 0 50px rgba(255, 255, 255, 0.8); }
+}
+
+#sideSlideRight { right: -800px; border-radius: 30px 0 0 30px; }
+#sideSlideLeft { left: -800px; border-radius: 0 30px 30px 0; }
+
+#sideSlideRight.active { right: 0; }
+#sideSlideLeft.active { left: 0; }
+
+#sideSlideRight.exit { right: -800px; }
+#sideSlideLeft.exit { left: -800px; }
+
+/* MINI STICKY IMAGE VISIBILITY - FIXED */
+.mini-sticky {
+    position: fixed;
+    bottom: 20px; 
+    width: 180px; 
+    height: 120px; 
+    z-index: 9999;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    display: none;
+    animation: miniBlink 1.5s infinite alternate;
+    cursor: pointer;
+    background: #000;
+}
+.mini-sticky img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important; /* Ensures the whole image/text is visible */
+    image-rendering: -webkit-optimize-contrast;
+    display: block;
+}
+
+.sticky-left { left: 40px; } 
+.sticky-right { right: 40px; } 
+
+@keyframes miniBlink {
+    from { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
+    to { opacity: 0.9; transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 204, 0, 0.8); }
 }
     </style>
 </head>
 <body>
-    <div class="bg-text-container">
+
+<div id="promoPopup" class="fixed inset-0 z-[20000] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="relative max-w-2xl w-full bg-[#1a2e26] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+        <button onclick="closePromo()" class="absolute top-4 right-4 text-white/50 hover:text-white z-10 bg-black/20 p-2 rounded-full">
+            <i class="fas fa-times text-xl"></i>
+        </button>
+        <a href="https://www.wetcj.site/21GFG1GL/B1FFM3C" target="_blank" rel="noopener noreferrer" class="block">
+            <img src="iPhone.png" alt="Offer" class="w-full h-auto block hover:opacity-90 transition-opacity">
+        </a>
+    </div>
+</div>
+
+<div id="sideSlideRight" class="slider-popup">
+    <a href="https://www.steepl.site/21GFG1GL/9WCBTFP" target="_blank" rel="noopener noreferrer" class="block">
+        <img src="fridaysweightloss.png" class="w-full h-auto block">
+    </a>
+</div>
+
+<div id="sideSlideLeft" class="slider-popup">
+    <a href="https://www.steepl.site/21GFG1GL/9W31K23" target="_blank" rel="noopener noreferrer" class="block">
+        <img src="glp1.png" class="w-full h-auto block">
+    </a>
+</div>
+
+<a href="https://www.steepl.site/21GFG1GL/9W4DFQN" target="_blank" id="miniLeft" class="mini-sticky sticky-left">
+    <img src="healthrx.png" alt="Offer Left">
+</a>
+<a href="https://www.steepl.site/21GFG1GL/9W9XZP4" target="_blank" id="miniRight" class="mini-sticky sticky-right">
+    <img src="microdosing.png" alt="Offer Right">
+</a>
+
+<div class="bg-text-container">
         <div class="bg-word">PREMIUM</div>
         <div class="bg-word">ACCESS</div>
         <div class="bg-word">EXCLUSIVE</div>
@@ -269,73 +339,79 @@ function triggerThunderCycle() {
         </div>
     </main>
 
-     <div id="lockerBox" class="locker-overlay">
-        <div class="bg-[#0c0c0e] w-full max-w-sm rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 p-6">
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                    <i class="fas fa-shield-halved text-white text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-black text-white mb-2">VERIFICATION</h3>
-                <p class="text-gray-400 text-xs px-4">Complete one simple task below to verify and unlock your session.</p>
-                
-                <div class="mt-4 flex items-center justify-center space-x-2 text-[10px] font-bold text-red-500 tracking-widest">
-                    <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-                    <span class="uppercase">Waiting for completion...</span>
+    <div id="lockerBox" class="locker-overlay">
+        <div class="bg-[#0c0c0e] w-full max-w-sm rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 flex flex-col">
+            <div class="relative w-full h-56">
+                <img src="images/banar/box-pic.png" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0c0c0e] via-transparent to-transparent"></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <div class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center mb-2 shadow-xl border-2 border-white/20">
+                        <i class="fas fa-shield-halved text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-3xl font-black text-white tracking-tighter uppercase drop-shadow-lg">Verification</h3>
                 </div>
             </div>
 
-<div class="space-y-2">
-        <a href="https://www.hiphi.site/21GFG1GL/9RKKD7P" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
-          <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fab fa-amazon text-sm"></i></div>
-          <div class="flex-grow">
-            <div class="text-[11px] font-bold text-white uppercase leading-none">Black Friday $500 Amazon Card - USA</div>
-            <div class="text-[8px] text-green-500 font-bold uppercase mt-1">Easy - 1 Minute or Less</div>
-          </div>
-          <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-        </a>
+            <div class="p-6 pt-0 bg-[#0c0c0e]">
+                <div class="text-center mb-6">
+                    <p class="text-gray-400 text-[10px] uppercase font-bold tracking-widest opacity-60">Human Verification Required</p>
+                    <div class="mt-3 flex items-center justify-center space-x-2 text-[10px] font-bold text-red-500 tracking-widest">
+                        <span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
+                        <span class="uppercase">Status: Waiting for completion</span>
+                    </div>
+                </div>
 
-        <a href="https://www.wetcj.site/21GFG1GL/8CG4NSJ" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
-          <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fas fa-tv text-sm"></i></div>
-          <div class="flex-grow">
-            <div class="text-[11px] font-bold text-white uppercase leading-none">$500 Netflix Gift Card - USA</div>
-            <div class="text-[8px] text-yellow-500 font-bold uppercase mt-1">Us Only - Instant Approval</div>
-          </div>
-          <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-        </a>
-        <a href="https://www.olie.site/21GFG1GL/8TBZ2WJ" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
-          <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fas fa-file-invoice-dollar text-sm"></i></div>
-          <div class="flex-grow">
-            <div class="text-[11px] font-bold text-white uppercase leading-none">Gift Cards Around World</div>
-            <div class="text-[8px] text-orange-400 font-bold uppercase mt-1">Highly Recommended</div>
-          </div>
-          <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-        </a>
-        <a href="https://www.wetcj.site/21GFG1GL/845ZSM9" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
-          <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fas fa-shopping-cart text-sm"></i></div>
-          <div class="flex-grow">
-            <div class="text-[11px] font-bold text-white uppercase leading-none">$500 Target Gift Card - USA</div>
-            <div class="text-[8px] text-blue-400 font-bold uppercase mt-1">US Market - High Chance</div>
-          </div>
-          <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-        </a>
-        <a href="https://www.eggm.site/21GFG1GL/B2247WM" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
-          <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fas fa-microchip text-sm"></i></div>
-          <div class="flex-grow">
-            <div class="text-[11px] font-bold text-white uppercase leading-none">IC Algorithm - Instant Withdrawal</div>
-            <div class="text-[8px] text-red-400 font-bold uppercase mt-1">Exclusive Rewards and Offers.</div>
-          </div>
-          <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-        </a>
+                <div class="space-y-2">
+                    <a href="https://www.hiphi.site/21GFG1GL/9RKKD7P" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
+                      <div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fab fa-amazon text-sm"></i></div>
+                      <div class="flex-grow">
+                        <div class="text-[11px] font-bold text-white uppercase leading-none">Black Friday $500 Amazon Card</div>
+                        <div class="text-[8px] text-green-500 font-bold uppercase mt-1">Easy - 1 Minute or Less</div>
+                      </div>
+                      <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
+                    </a>
+                    <a href="https://www.wetcj.site/21GFG1GL/8CG4NSJ" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
+                      <div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fas fa-tv text-sm"></i></div>
+                      <div class="flex-grow">
+                        <div class="text-[11px] font-bold text-white uppercase leading-none">$500 Netflix Gift Card</div>
+                        <div class="text-[8px] text-yellow-500 font-bold uppercase mt-1">Us Only - Instant Approval</div>
+                      </div>
+                      <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
+                    </a>
+                    <a href="https://www.jobox.site/21GFG1GL/7QXNHQC" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
+                      <div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fas fa-file-invoice-dollar text-sm"></i></div>
+                      <div class="flex-grow">
+                        <div class="text-[11px] font-bold text-white uppercase leading-none">Unemployment Support Form</div>
+                        <div class="text-[8px] text-orange-400 font-bold uppercase mt-1">Highly Recommended</div>
+                      </div>
+                      <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
+                    </a>
+                    <a href="https://www.wetcj.site/21GFG1GL/845ZSM9" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
+                      <div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fas fa-shopping-cart text-sm"></i></div>
+                      <div class="flex-grow">
+                        <div class="text-[11px] font-bold text-white uppercase leading-none">$500 Target Gift Card</div>
+                        <div class="text-[8px] text-blue-400 font-bold uppercase mt-1">US Market - High Chance</div>
+                      </div>
+                      <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
+                    </a>
+                    <a href="https://www.eggm.site/21GFG1GL/B2247WM" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
+                      <div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fas fa-microchip text-sm"></i></div>
+                      <div class="flex-grow">
+                        <div class="text-[11px] font-bold text-white uppercase leading-none">IC Algorithm Signup</div>
+                        <div class="text-[8px] text-red-400 font-bold uppercase mt-1">Exclusive Rewards and Offers.</div>
+                      </div>
+                      <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
+                    </a>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/5 flex justify-center space-x-6 text-[8px] font-black text-gray-600 uppercase tracking-[0.2em]">
+                    <span><i class="fas fa-lock mr-1 text-red-600"></i> Secure</span>
+                    <span><i class="fas fa-shield-alt mr-1 text-red-600"></i> Encrypted</span>
+                </div>
+            </div>
         </div>
-      <div class="mt-5 pt-4 border-t border-white/5 flex justify-center space-x-5 text-[7px] font-bold text-gray-600 uppercase tracking-widest">
-        <span><i class="fas fa-lock mr-1 text-red-600"></i> Secure</span>
-        <span><i class="fas fa-shield-alt mr-1 text-red-600"></i> Encrypted</span>
-      </div>
     </div>
-  </div>
 
     <script>
-        // --- MOVIE POSTERS ROTATION SYSTEM ---
         const moviePairs = [
             ["images/Avatar Fire and Ash.png", "images/Sinners.jpg"],
             ["images/The Sun Rises on Us All.png", "images/Dhurandhar.png"],
@@ -348,38 +424,24 @@ function triggerThunderCycle() {
             const body = document.body;
             const leftPoster = document.getElementById('poster-left');
             const rightPoster = document.getElementById('poster-right');
-
-            // 1. Prepare next set of images before flash
+            if (window.innerWidth < 1300) return; 
             leftPoster.querySelector('img').src = moviePairs[pairIndex][0];
             rightPoster.querySelector('img').src = moviePairs[pairIndex][1];
-
-            // 2. Reset classes
             leftPoster.classList.remove('poster-visible', 'poster-exit');
             rightPoster.classList.remove('poster-visible', 'poster-exit');
-
-            // 3. Lightning Flash
             body.classList.add('thunder-flash');
-            
-            // 4. Reveal current pair
             setTimeout(() => {
                 leftPoster.classList.add('poster-visible');
                 rightPoster.classList.add('poster-visible');
             }, 200);
-
             setTimeout(() => body.classList.remove('thunder-flash'), 600);
-
-            // 5. Vibration Move before vanish (at 5 seconds)
             setTimeout(() => {
                 leftPoster.classList.add('poster-exit');
                 rightPoster.classList.add('poster-exit');
             }, 5000);
-
-            // 6. Complete Vanish & Prepare Index for next cycle
             setTimeout(() => {
                 leftPoster.classList.remove('poster-visible', 'poster-exit');
                 rightPoster.classList.remove('poster-visible', 'poster-exit');
-                
-                // Move to next pair for next trigger
                 pairIndex = (pairIndex + 1) % moviePairs.length;
             }, 6000);
         }
@@ -387,7 +449,6 @@ function triggerThunderCycle() {
         setInterval(triggerThunderCycle, 12000);
         setTimeout(triggerThunderCycle, 2000);
 
-        // --- ASSET TEXT SYSTEM ---
         const assets = [
             { name: "AMAZON", value: "$500" },
             { name: "NETFLIX", value: "$500" },
@@ -421,6 +482,63 @@ function triggerThunderCycle() {
                 locker.style.display = "none";
                 document.body.style.overflow = 'auto';
             }
+        }
+
+        window.addEventListener('load', () => {
+            const promo = document.getElementById('promoPopup');
+            setTimeout(() => {
+                promo.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; 
+            }, 1000);
+
+            setTimeout(() => {
+                closePromo();
+            }, 7000);
+        });
+
+        function closePromo() {
+            const promo = document.getElementById('promoPopup');
+            if(promo.style.display === 'none') return; 
+            
+            promo.style.opacity = '0';
+            promo.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                promo.style.display = 'none';
+                if(document.getElementById('lockerBox').style.display !== 'flex') {
+                    document.body.style.overflow = 'auto';
+                }
+                showMiniSticky();
+                setTimeout(triggerRightSlide, 1000);
+            }, 500);
+        }
+
+        function triggerRightSlide() {
+            const rightPop = document.getElementById('sideSlideRight');
+            rightPop.classList.remove('exit');
+            rightPop.classList.add('active'); 
+
+            setTimeout(() => {
+                rightPop.classList.remove('active');
+                rightPop.classList.add('exit');
+                setTimeout(triggerLeftSlide, 500);
+            }, 5000);
+        }
+
+        function triggerLeftSlide() {
+            const leftPop = document.getElementById('sideSlideLeft');
+            leftPop.classList.remove('exit');
+            leftPop.classList.add('active'); 
+
+            setTimeout(() => {
+                leftPop.classList.remove('active');
+                leftPop.classList.add('exit'); 
+            }, 5000);
+        }
+
+        function showMiniSticky() {
+            document.getElementById('miniLeft').style.display = 'block';
+            document.getElementById('miniRight').style.display = 'block';
         }
     </script>
 </body>
