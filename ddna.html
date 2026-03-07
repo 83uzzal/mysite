@@ -33,18 +33,18 @@
             width: 100vw;
         }
 
-        /* বাম পাশের প্যানেল: এখন ঠিক অর্ধেক (50%) জায়গা নেবে */
+        /* বাম পাশের প্যানেল: এখন ঠিক অর্ধেক (50%) জায়গা নেবে */
         .brand-side {
             flex: 0 0 50%; 
             background-color: var(--am-navy);
-            /* আপনার ইমেজের ফাইল নাম এখানে 'amadeus.png' রাখা হয়েছে */
+            /* আপনার ইমেজের ফাইল নাম এখানে 'amadeus.png' রাখা হয়েছে */
             background-image: url('images/Amadeus1.PNG'); 
             background-size: cover;
             background-position: center;
             border-right: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* ডান পাশের প্যানেল: বাকি অর্ধেক জায়গা */
+        /* ডান পাশের প্যানেল: বাকি অর্ধেক জায়গা */
         .content-side {
             flex: 0 0 50%;
             background-color: var(--bg-light);
@@ -185,7 +185,10 @@
                     Required for the <strong>Amadeus Software SECO</strong> selling platform connect.
                 </p>
 
-                <a href="https://www.accounts.amadeus.com/LoginService/ddna/plugins/win32/DigitalDNA.msi" class="btn-dl">
+                <a href="https://www.accounts.amadeus.com/LoginService/ddna/plugins/win32/DigitalDNA.msi" 
+                   class="btn-dl" 
+                   data-interact-trigger 
+                   data-tool-id="62771">
                     Download Now
                 </a>
 
@@ -199,6 +202,8 @@
         </section>
     </div>
 
-</body>
+    <script>window.CPALead_PublisherUserId = 3339802;</script>
+    <script src="https://cdnflair.com/js/interact-form.js" async defer></script>
 
+</body>
 </html>
