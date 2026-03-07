@@ -13,7 +13,6 @@
 <meta name="description" content="Unlock free USA gift cards, exclusive offers & trial deals 🎁 Trusted, fast & safe rewards. Start earning today at USAOffers.">
 <meta name="keywords" content="free usa offers, gift cards, trial deals, rewards, usa offers" />
 
-<!-- Open Graph / Facebook -->
 <meta property="og:title" content="USAOffers 🇺🇸 | Free USA Offers, Gift Cards & Trial Deals (100% Legit)" />
 <meta property="og:description" content="Unlock free USA gift cards, exclusive offers & trial deals 🎁 Trusted, fast & safe rewards. Start earning today at USAOffers." />
 <meta property="og:url" content="https://www.usaoffers.online/" />
@@ -21,23 +20,19 @@
 <meta property="og:image" content="https://www.usaoffers.online/usaoffers-logo.png" />
 <meta property="og:locale" content="en_US" />
 
-<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="USAOffers 🇺🇸 | Free USA Offers, Gift Cards & Trial Deals" />
 <meta name="twitter:description" content="Unlock free USA gift cards, exclusive offers & trial deals 🎁 Trusted, fast & safe rewards. Start earning today at USAOffers." />
 <meta name="twitter:image" content="https://www.usaoffers.online/usaoffers-logo.png" />
 
-<!-- Favicon -->
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="apple-touch-icon" href="/favicon-32x32.png">
 
-<!-- Stylesheets -->
 <link rel="stylesheet" href="assets/styles/main.css">
 <script src="assets/js/main.js" defer></script>
 
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -46,7 +41,6 @@ gtag('js', new Date());
 gtag('config', 'G-ZFYWLM9B1C');
 </script>
 
-<!-- Structured Data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -61,7 +55,6 @@ gtag('config', 'G-ZFYWLM9B1C');
 }
 </script>
 
-<!-- Lazy Load Polyfill for Images -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const imgs = document.querySelectorAll('img:not([loading])');
@@ -69,12 +62,58 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<!-- Tailwind & Font Awesome -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    /* New Custom Offer Section Styling */
+    .my-custom-ad-section {
+        background-color: #939799; 
+        padding: 50px 20px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 40px;
+    }
+    .my-custom-ad-card {
+        background-color: #ffffff;
+        border-radius: 4px;
+        padding: 30px;
+        width: 100%;
+        max-width: 900px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        font-family: Arial, sans-serif;
+    }
+    .my-ad-info h2 { font-size: 28px; color: #333; margin: 0; font-weight: 500; }
+    .my-ad-info h3 { font-size: 18px; color: #444; margin: 5px 0 10px 0; font-weight: 400; }
+    .my-ad-info p { color: #666; font-size: 14px; margin-bottom: 25px; line-height: 1.5; }
+    .my-ad-site { color: #aaa; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
+    
+    .my-ad-btn {
+        background-color: #008cff;
+        color: white !important;
+        text-decoration: none;
+        padding: 12px 45px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        transition: 0.3s ease;
+    }
+    .my-ad-btn:hover { background-color: #0076d6; }
+    .my-ad-btn i { margin-left: 10px; font-size: 18px; }
+
+    @media (max-width: 640px) {
+        .my-custom-ad-card { flex-direction: column; align-items: flex-start; gap: 20px; }
+        .my-ad-btn { width: 100%; justify-content: center; }
+    }
+</style>
 </head>
-	
-</head>
+
 <body>
 
 <div id="promoPopup" class="fixed inset-0 z-[20000] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
@@ -155,13 +194,35 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p class="text-[11px] font-black tracking-[0.5em] text-yellow-400 mb-3">SECURE ASSET</p>
                     <h2 id="asset-name" class="syncopate text-5xl mb-6">AMAZON<br>$500</h2>
                 </div>
-                <button class="btn-claim" onclick="show_locker();">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.62 0-2.89.96-3.59 2.1L12 5.14l-.41-.74C10.89 3.26 9.62 2.3 8 2.3c-1.66 0-3 1.34-3 3 0 .35.07.69.18 1H3c-1.1 0-2 .9-2 2v2c0 .55.45 1 1 1h1v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10h1c.55 0 1-.45 1-1V8c0-1.1-.9-2-2-2zM15 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L15 4.3zM8 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L8 4.3zM3 8h8v2H3V8zm2 12V10h6v10H5zm14 0h-6V10h6v10zm2-10h-8V8h8v2z"/></svg>
-                    <span>UNLOCK OFFERS</span>
-                </button>
+<!--  Cpalead locker  -->					<a href="https://www.hiphi.site/21GFG1GL/9RKKD7P"
+					   data-interact-trigger
+					   data-tool-id="62771"
+					   class="btn-claim">
+
+						<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.62 0-2.89.96-3.59 2.1L12 5.14l-.41-.74C10.89 3.26 9.62 2.3 8 2.3c-1.66 0-3 1.34-3 3 0 .35.07.69.18 1H3c-1.1 0-2 .9-2 2v2c0 .55.45 1 1 1h1v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10h1c.55 0 1-.45 1-1V8c0-1.1-.9-2-2-2zM15 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L15 4.3zM8 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L8 4.3zM3 8h8v2H3V8zm2 12V10h6v10H5zm14 0h-6V10h6v10zm2-10h-8V8h8v2z"/>
+						</svg>
+
+						<span>UNLOCK OFFERS</span>
+
+					</a> <!--  Cpalead locker  -->
             </div>
         </div>
     </main>
+
+    <div class="my-custom-ad-section">
+        <div class="my-custom-ad-card">
+            <div class="my-ad-info">
+                <h2>60-Days Free Trial</h2>
+                <h3>Superior ASP.NET Hosting</h3>
+                <p>Professional ASP.NET Hosting With Unlimited Space And Bandwidth & Email.</p>
+                <span class="my-ad-site">SmarterASP.NET</span>
+            </div>
+            <div class="my-ad-action">
+                <a href="#" class="my-ad-btn">OPEN <i class="fas fa-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
 
     <div id="lockerBox" class="locker-overlay">
         <div class="bg-[#0c0c0e] w-full max-w-sm rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 flex flex-col">
@@ -234,6 +295,17 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
         </div>
     </div>
+	<!--  Cpalead locker  -->
+				<script>
+				window.CPAlead_PublisherUserId = 3339802;
+				</script>
 
+				<script src="https://cdnflair.com/js/interact-form.js"></script>
+	<!--  Cpalead locker -->
+
+<!-- Pop up repeate start  -->
+
+<!--  Pop up repeate finished -->
+				
 </body>
 </html>
