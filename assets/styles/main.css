@@ -1,101 +1,259 @@
- :root { --gold: #ffcc00; --orange-glow: #ff5c00; --bg: #030303; }
-        body { background-image: url('images/banar/background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; background-color: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; align-items: center; }
-        
-        body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; opacity: 0; z-index: 9999; pointer-events: none; }
-        .thunder-flash::after { animation: flash 0.5s ease-out; }
+:root { 
+    --gold: #ffcc00; 
+    --orange-glow: #ff5c00; 
+    --bg: #030303; 
+}
 
-        @keyframes flash {
-            0% { opacity: 0; }
-            10% { opacity: 0.8; }
-            20% { opacity: 0.2; }
-            30% { opacity: 0.9; }
-            100% { opacity: 0; }
-        }
+body { 
+    background-image: url('images/banar/background.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-color: var(--bg); 
+    color: #fff; 
+    font-family: 'Inter', sans-serif; 
+    margin: 0; 
+    min-height: 100vh; 
+    overflow-x: hidden; 
+    overflow-y: auto; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+}
 
-        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: -2; }
-        .syncopate { font-family: 'Syncopate', sans-serif; }
-        .bg-text-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: -1; pointer-events: none; opacity: 0.1; }
-        .bg-word { font-family: 'Archivo Black', sans-serif; font-size: 15vw; line-height: 0.9; -webkit-text-stroke: 1.5px white; color: transparent; text-transform: uppercase; white-space: nowrap; }
-        .top-nav { position: fixed; top: 30px; width: 65%; max-width: 1100px; height: 60px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px; display: flex; align-items: center; justify-content: center; z-index: 100; }
-        .nav-link { font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255, 255, 255, 0.7); transition: 0.3s; padding: 0 20px; }
-        .nav-link:hover { color: var(--gold); }
-        .desktop-navbar { display: flex; }
-        .mobile-navbar { display: none; }
-        @media (max-width: 768px) { .desktop-navbar { display: none; } .mobile-navbar { display: flex; } }
-        .carousel-container { flex: 1; display: flex; align-items: center; justify-content: center; z-index: 10; padding-top: 10px; }
-        .offer-card { width: 450px; height: 620px; background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(15px); border-radius: 40px; overflow: hidden; position: relative; border: 1px solid rgba(255, 204, 0, 0.4); box-shadow: 0 40px 100px rgba(0,0,0,0.8); }
-        .offer-card img { object-fit: cover; object-position: center; transform: scale(1.0); opacity: 0.6; transition: transform 0.5s ease; }
-        .card-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px; background: linear-gradient(to top, rgba(0,0,0,1) 45%, transparent); text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .btn-claim { background: linear-gradient(90deg, #ffb800 0%, #ff5c00 100%); color: #000; width: auto; min-width: 220px; max-width: 280px; padding: 14px 24px; border-radius: 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; margin-top: 25px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 8px 15px rgba(255, 92, 0, 0.3); border: none; cursor: pointer; }
-        .btn-claim:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 12px 25px rgba(255, 92, 0, 0.5); filter: brightness(1.1); }
-        #dynamic-text { transition: all 0.6s ease-in-out; }
-        .fade-out { opacity: 0; transform: translateY(-15px); }
-        .fade-in { opacity: 1; transform: translateY(0); }
-        .locker-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); display: none; justify-content: center; align-items: center; z-index: 10000; padding: 10px; }
-        @media (max-width: 640px) { .offer-card { width: 90vw; height: 70vh; } .top-nav { width: 95%; flex-wrap: wrap; justify-content: space-around; } .btn-claim { min-width: 180px; font-size: 12px; } }
+body::after { 
+    content: ""; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: white; 
+    opacity: 0; 
+    z-index: 9999; 
+    pointer-events: none; 
+}
 
-        /* --- SIDEBAR CSS --- */
-        .side-wrapper { position: fixed; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 25px; z-index: 50; }
-        .left-side { left: 25px; }
-        .right-side { right: 25px; }
-        .side-ad { width: 160px; height: 280px; border-radius: 14px; overflow: hidden; background: #000; position: relative; cursor: pointer; animation: sideFloat 4s ease-in-out infinite; }
-        .side-ad::before { content:''; position:absolute; width:150%; height:150%; background:conic-gradient(transparent,transparent,var(--gold)); animation:sideRotate 4s linear infinite; z-index:1; }
-        .side-ad::after { content:''; position:absolute; inset:3px; background:#000; border-radius:12px; z-index:2; }
-        .side-ad img { width:100%; height:100%; object-fit:cover; position:relative; z-index:3; transition:.4s; }
-        .side-ad:hover img { transform:scale(1.08); }
-        @keyframes sideRotate { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
-        @keyframes sideFloat { 0%, 100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+.thunder-flash::after { animation: flash 0.5s ease-out; }
 
-        /* --- MOVIE POSTERS CSS --- */
-        .movie-poster { 
-            position: fixed; 
-            top: 55%; 
-            transform: translateY(-50%); 
-            width: 190px; 
-            height: 290px; 
-            border-radius: 15px; 
-            border: 1px solid rgba(255, 204, 0, 0.4); 
-            overflow: hidden; 
-            z-index: 60;
-            background: #000;
-            box-shadow: 0 0 50px rgba(0,0,0,1);
-            opacity: 0; 
-            transition: opacity 0.5s ease-in-out;
-            pointer-events: none;
-        }
-        
-        .poster-visible { 
-            opacity: 1; 
-            pointer-events: auto;
-            animation: glitchReveal 0.4s ease-out forwards;
-        }
+@keyframes flash {
+    0% { opacity: 0; }
+    10% { opacity: 0.8; }
+    20% { opacity: 0.2; }
+    30% { opacity: 0.9; }
+    100% { opacity: 0; }
+}
 
-        .poster-exit {
-            animation: moveAndVanish 0.8s ease-in forwards !important;
-        }
+body::before { 
+    content: ""; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: -2; 
+}
 
-        @keyframes glitchReveal {
-            0% { opacity: 0; transform: translateY(-50%) scale(1.2); filter: brightness(3); }
-            50% { opacity: 1; transform: translateY(-50%) scale(0.95); filter: brightness(1.1); }
-            100% { opacity: 1; transform: translateY(-50%) scale(1); }
-        }
+.syncopate { font-family: 'Syncopate', sans-serif; }
 
-        @keyframes moveAndVanish {
-            0% { transform: translateY(-50%) scale(1); opacity: 1; }
-            30% { transform: translateY(-52%) translateX(5px) scale(1.02); filter: brightness(1.5); }
-            60% { transform: translateY(-48%) translateX(-5px) scale(0.98); }
-            100% { transform: translateY(-20%) scale(0.5); opacity: 0; filter: blur(10px); }
-        }
+.bg-text-container { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: -1; 
+    pointer-events: none; 
+    opacity: 0.1; 
+}
 
-        .left-poster { left: 18%; }
-        .right-poster { right: 18%; }
-        .movie-poster img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); transition: 0.3s; }
-        .movie-poster:hover { transform: translateY(-53%) scale(1.05); border-color: var(--gold); }
+.bg-word { 
+    font-family: 'Archivo Black', sans-serif; 
+    font-size: 15vw; 
+    line-height: 0.9; 
+    -webkit-text-stroke: 1.5px white; 
+    color: transparent; 
+    text-transform: uppercase; 
+    white-space: nowrap; 
+}
 
-        @media(max-width: 1500px) { .movie-poster { width: 150px; height: 230px; } }
-        @media(max-width: 1300px) { .movie-poster { display:none; } } 
-        
-        /* ---------- Mobile Navbar Container ---------- */
+.top-nav { 
+    position: fixed; 
+    top: 30px; 
+    width: 65%; 
+    max-width: 1100px; 
+    height: 60px; 
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(20px); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 100px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 100; 
+}
+
+.nav-link { 
+    font-size: 12px; 
+    font-weight: 900; 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    color: rgba(255, 255, 255, 0.7); 
+    transition: 0.3s; 
+    padding: 0 20px; 
+}
+
+.nav-link:hover { color: var(--gold); }
+
+.carousel-container { 
+    flex: 1; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    z-index: 10; 
+    padding-top: 10px; 
+}
+
+.offer-card { 
+    width: 450px; 
+    height: 620px; 
+    background: rgba(15, 15, 15, 0.8); 
+    backdrop-filter: blur(15px); 
+    border-radius: 40px; 
+    overflow: hidden; 
+    position: relative; 
+    border: 1px solid rgba(255, 204, 0, 0.4); 
+    box-shadow: 0 40px 100px rgba(0,0,0,0.8); 
+}
+
+/* Fix: Background image stays behind content */
+.offer-card img.absolute { 
+    object-fit: cover; 
+    object-position: center; 
+    opacity: 0.6; 
+    transition: transform 0.5s ease; 
+    z-index: 1; 
+}
+
+/* Fix: Content sits on top of background image */
+.card-content { 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    padding: 50px; 
+    background: linear-gradient(to top, rgba(0,0,0,1) 45%, transparent); 
+    text-align: center; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    z-index: 10; 
+}
+
+/* Fix: Ensures button is top-most and clickable */
+.btn-claim { 
+    background: linear-gradient(90deg, #ffb800 0%, #ff5c00 100%); 
+    color: #000; 
+    width: auto; 
+    min-width: 220px; 
+    max-width: 280px; 
+    padding: 14px 24px; 
+    border-radius: 50px; 
+    font-weight: 900; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    font-size: 13px; 
+    margin-top: 25px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px; 
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+    box-shadow: 0 8px 15px rgba(255, 92, 0, 0.3); 
+    border: none; 
+    cursor: pointer; 
+    position: relative; 
+    z-index: 20; 
+}
+
+.btn-claim:hover { 
+    transform: scale(1.05) translateY(-3px); 
+    box-shadow: 0 12px 25px rgba(255, 92, 0, 0.5); 
+    filter: brightness(1.1); 
+}
+
+#dynamic-text { transition: all 0.6s ease-in-out; }
+.fade-out { opacity: 0; transform: translateY(-15px); }
+.fade-in { opacity: 1; transform: translateY(0); }
+
+.locker-overlay { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0, 0, 0, 0.92); 
+    display: none; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 10000; 
+    padding: 10px; 
+}
+
+/* Sidebar Styling */
+.side-wrapper { position: fixed; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 25px; z-index: 50; }
+.left-side { left: 25px; }
+.right-side { right: 25px; }
+.side-ad { width: 160px; height: 280px; border-radius: 14px; overflow: hidden; background: #000; position: relative; cursor: pointer; animation: sideFloat 4s ease-in-out infinite; }
+.side-ad::before { content:''; position:absolute; width:150%; height:150%; background:conic-gradient(transparent,transparent,var(--gold)); animation:sideRotate 4s linear infinite; z-index:1; }
+.side-ad::after { content:''; position:absolute; inset:3px; background:#000; border-radius:12px; z-index:2; }
+.side-ad img { width:100%; height:100%; object-fit:cover; position:relative; z-index:3; transition:.4s; }
+.side-ad:hover img { transform:scale(1.08); }
+
+@keyframes sideRotate { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+@keyframes sideFloat { 0%, 100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+
+/* Movie Posters Styling */
+.movie-poster { 
+    position: fixed; 
+    top: 55%; 
+    transform: translateY(-50%); 
+    width: 190px; 
+    height: 290px; 
+    border-radius: 15px; 
+    border: 1px solid rgba(255, 204, 0, 0.4); 
+    overflow: hidden; 
+    z-index: 60;
+    background: #000;
+    box-shadow: 0 0 50px rgba(0,0,0,1);
+    opacity: 0; 
+    transition: opacity 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+.poster-visible { 
+    opacity: 1; 
+    pointer-events: auto;
+    animation: glitchReveal 0.4s ease-out forwards;
+}
+
+@keyframes glitchReveal {
+    0% { opacity: 0; transform: translateY(-50%) scale(1.2); filter: brightness(3); }
+    50% { opacity: 1; transform: translateY(-50%) scale(0.95); filter: brightness(1.1); }
+    100% { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+
+.left-poster { left: 18%; }
+.right-poster { right: 18%; }
+.movie-poster img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); transition: 0.3s; }
+
+/* Mobile Navbar Styling */
 .mobile-navbar {
     display: none;
     justify-content: center;
@@ -114,11 +272,13 @@
 @media (max-width: 768px) {
     .desktop-navbar { display: none !important; }
     .mobile-navbar { display: flex !important; flex-wrap: wrap; }
-    .side-wrapper { display: none !important; }
+    .side-wrapper, .movie-poster { display: none !important; }
     .carousel-container { padding-top: 80px; }
+    .offer-card { width: 90vw; height: 70vh; }
+    .btn-claim { min-width: 180px; font-size: 12px; }
 }
 
-/* SIDE SLIDER POPUP CSS - FIXED IMAGE CUTTING */
+/* Sliders & Sticky Ads */
 .slider-popup {
     position: fixed;
     top: 50%;
@@ -136,25 +296,15 @@
 .slider-popup img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: fill !important; /* Prevents text from being cut off */
+    object-fit: fill !important;
     display: block;
-}
-
-@keyframes sideBlink {
-    from { border-color: #ffcc00; box-shadow: 0 0 20px rgba(255, 204, 0, 0.5); }
-    to { border-color: #fff; box-shadow: 0 0 50px rgba(255, 255, 255, 0.8); }
 }
 
 #sideSlideRight { right: -800px; border-radius: 30px 0 0 30px; }
 #sideSlideLeft { left: -800px; border-radius: 0 30px 30px 0; }
-
 #sideSlideRight.active { right: 0; }
 #sideSlideLeft.active { left: 0; }
 
-#sideSlideRight.exit { right: -800px; }
-#sideSlideLeft.exit { left: -800px; }
-
-/* MINI STICKY IMAGE VISIBILITY - FIXED */
 .mini-sticky {
     position: fixed;
     bottom: 20px; 
@@ -170,11 +320,11 @@
     cursor: pointer;
     background: #000;
 }
+
 .mini-sticky img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: fill !important; /* Ensures the whole image/text is visible */
-    image-rendering: -webkit-optimize-contrast;
+    object-fit: fill !important;
     display: block;
 }
 
@@ -182,6 +332,6 @@
 .sticky-right { right: 40px; } 
 
 @keyframes miniBlink {
-    from { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
-    to { opacity: 0.9; transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 204, 0, 0.8); }
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0.9; transform: scale(1.03); }
 }
