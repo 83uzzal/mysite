@@ -76,36 +76,44 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	<!--Mobile Friendly -->
 
-/* নিচের স্টিকি অফারগুলো ফিক্স করার জন্য */
-@media (max-width: 768px) {
-    /* বাম এবং ডান পাশের ছোট স্টিকি অফারগুলো */
-    .mini-sticky {
-        width: 60px !important; /* সাইজ আরও ছোট করা হলো */
-        bottom: 10px !important; /* একদম নিচে নামিয়ে দেওয়া হলো */
-        z-index: 50; /* যাতে বাটনের নিচে থাকে */
-    }
+<style>
+    @media (max-width: 768px) {
+        /* নিচের পপআপগুলো ছোট করে বাটনের নিচে নামিয়ে দেওয়া */
+        .mini-sticky {
+            width: 70px !important; 
+            bottom: 5px !important; 
+            z-index: 50 !important;
+            opacity: 0.8; /* একটু হালকা করা যাতে মেইন বাটন স্পষ্ট থাকে */
+        }
 
-    .sticky-left {
-        left: 5px !important;
-    }
+        .sticky-left { left: 5px !important; }
+        .sticky-right { right: 5px !important; }
 
-    .sticky-right {
-        right: 5px !important;
-    }
+        /* UNLOCK OFFERS বাটনটি সবার উপরে রাখা */
+        .btn-claim {
+            position: relative !important;
+            z-index: 9999 !important; /* সর্বোচ্চ গুরুত্ব দেওয়া হলো */
+            margin-top: 20px !important;
+            background-color: #ff9900 !important; /* বাটনটি উজ্জ্বল করা হলো */
+            transform: scale(1.1); /* বাটনটি একটু বড় দেখাবে */
+        }
 
-    /* আনলক বাটনটি যাতে সবার উপরে থাকে */
-    .btn-claim {
-        position: relative;
-        z-index: 100; /* বাটনটিকে পপআপের উপরে নিয়ে আসবে */
-        margin-top: 10px !important;
-        width: 100%; /* মোবাইলে ক্লিক করা সহজ হবে */
-    }
+        /* কার্ডের কন্টেন্ট একটু উপরে তোলা যাতে বাটন ঢাকা না পড়ে */
+        .card-content {
+            padding-bottom: 100px !important;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-    /* অফার কার্ডের ভেতরের কন্টেন্ট কিছুটা উপরে তোলা */
-    .card-content {
-        padding-bottom: 80px !important; /* নিচে জায়গা তৈরি করবে */
+        /* মেইন বড় ব্যানার পপআপ মোবাইলে ছোট করা */
+        .slider-popup {
+            display: none !important; /* মোবাইলে সাইড স্লাইড পপআপগুলো বন্ধ রাখাই ভালো */
+        }
     }
-}
+</style>
+	
 	<!-- Mobile Friendly-->
 	
 </head>
@@ -272,5 +280,6 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 
 </html>
+
 
 
