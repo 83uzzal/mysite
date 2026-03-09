@@ -76,59 +76,36 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	<!--Mobile Friendly -->
 
-<style>
-        /* মোবাইল ফ্রেন্ডলি সেটিংস */
-        @media (max-width: 768px) {
-            /* মেনু বার ফিক্স */
-            .mobile-navbar {
-                display: flex !important;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 8px;
-                padding: 10px;
-                background: #000;
-            }
-            .mobile-navbar .nav-link {
-                font-size: 10px !important;
-                border: 1px solid #333;
-                padding: 4px 8px;
-                border-radius: 4px;
-            }
-            .desktop-navbar, .side-wrapper, .movie-poster, .bg-text-container {
-                display: none !important;
-            }
+@media (max-width: 768px) {
+    /* স্টিকি অফারগুলো আরও একটু নিচে এবং ছোট করা */
+    .mini-sticky {
+        width: 55px !important; 
+        bottom: 5px !important;
+        z-index: 5 !important; /* বাটনের নিচে পাঠাতে */
+    }
 
-            /* নিচের স্টিকি অফারগুলো ছোট করা */
-            .mini-sticky {
-                width: 65px !important;
-                bottom: 10px !important;
-                z-index: 10 !important;
-            }
-            .sticky-left { left: 5px !important; }
-            .sticky-right { right: 5px !important; }
+    /* আনলক বাটনটিকে একটু ওপরে তোলা এবং হাইলাইট করা */
+    .btn-claim {
+        position: relative !important;
+        bottom: 15px !important; /* স্টিকি অফার থেকে একটু ওপরে তোলা */
+        z-index: 999 !important;
+        margin-bottom: 20px !important;
+        box-shadow: 0 10px 20px rgba(249, 115, 22, 0.4) !important; /* সুন্দর শ্যাডো */
+    }
 
-            /* আনলক বাটন সবার উপরে রাখা */
-            .btn-claim {
-                position: relative !important;
-                z-index: 9999 !important;
-                width: 100% !important;
-                background: #f97316 !important; /* Orange color for visibility */
-            }
+    /* মেনু বাটনগুলোর মাঝখানের গ্যাপ ঠিক করা */
+    .mobile-navbar {
+        padding-top: 15px !important;
+        gap: 6px !important;
+    }
 
-            .card-content {
-                padding-bottom: 90px !important;
-            }
-            
-            #asset-name {
-                font-size: 2.5rem !important;
-            }
-        }
-
-        /* সাধারণ কিছু স্টাইল যা আপনার মেইন ফাইলে থাকতে পারে */
-        .mini-sticky { position: fixed; bottom: 20px; transition: all 0.3s; }
-        .mini-sticky img { width: 100%; height: auto; border-radius: 10px; border: 2px solid gold; }
-        .locker-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; items-center; justify-center; z-index: 30000; }
-    </style>
+    /* মেনু টেক্সটকে আরও স্পষ্ট করা */
+    .mobile-navbar .nav-link {
+        font-size: 9px !important;
+        padding: 6px 10px !important;
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
 	
 	<!-- Mobile Friendly-->
 	
@@ -296,6 +273,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 
 </html>
+
 
 
 
