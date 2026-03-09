@@ -190,65 +190,76 @@
 /* --- Only for Mobile Devices --- */
 /* --- Extreme Force Hide for Mobile Popups --- */
 @media (max-width: 768px) {
-    /* Navbar Container */
+    /* Navbar Container - Ultra Colorful & Professional */
     .mobile-navbar {
         display: flex !important;
         justify-content: space-evenly;
         align-items: center;
-        width: 92%;
-        margin: 15px auto 0 auto;
-        padding: 10px 5px;
+        width: 94%;
+        margin: 10px auto 0 auto;
+        padding: 8px 4px;
         
-        /* Glassmorphism Effect */
-        background: rgba(255, 255, 255, 0.03);
+        /* Glassmorphism + Background Color */
+        background: rgba(15, 15, 15, 0.85);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         
-        /* Premium Borders */
-        border: 1px solid rgba(255, 204, 0, 0.3);
+        /* Colorful Glowing Border */
+        border: 2px solid transparent;
+        background-image: linear-gradient(rgba(15, 15, 15, 0.95), rgba(15, 15, 15, 0.95)), 
+                          linear-gradient(90deg, #ffcc00, #ff5c00, #00d2ff, #ffcc00);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        background-size: 300% 100%;
+        animation: borderMove 4s linear infinite; /* Border-ta dhire dhire color change korbe */
+        
         border-radius: 100px;
-        
-        /* Soft Neon Glow */
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
-                    inset 0 1px 1px rgba(255, 255, 255, 0.1);
-        
+        box-shadow: 0 0 20px rgba(255, 150, 0, 0.2);
         position: relative;
         z-index: 1000;
     }
 
-    /* Individual Links */
+    /* Moving Gradient Animation */
+    @keyframes borderMove {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+
+    /* Nav Links with Colorful Hover */
     .mobile-navbar .nav-link {
-        color: rgba(255, 255, 255, 0.8) !important;
-        font-size: 10px !important;
-        font-weight: 700;
+        color: #fff !important;
+        font-size: 9px !important;
+        font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 1px;
-        text-decoration: none;
-        padding: 8px 12px;
+        padding: 8px 10px;
         border-radius: 50px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        white-space: nowrap;
+        transition: 0.3s all ease;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
     }
 
-    /* Active/Hover State */
+    /* Colorful Action Button Effect */
     .mobile-navbar .nav-link:active,
     .mobile-navbar .nav-link:hover {
+        background: linear-gradient(45deg, #ffcc00, #ff5c00);
         color: #000 !important;
-        background: linear-gradient(90deg, #ffcc00, #ffb800);
-        box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
-        transform: scale(0.95);
+        box-shadow: 0 0 15px rgba(255, 92, 0, 0.6);
+        transform: translateY(-2px);
     }
 
-    /* Gap adjustment for the Card below */
+    /* Gap adjustment - Card ke Navbar er kache ana */
     .carousel-container {
-        padding-top: 10px !important;
+        padding-top: 5px !important;
+        margin-top: 0 !important;
     }
 
-    /* Pop-up and Red X items Force Hide */
-    .slider-popup, .mini-sticky, #sideSlideLeft, #sideSlideRight, [class*="sticky"] {
+    /* Pop-ups (The Red X Items) - Forcefully Hidden */
+    .slider-popup, .mini-sticky, [id*="sideSlide"], [class*="sticky"] {
         display: none !important;
         visibility: hidden !important;
+        pointer-events: none !important;
     }
 }
+
 
 
