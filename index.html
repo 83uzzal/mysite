@@ -76,73 +76,57 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	<!--Mobile Friendly -->
 
-<style>
 @media (max-width: 768px) {
-
-    /* Body নিচে extra space যাতে navbar overlap না করে */
-    body{
-        padding-bottom:90px;
+    /* ১. বডি স্ক্রল ঠিক করা যাতে মেনু বারের নিচে কন্টেন্ট না লুকায় */
+    body {
+        padding-bottom: 110px !important; /* আগের চেয়ে বাড়িয়ে দেওয়া হলো */
     }
 
-    /* Sticky ads ছোট করা */
+    /* ২. স্টিকি অ্যাডগুলো মেনু বারের একটু ওপরে রাখা */
     .mini-sticky {
-        width:55px !important;
-        bottom:8px !important;
-        z-index:5 !important;
+        width: 50px !important;
+        bottom: 70px !important; /* মেনু বারের ওপরে তুলে দেওয়া হলো */
+        z-index: 5 !important;
+        opacity: 0.9;
     }
+    .sticky-left { left: 10px !important; }
+    .sticky-right { right: 10px !important; }
 
-    /* Unlock button highlight + overlap fix */
+    /* ৩. আনলক বাটন পজিশন এবং ক্ল্যারিটি */
     .btn-claim {
-        position:relative !important;
-        bottom:10px !important;
-        z-index:999 !important;
-        margin-bottom:30px !important;
-        box-shadow:0 10px 20px rgba(249,115,22,0.4) !important;
+        position: relative !important;
+        z-index: 999 !important;
+        margin-bottom: 50px !important; /* পপআপ থেকে নিরাপদ দূরত্ব */
+        width: 100% !important;
+        box-shadow: 0 10px 20px rgba(249, 115, 22, 0.5) !important;
     }
 
-    /* Offer card center */
-    .offer-card{
-        width:95% !important;
-        margin:auto !important;
-    }
-
-    /* Navbar mobile fix */
+    /* ৪. মোবাইল মেনু বার (Bottom Navbar) */
     .mobile-navbar {
-        padding:12px 5px !important;
-        gap:6px !important;
-        position:fixed !important;
-        bottom:0;
-        left:0;
-        width:100%;
-        background:#0c0c0e;
-        z-index:1000;
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0;
+        width: 100%;
+        background: #000 !important; /* আরও গাড় কালো */
+        padding: 15px 5px !important;
+        z-index: 10000;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* Navbar link style */
+    /* ৫. মেনু লিঙ্ক স্টাইল */
     .mobile-navbar .nav-link {
-        font-size:9px !important;
-        padding:6px 10px !important;
-        background:rgba(255,255,255,0.05);
-        border-radius:6px;
+        font-size: 8px !important;
+        padding: 8px 10px !important;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff !important;
+        white-space: nowrap;
     }
-
-    /* Side ads hide on mobile */
-    .side-wrapper{
-        display:none !important;
-    }
-
-    /* Movie posters hide */
-    .movie-poster{
-        display:none !important;
-    }
-
-    /* Slider popup hide */
-    .slider-popup{
-        display:none !important;
-    }
-
 }
-</style>
 	
 	<!-- Mobile Friendly-->
 	
@@ -310,6 +294,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 
 </html>
+
 
 
 
