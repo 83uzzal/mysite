@@ -190,74 +190,83 @@
 /* --- Only for Mobile Devices --- */
 /* --- Extreme Force Hide for Mobile Popups --- */
 @media (max-width: 768px) {
-    /* --- Ultra Smart & Colorful Neon Navbar --- */
+    /* --- Ultra Smart, Colorful & Glowing Navbar --- */
     .mobile-navbar {
         display: flex !important;
-        flex-direction: row !important; /* Text ek line-e anar jonno */
-        flex-wrap: nowrap !important;
-        overflow-x: auto; /* Jodi jayga kom hoy scroll korbe, line bhangbe na */
-        justify-content: flex-start;
+        justify-content: space-around;
         align-items: center;
-        width: 95%;
-        margin: 10px auto;
-        padding: 15px 10px;
-        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        width: 94%;
+        margin: 12px auto 8px auto;
+        padding: 14px 8px;
         
-        /* Glassmorphism with deep glow */
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        /* Premium Deep Glass Effect */
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
         
-        /* High-End Colorful Border */
-        border: 1.5px solid transparent;
-        background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-                          linear-gradient(90deg, #00fff0, #ff00c1, #ffcc00, #00fff0);
+        /* Smart Multi-Color Animated Border */
+        border: 2px solid transparent;
+        background-image: linear-gradient(rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.95)), 
+                          linear-gradient(90deg, #ff00c1, #00fff0, #ffcc00, #ff00c1);
         background-origin: border-box;
         background-clip: padding-box, border-box;
         background-size: 200% auto;
-        animation: shine 4s linear infinite;
+        animation: neonFlow 3s linear infinite;
         
-        border-radius: 100px; /* Perfect Capsule Shape */
-        box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 10px rgba(0, 255, 240, 0.2);
+        /* Futuristic Shape & Deep Neon Shadow */
+        border-radius: 100px; /* Capsule shape for a smarter look */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 
+                    0 0 15px rgba(0, 255, 240, 0.15),
+                    inset 0 0 10px rgba(255, 255, 255, 0.05);
+        position: relative;
         z-index: 1001;
     }
 
-    /* Scrollbar hide korar jonno (Chrome/Safari) */
-    .mobile-navbar::-webkit-scrollbar { display: none; }
-
-    /* Animated Border Effect */
-    @keyframes shine {
-        to { background-position: 200% center; }
+    /* Smooth Border Animation */
+    @keyframes neonFlow {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
     }
 
-    /* Links Style - Professional & Clean */
+    /* Smart & Sharp Nav Links */
     .mobile-navbar .nav-link {
-        color: #ffffff !important;
-        font-size: 10px !important;
-        font-weight: 800;
+        color: #fff !important;
+        font-size: 10px !important; /* Slightly smaller for professional feel */
+        font-weight: 900;
         text-transform: uppercase;
-        letter-spacing: 1px;
-        padding: 8px 15px;
-        margin: 0 5px;
-        white-space: nowrap; /* Text line bhangbe na */
+        letter-spacing: 1.2px;
+        text-decoration: none;
+        padding: 8px 12px;
         border-radius: 50px;
-        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: inline-block;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
     }
 
-    /* Vibrant Hover/Active Effect */
+    /* Colorful Interaction Effect */
     .mobile-navbar .nav-link:active {
-        background: linear-gradient(90deg, #00fff0, #0088ff);
-        color: #000 !important;
-        box-shadow: 0 0 15px rgba(0, 255, 240, 0.6);
-        transform: scale(0.9);
+        background: linear-gradient(90deg, #00fff0, #ff00c1);
+        color: #fff !important;
+        transform: scale(0.9) translateY(2px); /* Click feel */
+        box-shadow: 0 0 20px rgba(0, 255, 240, 0.5);
+        text-shadow: none;
     }
 
-    /* Gap adjustment - Card ke kache ana */
+    /* Card Spacing Adjustment */
     .carousel-container {
-        padding-top: 5px !important;
+        padding-top: 0px !important;
+        margin-top: -2px !important;
+    }
+
+    /* Popups (Red X Items) Fully Disabled */
+    .slider-popup, .mini-sticky, #sideSlideRight, #sideSlideLeft, [class*="sticky"] {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        height: 0 !important;
     }
 }
+
 
 
 
