@@ -1,88 +1,289 @@
-/* --- 1. GLOBAL & DESKTOP STYLES --- */
-:root { --gold: #ffcc00; --orange-glow: #ff5c00; --bg: #030303; }
+ :root { --gold: #ffcc00; --orange-glow: #ff5c00; --bg: #030303; }
+        body { background-image: url('images/banar/background.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; background-color: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; align-items: center; }
+        
+        body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; opacity: 0; z-index: 9999; pointer-events: none; }
+        .thunder-flash::after { animation: flash 0.5s ease-out; }
 
-body { 
-    background-image: url('images/banar/background.png'); 
-    background-size: cover; 
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-attachment: fixed; 
-    background-color: var(--bg); 
-    color: #fff; 
-    font-family: 'Inter', sans-serif; 
-    margin: 0; 
-    min-height: 100vh; 
-    overflow-x: hidden; 
-    overflow-y: auto; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
+        @keyframes flash {
+            0% { opacity: 0; }
+            10% { opacity: 0.8; }
+            20% { opacity: 0.2; }
+            30% { opacity: 0.9; }
+            100% { opacity: 0; }
+        }
+
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: -2; }
+        .syncopate { font-family: 'Syncopate', sans-serif; }
+        .bg-text-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: -1; pointer-events: none; opacity: 0.1; }
+        .bg-word { font-family: 'Archivo Black', sans-serif; font-size: 15vw; line-height: 0.9; -webkit-text-stroke: 1.5px white; color: transparent; text-transform: uppercase; white-space: nowrap; }
+        .top-nav { position: fixed; top: 30px; width: 65%; max-width: 1100px; height: 60px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px; display: flex; align-items: center; justify-content: center; z-index: 100; }
+        .nav-link { font-size: 12px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255, 255, 255, 0.7); transition: 0.3s; padding: 0 20px; }
+        .nav-link:hover { color: var(--gold); }
+        .desktop-navbar { display: flex; }
+        .mobile-navbar { display: none; }
+        @media (max-width: 768px) { .desktop-navbar { display: none; } .mobile-navbar { display: flex; } }
+        .carousel-container { flex: 1; display: flex; align-items: center; justify-content: center; z-index: 10; padding-top: 10px; }
+        .offer-card { width: 450px; height: 620px; background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(15px); border-radius: 40px; overflow: hidden; position: relative; border: 1px solid rgba(255, 204, 0, 0.4); box-shadow: 0 40px 100px rgba(0,0,0,0.8); }
+        .offer-card img { object-fit: cover; object-position: center; transform: scale(1.0); opacity: 0.6; transition: transform 0.5s ease; }
+        .card-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 50px; background: linear-gradient(to top, rgba(0,0,0,1) 45%, transparent); text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .btn-claim { background: linear-gradient(90deg, #ffb800 0%, #ff5c00 100%); color: #000; width: auto; min-width: 220px; max-width: 280px; padding: 14px 24px; border-radius: 50px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; font-size: 13px; margin-top: 25px; display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 8px 15px rgba(255, 92, 0, 0.3); border: none; cursor: pointer; }
+        .btn-claim:hover { transform: scale(1.05) translateY(-3px); box-shadow: 0 12px 25px rgba(255, 92, 0, 0.5); filter: brightness(1.1); }
+        #dynamic-text { transition: all 0.6s ease-in-out; }
+        .fade-out { opacity: 0; transform: translateY(-15px); }
+        .fade-in { opacity: 1; transform: translateY(0); }
+        .locker-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); display: none; justify-content: center; align-items: center; z-index: 10000; padding: 10px; }
+        @media (max-width: 640px) { .offer-card { width: 90vw; height: 70vh; } .top-nav { width: 95%; flex-wrap: wrap; justify-content: space-around; } .btn-claim { min-width: 180px; font-size: 12px; } }
+
+        /* --- SIDEBAR CSS --- */
+        .side-wrapper { position: fixed; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 25px; z-index: 50; }
+        .left-side { left: 25px; }
+        .right-side { right: 25px; }
+        .side-ad { width: 160px; height: 280px; border-radius: 14px; overflow: hidden; background: #000; position: relative; cursor: pointer; animation: sideFloat 4s ease-in-out infinite; }
+        .side-ad::before { content:''; position:absolute; width:150%; height:150%; background:conic-gradient(transparent,transparent,var(--gold)); animation:sideRotate 4s linear infinite; z-index:1; }
+        .side-ad::after { content:''; position:absolute; inset:3px; background:#000; border-radius:12px; z-index:2; }
+        .side-ad img { width:100%; height:100%; object-fit:cover; position:relative; z-index:3; transition:.4s; }
+        .side-ad:hover img { transform:scale(1.08); }
+        @keyframes sideRotate { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+        @keyframes sideFloat { 0%, 100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+
+        /* --- MOVIE POSTERS CSS --- */
+        .movie-poster { 
+            position: fixed; 
+            top: 55%; 
+            transform: translateY(-50%); 
+            width: 190px; 
+            height: 290px; 
+            border-radius: 15px; 
+            border: 1px solid rgba(255, 204, 0, 0.4); 
+            overflow: hidden; 
+            z-index: 60;
+            background: #000;
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+        }
+        
+        .poster-visible { 
+            opacity: 1; 
+            pointer-events: auto;
+            animation: glitchReveal 0.4s ease-out forwards;
+        }
+
+        .poster-exit {
+            animation: moveAndVanish 0.8s ease-in forwards !important;
+        }
+
+        @keyframes glitchReveal {
+            0% { opacity: 0; transform: translateY(-50%) scale(1.2); filter: brightness(3); }
+            50% { opacity: 1; transform: translateY(-50%) scale(0.95); filter: brightness(1.1); }
+            100% { opacity: 1; transform: translateY(-50%) scale(1); }
+        }
+
+        @keyframes moveAndVanish {
+            0% { transform: translateY(-50%) scale(1); opacity: 1; }
+            30% { transform: translateY(-52%) translateX(5px) scale(1.02); filter: brightness(1.5); }
+            60% { transform: translateY(-48%) translateX(-5px) scale(0.98); }
+            100% { transform: translateY(-20%) scale(0.5); opacity: 0; filter: blur(10px); }
+        }
+
+        .left-poster { left: 18%; }
+        .right-poster { right: 18%; }
+        .movie-poster img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); transition: 0.3s; }
+        .movie-poster:hover { transform: translateY(-53%) scale(1.05); border-color: var(--gold); }
+
+        @media(max-width: 1500px) { .movie-poster { width: 150px; height: 230px; } }
+        @media(max-width: 1300px) { .movie-poster { display:none; } } 
+        
+        /* ---------- Mobile Navbar Container ---------- */
+.mobile-navbar {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 10px;
+    background: #0d1117;
+    border-radius: 18px;
+    box-shadow: 0 0 18px rgba(0,255,255,0.4);
+    width: 95%;
+    margin-top: 20px;
+    position: relative;
+    z-index: 101;
 }
 
-/* Flash & Overlay */
-body::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; opacity: 0; z-index: 9999; pointer-events: none; }
-.thunder-flash::after { animation: flash 0.5s ease-out; }
-@keyframes flash { 0% { opacity: 0; } 10% { opacity: 0.8; } 20% { opacity: 0.2; } 30% { opacity: 0.9; } 100% { opacity: 0; } }
-
-/* Desktop Navbar Style */
-.top-nav { position: fixed; top: 30px; width: 65%; max-width: 1100px; height: 60px; background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 100px; display: flex; align-items: center; justify-content: center; z-index: 100; }
-.nav-link { font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.7); transition: 0.3s; padding: 0 20px; text-decoration: none; }
-.nav-link:hover { color: var(--gold); }
-
-.desktop-navbar { display: flex; }
-.mobile-navbar { display: none; }
-
-/* Desktop Card Size */
-.carousel-container { flex: 1; display: flex; align-items: center; justify-content: center; z-index: 10; padding-top: 10px; }
-.offer-card { width: 450px; height: 620px; background: rgba(15, 15, 15, 0.8); backdrop-filter: blur(15px); border-radius: 40px; overflow: hidden; position: relative; border: 1px solid rgba(255, 204, 0, 0.4); box-shadow: 0 40px 100px rgba(0,0,0,0.8); transition: 0.3s; }
-
-/* --- 2. MOBILE SPECIFIC STYLES (Sudhu Mobile e apply hobe) --- */
 @media (max-width: 768px) {
     .desktop-navbar { display: none !important; }
-    
-    /* Optimized Mobile Navbar */
-    .mobile-navbar { 
-        display: flex !important; 
-        justify-content: center !important; 
-        gap: 4px !important; /* Spacing between links reduced */
-        width: 96%; 
-        margin: 10px auto 5px auto; 
-        padding: 12px 5px; 
-        background: rgba(10, 10, 10, 0.9); 
+    .mobile-navbar { display: flex !important; flex-wrap: wrap; }
+    .side-wrapper { display: none !important; }
+    .carousel-container { padding-top: 80px; }
+}
+
+/* SIDE SLIDER POPUP CSS - FIXED IMAGE CUTTING */
+.slider-popup {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 550px;
+    background: #1a2e26;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 0 50px rgba(0,0,0,0.9);
+    z-index: 20001;
+    overflow: hidden;
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation: sideBlink 1.5s infinite alternate;
+}
+
+.slider-popup img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important; /* Prevents text from being cut off */
+    display: block;
+}
+
+@keyframes sideBlink {
+    from { border-color: #ffcc00; box-shadow: 0 0 20px rgba(255, 204, 0, 0.5); }
+    to { border-color: #fff; box-shadow: 0 0 50px rgba(255, 255, 255, 0.8); }
+}
+
+#sideSlideRight { right: -800px; border-radius: 30px 0 0 30px; }
+#sideSlideLeft { left: -800px; border-radius: 0 30px 30px 0; }
+
+#sideSlideRight.active { right: 0; }
+#sideSlideLeft.active { left: 0; }
+
+#sideSlideRight.exit { right: -800px; }
+#sideSlideLeft.exit { left: -800px; }
+
+/* MINI STICKY IMAGE VISIBILITY - FIXED */
+.mini-sticky {
+    position: fixed;
+    bottom: 20px; 
+    width: 180px; 
+    height: 120px; 
+    z-index: 9999;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid #ffcc00;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+    display: none;
+    animation: miniBlink 1.5s infinite alternate;
+    cursor: pointer;
+    background: #000;
+}
+.mini-sticky img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: fill !important; /* Ensures the whole image/text is visible */
+    image-rendering: -webkit-optimize-contrast;
+    display: block;
+}
+
+.sticky-left { left: 40px; } 
+.sticky-right { right: 40px; } 
+
+@keyframes miniBlink {
+    from { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
+    to { opacity: 0.9; transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 204, 0, 0.8); }
+}
+
+
+/* --- Only for Mobile Devices --- */
+/* --- Extreme Force Hide for Mobile Popups --- */
+@media (max-width: 768px) {
+
+
+
+ 
+    /* --- Ultra Smart, Colorful & Glowing Navbar --- */
+    .mobile-navbar {
+        display: flex !important;
+        justify-content: space-around;
+        align-items: center;
+        width: 94%;
+        margin: 12px auto 8px auto;
+        padding: 14px 8px;
+        
+        /* Premium Deep Glass Effect */
+        background: rgba(10, 10, 10, 0.85);
         backdrop-filter: blur(20px);
-        border: 2px solid transparent; 
-        background-image: linear-gradient(rgba(10,10,10,1), rgba(10,10,10,1)), linear-gradient(90deg, #ff00c1, #00fff0, #ffcc00, #ff00c1);
-        background-origin: border-box; 
-        background-clip: padding-box, border-box; 
-        background-size: 200% auto; 
+        -webkit-backdrop-filter: blur(20px);
+        
+        /* Smart Multi-Color Animated Border */
+        border: 4px solid transparent;
+        background-image: linear-gradient(rgba(10, 10, 10, 0.95), rgba(10, 10, 10, 0.95)), 
+                          linear-gradient(90deg, #ff00c1, #00fff0, #ffcc00, #ff00c1);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        background-size: 200% auto;
         animation: neonFlow 3s linear infinite;
-        border-radius: 100px; 
-        z-index: 1001; 
-        box-shadow: 0 0 15px rgba(0, 255, 240, 0.2);
+        
+        /* Futuristic Shape & Deep Neon Shadow */
+        border-radius: 100px; /* Capsule shape for a smarter look */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 
+                    0 0 15px rgba(0, 255, 240, 0.15),
+                    inset 0 0 10px rgba(255, 255, 255, 0.05);
+        position: relative;
+        z-index: 1001;
     }
 
-    /* Word Spacing in Mobile Links */
-    .mobile-navbar .nav-link { 
-        font-size: 10px !important; 
-        letter-spacing: -0.2px !important; /* Letters closer */
-        padding: 6px 6px !important; /* Button padding reduced */
+    /* Smooth Border Animation */
+    @keyframes neonFlow {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+    }
+
+    /* Smart & Sharp Nav Links */
+    .mobile-navbar .nav-link {
+        color: #fff !important;
+        font-size: 12px !important; /* Slightly smaller for professional feel */
         font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        text-decoration: none;
+        padding: 6px 6px;
+        border-radius: 50px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Colorful Interaction Effect */
+    .mobile-navbar .nav-link:active {
+        background: linear-gradient(90deg, #00fff0, #ff00c1);
+        color: #fff !important;
+        transform: scale(0.9) translateY(2px); /* Click feel */
+        box-shadow: 0 0 20px rgba(0, 255, 240, 0.5);
         text-shadow: none;
     }
 
-    @keyframes neonFlow { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
-
-    /* Mobile Card Size Fix (Soto kora holo) */
-    .offer-card { 
-        width: 82vw !important; 
-        height: 52vh !important; 
-        border-radius: 25px !important;
+    /* Card Spacing Adjustment */
+    .carousel-container {
+        padding-top: 0px !important;
+        margin-top: -2px !important;
     }
+ /* 4. Puru Navbar container er spacing-o adjust korte hobe */
+.mobile-navbar {
+    gap: 6px !important; /* Button gulor majher gap ekdom komiye dibe */
+    justify-content: center !important; /* Button gulo ke center-e kache kache rakhbe */
+}
 
-    .carousel-container { padding-top: 0px !important; margin-top: -5px !important; }
-
-    /* Disable All Popups */
-    .slider-popup, .mini-sticky, #sideSlideRight, #sideSlideLeft, [class*="sticky"], .side-wrapper { 
-        display: none !important; 
+    /* Popups (Red X Items) Fully Disabled */
+    .slider-popup, .mini-sticky, #sideSlideRight, #sideSlideLeft, [class*="sticky"] {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        height: 0 !important;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
