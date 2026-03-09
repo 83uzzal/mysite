@@ -195,7 +195,7 @@
         margin-top: 5px !important;
     }
     .carousel-container {
-        padding-top: 0px !important;
+        padding-top: 2px !important;
     }
 
     /* Pop up gulo ke force remove kora */
@@ -217,4 +217,5 @@
         left: -9999px !important; /* Screen er baire niye jabe */
     }
 }
+
 
