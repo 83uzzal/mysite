@@ -189,64 +189,66 @@
 
 /* --- Only for Mobile Devices --- */
 /* --- Extreme Force Hide for Mobile Popups --- */
-/* --- Optimized Mobile Navbar & Spacing --- */
 @media (max-width: 768px) {
-    /* Navbar Design Update */
+    /* Navbar Container */
     .mobile-navbar {
         display: flex !important;
-        justify-content: space-around;
+        justify-content: space-evenly;
         align-items: center;
-        gap: 5px;
-        padding: 12px 8px;
-        background: rgba(255, 255, 255, 0.03); /* Soft glass look */
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px; /* Rounded pill shape */
         width: 92%;
-        margin: 10px auto 0 auto !important; /* Center alignment */
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 
-                    inset 0 0 10px rgba(255, 204, 0, 0.1); /* Subtle gold inner glow */
+        margin: 15px auto 0 auto;
+        padding: 10px 5px;
+        
+        /* Glassmorphism Effect */
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        
+        /* Premium Borders */
+        border: 1px solid rgba(255, 204, 0, 0.3);
+        border-radius: 100px;
+        
+        /* Soft Neon Glow */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+        
         position: relative;
         z-index: 1000;
     }
 
-    /* Links inside Navbar */
+    /* Individual Links */
     .mobile-navbar .nav-link {
-        font-size: 10px !important;
-        padding: 6px 10px !important;
         color: rgba(255, 255, 255, 0.8) !important;
-        text-decoration: none;
+        font-size: 10px !important;
         font-weight: 700;
-        letter-spacing: 0.5px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        transition: 0.3s;
-        border: 1px solid rgba(255, 255, 255, 0.05);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        padding: 8px 12px;
+        border-radius: 50px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
     }
 
+    /* Active/Hover State */
+    .mobile-navbar .nav-link:active,
     .mobile-navbar .nav-link:hover {
-        color: var(--gold) !important;
-        background: rgba(255, 204, 0, 0.1);
-        border-color: var(--gold);
+        color: #000 !important;
+        background: linear-gradient(90deg, #ffcc00, #ffb800);
+        box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+        transform: scale(0.95);
     }
 
-    /* GAP REMOVAL: Navbar r Card er moddhe gap komano */
+    /* Gap adjustment for the Card below */
     .carousel-container {
-        padding-top: 10px !important; /* Navbar r thik nichei card thakbe */
-        margin-top: 0 !important;
+        padding-top: 10px !important;
     }
 
-    .offer-card {
-        margin-top: -5px !important; /* Ektu upore tule ana */
-        height: 65vh !important;
-        border: 1px solid rgba(255, 204, 0, 0.3) !important;
-    }
-
-    /* Force Hide Popups (X mark items) */
-    .slider-popup, .mini-sticky, #sideSlideRight, #sideSlideLeft {
+    /* Pop-up and Red X items Force Hide */
+    .slider-popup, .mini-sticky, #sideSlideLeft, #sideSlideRight, [class*="sticky"] {
         display: none !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
+        visibility: hidden !important;
     }
 }
+
 
