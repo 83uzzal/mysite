@@ -77,42 +77,58 @@ document.addEventListener("DOMContentLoaded", function() {
 	<!--Mobile Friendly -->
 
 <style>
-    @media (max-width: 768px) {
-        /* নিচের পপআপগুলো ছোট করে বাটনের নিচে নামিয়ে দেওয়া */
-        .mini-sticky {
-            width: 70px !important; 
-            bottom: 5px !important; 
-            z-index: 50 !important;
-            opacity: 0.8; /* একটু হালকা করা যাতে মেইন বাটন স্পষ্ট থাকে */
+        /* মোবাইল ফ্রেন্ডলি সেটিংস */
+        @media (max-width: 768px) {
+            /* মেনু বার ফিক্স */
+            .mobile-navbar {
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                padding: 10px;
+                background: #000;
+            }
+            .mobile-navbar .nav-link {
+                font-size: 10px !important;
+                border: 1px solid #333;
+                padding: 4px 8px;
+                border-radius: 4px;
+            }
+            .desktop-navbar, .side-wrapper, .movie-poster, .bg-text-container {
+                display: none !important;
+            }
+
+            /* নিচের স্টিকি অফারগুলো ছোট করা */
+            .mini-sticky {
+                width: 65px !important;
+                bottom: 10px !important;
+                z-index: 10 !important;
+            }
+            .sticky-left { left: 5px !important; }
+            .sticky-right { right: 5px !important; }
+
+            /* আনলক বাটন সবার উপরে রাখা */
+            .btn-claim {
+                position: relative !important;
+                z-index: 9999 !important;
+                width: 100% !important;
+                background: #f97316 !important; /* Orange color for visibility */
+            }
+
+            .card-content {
+                padding-bottom: 90px !important;
+            }
+            
+            #asset-name {
+                font-size: 2.5rem !important;
+            }
         }
 
-        .sticky-left { left: 5px !important; }
-        .sticky-right { right: 5px !important; }
-
-        /* UNLOCK OFFERS বাটনটি সবার উপরে রাখা */
-        .btn-claim {
-            position: relative !important;
-            z-index: 9999 !important; /* সর্বোচ্চ গুরুত্ব দেওয়া হলো */
-            margin-top: 20px !important;
-            background-color: #ff9900 !important; /* বাটনটি উজ্জ্বল করা হলো */
-            transform: scale(1.1); /* বাটনটি একটু বড় দেখাবে */
-        }
-
-        /* কার্ডের কন্টেন্ট একটু উপরে তোলা যাতে বাটন ঢাকা না পড়ে */
-        .card-content {
-            padding-bottom: 100px !important;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* মেইন বড় ব্যানার পপআপ মোবাইলে ছোট করা */
-        .slider-popup {
-            display: none !important; /* মোবাইলে সাইড স্লাইড পপআপগুলো বন্ধ রাখাই ভালো */
-        }
-    }
-</style>
+        /* সাধারণ কিছু স্টাইল যা আপনার মেইন ফাইলে থাকতে পারে */
+        .mini-sticky { position: fixed; bottom: 20px; transition: all 0.3s; }
+        .mini-sticky img { width: 100%; height: auto; border-radius: 10px; border: 2px solid gold; }
+        .locker-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); display: none; items-center; justify-center; z-index: 30000; }
+    </style>
 	
 	<!-- Mobile Friendly-->
 	
@@ -280,6 +296,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 
 </html>
+
 
 
 
