@@ -72,7 +72,93 @@ document.addEventListener("DOMContentLoaded", function() {
 <!-- Tailwind & Font Awesome -->
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+
+
+	<!-- Mobile Friendly -->
+<style>
+/* 1. ডেক্সটপ সেটিংস */
+.mini-sticky { position: fixed; z-index: 50; transition: all 0.3s; }
+.mini-sticky img { border-radius: 12px; border: 2px solid #fbbf24; width: 60px; }
+.desktop-navbar { display: flex; justify-content: center; gap: 20px; padding: 20px; }
+.mobile-navbar { display: none; } /* ডেক্সটপে মোবাইল মেনু হাইড */
+
+/* 2. মোবাইল সেটিংস (Mobile Responsive) */
+@media (max-width: 768px) {
+    /* কোড স্ক্রিনে দেখা যাওয়া বন্ধ করতে এবং বডি ক্লিনিং */
+    body {
+        padding-bottom: 120px !important;
+        background-color: #000;
+        margin: 0;
+    }
+
+    /* সাইড এলিমেন্টগুলো মোবাইলে হাইড রাখা */
+    .side-wrapper, .movie-poster, .bg-text-container, .desktop-navbar, .slider-popup {
+        display: none !important;
+    }
+
+    /* মোবাইল বটম মেনু ফিক্স */
+    .mobile-navbar {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px !important;
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0;
+        width: 100%;
+        background: #0c0c0e !important;
+        padding: 15px 5px !important;
+        z-index: 10000 !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-navbar .nav-link {
+        font-size: 8px !important;
+        padding: 8px 10px !important;
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff !important;
+        border-radius: 6px;
+        text-transform: uppercase;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    /* স্টিকি পপআপ অ্যাডগুলো (মেনুর ঠিক ওপরে) */
+    .mini-sticky {
+        width: 55px !important;
+        bottom: 75px !important; /* মেনুর ওপরে ফ্লোট করবে */
+        z-index: 999 !important;
+    }
+    .sticky-left { left: 10px !important; }
+    .sticky-right { right: 10px !important; }
+
+    /* UNLOCK OFFERS বাটন ফিক্স (যাতে ঢাকা না পড়ে) */
+    .btn-claim {
+        position: relative !important;
+        z-index: 1000 !important;
+        margin: 20px auto 50px auto !important; /* নিচে ৫০ পিক্সেল গ্যাপ */
+        width: 90% !important;
+        background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+        padding: 15px !important;
+        border-radius: 50px !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        color: #000 !important;
+        font-weight: 900 !important;
+        text-decoration: none;
+    }
+
+    .card-content {
+        padding-bottom: 90px !important;
+    }
+
+    #asset-name {
+        font-size: 2.5rem !important;
+    }
+}
+</style>
+	<!-- Mobile Friendly -->
 	
 </head>
 <body>
@@ -236,4 +322,5 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
 
 </body>
+
 </html>
