@@ -231,7 +231,7 @@
     /* Smart & Sharp Nav Links */
     .mobile-navbar .nav-link {
         color: #fff !important;
-        font-size: 10px !important; /* Slightly smaller for professional feel */
+        font-size: 12px !important; /* Slightly smaller for professional feel */
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 1.2px;
@@ -271,6 +271,7 @@
         height: 0 !important;
     }
 }
+
 
 
 
