@@ -258,7 +258,7 @@
     }
  /* 4. Puru Navbar container er spacing-o adjust korte hobe */
 .mobile-navbar {
-    gap: 2px !important; /* Button gulor majher gap ekdom komiye dibe */
+    gap: 4px !important; /* Button gulor majher gap ekdom komiye dibe */
     justify-content: center !important; /* Button gulo ke center-e kache kache rakhbe */
 }
 
@@ -271,6 +271,7 @@
         height: 0 !important;
     }
 }
+
 
 
 
