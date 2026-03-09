@@ -76,38 +76,68 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	<!--Mobile Friendly -->
 
-	<style>
+<style>
+/* ডেস্কটপ ও জেনারেল স্টাইল */
+.mini-sticky { position: fixed; z-index: 1000; transition: all 0.3s; }
+.mini-sticky img { border-radius: 12px; border: 2px solid #fbbf24; width: 100%; }
+.locker-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 30000; display: none; align-items: center; justify-content: center; padding: 20px; }
+
+/* মোবাইল অপ্টিমাইজেশন (Responsive) */
 @media (max-width: 768px) {
-    /* স্টিকি অফারগুলো আরও একটু নিচে এবং ছোট করা */
-    .mini-sticky {
-        width: 55px !important; 
-        bottom: 5px !important;
-        z-index: 5 !important; /* বাটনের নিচে পাঠাতে */
+    /* ১. মেনু বার ফিক্স */
+    .mobile-navbar {
+        display: flex !important;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        padding: 15px 10px !important;
+        background: rgba(0, 0, 0, 0.9);
+        border-bottom: 1px solid #222;
+    }
+    .mobile-navbar .nav-link {
+        font-size: 10px !important;
+        color: #fff;
+        padding: 6px 10px;
+        border: 1px solid #333;
+        border-radius: 6px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    .desktop-navbar, .side-wrapper, .movie-poster, .bg-text-container {
+        display: none !important;
     }
 
-    /* আনলক বাটনটিকে একটু ওপরে তোলা এবং হাইলাইট করা */
+    /* ২. স্টিকি অফারগুলো ছোট করে বাটনের পেছনে পাঠানো */
+    .mini-sticky {
+        width: 65px !important;
+        bottom: 8px !important;
+        z-index: 10 !important; /* বাটন থেকে নিচে */
+        opacity: 0.9;
+    }
+    .sticky-left { left: 8px !important; }
+    .sticky-right { right: 8px !important; }
+
+    /* ৩. UNLOCK OFFERS বাটন পজিশন */
     .btn-claim {
         position: relative !important;
-        bottom: 15px !important; /* স্টিকি অফার থেকে একটু ওপরে তোলা */
-        z-index: 999 !important;
-        margin-bottom: 20px !important;
-        box-shadow: 0 10px 20px rgba(249, 115, 22, 0.4) !important; /* সুন্দর শ্যাডো */
+        z-index: 999 !important; /* সবার উপরে */
+        bottom: 12px !important; /* স্টিকি অফার থেকে সামান্য উপরে */
+        width: 90% !important;
+        max-width: 280px;
+        margin: 0 auto;
+        background: linear-gradient(to right, #f97316, #ea580c) !important;
+        box-shadow: 0 8px 25px rgba(234, 88, 12, 0.5) !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
 
-    /* মেনু বাটনগুলোর মাঝখানের গ্যাপ ঠিক করা */
-    .mobile-navbar {
-        padding-top: 15px !important;
-        gap: 6px !important;
-    }
-
-    /* মেনু টেক্সটকে আরও স্পষ্ট করা */
-    .mobile-navbar .nav-link {
-        font-size: 9px !important;
-        padding: 6px 10px !important;
-        background: rgba(255, 255, 255, 0.05);
-    }
+    /* ৪. টেক্সট ও কন্টেনার স্পেসিং */
+    #asset-name { font-size: 2.8rem !important; line-height: 1.1; }
+    .card-content { padding-bottom: 100px !important; }
 }
-		</style>
+</style>
 	
 	<!-- Mobile Friendly-->
 	
@@ -275,6 +305,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 
 </html>
+
 
 
 
