@@ -189,33 +189,64 @@
 
 /* --- Only for Mobile Devices --- */
 /* --- Extreme Force Hide for Mobile Popups --- */
+/* --- Optimized Mobile Navbar & Spacing --- */
 @media (max-width: 768px) {
-    /* Navbar theke card er gap komano */
+    /* Navbar Design Update */
     .mobile-navbar {
-        margin-top: 5px !important;
-    }
-    .carousel-container {
-        padding-top: 2px !important;
+        display: flex !important;
+        justify-content: space-around;
+        align-items: center;
+        gap: 5px;
+        padding: 12px 8px;
+        background: rgba(255, 255, 255, 0.03); /* Soft glass look */
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px; /* Rounded pill shape */
+        width: 92%;
+        margin: 10px auto 0 auto !important; /* Center alignment */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 
+                    inset 0 0 10px rgba(255, 204, 0, 0.1); /* Subtle gold inner glow */
+        position: relative;
+        z-index: 1000;
     }
 
-    /* Pop up gulo ke force remove kora */
-    .slider-popup, 
-    #sideSlideRight, 
-    #sideSlideLeft, 
-    .mini-sticky, 
-    .sticky-left, 
-    .sticky-right,
-    [class*="popup"], 
-    [class*="sticky"] {
+    /* Links inside Navbar */
+    .mobile-navbar .nav-link {
+        font-size: 10px !important;
+        padding: 6px 10px !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        transition: 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-navbar .nav-link:hover {
+        color: var(--gold) !important;
+        background: rgba(255, 204, 0, 0.1);
+        border-color: var(--gold);
+    }
+
+    /* GAP REMOVAL: Navbar r Card er moddhe gap komano */
+    .carousel-container {
+        padding-top: 10px !important; /* Navbar r thik nichei card thakbe */
+        margin-top: 0 !important;
+    }
+
+    .offer-card {
+        margin-top: -5px !important; /* Ektu upore tule ana */
+        height: 65vh !important;
+        border: 1px solid rgba(255, 204, 0, 0.3) !important;
+    }
+
+    /* Force Hide Popups (X mark items) */
+    .slider-popup, .mini-sticky, #sideSlideRight, #sideSlideLeft {
         display: none !important;
-        visibility: hidden !important;
         opacity: 0 !important;
-        height: 0 !important;
-        width: 0 !important;
         pointer-events: none !important;
-        position: absolute !important;
-        left: -9999px !important; /* Screen er baire niye jabe */
     }
 }
-
 
