@@ -190,6 +190,38 @@
 /* --- Only for Mobile Devices --- */
 /* --- Extreme Force Hide for Mobile Popups --- */
 @media (max-width: 768px) {
+
+
+/* --- Card Size Chhoto Korar Code --- */
+    .offer-card {
+        width: 85vw !important;  /* Age 90vw ba 95vw chilo, ekhon ektu chhoto hobe */
+        height: 55vh !important; /* Height komiye dewa hoyeche jate compact lage */
+        max-width: 350px;        /* Ekta fixed limit dewa holo jate beshi boro na hoy */
+        margin: 0 auto;          /* Card ke center-e rakhbe */
+        border-radius: 30px;     /* Size chhoto hole border radius-o ektu komale bhalo lage */
+    }
+
+    /* Card-er bhetorer image adjustment */
+    .offer-card img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Button ebong Text adjustment (Size chhoto korle egulo lagte pare) */
+    .card-content {
+        padding: 30px 20px !important; /* Bhetorer khali jayga komano holo */
+    }
+
+    .btn-claim {
+        min-width: 160px !important;
+        padding: 10px 20px !important;
+        font-size: 11px !important;
+    }
+}
+
+
+
+ 
     /* --- Ultra Smart, Colorful & Glowing Navbar --- */
     .mobile-navbar {
         display: flex !important;
@@ -271,6 +303,7 @@
         height: 0 !important;
     }
 }
+
 
 
 
