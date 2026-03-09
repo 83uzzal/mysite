@@ -78,44 +78,52 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 <style>
     @media (max-width: 768px) {
-        /* ১. নেভবার এবং মিডল পিকচারের মাঝখানের গ্যাপ কমানো */
-        .navbar, .header-container { /* আপনার হেডার ক্লাসের নাম অনুযায়ী চেক করে নেবেন */
-            margin-bottom: 0 !important;
-            padding-bottom: 0 !important;
+        /* ১. নেভবার এবং কার্ডের দূরত্ব কমানো কিন্তু ব্যালেন্স রাখা */
+        header, .navbar, .header-container {
+            margin-bottom: 10px !important; /* একদম জিরো না করে ১০পিজেল রাখা হয়েছে */
+            padding-bottom: 5px !important;
         }
 
-        .main-card-container, .card-content { 
-            margin-top: -25px !important; /* নেগেটিভ মার্জিন দিয়ে গ্যাপ আরও কমানো হয়েছে */
-            padding-top: 10px !important;
+        /* মেইন কার্ডের পজিশন ঠিক করা */
+        .card-container, .main-card-container { 
+            margin-top: 0 !important; /* অতিরিক্ত নেগেটিভ মার্জিন বাদ দেওয়া হয়েছে */
+            padding-top: 0 !important;
+            display: flex;
+            justify-content: center;
         }
 
-        /* ২. নিচের দুই পাশের পপআপ (Sticky Popups) পুরোপুরি রিমুভ করা */
-        .mini-sticky, 
-        .sticky-left, 
-        .sticky-right, 
-        .slider-popup,
-        [class*="popup"] { /* পপআপ রিলেটেড সব ক্লাস হাইড করা হলো */
+        /* ২. কার্ডের ভেতরের ইমেজ এবং রাউন্ডেড কর্নার ঠিক করা */
+        .card {
+            border-radius: 40px !important; /* ছবির মতো রাউন্ডেড শেপ */
+            overflow: hidden;
+            width: 92% !important; /* দুই পাশে হালকা গ্যাপ থাকবে যাতে প্রিমিয়াম লাগে */
+            margin: 0 auto !important;
+        }
+
+        /* ৩. নিচের পপআপগুলো পুরোপুরি গায়েব করা */
+        .mini-sticky, .sticky-left, .sticky-right, .slider-popup, [class*="popup"] {
             display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
         }
 
-        /* ৩. মেইন বাটন (UNLOCK OFFERS) ঠিক রাখা */
-        .btn-claim {
-            position: relative !important;
-            z-index: 9999 !important;
-            margin-top: 10px !important;
-            display: block !important;
-            width: 90% !important; /* মোবাইলে বাটনটি সুন্দর দেখানোর জন্য */
-            margin-left: auto;
-            margin-right: auto;
+        /* ৪. বাটনটি সুন্দর পজিশনে আনা */
+        .btn-claim, .unlock-button {
+            width: 85% !important;
+            height: 55px !important;
+            border-radius: 30px !important;
+            font-size: 16px !important;
+            font-weight: bold !important;
+            margin: 20px auto !important; /* ইমেজের ভেতর থেকে কিছুটা উপরে থাকবে */
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #ff8c00, #ffb000) !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
         }
 
-        /* ৪. মেইন কার্ডের ইমেজ সাইজ এডজাস্ট করা */
-        .main-image { /* আপনার ইমেজ ক্লাস অনুযায়ী */
-            max-height: 60vh !important;
-            object-fit: cover;
-            border-radius: 20px;
+        /* ৫. কার্ডের ভেতরের টেক্সট সাইজ ঠিক করা */
+        .card-content h1, .card-content .amount {
+            font-size: 2.5rem !important;
+            margin-bottom: 5px !important;
         }
     }
 </style>
@@ -287,6 +295,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 
 </html>
+
 
 
 
