@@ -190,75 +190,75 @@
 /* --- Only for Mobile Devices --- */
 /* --- Extreme Force Hide for Mobile Popups --- */
 @media (max-width: 768px) {
-    /* --- Ultra Attractive & Vibrant Navbar --- */
+    /* --- Ultra Smart & Colorful Neon Navbar --- */
     .mobile-navbar {
         display: flex !important;
-        justify-content: space-around;
+        flex-direction: row !important; /* Text ek line-e anar jonno */
+        flex-wrap: nowrap !important;
+        overflow-x: auto; /* Jodi jayga kom hoy scroll korbe, line bhangbe na */
+        justify-content: flex-start;
         align-items: center;
         width: 95%;
-        margin: 10px auto 5px auto;
-        padding: 12px 10px;
+        margin: 10px auto;
+        padding: 15px 10px;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
         
-        /* Deep Dark Base with Glass Effect */
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(25px);
-        -webkit-backdrop-filter: blur(25px);
+        /* Glassmorphism with deep glow */
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
         
-        /* Moving Rainbow Neon Border */
-        border: 2px solid transparent;
-        background-image: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)), 
-                          linear-gradient(120deg, #ff00c1, #00fff0, #ffcc00, #ff00c1);
+        /* High-End Colorful Border */
+        border: 1.5px solid transparent;
+        background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                          linear-gradient(90deg, #00fff0, #ff00c1, #ffcc00, #00fff0);
         background-origin: border-box;
         background-clip: padding-box, border-box;
-        background-size: 200% 100%;
-        animation: neonFlow 3s linear infinite;
+        background-size: 200% auto;
+        animation: shine 4s linear infinite;
         
-        border-radius: 20px; /* Modern Rounded Corners */
-        box-shadow: 0 0 20px rgba(0, 255, 240, 0.2), 0 10px 40px rgba(0,0,0,0.6);
-        position: relative;
+        border-radius: 100px; /* Perfect Capsule Shape */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 10px rgba(0, 255, 240, 0.2);
         z-index: 1001;
     }
 
-    /* Border Animation */
-    @keyframes neonFlow {
-        0% { background-position: 0% 50%; }
-        100% { background-position: 200% 50%; }
+    /* Scrollbar hide korar jonno (Chrome/Safari) */
+    .mobile-navbar::-webkit-scrollbar { display: none; }
+
+    /* Animated Border Effect */
+    @keyframes shine {
+        to { background-position: 200% center; }
     }
 
-    /* Links with Glowing Text */
+    /* Links Style - Professional & Clean */
     .mobile-navbar .nav-link {
-        color: #fff !important;
-        font-size: 11px !important;
+        color: #ffffff !important;
+        font-size: 10px !important;
         font-weight: 800;
         text-transform: uppercase;
         letter-spacing: 1px;
-        text-decoration: none;
-        padding: 6px 8px;
-        transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        padding: 8px 15px;
+        margin: 0 5px;
+        white-space: nowrap; /* Text line bhangbe na */
+        border-radius: 50px;
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
     }
 
-    /* Colorful Hover/Active State */
+    /* Vibrant Hover/Active Effect */
     .mobile-navbar .nav-link:active {
-        color: #00fff0 !important; /* Cyan Glow on Click */
-        transform: scale(1.2);
-        text-shadow: 0 0 15px #00fff0;
+        background: linear-gradient(90deg, #00fff0, #0088ff);
+        color: #000 !important;
+        box-shadow: 0 0 15px rgba(0, 255, 240, 0.6);
+        transform: scale(0.9);
     }
 
-    /* Spacing Adjustment */
+    /* Gap adjustment - Card ke kache ana */
     .carousel-container {
-        padding-top: 0px !important; /* Card ke Navbar er ekdom kache niye asbe */
-        margin-top: -5px !important;
-    }
-
-    /* Force Hide Popups (Red X Items) */
-    .slider-popup, .mini-sticky, #sideSlideRight, #sideSlideLeft, [class*="sticky"] {
-        display: none !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        height: 0 !important;
+        padding-top: 5px !important;
     }
 }
+
 
 
 
