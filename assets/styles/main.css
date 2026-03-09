@@ -188,34 +188,33 @@
 
 
 /* --- Only for Mobile Devices --- */
+/* --- Extreme Force Hide for Mobile Popups --- */
 @media (max-width: 768px) {
-    /* 1. Navbar er uporer gap komano */
+    /* Navbar theke card er gap komano */
     .mobile-navbar {
-        margin-top: 5px !important; /* Screen er ekdom upore niye jabe */
-        padding: 10px !important;
+        margin-top: 5px !important;
     }
-
-    /* 2. Navbar ebong Card er moddher gap komano */
     .carousel-container {
-        padding-top: 5px !important; /* Navbar r card er gap komiye dibe */
-        margin-top: 0 !important;
+        padding-top: 0px !important;
     }
 
-    /* 3. Card ke upore shift kora */
-    .offer-card {
-        height: 65vh !important; /* Screen size onujayi height thik kora */
-        margin-top: -10px; /* Card ke upore tene tulbe */
-    }
-
-    /* 4. Popups vanish kora (The Red X Items) */
+    /* Pop up gulo ke force remove kora */
     .slider-popup, 
     #sideSlideRight, 
     #sideSlideLeft, 
-    .mini-sticky,
-    [id*="sideSlide"] { 
+    .mini-sticky, 
+    .sticky-left, 
+    .sticky-right,
+    [class*="popup"], 
+    [class*="sticky"] {
         display: none !important;
         visibility: hidden !important;
         opacity: 0 !important;
+        height: 0 !important;
+        width: 0 !important;
         pointer-events: none !important;
+        position: absolute !important;
+        left: -9999px !important; /* Screen er baire niye jabe */
     }
 }
+
