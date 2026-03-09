@@ -76,45 +76,36 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	<!--Mobile Friendly -->
 
-	<style>
-    /* মোবাইল মেনু বার ফিক্স */
-    @media (max-width: 768px) {
-        .mobile-navbar {
-            display: flex !important;
-            flex-wrap: wrap; /* দুই লাইনে সুন্দর করে সাজানোর জন্য */
-            justify-content: center;
-            gap: 10px;
-            padding: 15px 10px;
-            background: rgba(0, 0, 0, 0.8); /* হালকা ট্রান্সপারেন্ট ব্যাকগ্রাউন্ড */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 1000;
-        }
-
-        .mobile-navbar .nav-link {
-            font-size: 11px !important; /* টেক্সট সাইজ ছোট করা হয়েছে */
-            font-weight: bold;
-            color: #fff;
-            text-transform: uppercase;
-            padding: 5px 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 5px;
-            white-space: nowrap;
-        }
-
-        /* মেনু যেন মেইন কন্টেন্টের ওপর না ওঠে সেজন্য মার্জিন */
-        .carousel-container {
-            margin-top: 20px !important;
-        }
+/* নিচের স্টিকি অফারগুলো ফিক্স করার জন্য */
+@media (max-width: 768px) {
+    /* বাম এবং ডান পাশের ছোট স্টিকি অফারগুলো */
+    .mini-sticky {
+        width: 60px !important; /* সাইজ আরও ছোট করা হলো */
+        bottom: 10px !important; /* একদম নিচে নামিয়ে দেওয়া হলো */
+        z-index: 50; /* যাতে বাটনের নিচে থাকে */
     }
 
-    /* ডেস্কটপ মেনু হাইড রাখা মোবাইলে */
-    @media (max-width: 1024px) {
-        .desktop-navbar {
-            display: none !important;
-        }
+    .sticky-left {
+        left: 5px !important;
     }
-</style>
+
+    .sticky-right {
+        right: 5px !important;
+    }
+
+    /* আনলক বাটনটি যাতে সবার উপরে থাকে */
+    .btn-claim {
+        position: relative;
+        z-index: 100; /* বাটনটিকে পপআপের উপরে নিয়ে আসবে */
+        margin-top: 10px !important;
+        width: 100%; /* মোবাইলে ক্লিক করা সহজ হবে */
+    }
+
+    /* অফার কার্ডের ভেতরের কন্টেন্ট কিছুটা উপরে তোলা */
+    .card-content {
+        padding-bottom: 80px !important; /* নিচে জায়গা তৈরি করবে */
+    }
+}
 	<!-- Mobile Friendly-->
 	
 </head>
@@ -281,4 +272,5 @@ document.addEventListener("DOMContentLoaded", function() {
 </body>
 
 </html>
+
 
