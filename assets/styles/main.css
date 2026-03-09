@@ -185,3 +185,37 @@
     from { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
     to { opacity: 0.9; transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 204, 0, 0.8); }
 }
+
+
+/* --- Only for Mobile Devices --- */
+@media (max-width: 768px) {
+    /* 1. Navbar er uporer gap komano */
+    .mobile-navbar {
+        margin-top: 5px !important; /* Screen er ekdom upore niye jabe */
+        padding: 10px !important;
+    }
+
+    /* 2. Navbar ebong Card er moddher gap komano */
+    .carousel-container {
+        padding-top: 5px !important; /* Navbar r card er gap komiye dibe */
+        margin-top: 0 !important;
+    }
+
+    /* 3. Card ke upore shift kora */
+    .offer-card {
+        height: 65vh !important; /* Screen size onujayi height thik kora */
+        margin-top: -10px; /* Card ke upore tene tulbe */
+    }
+
+    /* 4. Popups vanish kora (The Red X Items) */
+    .slider-popup, 
+    #sideSlideRight, 
+    #sideSlideLeft, 
+    .mini-sticky,
+    [id*="sideSlide"] { 
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+}
