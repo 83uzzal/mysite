@@ -74,76 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-<!--mobile Friendly -->
 
-<style>
-    /* মোবাইলে সাইড ব্যানার এবং পোস্টার হাইড করা (স্ক্রিন ছোট হলে এগুলো হিজিবিজি দেখায়) */
-    @media (max-width: 1024px) {
-        .side-wrapper, .movie-poster, .bg-text-container, .desktop-navbar {
-            display: none !important;
-        }
-
-        /* মেইন কন্টেইনার অ্যাডজাস্টমেন্ট */
-        .carousel-container {
-            width: 95% !important;
-            margin: 20px auto !important;
-            padding: 10px !important;
-        }
-
-        /* কার্ডের টেক্সট সাইজ ছোট করা যাতে স্ক্রিনে ধরে */
-        #asset-name {
-            font-size: 2.5rem !important;
-            line-height: 1.1 !important;
-        }
-
-        /* স্টিকি মিনি অফারগুলো মোবাইলে ছোট করা */
-        .mini-sticky {
-            width: 80px !important;
-            bottom: 20px !important;
-        }
-
-        /* লকার বক্স বা ভেরিফিকেশন পপআপ মোবাইলে সুন্দর করা */
-        #lockerBox > div {
-            width: 90% !important;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        /* পপআপ ইমেজ রেসপনসিভ করা */
-        #promoPopup div {
-            width: 95% !important;
-        }
-    }
-
-    /* নেভিগেশন বার মোবাইল ফ্রেন্ডলি করা */
-    .mobile-navbar {
-        display: none;
-        background: #000;
-        padding: 10px;
-        overflow-x: auto;
-        white-space: nowrap;
-        border-bottom: 1px solid #333;
-    }
-
-    @media (max-width: 768px) {
-        .mobile-navbar {
-            display: flex;
-            justify-content: flex-start;
-            gap: 15px;
-        }
-        .nav-link {
-            font-size: 12px !important;
-            padding: 5px 10px;
-        }
-        
-        /* অফার কার্ডটি মোবাইলে ফুল উইডথ করা */
-        .offer-card {
-            min-height: 400px !important;
-        }
-    }
-</style>
-<!--mobile Friendly -->
-	
 </head>
 <body>
 
@@ -427,4 +358,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 </body>
+
 </html>
