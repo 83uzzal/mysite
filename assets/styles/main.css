@@ -184,8 +184,4 @@
 @keyframes miniBlink {
     from { opacity: 1; transform: scale(1); box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
     to { opacity: 0.9; transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 204, 0, 0.8); }
-
 }
-
-
-
