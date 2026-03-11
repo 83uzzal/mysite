@@ -7,109 +7,111 @@
 
 <title>Contact Us – USAOffers</title>
 <link rel="canonical" href="https://www.usaoffers.online/contact.html" /> 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-ZFYWLM9B1C');
-  </script>
-	<!-- Google Add -->
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2006668019827952"
-     crossorigin="anonymous"></script>
-	 
-	 <script async custom-element="amp-auto-ads"
-        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-ZFYWLM9B1C');
 </script>
-	<!-- Google Add -->
+
 <style>
 /* ========== RESET ========== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 body {
   background: #000;
   color: #fff;
+  overflow-x: hidden;
 }
 
-/* ========== TOP NAV ========== */
-.top-nav {
-  background: #000;
+/* ========== TOP NAV (MATCHING REFERENCE IMAGES) ========== */
+.top-nav { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 0;
+  position: absolute; /* পেজের উপরে ভাসমান রাখার জন্য */
+  top: 40px; /* ইমেজ অনুযায়ী পজিশন */
+  z-index: 1000;
   width: 100%;
 }
 
-.top-nav .nav-inner {
+.capsule-nav {
+  width: 95%; 
+  max-width: 900px; /* চওড়া প্রিমিয়াম লুক */
+  background: linear-gradient(90deg, 
+    rgba(10, 10, 10, 0.98) 0%, 
+    rgba(80, 80, 80, 0.5) 50%, 
+    rgba(10, 10, 10, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+  padding: 15px 50px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between; 
   align-items: center;
-  list-style: none;
-  padding: 12px 28px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
 }
 
-/* ========== DROPDOWN FIXED ========== */
-.dropdown {
-  position: relative;
+
+
+.nav-link { font-size: 11.5px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255, 255, 255, 0.7); transition: 0.3s; padding: 0 20px; }
+
+.nav-link:hover {
+  color: #ffd500 !important;
+  text-shadow: 0 0 15px rgba(255, 213, 0, 0.6);
 }
 
-.dropdown > a {
-  background: #ffd500;
-  color: #000;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 5px 15px;
-  border-radius: 4px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.dropdown > a:hover {
-  background: #ffdf3a;
-}
-
-/* Dropdown menu */
+/* Dropdown Menu Style */
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  right: 0;
-  background: #000;
-  min-width: 170px;
-  border-radius: 4px;
-  padding: 6px 0;
-  list-style: none;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.95);
+  min-width: 180px;
+  border-radius: 12px;
+  padding: 10px 0;
   display: none;
   z-index: 9999;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* KEEP OPEN ON HOVER + CLICK */
-.dropdown:hover .dropdown-menu,
-.dropdown:focus-within .dropdown-menu {
+.group:hover .dropdown-menu {
   display: block;
 }
 
-.dropdown-menu li a {
+.dropdown-menu a {
   display: block;
-  padding: 10px 16px;
+  padding: 12px 20px;
   color: #fff;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
-.dropdown-menu li a:hover {
-  background: #ffd500;
-  color: #000;
+.dropdown-menu a:hover {
+  background: rgba(255, 213, 0, 0.1);
+  color: #ffd500;
 }
 
-/* ========== CONTACT SECTION ========== */
+/* ========== CONTACT SECTION (NO CHANGES TO CONTENT) ========== */
 .contact-wrapper {
   display: flex;
-  min-height: calc(100vh - 56px);
+  min-height: 100vh;
 }
 
-/* LEFT IMAGE */
 .contact-image {
   width: 45%;
   background-image: url("https://oshinewptheme.com/v28/wp-content/uploads/sites/32/2017/06/v30-contact-bw.jpg");
@@ -118,14 +120,14 @@ body {
   filter: grayscale(100%);
 }
 
-/* RIGHT CONTENT */
 .contact-content {
   width: 55%;
-  padding: 80px;
+  padding: 140px 80px 80px; /* নেভিগেশনের জন্য উপরে প্যাডিং বাড়ানো হয়েছে */
 }
 
 .contact-content h1 {
   font-size: 42px;
+  font-weight: 800;
   margin-bottom: 15px;
 }
 
@@ -136,7 +138,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* CONTACT INFO */
 .contact-info {
   margin-bottom: 28px;
 }
@@ -152,7 +153,6 @@ body {
   font-size: 15px;
 }
 
-/* FORM */
 .form-row {
   display: flex;
   gap: 30px;
@@ -168,7 +168,7 @@ input, textarea {
   background: transparent;
   border: none;
   border-bottom: 1px solid #444;
-  padding: 10px 0;
+  padding: 12px 0;
   color: #fff;
   font-size: 14px;
 }
@@ -183,79 +183,92 @@ input:focus, textarea:focus {
   border-bottom-color: #ffd500;
 }
 
-/* BUTTON */
 button {
   width: 100%;
-  padding: 14px;
+  padding: 16px;
   background: #ffd500;
   color: #000;
   border: none;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
   cursor: pointer;
   transition: 0.3s;
+  margin-top: 20px;
 }
 
 button:hover {
   background: #fff;
+  transform: translateY(-2px);
 }
 
-/* FOOTER */
 .footer {
   text-align: center;
   font-size: 12px;
   color: #777;
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 /* ========== RESPONSIVE ========== */
+@media (max-width: 1024px) {
+  .top-nav { top: 20px; }
+  .capsule-nav { padding: 12px 25px; width: 98%; }
+  .nav-link { font-size: 11px !important; letter-spacing: 1px; }
+  .contact-content { padding: 100px 40px 40px; }
+}
+
 @media (max-width: 900px) {
-  .contact-wrapper {
-    flex-direction: column;
-  }
-
-  .contact-image {
-    width: 100%;
-    height: 280px;
-  }
-
-  .contact-content {
-    width: 100%;
-    padding: 40px 25px;
-  }
-
-  .form-row {
-    flex-direction: column;
-  }
+  .contact-wrapper { flex-direction: column; }
+  .contact-image { width: 100%; height: 300px; }
+  .contact-content { width: 100%; padding: 40px 25px; }
+  .form-row { flex-direction: column; }
+  .nav-link i { display: none; }
 }
 </style>
 </head>
 
 <body>
-<amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-2006668019827952">
-</amp-auto-ads>
-<!-- ================= NAV ================= -->
-<div class="top-nav">
-  <ul class="nav-inner">
-    <li class="dropdown">
-      <a href="#">Explore Menu ▾</a>
-      <ul class="dropdown-menu">
-        <li><a href="index.html">Home</a></li>
-		<li><a href="about.html">About Us</a></li>
-        <li><a href="offers.html">Latest Offers</a></li>
-		<li><a href="MoviePremiere.html">Movie Premiere</a></li>
-		<li><a href="CineAsia.html">CineAsia 🎞️</a></li>
-        <li><a href="contact.html">Contact Us</a></li>
-		<li><a href="FAQ.html">FAQs</a></li>
-      </ul>
-    </li>
-  </ul>
+
+<header id="header">
+  <nav class="top-nav desktop-navbar">
+    <div class="capsule-nav">
+      
+      <a href="index.html" class="nav-link">
+        HOME <i class="fas fa-location-arrow rotate-45"></i>
+      </a>
+
+<div class="relative group inline-block">
+    <a href="MoviePremiere.html" class="nav-link">MOVIE PREMIERE ▶</a>
+    
+<div class="absolute left-0 mt-2 w-48 bg-black/95 border border-white/10 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] shadow-2xl backdrop-blur-md overflow-hidden">
+        <a href="MoviePremiere.html" class="block px-5 py-3 text-[11px] font-bold text-white hover:bg-white/10 transition border-b border-white/5">
+            <i class="fas fa-film mr-2 text-yellow-500"></i> CINE WORLD
+        </a>
+        <a href="CineAsia.html" class="block px-5 py-3 text-[11px] font-bold text-white hover:bg-white/10 transition">
+            <i class="fas fa-globe-asia mr-2 text-yellow-500"></i> CINE ASIA
+        </a>
+    </div>
 </div>
 
-<!-- CONTACT -->
-<div class="contact-wrapper">
+<a href="lifestyle_essentials.html" class="nav-link flex items-center">
+    LIFESTYLE 
+    <span class="ml-0.5 opacity-100 flex items-center" style="-webkit-text-stroke: 1.2px currentColor;">
+        <i class="fas fa-angle-right text-[11px]"></i><i class="fas fa-angle-right text-[11px] -ml-1"></i>
+    </span>
+</a>
 
+      <a href="about.html" class="nav-link">
+        ABOUT US <i class="fas fa-eye text-orange-500"></i>
+      </a>
+
+      <a href="contact.html" class="nav-link">
+        CONTACT <i class="fas fa-envelope-open-text"></i>
+      </a>
+
+    </div>
+  </nav>
+</header>
+
+<div class="contact-wrapper">
   <div class="contact-image"></div>
 
   <div class="contact-content">

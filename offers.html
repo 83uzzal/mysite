@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
- <meta charset="utf-8">
+  <meta charset="utf-8">
   <title>Free Gift Cards - Google Play, iTunes, Steam and more</title>
   <link rel="canonical" href="https://www.usaoffers.online/offers.html" />
 
@@ -36,10 +36,10 @@
     gtag('config', 'G-ZFYWLM9B1C');
   </script>
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
   <style>
+  
+ 
+	
     /* ================= BASE & ANIMATIONS ================= */
     * { box-sizing: border-box; transition: all 0.3s ease; }
     
@@ -56,38 +56,55 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ================= TOP NAV ================= */
-    .top-nav { 
-      background: rgba(0, 0, 0, 0.8); 
-      backdrop-filter: blur(10px);
-      width: 100%; 
-      border-bottom: 1px solid #333; 
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .nav-inner { display: flex; justify-content: flex-end; align-items: center; list-style: none; margin: 0; padding: 12px 28px; }
-    
-    /* ========== DROPDOWN FIXED ========== */
-    .dropdown { position: relative; }
-    .dropdown > a {
-      background: #ffd500;
-      color: #000;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 5px 15px;
-      border-radius: 4px;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .dropdown > a:hover { background: #ffdf3a; }
-    .dropdown-menu {
-      position: absolute; top: 100%; right: 0; background: #000; min-width: 170px;
-      border-radius: 4px; padding: 6px 0; list-style: none; display: none; z-index: 9999;
-    }
-    .dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu { display: block; }
-    .dropdown-menu li a { display: block; padding: 10px 16px; color: #fff; text-decoration: none; font-size: 14px; }
-    .dropdown-menu li a:hover { background: #ffd500; color: #000; }
+    /* ================= NEW NAVBAR STYLES ================= */
+/* ================= BIG CAPSULE NAV STYLE ================= */
+.top-nav { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  /* padding বাড়িয়ে নিচে নামানো হয়েছে */
+  padding: 40px 0 25px 0; 
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: transparent;
+  width: 100%;
+}
+
+.capsule-nav {
+  /* ইমেজের মতো চওড়া করার জন্য width এবং max-width */
+  width: 95%; 
+  max-width: 900px; 
+  background: linear-gradient(90deg, 
+    rgba(10, 10, 10, 0.95) 0%, 
+    rgba(80, 80, 80, 0.5) 50%, 
+    rgba(10, 10, 10, 0.95) 100%);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px; /* ক্যাপসুল শেপ */
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between; /* আইটেমগুলোকে সমান দূরত্বে ছরিয়ে দেবে */
+  align-items: center;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+}
+
+.nav-link { font-size: 12.2px; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; letter-spacing: 2.3px; color: rgba(255, 255, 255, 0.7); transition: 0.3s; padding: 0 20px; }
+
+.nav-link:hover {
+  color: #ffd500 !important;
+  text-shadow: 0 0 10px rgba(255, 213, 0, 0.5);
+}
+
+/* মোবাইল ভার্সন ঠিক রাখার জন্য */
+@media (max-width: 1024px) {
+  .capsule-nav {
+    padding: 12px 25px;
+    gap: 15px;
+  }
+  .nav-link { font-size: 11px; }
+}
 
     /* ================= HERO ================= */
     .offer-hero { text-align: center; padding: 80px 20px 40px; animation: fadeIn 0.8s ease-out; }
@@ -162,31 +179,53 @@
       box-shadow: 0 10px 30px rgba(255, 81, 47, 0.4);
     }
     .more-btn:hover { transform: scale(1.1); filter: brightness(1.1); }
-    .footer { text-align: center; font-size: 10px; color: #666; padding: 12px; border-top: 1px solid #111; }
+    .footer { text-align: center; font-size: 10px; color: #666; padding: 40px 12px; border-top: 1px solid #111; }
   </style>
 </head>
 
 <body>
 
-  <div id="wrapper">
-    <header id="header">
-      <nav class="top-nav">
-        <ul class="nav-inner">
-          <li class="dropdown">
-            <a href="#">Explore Menu ▾ <i class="fa-solid fa-bars ml-2"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="index.html"><i class="fa-solid fa-house mr-2"></i> Home</a></li>
-              <li><a href="about.html"><i class="fa-solid fa-circle-info mr-2"></i> About Us</a></li>
-              <li><a href="offers.html"><i class="fa-solid fa-fire mr-2"></i> Latest Offers</a></li>
-              <li><a href="MoviePremiere.html"><i class="fa-solid fa-film mr-2"></i> Movie Premiere</a></li>
-              <li><a href="CineAsia.html"><i class="fa-solid fa-clapperboard mr-2"></i> CineAsia</a></li>
-              <li><a href="contact.html"><i class="fa-solid fa-envelope mr-2"></i> Contact</a></li>
-              <li><a href="FAQ.html"><i class="fa-solid fa-question-circle mr-2"></i> FAQs</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-    </header>
+<header id="header">
+  <nav class="top-nav desktop-navbar">
+    <div class="capsule-nav">
+      
+      <a href="index.html" class="nav-link">
+        HOME <i class="fas fa-location-arrow rotate-45"></i>
+      </a>
+
+<div class="relative group inline-block">
+    <a href="MoviePremiere.html" class="nav-link">MOVIE PREMIERE ▶</a>
+    
+<div class="absolute left-0 mt-2 w-48 bg-black/95 border border-white/10 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] shadow-2xl backdrop-blur-md overflow-hidden">
+        <a href="MoviePremiere.html" class="block px-5 py-3 text-[11px] font-bold text-white hover:bg-white/10 transition border-b border-white/5">
+            <i class="fas fa-film mr-2 text-yellow-500"></i> CINE WORLD
+        </a>
+        <a href="CineAsia.html" class="block px-5 py-3 text-[11px] font-bold text-white hover:bg-white/10 transition">
+            <i class="fas fa-globe-asia mr-2 text-yellow-500"></i> CINE ASIA
+        </a>
+    </div>
+</div>
+
+<a href="lifestyle_essentials.html" class="nav-link flex items-center">
+    LIFESTYLE 
+    <span class="ml-0.5 opacity-100 flex items-center" style="-webkit-text-stroke: 1.2px currentColor;">
+        <i class="fas fa-angle-right text-[11px]"></i><i class="fas fa-angle-right text-[11px] -ml-1"></i>
+    </span>
+</a>
+
+      <a href="about.html" class="nav-link">
+        ABOUT US <i class="fas fa-eye text-orange-500 text-[12px]"></i>
+      </a>
+
+      <a href="contact.html" class="nav-link">
+        CONTACT <i class="fas fa-envelope-open-text text-[13px]"></i>
+      </a>
+
+    </div>
+  </nav>
+
+  </header>
+
 
     <section class="offer-hero">
       <h1>Exclusive Rewards</h1>
@@ -252,7 +291,7 @@
           <a onclick="show_locker();" class="btn-claim">Claim Reward</a>
         </div>
 		
-		      <div class="offer-card" onclick="show_locker()" style="background-image: url('images/offer/itune.JPG'); background-size: cover;">
+		 <div class="offer-card" onclick="show_locker()" style="background-image: url('images/offer/itune.JPG'); background-size: cover;">
         <div class="offer-icon"><i class="fa-brands fa-apple"></i></div>
         <h3>iTunes Rewards</h3>
         <p>Music, movies, apps & Apple services credit for your devices.</p>
@@ -304,7 +343,7 @@
         </div>
       </div>
 
-<div class="space-y-2">
+      <div class="space-y-2">
         <a href="https://www.hiphi.site/21GFG1GL/9RKKD7P" target="_blank" class="flex items-center p-3 bg-white/5 rounded-xl hover:bg-white/10 transition border border-white/5 group">
           <div class="w-9 h-9 bg-[#1a1a1c] rounded-lg flex items-center justify-center mr-3 text-white"><i class="fab fa-amazon text-sm"></i></div>
           <div class="flex-grow">
@@ -346,20 +385,13 @@
           </div>
           <i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
         </a>
-        </div>
+      </div>
       <div class="mt-5 pt-4 border-t border-white/5 flex justify-center space-x-5 text-[7px] font-bold text-gray-600 uppercase tracking-widest">
         <span><i class="fas fa-lock mr-1 text-red-600"></i> Secure</span>
         <span><i class="fas fa-shield-alt mr-1 text-red-600"></i> Encrypted</span>
       </div>
     </div>
   </div>
-
-        <div class="mt-5 pt-4 border-t border-white/5 flex justify-center space-x-5 text-[7px] font-bold text-gray-600 uppercase tracking-widest">
-          <span><i class="fas fa-lock mr-1 text-red-600"></i> Secure</span>
-          <span><i class="fas fa-shield-alt mr-1 text-red-600"></i> Encrypted</span><br><br>
-        </div>
-      </div>
-    </div>
 
     <footer class="footer">
       <p>© 2026 USAOffers. The best destination for verified digital rewards.</p>
@@ -370,19 +402,17 @@
     function show_locker() {
       const locker = document.getElementById('lockerBox');
       locker.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Stop scrolling when locker is open
+      document.body.style.overflow = 'hidden'; 
     }
 
-    // Close locker if user clicks on the dark background overlay
     window.onclick = function(event) {
       const locker = document.getElementById('lockerBox');
       if (event.target == locker) {
         locker.style.display = "none";
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
+        document.body.style.overflow = 'auto'; 
       }
     }
   </script>
 
 </body>
-
 </html>
