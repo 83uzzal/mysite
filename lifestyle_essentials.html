@@ -1,8 +1,7 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-
-   <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -59,385 +58,226 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const imgs = document.querySelectorAll('img:not([loading])');
+        imgs.forEach(img => img.setAttribute('loading','lazy'));
+    });
+    </script>
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
-body{
-background:#f5f7fb;
-color:#222;
-}
-
-/* HERO */
-
-.hero{
-background:linear-gradient(135deg,#16a34a,#0ea5e9);
-color:white;
-padding:80px 20px;
-text-align:center;
-}
-
-.hero h1{
-font-size:46px;
-font-weight:700;
-}
-
-.hero p{
-margin-top:15px;
-font-size:18px;
-opacity:.9;
-}
-
-.trust{
-margin-top:25px;
-}
-
-.trust span{
-background:rgba(255,255,255,.15);
-padding:8px 14px;
-border-radius:30px;
-font-size:13px;
-margin:4px;
-display:inline-block;
-}
-
-/* CONTAINER */
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:50px 20px;
-}
-
-/* GRID */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:28px;
-}
-
-/* CARD */
-
-.card{
-background:white;
-border-radius:16px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-transition:.3s;
-display:flex;
-flex-direction:column;
-}
-
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 20px 40px rgba(0,0,0,.15);
-}
-
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
-
-/* CARD BODY */
-
-.card-body{
-padding:22px;
-display:flex;
-flex-direction:column;
-flex:1;
-}
-
-.card-body h3{
-font-size:19px;
-margin-bottom:10px;
-font-weight:600;
-}
-
-.card-body p{
-font-size:14px;
-color:#666;
-margin-bottom:18px;
-flex:1;
-}
-
-/* BADGES */
-
-.badges{
-margin-bottom:14px;
-}
-
-.badges span{
-background:#eef2ff;
-color:#4f46e5;
-font-size:12px;
-padding:4px 10px;
-border-radius:20px;
-margin-right:6px;
-}
-
-/* BUTTON */
-
-.btn{
-display:block;
-text-align:center;
-padding:12px;
-background:linear-gradient(135deg,#22c55e,#16a34a);
-color:white;
-font-weight:600;
-text-decoration:none;
-border-radius:8px;
-transition:.25s;
-}
-
-.btn:hover{
-opacity:.9;
-transform:scale(1.03);
-}
-
-/* FOOTER */
-
-footer{
-margin-top:60px;
-background:#111;
-color:#aaa;
-text-align:center;
-padding:30px 20px;
-font-size:13px;
-}
-
-footer span{
-color:white;
-font-weight:600;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-.hero h1{
-font-size:32px;
-}
-
-.hero{
-padding:60px 20px;
-}
-
-}
-
-</style>
-
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; scroll-behavior: smooth; }
+        .hero-bg { background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); }
+        .offer-card { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; }
+        .offer-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+        .btn-click:active { transform: scale(0.95); }
+        .lock-scroll { overflow: hidden !important; height: 100vh !important; }
+        #content-locker { display: none; backdrop-filter: blur(12px); }
+        #content-locker.active { display: flex; }
+        .locker-box { background: #0f0f0f; border: 1px solid #222; animation: locker-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes locker-pop { 0% { transform: scale(0.85); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    </style>
 </head>
-
 <body>
 
-<section class="hero">
+    <header class="hero-bg text-white py-16 px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 flex justify-center items-center flex-wrap">
+            <span class="inline-block mr-4">LIFESTYLE</span> 
+            <span class="inline-block">ESSENTIALS</span> 
+            <span class="text-2xl ml-3 text-yellow-300">✦</span>
+        </h1>
+        <p class="text-lg md:text-xl text-emerald-50 mb-6 max-w-2xl mx-auto">
+            Discover Free Healthy Samples, Wellness Programs & Exclusive Lifestyle Offers.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-3 text-sm font-semibold">
+            <span class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/30">✓ 100% Free Offers</span>
+            <span class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/30">✓ No Credit Card Required</span>
+            <span class="bg-white/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/30">✓ US Residents Only</span>
+        </div>
+    </header>
 
-<h1>LIFESTYLE ESSENTIALS ✦</h1>
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <div class="offer-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <img src="images/health/snack-box.jpg" alt="Snack Box" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-600 px-2 py-1 rounded">Free Shipping</span>
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-purple-100 text-purple-600 px-2 py-1 rounded">No Cost</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Free Healthy Snack Boxes</h3>
+                    <p class="text-gray-500 text-sm mb-6">Receive a box of delicious, healthy snacks delivered to home and share your feedback.</p>
+                    <button onclick="showLocker()" class="btn-click w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-200">Claim Free Box</button>
+                </div>
+            </div>
 
-<p>Discover Free Healthy Samples, Wellness Programs & Exclusive Lifestyle Offers</p>
+            <div class="offer-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <img src="images/health/weight-loss.jpg" alt="Weight Loss" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-green-100 text-green-600 px-2 py-1 rounded">Medical Support</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Fridays Health Weight Loss</h3>
+                    <p class="text-gray-500 text-sm mb-6">A medically guided weight loss program with expert coaching and personalized plans.</p>
+                    <button onclick="showLocker()" class="btn-click w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-200">Start Program</button>
+                </div>
+            </div>
 
-<div class="trust">
+            <div class="offer-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <img src="images/health/sample-guide.jpg" alt="Sample Guide" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-orange-100 text-orange-600 px-2 py-1 rounded">Verified</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Free Samples Guide</h3>
+                    <p class="text-gray-500 text-sm mb-6">Discover how to receive free healthy snacks and product samples online today.</p>
+                    <button onclick="showLocker()" class="btn-click w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-200">Download Guide</button>
+                </div>
+            </div>
 
-<span>✔ 100% Free Offers</span>
-<span>✔ No Credit Card Required</span>
-<span>✔ US Residents Only</span>
+            <div class="offer-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <img src="images/health/quiz.jpg" alt="Health Quiz" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-indigo-100 text-indigo-600 px-2 py-1 rounded">Quick Quiz</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">HealthRX Quiz</h3>
+                    <p class="text-gray-500 text-sm mb-6">Take a short health quiz and receive personalized wellness and lifestyle insights.</p>
+                    <button onclick="showLocker()" class="btn-click w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-200">Take Quiz</button>
+                </div>
+            </div>
 
+            <div class="offer-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <img src="images/health/cosmetics.jpg" alt="Microdosing" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-pink-100 text-pink-600 px-2 py-1 rounded">Advanced Care</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Fridays Health Microdosing</h3>
+                    <p class="text-gray-500 text-sm mb-6">Explore a modern wellness approach with specialized microdosing coaching programs.</p>
+                    <button onclick="showLocker()" class="btn-click w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-200">Learn More</button>
+                </div>
+            </div>
+
+            <div class="offer-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                <img src="images/health/nad-plus.jpg" alt="NAD+" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <div class="flex gap-2 mb-3">
+                        <span class="text-[10px] font-bold uppercase tracking-wider bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Energy</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Fridays Health NAD+</h3>
+                    <p class="text-gray-500 text-sm mb-6">Boost energy and metabolism with NAD+ wellness support from our medical experts.</p>
+                    <button onclick="showLocker()" class="btn-click w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-200">Discover</button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-500 py-8 text-center text-xs">
+        <p>© <span id="year"></span> <span class="text-white font-bold">LIFESTYLE ESSENTIALS ✦</span> | Healthy Living & Wellness Opportunities</p>
+    </footer>
+
+<div id="content-locker" class="fixed inset-0 z-[10000] flex items-center justify-center">
+    <div class="absolute inset-0 bg-black/85"></div>
+    
+    <div class="relative locker-box rounded-[2rem] overflow-hidden max-w-[340px] w-full mx-4 shadow-2xl">
+        <div class="h-24 bg-[#1a1a1a] flex items-center justify-center relative">
+            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#333 1px, transparent 1px); background-size: 15px 15px;"></div>
+            <div class="bg-red-600 p-3.5 rounded-2xl shadow-xl shadow-red-900/40 relative z-10 animate-bounce">
+                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            </div>
+        </div>
+
+        <div class="px-5 pb-8 text-center">
+            <h2 class="text-2xl font-black text-white italic uppercase tracking-tighter mt-3">Verification</h2>
+            <p class="text-gray-500 text-[9px] font-bold uppercase tracking-widest mt-1 mb-4">Required to Unlock</p>
+            
+            <div class="flex items-center justify-center gap-2 mb-5 bg-[#1a1a1a] py-1.5 px-3 rounded-full w-fit mx-auto">
+                <span class="flex h-1.5 w-1.5 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
+                </span>
+                <span class="text-red-500 text-[8px] font-black uppercase">Status: Waiting</span>
+            </div>
+
+            <div class="space-y-2">
+                <a href="https://www.hiphi.site/21GFG1GL/8KG5KW1" class="flex items-center justify-between bg-[#151515] hover:bg-[#1f1f1f] p-3 rounded-xl border border-[#222] transition-all group active:scale-95 no-underline">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">🍏</span>
+                        <div class="text-left">
+                            <p class="text-white text-[11px] font-black uppercase leading-none">Free Snacks Guide</p>
+                            <p class="text-emerald-500 text-[7px] font-bold uppercase mt-1 italic">Verified Offer</p>
+                        </div>
+                    </div>
+                    <span class="text-gray-700 group-hover:text-white text-xs">❯</span>
+                </a>
+
+                <a href="https://www.steepl.site/21GFG1GL/9WCBTFP3" class="flex items-center justify-between bg-[#151515] hover:bg-[#1f1f1f] p-3 rounded-xl border border-[#222] transition-all group active:scale-95 no-underline">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">⚖️</span>
+                        <div class="text-left">
+                            <p class="text-white text-[11px] font-black uppercase leading-none">Weight Loss Program</p>
+                            <p class="text-yellow-500 text-[7px] font-bold uppercase mt-1 italic">Medical Coaching</p>
+                        </div>
+                    </div>
+                    <span class="text-gray-700 group-hover:text-white text-xs">❯</span>
+                </a>
+
+                <a href="https://www.steepl.site/21GFG1GL/9W4DFQN" class="flex items-center justify-between bg-[#151515] hover:bg-[#1f1f1f] p-3 rounded-xl border border-[#222] transition-all group active:scale-95 no-underline">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">📝</span>
+                        <div class="text-left">
+                            <p class="text-white text-[11px] font-black uppercase leading-none">HealthRX Quiz</p>
+                            <p class="text-orange-500 text-[7px] font-bold uppercase mt-1 italic">Short & Easy</p>
+                        </div>
+                    </div>
+                    <span class="text-gray-700 group-hover:text-white text-xs">❯</span>
+                </a>
+
+                <a href="https://www.steepl.site/21GFG1GL/9W9XZP4" class="flex items-center justify-between bg-[#151515] hover:bg-[#1f1f1f] p-3 rounded-xl border border-[#222] transition-all group active:scale-95 no-underline">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">🍄</span>
+                        <div class="text-left">
+                            <p class="text-white text-[11px] font-black uppercase leading-none">Microdosing Health</p>
+                            <p class="text-blue-500 text-[7px] font-bold uppercase mt-1 italic">New Wellness</p>
+                        </div>
+                    </div>
+                    <span class="text-gray-700 group-hover:text-white text-xs">❯</span>
+                </a>
+
+                <a href="https://www.steepl.site/21GFG1GL/9W9XZP4" class="block w-full bg-emerald-500 hover:bg-emerald-600 text-white font-black py-3 rounded-xl transition-all shadow-lg shadow-emerald-900/20 text-center uppercase tracking-widest text-[10px] mt-3 active:scale-95 no-underline">
+                    Verify & Unlock Now
+                </a>
+            </div>
+
+            <div class="mt-5 flex justify-center gap-4 opacity-20">
+                <div class="text-[7px] text-white font-bold uppercase">🔒 Secure</div>
+                <div class="text-[7px] text-white font-bold uppercase">🛡️ Encrypted</div>
+            </div>
+        </div>
+    </div>
 </div>
 
-</section>
-
-
-<div class="container">
-
-<div class="grid">
-
-<!-- OFFER 1 -->
-
-<div class="card">
-
-<img src="images/health/healthy-snack-boxes.png">
-
-<div class="card-body">
-
-<h3>Free Healthy Snack Boxes</h3>
-
-<div class="badges">
-<span>Free Shipping</span>
-<span>No Credit Card</span>
-</div>
-
-<p>Receive a box of delicious healthy snacks delivered to your home and simply share your feedback.</p>
-
-<a href="#" class="btn">Claim Free Box</a>
-
-</div>
-
-</div>
-
-
-<!-- OFFER 2 -->
-
-<div class="card">
-
-<img src="images/fridays-weight-loss.png">
-
-<div class="card-body">
-
-<h3>Fridays Health Weight Loss</h3>
-
-<div class="badges">
-<span>Medical Experts</span>
-<span>Coaching Included</span>
-</div>
-
-<p>A medically guided weight loss program with expert coaching and personalized plans.</p>
-
-<a href="#" class="btn">Start Program</a>
-
-</div>
-
-</div>
-
-
-<!-- OFFER 3 -->
-
-<div class="card">
-
-<img src="images/free-samples-guide.png">
-
-<div class="card-body">
-
-<h3>Free Samples Guide</h3>
-
-<div class="badges">
-<span>Healthy</span>
-<span>Free Guide</span>
-</div>
-
-<p>Discover how to receive free healthy snacks and product samples online.</p>
-
-<a href="#" class="btn">Download Guide</a>
-
-</div>
-
-</div>
-
-
-<!-- OFFER 4 -->
-
-<div class="card">
-
-<img src="images/healthrx.png">
-
-<div class="card-body">
-
-<h3>HealthRX Quiz</h3>
-
-<div class="badges">
-<span>Quick Quiz</span>
-<span>Personalized</span>
-</div>
-
-<p>Take a short health quiz and receive personalized wellness insights.</p>
-
-<a href="#" class="btn">Take Quiz</a>
-
-</div>
-
-</div>
-
-
-<!-- OFFER 5 -->
-
-<div class="card">
-
-<img src="images/microdosing.png">
-
-<div class="card-body">
-
-<h3>Fridays Health Microdosing</h3>
-
-<div class="badges">
-<span>Advanced</span>
-<span>Wellness</span>
-</div>
-
-<p>Explore a new wellness approach combining microdosing and lifestyle coaching.</p>
-
-<a href="#" class="btn">Learn More</a>
-
-</div>
-
-</div>
-
-
-<!-- OFFER 6 -->
-
-<div class="card">
-
-<img src="images/nad.png">
-
-<div class="card-body">
-
-<h3>Fridays Health NAD+</h3>
-
-<div class="badges">
-<span>Energy</span>
-<span>Longevity</span>
-</div>
-
-<p>Boost energy and metabolism with NAD+ wellness support.</p>
-
-<a href="#" class="btn">Discover</a>
-
-</div>
-
-</div>
-
-
-<!-- OFFER 7 -->
-
-<div class="card">
-
-<img src="images/fridays-spanish.png">
-
-<div class="card-body">
-
-<h3>Fridays Health Spanish</h3>
-
-<div class="badges">
-<span>Spanish</span>
-<span>Medical Program</span>
-</div>
-
-<p>Spanish version of the Fridays Health weight care program.</p>
-
-<a href="#" class="btn">View Offer</a>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-<footer>
-
-© 2026 <span>LIFESTYLE ESSENTIALS ✦</span> | Healthy Living & Wellness Opportunities
-
-</footer>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // লকার দেখানোর ফাংশন
+        function showLocker() {
+            const locker = document.getElementById('content-locker');
+            locker.classList.add('active');
+            document.body.classList.add('lock-scroll');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // ৮ সেকেন্ড পর অটোমেটিক লকার দেখাবে
+            setTimeout(() => {
+                showLocker();
+            }, 8000); 
+        });
+    </script>
 
 </body>
-
 </html>
