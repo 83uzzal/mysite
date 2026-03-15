@@ -5,56 +5,67 @@
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/about.html</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/button.html</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/contact.html</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/free-amazon-gift-cards.html</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/free-google-play-gift-cards.html</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/free-itunes-gift-cards.html</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/free-paypal-gift-cards.html</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/free-playstation-store-gift-cards.html</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/free-spotify-gift-cards.html</loc>
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
  <url>
   <loc>https://www.usaoffers.online/free-steam-gift-cards.html</loc>
   <changefreq>always</changefreq>
@@ -65,6 +76,157 @@
   <changefreq>always</changefreq>
   <priority>0.5</priority>
  </url>
+ 
+ <url>
+  <loc>https://www.usaoffers.online/index.html</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.producthunt.com/products/free-usa-offers-gift-card-deals?launch=free-usa-offers-gift-card-deals</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.linkedin.com/posts/enola-murphy-017b743a6_amazongiftcard-freegiftcard-amazondeals-share-7438936055292088320-t1wv</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.deviantart.com/enola99murphy/art/Free-Amazon-Gift-Card-2026-1310035053</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://youtu.be/GMJF5qKl2zM</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://youtu.be/ILKIsuTjG9Y</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://youtu.be/C3pkO4n8wOY</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://youtu.be/0CGKQ_sODco</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://youtu.be/H5y1OT3-qtI</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://youtu.be/dmWR9UGv_-o</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://youtu.be/8wlI_3StmM4</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://youtu.be/cJqeGvvlIu4</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.youtube.com/watch?v=cJqeGvvlIu4</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.youtube.com/watch?v=GMJF5qKl2zM</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.youtube.com/watch?v=ILKIsuTjG9Y</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.youtube.com/watch?v=C3pkO4n8wOY</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.youtube.com/watch?v=0CGKQ_sODco</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.youtube.com/watch?v=H5y1OT3-qtI</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.youtube.com/watch?v=8wlI_3StmM4</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.youtube.com/watch?v=dmWR9UGv_-o</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.producthunt.com/p/general/your-ultimate-guide-to-free-amazon-gift-cards-in-2026-the-real-legit-way</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.deviantart.com/enola99murphy/journal/https-www-usaoffers-online-1310056196</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.deviantart.com/enola99murphy/art/Enjoy-top-entertainment-offers-and-exciting-reward-1310058371</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.producthunt.com/p/general/get-free-itunes-gift-card-codes-in-2026-legit-working</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+
+<url>
+  <loc>https://www.producthunt.com/p/general/my-review-of-amazon-gift-card-offers-on-https-www-usaoffers-online</loc>
+  <changefreq>always</changefreq>
+  <priority>0.5</priority>
+</url>
+ 
  <url>
   <loc>https://www.usaoffers.online/offers.html</loc>
   <changefreq>always</changefreq>
