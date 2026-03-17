@@ -1,9 +1,30 @@
         const moviePairs = [
-            ["images/Avatar Fire and Ash.png", "images/Sinners.jpg"],
-            ["images/The Sun Rises on Us All.png", "images/Dhurandhar.png"],
-            ["images/Vadh 2.png", "images/Konya (2026).png"]
+            ["images/exclusive/amazon-t.png", "images/exclusive/netflix-t.png"],
+            ["images/exclusive/iphone-t.png", "images/exclusive/finance-guide-t.png"],
+            ["images/exclusive/walmart-t.jpg", "images/exclusive/target-t.jpg"]
         ];
         
+		function triggerThunderCycle() {
+    const body = document.body;
+    const leftPoster = document.getElementById('poster-left');
+    const rightPoster = document.getElementById('poster-right');
+    
+    if (window.innerWidth < 1300) return; 
+
+    // ইমেজ সোর্স আপডেট
+    leftPoster.querySelector('img').src = moviePairs[pairIndex][0];
+    rightPoster.querySelector('img').src = moviePairs[pairIndex][1];
+
+    // ক্লিক করলে লকার দেখানোর ফাংশন সেট করা
+    leftPoster.onclick = show_locker;
+    rightPoster.onclick = show_locker;
+
+    // বাকি এনিমেশন কোড...
+    leftPoster.classList.remove('poster-visible', 'poster-exit');
+    rightPoster.classList.remove('poster-visible', 'poster-exit');
+    // (আপনার আগের কোডগুলো এখানে থাকবে)
+}
+		
         let pairIndex = 0;
 
         function triggerThunderCycle() {
@@ -126,3 +147,4 @@
             document.getElementById('miniLeft').style.display = 'block';
             document.getElementById('miniRight').style.display = 'block';
         }
+		
