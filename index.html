@@ -60,10 +60,20 @@ document.addEventListener("DOMContentLoaded", function() {
 const imgs = document.querySelectorAll('img:not([loading])');
 imgs.forEach(img => img.setAttribute('loading','lazy'));
 });
+
+// Redefining show_locker to directly open YOUR link
+function show_locker() {
+    window.location.href = "https://modcraftforge.com/list/BwE10F9";
+}
 </script>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+/* Ensure the locker box remains hidden */
+#lockerBox { display: none !important; }
+</style>
 
 </head>
 <body>
@@ -166,111 +176,76 @@ imgs.forEach(img => img.setAttribute('loading','lazy'));
 <a href="contact.html" class="nav-link">CONTACT</a>
 </nav>
 
+
 <div class="side-wrapper left-side">
-<div class="side-ad" onclick="show_locker()"><img src="images/banar/amazon_banner.png"></div>
-<div class="side-ad" onclick="show_locker()"><img src="images/banar/target_banner.png"></div>
+
+<div class="side-ad" onclick="window.open('https://modcraftforge.com/list/BwE10F9','_blank')">
+<img src="images/banar/amazon_banner.png">
 </div>
+
+<div class="side-ad" onclick="window.open('https://modcraftforge.com/list/BwE10F9','_blank')">
+<img src="images/banar/target_banner.png">
+</div>
+
+</div>
+
 
 <div class="side-wrapper right-side">
-<div class="side-ad" onclick="show_locker()"><img src="images/banar/walmart_banner.png"></div>
-<div class="side-ad" onclick="show_locker()"><img src="images/banar/netflix_banner.png"></div>
+
+<div class="side-ad" onclick="window.open('https://modcraftforge.com/list/BwE10F9','_blank')">
+<img src="images/banar/walmart_banner.png">
 </div>
 
-<div id="poster-left" class="movie-poster left-poster cursor-pointer" onclick="show_locker()">
-    <img src="" alt="Left Movie">
+<div class="side-ad" onclick="window.open('https://modcraftforge.com/list/BwE10F9','_blank')">
+<img src="images/banar/netflix_banner.png">
 </div>
 
-<div id="poster-right" class="movie-poster right-poster cursor-pointer" onclick="show_locker()">
-    <img src="" alt="Right Movie">
+</div>
+
+
+<div id="poster-left" class="movie-poster left-poster cursor-pointer"
+onclick="window.open('https://modcraftforge.com/list/BwE10F9','_blank')">
+
+<img src="" alt="Left Movie">
+
+</div>
+
+
+<div id="poster-right" class="movie-poster right-poster cursor-pointer"
+onclick="window.open('https://modcraftforge.com/list/BwE10F9','_blank')">
+
+<img src="" alt="Right Movie">
+
 </div>
 
 <main class="carousel-container">
-<div class="offer-card">
+<div class="offer-card" onclick="window.open('https://modcraftforge.com/list/BwE10F9','_blank')">
+
 <img src="images/banar/box-pic.png" class="absolute inset-0 w-full h-full" alt="Card UI">
+
 <div class="card-content">
+
 <div id="dynamic-text">
 <p class="text-[11px] font-black tracking-[0.5em] text-yellow-400 mb-3">SECURE ASSET</p>
 <h2 id="asset-name" class="syncopate text-5xl mb-6">AMAZON<br>$500</h2>
 </div>
-<button class="btn-claim" onclick="show_locker();">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.62 0-2.89.96-3.59 2.1L12 5.14l-.41-.74C10.89 3.26 9.62 2.3 8 2.3c-1.66 0-3 1.34-3 3 0 .35.07.69.18 1H3c-1.1 0-2 .9-2 2v2c0 .55.45 1 1 1h1v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10h1c.55 0 1-.45 1-1V8c0-1.1-.9-2-2-2zM15 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L15 4.3zM8 4.3c.55 0 1 .45 1 1s-.45 1-1 1c-.34 0-.65-.17-.82-.45L8 4.3zM3 8h8v2H3V8zm2 12V10h6v10H5zm14 0h-6V10h6v10zm2-10h-8V8h8v2z"/></svg>
+
+<button class="btn-claim"
+onclick="window.open('https://modcraftforge.com/list/BwE10F9','_blank'); event.stopPropagation();">
+
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+<path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.62 0-2.89.96-3.59 2.1L12 5.14l-.41-.74C10.89 3.26 9.62 2.3 8 2.3c-1.66 0-3 1.34-3 3 0 .35.07.69.18 1H3c-1.1 0-2 .9-2 2v2c0 .55.45 1 1 1h1v10c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V10h1c.55 0 1-.45 1-1V8c0-1.1-.9-2-2-2z"/>
+</svg>
+
 <span>UNLOCK OFFERS</span>
+
 </button>
+
 </div>
 </div>
 </main>
 
-<div id="lockerBox" class="locker-overlay">
-<div class="bg-[#0c0c0e] w-full max-w-sm rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 flex flex-col">
-<div class="relative w-full h-56">
-<img src="images/banar/box-pic.png" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-[#0c0c0e] via-transparent to-transparent"></div>
-<div class="absolute inset-0 flex flex-col items-center justify-center">
-<div class="w-14 h-14 bg-red-600 rounded-2xl flex items-center justify-center mb-2 shadow-xl border-2 border-white/20">
-<i class="fas fa-shield-halved text-white text-2xl"></i>
-</div>
-<h3 class="text-3xl font-black text-white tracking-tighter uppercase drop-shadow-lg">Verification</h3>
-</div>
-</div>
-
-<div class="p-6 pt-0 bg-[#0c0c0e]">
-<div class="text-center mb-6">
-<p class="text-gray-400 text-[10px] uppercase font-bold tracking-widest opacity-60">Human Verification Required</p>
-<div class="mt-3 flex items-center justify-center space-x-2 text-[10px] font-bold text-red-500 tracking-widest">
-<span class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-<span class="uppercase">Status: Waiting for completion</span>
-</div>
-</div>
-
-<div class="space-y-2">
-<a href="https://modcraftforge.com/list/BwE10F9" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
-<div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fab fa-amazon text-sm"></i></div>
-<div class="flex-grow">
-<div class="text-[11px] font-bold text-white uppercase leading-none">Black Friday $500 Amazon Card</div>
-<div class="text-[8px] text-green-500 font-bold uppercase mt-1">Easy - 1 Minute or Less</div>
-</div>
-<i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-</a>
-<a href="https://modcraftforge.com/list/BwE10F9" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
-<div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fas fa-tv text-sm"></i></div>
-<div class="flex-grow">
-<div class="text-[11px] font-bold text-white uppercase leading-none">$500 Netflix Gift Card</div>
-<div class="text-[8px] text-yellow-500 font-bold uppercase mt-1">Us Only - Instant Approval</div>
-</div>
-<i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-</a>
-<a href="https://modcraftforge.com/list/BwE10F9" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
-<div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fas fa-file-invoice-dollar text-sm"></i></div>
-<div class="flex-grow">
-<div class="text-[11px] font-bold text-white uppercase leading-none">Unemployment Support Form</div>
-<div class="text-[8px] text-orange-400 font-bold uppercase mt-1">Highly Recommended</div>
-</div>
-<i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-</a>
-<a href="https://modcraftforge.com/list/BwE10F9" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
-<div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fas fa-shopping-cart text-sm"></i></div>
-<div class="flex-grow">
-<div class="text-[11px] font-bold text-white uppercase leading-none">$500 Target Gift Card</div>
-<div class="text-[8px] text-blue-400 font-bold uppercase mt-1">US Market - High Chance</div>
-</div>
-<i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-</a>
-<a href="https://modcraftforge.com/list/BwE10F9" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition border border-white/5 group">
-<div class="w-9 h-9 bg-[#1a1a1c] rounded-xl flex items-center justify-center mr-3 text-white"><i class="fas fa-microchip text-sm"></i></div>
-<div class="flex-grow">
-<div class="text-[11px] font-bold text-white uppercase leading-none">Make Money Online</div>
-<div class="text-[8px] text-red-400 font-bold uppercase mt-1">International Traffic - High Paying Offers.</div>
-</div>
-<i class="fas fa-chevron-right text-[8px] text-gray-600"></i>
-</a>
-</div>
-<div class="mt-6 pt-4 border-t border-white/5 flex justify-center space-x-6 text-[8px] font-black text-gray-600 uppercase tracking-[0.2em]">
-<span><i class="fas fa-lock mr-1 text-red-600"></i> Secure</span>
-<span><i class="fas fa-shield-alt mr-1 text-red-600"></i> Encrypted</span>
-</div>
-</div>
-</div>
-</div>
+<div id="lockerBox" style="display:none !important;"></div>
 
 </body>
 </html>
