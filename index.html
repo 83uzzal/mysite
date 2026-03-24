@@ -91,12 +91,12 @@ imgs.forEach(img => img.setAttribute('loading','lazy'));
 </a>
 </div>
 
-<a href="https://www.hiphi.site/21GFG1GL/8KG5KW1/" target="_blank" id="miniLeft" class="mini-sticky sticky-left">
-<img src="images/popup/healthrx.png" alt="Offer Left">
-</a>
-<a href="https://www.hiphi.site/21GFG1GL/8KG5KW1/" target="_blank" id="miniRight" class="mini-sticky sticky-right">
-<img src="images/popup/microdosing.png" alt="Offer Right">
-</a>
+
+
+<div id="miniLeft" style="display:none !important;"></div>
+<div id="miniRight" style="display:none !important;"></div>
+
+
 
 <div class="bg-text-container">
 <div class="bg-word">PREMIUM</div>
@@ -271,7 +271,82 @@ imgs.forEach(img => img.setAttribute('loading','lazy'));
 </div>
 </div>
 </div>
-</div>
+</div> 
 
+<!---  User Experience Start --->
+
+<div id="popup" class="fixed bottom-6 left-6 z-[20001] hidden transform transition-all duration-700 ease-out translate-y-10 opacity-0">
+    <div class="relative overflow-hidden bg-black/40 backdrop-blur-xl p-[1px] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 group">
+        <div class="absolute inset-0 bg-gradient-to-r from-red-600/20 to-transparent opacity-50"></div>
+        
+        <div class="relative bg-[#0f172a]/90 p-4 rounded-2xl flex items-center gap-4">
+            <div class="relative shrink-0">
+                <div class="absolute inset-0 bg-red-600 rounded-full animate-ping opacity-20"></div>
+                <div class="relative w-11 h-11 bg-gradient-to-tr from-red-600 to-orange-500 rounded-full flex items-center justify-center shadow-lg shadow-red-600/40">
+                    <i data-lucide="check" class="text-white w-6 h-6 stroke-[3px]"></i>
+                </div>
+            </div>
+
+            <div class="pr-2">
+                <div class="flex items-center gap-2 mb-1">
+                    <span class="flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <p class="text-[11px] font-black text-white uppercase tracking-wider">
+                        <span id="user-name" class="text-red-400">Someone</span> from <span id="user-loc" class="text-blue-400">Texas</span>
+                    </p>
+                </div>
+                <p class="text-[13px] font-medium text-slate-200 leading-tight">
+                    Just claimed a <span class="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent font-bold">$500 Reward</span>
+                </p>
+                <p class="text-[9px] text-slate-500 mt-1 flex items-center gap-1 uppercase font-bold tracking-tighter">
+                    <i data-lucide="clock" class="w-2 h-2"></i> Verified 2 minutes ago
+                </p>
+            </div>
+            
+            <button onclick="document.getElementById('popup').classList.add('hidden')" class="text-white/20 hover:text-white/60 transition-colors">
+                <i data-lucide="x" class="w-3 h-3"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('popup');
+    const nameSpan = document.getElementById('user-name');
+    const locSpan = document.getElementById('user-loc');
+
+    const names = ["James", "Emma", "Robert", "Sophia", "Michael", "Olivia", "William", "Isabella", "David", "Mia"];
+    const locations = ["New York", "California", "Florida", "Texas", "Chicago", "Washington", "Georgia", "Arizona"];
+
+    function showPopup() {
+        // Random Data
+        nameSpan.innerText = names[Math.floor(Math.random() * names.length)];
+        locSpan.innerText = locations[Math.floor(Math.random() * locations.length)];
+        
+        // Show with Animation
+        popup.classList.remove('hidden');
+        setTimeout(() => {
+            popup.classList.remove('translate-y-10', 'opacity-0');
+            popup.classList.add('translate-y-0', 'opacity-100');
+        }, 100);
+        
+        // Hide after 6 seconds
+        setTimeout(() => {
+            popup.classList.add('translate-y-10', 'opacity-0');
+            popup.classList.remove('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                popup.classList.add('hidden');
+            }, 700);
+        }, 6000);
+    }
+
+    // Interval settings
+    setInterval(showPopup, 15000); // 15 seconds loop
+    setTimeout(showPopup, 4000);   // First appearance
+});
+</script>
+<!---  User Experience End --->
 </body>
 </html>
