@@ -100,7 +100,7 @@
 
             setTimeout(() => {
                 closePromo();
-            }, 7000);
+            }, 5000);
         });
 
         function closePromo() {
@@ -147,4 +147,4 @@
             document.getElementById('miniLeft').style.display = 'block';
             document.getElementById('miniRight').style.display = 'block';
         }
-		
+	
