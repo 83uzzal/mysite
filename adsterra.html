@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adsterra Telegram Notifier</title>
+    <style>
+        :root {
+            --primary-color: #0088cc;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg-color); display: flex; justify-content: center; padding: 20px; }
+        
+        .adsterra-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .header h2 { margin: 0; color: #333; font-size: 1.5rem; }
+        .domain { color: var(--primary-color); font-weight: bold; margin-bottom: 20px; display: block; }
+
+        .stat-box {
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .balance-label { font-size: 0.9rem; color: #666; }
+        .balance-amount { font-size: 2rem; font-weight: bold; color: #2ecc71; display: block; }
+
+        .btn-send {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-send:hover { background: #0077b5; }
+        
+        #status-msg { margin-top: 15px; font-size: 0.85rem; }
+        .success { color: #2ecc71; }
+        .error { color: #e74c3c; }
+    </style>
+</head>
+<body>
+
+<div class="adsterra-card">
+    <div class="header">
+        <h2>Adsterra Publisher</h2>
+        <span class="domain">www.usaoffers.online</span>
+    </div>
+
+    <div class="stat-box">
+        <span class="balance-label">Current Balance</span>
+        <span class="balance-amount" id="balance">$0.00</span>
+    </div>
+
+    <button class="btn-send" onclick="sendToTelegram()">Send Update to Telegram</button>
+    <p id="status-msg"></p>
+</div>
+
+<script>
+    // আপনার কনফিগারেশন
+    const botToken = "715e55d346ca162105ae15021869de2b";
+    const chatId = "-1003956397850";
+    const panelName = "Alamgir";
+
+    async function sendToTelegram() {
+        const msgElement = document.getElementById('status-msg');
+        const balance = document.getElementById('balance').innerText;
+        
+        msgElement.innerText = "Sending notification...";
+        msgElement.className = "";
+
+        // টেলিগ্রাম মেসেজ ফরম্যাট
+        const text = `📢 *Adsterra New Alert* 🚨\n\n` +
+                     `🌐 *Domain:* www.usaoffers.online\n` +
+                     `💰 *Current Balance:* ${balance}\n` +
+                     `💻 *Panel:* ${panelName}\n\n` +
+                     `✅ *Status:* Update Sent Successfully ❤️`;
+
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+        
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            if (response.ok) {
+                msgElement.innerText = "✅ Telegram-এ সাকসেসফুলি পাঠানো হয়েছে!";
+                msgElement.className = "success";
+            } else {
+                throw new Error();
+            }
+        } catch (error) {
+            msgElement.innerText = "❌ পাঠানো যায়নি! টোকেন চেক করুন।";
+            msgElement.className = "error";
+        }
+    }
+</script>
+
+</body>
+</html>
