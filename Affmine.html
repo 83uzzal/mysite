@@ -2,54 +2,184 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>USA Offers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium USA Offers</title>
     <style>
-        * { box-sizing: border-box; }
-        body { font-family: sans-serif; background: #eee; margin: 0; padding: 5px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; max-width: 400px; margin: auto; }
-        
-        /* ছোট কার্ড ডিজাইন */
-        .card { background: #fff; padding: 8px; border-radius: 5px; text-align: center; border: 1px solid #ddd; }
-        .card h3 { margin: 0 0 5px; font-size: 11px; color: #333; height: 25px; line-height: 1.1; overflow: hidden; }
-        
-        /* ছোট ও চিকন বাটন */
-        .btn { display: block; background: #27ae60; color: #fff; text-decoration: none; padding: 5px 0; border-radius: 3px; font-size: 10px; font-weight: bold; }
-        .btn:active { transform: scale(0.95); background: #1e8449; }
-        
-        /* স্পেশাল কালার */
-        .amazon { background: #f39c12; }
-        .ebike { background: #e74c3c; grid-column: span 2; display: flex; justify-content: space-between; align-items: center; padding: 5px 10px; }
-        .ebike h3 { height: auto; margin: 0; }
-        .ebike .btn { width: 80px; }
+        :root {
+            --primary: #6366f1;
+            --amazon: #f39c12;
+            --success: #10b981;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background: var(--bg); 
+            padding: 15px;
+            color: #1e293b;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #334155;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 12px; 
+            max-width: 500px; 
+            margin: auto; 
+        }
+
+        .card { 
+            background: #ffffff; 
+            padding: 15px; 
+            border-radius: 16px; 
+            text-align: center; 
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+            border: 1px solid #f1f5f9;
+        }
+
+        .card:active { transform: scale(0.97); }
+
+        .card h3 { 
+            margin-bottom: 12px; 
+            font-size: 14px; 
+            font-weight: 700;
+            color: #334155;
+            min-height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn { 
+            display: block; 
+            background: var(--primary); 
+            color: #fff; 
+            text-decoration: none; 
+            padding: 10px 5px; 
+            border-radius: 8px; 
+            font-size: 12px; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 0px #4338ca;
+            transition: all 0.1s;
+        }
+
+        .btn:active { 
+            box-shadow: 0 0px 0px #4338ca;
+            transform: translateY(3px);
+        }
+
+        .amazon-btn { background: var(--amazon); box-shadow: 0 4px 0px #d68910; }
+        .target-btn { background: var(--danger); box-shadow: 0 4px 0px #b91c1c; }
+        .standard-btn { background: var(--success); box-shadow: 0 4px 0px #059669; }
+
+        .featured { 
+            grid-column: span 2; 
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            flex-direction: row;
+            align-items: center;
+            text-align: left;
+            padding: 20px;
+        }
+
+        .featured h3 { color: white; margin: 0; font-size: 16px; }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        .featured .btn { 
+            width: 100px; 
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @media (max-width: 350px) {
+            .grid { grid-template-columns: 1fr; }
+            .featured { flex-direction: column; text-align: center; gap: 10px; }
+        }
     </style>
 </head>
 <body>
 
+<div class="header">
+    <h1>Exclusive US Rewards</h1>
+    <p>Select an offer to get started</p>
+</div>
+
 <div class="grid">
     <div class="card">
-        <h3>Amazon $1,000</h3>
-        <a href="https://www.af9m8trk.com/TEY11AEP/PL6125DB" class="btn amazon">Claim Now</a>
+        <h3>Amazon $1,000 Gift Card</h3>
+        <a href="https://www.af9m8trk.com/TEY11AEP/PL6125DB" class="btn amazon-btn">Claim Now</a>
     </div>
 
     <div class="card">
-        <h3>McDonald's $100</h3>
-        <a href="https://www.af9m8trk.com/TEY11AEP/UPW123XH" class="btn">Get Coupon</a>
+        <h3>McDonald's $100 Voucher</h3>
+        <a href="https://www.af9m8trk.com/TEY11AEP/UPW123XH" class="btn standard-btn">Get Coupon</a>
     </div>
 
     <div class="card">
-        <h3>Target $750</h3>
-        <a href="https://www.af9m8trk.com/TEY11AEP/HMG123XJ" class="btn">Enter Now</a>
+        <h3>Costco $750 Gift Card</h3>
+        <a href="https://www.af9m8trk.com/TEY11AEP/NB9123XG" class="btn standard-btn">Claim Now</a>
     </div>
 
     <div class="card">
-        <h3>American Airlines Jobs (US)</h3>
+        <h3>Netflix $100 Premium</h3>
+        <a href="https://www.af9m8trk.com/TEY11AEP/KDQ122LY" class="btn">Get Access</a>
+    </div>
+
+    <div class="card">
+        <h3>Zelle $750 Reward</h3>
+        <a href="https://www.af9m8trk.com/TEY11AEP/8LP123XC" class="btn standard-btn">Enter Now</a>
+    </div>
+
+    <div class="card">
+        <h3>$1,000 Cash Deposit</h3>
+        <a href="https://www.af9m8trk.com/TEY11AEP/4K1123XK" class="btn">Check Status</a>
+    </div>
+
+    <div class="card">
+        <h3>Part Time Remote Jobs</h3>
+        <a href="https://www.af9m8trk.com/TEY11AEP/QLQ11Y4B" class="btn">Apply Now</a>
+    </div>
+
+    <div class="card">
+        <h3>Target $750 Shopping Card</h3>
+        <a href="https://www.af9m8trk.com/TEY11AEP/HMG123XJ" class="btn target-btn">Enter Now</a>
+    </div>
+
+    <div class="card">
+        <h3>American Airlines Career</h3>
         <a href="https://www.af9m8trk.com/TEY11AEP/TWW123FR" class="btn">Check Prize</a>
     </div>
 
-    <div class="card ebike">
-        <h3>Amazon $1,000 - CPL (US)</h3>
-        <a href="https://www.af9m8trk.com/TEY11AEP/TJ2123FW" class="btn">Enter</a>
+    <div class="card featured">
+        <h3>Win an Amazon $1,000 Reward</h3>
+        <a href="https://www.af9m8trk.com/TEY11AEP/TJ2123FW" class="btn amazon-btn">Enter</a>
     </div>
 </div>
 
