@@ -2,55 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Adsterra Real Balance</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adsterra Official Dashboard</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: #fff; padding: 40px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; width: 350px; }
-        .balance { color: #27ae60; font-size: 2.5rem; font-weight: 800; margin: 15px 0; }
-        .btn { background: #0088cc; color: #fff; border: none; padding: 15px; border-radius: 12px; cursor: pointer; width: 100%; font-weight: bold; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 380px; border-top: 5px solid #0088cc; }
+        h2 { color: #333; margin-bottom: 5px; }
+        .domain { color: #0088cc; font-size: 0.9rem; margin-bottom: 20px; display: block; }
+        .balance-container { background: #f9f9f9; padding: 20px; border-radius: 15px; margin-bottom: 25px; border: 1px solid #eee; }
+        .balance-amount { font-size: 2.5rem; font-weight: bold; color: #2ecc71; }
+        .btn { background: #0088cc; color: white; border: none; padding: 15px; border-radius: 10px; width: 100%; font-size: 1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: #0077b5; }
+        #status { margin-top: 15px; font-size: 0.85rem; color: #666; }
     </style>
 </head>
 <body>
 
 <div class="card">
-    <h3>Adsterra Balance</h3>
-    <div id="balance" class="balance">Loading...</div>
-    <button class="btn" onclick="sendToTelegram()">Send to Telegram</button>
-    <p id="status"></p>
+    <h2>Adsterra Publisher</h2>
+    <span class="domain">www.usaoffers.online</span>
+    
+    <div class="balance-container">
+        <div style="color: #888; font-size: 0.9rem;">Total Balance</div>
+        <div class="balance-amount" id="balance-display">Click to Fetch</div>
+    </div>
+
+    <button class="btn" onclick="fetchAndSend()">Update & Send to Telegram</button>
+    <div id="status">Ready to sync data...</div>
 </div>
 
 <script>
-    const adsterra_api = '715e55d346ca162105ae15021869de2b';
-    const botToken = "8658112528:AAF8nhTpsN6rUmfYrqrzxevKxcmV9lD5t7s";
-    const chatId = "-1003956397850";
+    // আপনার সঠিক তথ্য
+    const ADSTERRA_API_KEY = "715e55d346ca162105ae15021869de2b";
+    const TELEGRAM_TOKEN = "8658112528:AAF8nhTpsN6rUmfYrqrzxevKxcmV9lD5t7s";
+    const CHAT_ID = "-1003956397850";
 
-    // Adsterra থেকে ডাটা আনার চেষ্টা (JavaScript দিয়ে)
-    async function getBalance() {
+    async function fetchAndSend() {
+        const statusDiv = document.getElementById('status');
+        const balanceDiv = document.getElementById('balance-display');
+        
+        statusDiv.innerText = "Fetching from Adsterra...";
+        
         try {
-            // Note: Directly calling Adsterra API from Browser might be blocked by CORS
-            const response = await fetch('https://api.adsterra.com/publisher/v1/balance.json', {
-                headers: { 'X-API-Key': adsterra_api }
+            // Adsterra API Call (Using a proxy to avoid CORS issues if necessary)
+            const response = await fetch(`https://api.adsterra.com/publisher/v1/balance.json`, {
+                headers: { 'X-API-Key': ADSTERRA_API_KEY }
             });
+
+            if (!response.ok) throw new Error("API Error");
+            
             const data = await response.json();
-            document.getElementById('balance').innerText = '$' + (data.balance || '0.00');
-        } catch (e) {
-            document.getElementById('balance').innerText = 'Check API';
+            const currentBalance = data.balance || "0.00";
+            
+            balanceDiv.innerText = "$" + currentBalance;
+            statusDiv.innerText = "Data fetched! Sending to Telegram...";
+
+            // Telegram API Call
+            const msg = `📢 *Adsterra Real-Time Update* 🚨\n\n💰 *Balance:* $${currentBalance}\n🌐 *Domain:* usaoffers.online\n💻 *Panel:* Alamgir\n✅ *Status:* Sync Success!`;
+
+            const telResponse = await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: msg,
+                    parse_mode: 'Markdown'
+                })
+            });
+
+            if (telResponse.ok) {
+                statusDiv.innerText = "✅ Everything is Updated & Sent!";
+                statusDiv.style.color = "#2ecc71";
+            }
+
+        } catch (error) {
+            statusDiv.innerText = "❌ Error: Could not connect to API.";
+            statusDiv.style.color = "#e74c3c";
+            console.error(error);
         }
     }
-
-    async function sendToTelegram() {
-        const balance = document.getElementById('balance').innerText;
-        const text = `📢 *Adsterra Alert*\n💰 Balance: ${balance}\n🌐 usaoffers.online`;
-        
-        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'Markdown' })
-        });
-        document.getElementById('status').innerText = "✅ Sent!";
-    }
-
-    getBalance();
 </script>
+
 </body>
 </html>
