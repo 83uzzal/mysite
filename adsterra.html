@@ -6,7 +6,7 @@
 
 <style>
 body{
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     background:#f4f6f9;
     display:flex;
     justify-content:center;
@@ -19,14 +19,12 @@ body{
     background:#fff;
     padding:30px;
     border-radius:15px;
-    box-shadow:0 10px 25px rgba(0,0,0,0.1);
     width:320px;
     text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
-h2{
-    margin-bottom:20px;
-}
+h2{margin-bottom:20px;}
 
 .value{
     font-size:32px;
@@ -34,27 +32,26 @@ h2{
     color:#2ecc71;
 }
 
-.btn{
+button{
     margin-top:20px;
     padding:12px;
     width:100%;
     border:none;
     background:#007bff;
-    color:white;
+    color:#fff;
     font-size:16px;
     border-radius:10px;
     cursor:pointer;
-    transition:0.3s;
 }
 
-.btn:hover{
+button:hover{
     background:#0056b3;
 }
 
 .status{
     margin-top:10px;
     font-size:14px;
-    color:#888;
+    color:#666;
 }
 </style>
 </head>
@@ -68,9 +65,10 @@ h2{
     <div class="value" id="balance">$0.00</div>
     <p>Clicks: <span id="clicks">0</span></p>
 
-    <button class="btn" onclick="loadData()">🔄 Get Report</button>
+    <!-- BUTTON -->
+    <button onclick="loadData()">🔄 Get Report</button>
 
-    <div class="status" id="status">Click button to load data</div>
+    <div class="status" id="status">Ready</div>
 
 </div>
 
@@ -81,17 +79,20 @@ async function loadData() {
     status.innerText = "⏳ Loading...";
 
     try {
-        let res = await fetch("YOUR_GOOGLE_SCRIPT_URL");
+
+        let url = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnRq61e3M4EQwAjeX9JW2PJHt1Ks2scQnhGMG00mrgmZv-cEiU6pei_CVj_RWvES0_CdzCHJiyh5pBoP1VJ2TkdDpNO3Ts1mnKcuBkHQ0SC5RMuUsS-34K25MlbiTV9AkxubXBEMQpT1Iz_bjF7RE04Ckjrjk8EINNVTJ61aFjsoK_4x4Fkoj2zSOMfxhqNjf6o08O7iaP_xdeX9l6ZAFPMckzoy04zdCVRkHY7TkmuWJ3hjSsQ&lib=MZxsJpbXNCYHCuX3ELwBgGre79OrBm0eD";
+
+        let res = await fetch(url);
         let data = await res.json();
 
         document.getElementById("balance").innerText = "$" + data.revenue;
         document.getElementById("clicks").innerText = data.clicks;
 
-        status.innerText = "✅ Data loaded successfully";
+        status.innerText = "✅ Success";
 
-    } catch (error) {
+    } catch (err) {
+        console.log(err);
         status.innerText = "❌ Error loading data";
-        console.log(error);
     }
 }
 </script>
