@@ -1,23 +1,7 @@
 <script>
-async function fetchAdsterraData() {
-    const statusDiv = document.getElementById('status');
-    const balanceDiv = document.getElementById('balance-display');
-
-    statusDiv.innerText = "🔄 Connecting...";
-    statusDiv.className = "loading";
-
-    try {
-        const res = await fetch("backend.php?key=12345"); // secure key
-        const data = await res.json();
-
-        balanceDiv.innerText = "$" + data.balance;
-
-        statusDiv.innerText = "✅ Synced!";
-        statusDiv.className = "success";
-
-    } catch (err) {
-        statusDiv.innerText = "❌ Error!";
-        statusDiv.className = "error";
-    }
+async function loadData() {
+    let res = await fetch("YOUR_GOOGLE_SCRIPT_URL");
+    let data = await res.json();
+    document.getElementById("balance").innerText = "$" + data.revenue;
 }
 </script>
