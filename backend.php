@@ -1,46 +1,88 @@
 <?php
 
-// 🔒 security key
-if ($_GET['key'] !== "12345") {
+// ===============================
+// 🔒 SECURITY KEY (change this)
+$secret_key = "uZx9!Kp@2026Secure";
+
+if (!isset($_GET['key']) || $_GET['key'] !== $secret_key) {
     die("Access Denied");
 }
+// ===============================
 
-// 🔐 CONFIG
-$api_key = "PASTE_YOUR_ADSTERRA_API_KEY";
-$bot_token = "PASTE_YOUR_TELEGRAM_BOT_TOKEN";
-$chat_id = "PASTE_YOUR_CHAT_ID";
+// 🔐 CONFIG (PUT YOUR NEW KEYS HERE)
+$adsterra_api_key = "715e55d346ca162105ae15021869de2b";
+$telegram_token   = "8658112528:AAF8nhTpsN6rUmfYrqrzxevKxcmV9lD5t7s";
+$chat_id          = "-1003956397850"; // group হলে -100 দিয়ে শুরু
 
-// 📅 today date
+// ===============================
+// 📅 DATE
 $today = date("Y-m-d");
 
-// 📡 Adsterra API
+// 📡 API URL
 $url = "https://api3.adsterratools.com/publisher/stats.json?start_date=$today&finish_date=$today";
 
+// 📡 HEADERS
 $headers = [
     "Accept: application/json",
-    "X-API-Key: $api_key"
+    "X-API-Key: $adsterra_api_key"
 ];
 
-// 🔁 curl call
+// ===============================
+// 🔁 CURL REQUEST
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $response = curl_exec($ch);
+
+// ❌ CURL ERROR
+if ($response === false) {
+    echo json_encode([
+        "status" => "error",
+        "message" => "API request failed"
+    ]);
+    exit;
+}
+
+// ===============================
+// 📊 PARSE DATA
 $data = json_decode($response, true);
 
-// 📊 data extract
-$balance = $data['total']['revenue'] ?? "0.00";
-$clicks = $data['total']['clicks'] ?? "0";
+$revenue = $data['total']['revenue'] ?? "0.00";
+$clicks  = $data['total']['clicks'] ?? "0";
 
-// 🤖 Telegram message
-$message = "📊 Adsterra Report\n\n💰 Revenue: $balance USD\n🖱 Clicks: $clicks\n📅 Date: $today";
+// ===============================
+// 🤖 TELEGRAM MESSAGE
+$message = "📊 Adsterra Report\n\n";
+$message .= "💰 Revenue: $revenue USD\n";
+$message .= "🖱 Clicks: $clicks\n";
+$message .= "📅 Date: $today";
 
-// 📤 send telegram
-file_get_contents("https://api.telegram.org/bot$bot_token/sendMessage?chat_id=$chat_id&text=" . urlencode($message));
+// ===============================
+// 📤 SEND TO TELEGRAM
+$telegram_url = "https://api.telegram.org/bot$telegram_token/sendMessage";
 
-// 🌐 return to website
+$post_data = [
+    "chat_id" => $chat_id,
+    "text" => $message
+];
+
+$ch2 = curl_init();
+curl_setopt($ch2, CURLOPT_URL, $telegram_url);
+curl_setopt($ch2, CURLOPT_POST, true);
+curl_setopt($ch2, CURLOPT_POSTFIELDS, http_build_query($post_data));
+curl_setopt($ch2, CURLOPT_RETURNTRANSFER, true);
+
+curl_exec($ch2);
+
+// ===============================
+// 🌐 RETURN JSON (for frontend)
+header('Content-Type: application/json');
+
 echo json_encode([
-    "balance" => $balance
+    "status" => "success",
+    "revenue" => $revenue,
+    "clicks" => $clicks,
+    "date" => $today
 ]);
