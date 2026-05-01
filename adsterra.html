@@ -1,95 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adsterra Real-Time Dashboard</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f4f8; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; width: 380px; border-top: 6px solid #0088cc; }
-        h2 { color: #333; margin: 0; }
-        .domain { color: #0088cc; font-size: 0.9rem; margin-bottom: 25px; display: block; font-weight: 600; }
-        .balance-box { background: #f8fafc; padding: 25px; border-radius: 15px; margin-bottom: 25px; border: 1px solid #e2e8f0; }
-        .balance-amount { font-size: 2.8rem; font-weight: 800; color: #2ecc71; display: block; }
-        .btn { background: #0088cc; color: white; border: none; padding: 15px; border-radius: 12px; width: 100%; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 10px rgba(0, 136, 204, 0.2); }
-        .btn:hover { background: #0077b5; transform: translateY(-2px); }
-        #status { margin-top: 15px; font-size: 0.85rem; font-weight: 500; }
-        .loading { color: #f39c12; }
-        .success { color: #2ecc71; }
-        .error { color: #e74c3c; }
-    </style>
-</head>
-<body>
-
-<div class="card">
-    <h2>Adsterra Publisher</h2>
-    <span class="domain">www.usaoffers.online</span>
-    
-    <div class="balance-box">
-        <span style="color: #64748b; font-size: 0.9rem; font-weight: 500;">Current Balance</span>
-        <span class="balance-amount" id="balance-display">$0.00</span>
-    </div>
-
-    <button class="btn" onclick="fetchAdsterraData()">Sync & Send Telegram</button>
-    <div id="status">Ready to connect...</div>
-</div>
-
 <script>
-    // আপনার কনফিগারেশন
-    const ADSTERRA_API_KEY = "715e55d346ca162105ae15021869de2b";
-    const TELEGRAM_TOKEN = "8658112528:AAF8nhTpsN6rUmfYrqrzxevKxcmV9lD5t7s";
-    const CHAT_ID = "-1003956397850";
+async function fetchAdsterraData() {
+    const statusDiv = document.getElementById('status');
+    const balanceDiv = document.getElementById('balance-display');
 
-    async function fetchAdsterraData() {
-        const statusDiv = document.getElementById('status');
-        const balanceDiv = document.getElementById('balance-display');
-        
-        statusDiv.innerText = "🔄 Connecting via Proxy...";
-        statusDiv.className = "loading";
+    statusDiv.innerText = "🔄 Connecting...";
+    statusDiv.className = "loading";
 
-        // CORS Bypass করার জন্য প্রক্সি ব্যবহার করছি
-        const proxyUrl = "https://api.allorigins.win/get?url=";
-        const targetUrl = encodeURIComponent("https://api.adsterra.com/publisher/v1/balance.json");
-        
-        try {
-            const response = await fetch(`${proxyUrl}${targetUrl}&timestamp=${new Date().getTime()}`, {
-                headers: { 'X-API-Key': ADSTERRA_API_KEY } // কিছু প্রক্সিতে এটি কাজ নাও করতে পারে
-            });
+    try {
+        const res = await fetch("backend.php?key=12345"); // secure key
+        const data = await res.json();
 
-            // যদি উপরের পদ্ধতিতে না হয়, তবে সরাসরি প্রক্সি ছাড়া চেষ্টা করবে
-            const res = await fetch(`https://api.adsterra.com/publisher/v1/balance.json`, {
-                headers: { 'X-API-Key': ADSTERRA_API_KEY }
-            });
+        balanceDiv.innerText = "$" + data.balance;
 
-            const data = await res.json();
-            const currentBalance = data.balance || "0.00";
-            
-            balanceDiv.innerText = "$" + currentBalance;
-            statusDiv.innerText = "✅ Data Fetched! Sending to Telegram...";
+        statusDiv.innerText = "✅ Synced!";
+        statusDiv.className = "success";
 
-            // Telegram এ পাঠানোর মেসেজ
-            const msg = `🔔 *Adsterra Real Update*\n\n💰 *Balance:* $${currentBalance}\n🌐 *Domain:* usaoffers.online\n💻 *Panel:* Alamgir\n✅ *Status:* Verified via API`;
-
-            await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: msg,
-                    parse_mode: 'Markdown'
-                })
-            });
-
-            statusDiv.innerText = "🚀 Success! Telegram Alert Sent.";
-            statusDiv.className = "success";
-
-        } catch (error) {
-            statusDiv.innerText = "❌ Error: API Key or CORS Blocked.";
-            statusDiv.className = "error";
-            console.error(error);
-        }
+    } catch (err) {
+        statusDiv.innerText = "❌ Error!";
+        statusDiv.className = "error";
     }
+}
 </script>
-
-</body>
-</html>
