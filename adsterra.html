@@ -1,7 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adsterra Dashboard</title>
+</head>
+<body style="text-align:center;font-family:sans-serif">
+
+<h2>📊 Adsterra Dashboard</h2>
+<h1 id="balance">$0.00</h1>
+<p id="clicks">Clicks: 0</p>
+
+<button onclick="loadData()">🔄 Sync</button>
+
 <script>
 async function loadData() {
     let res = await fetch("YOUR_GOOGLE_SCRIPT_URL");
     let data = await res.json();
+
     document.getElementById("balance").innerText = "$" + data.revenue;
+    document.getElementById("clicks").innerText = "Clicks: " + data.clicks;
 }
 </script>
+
+</body>
+</html>
