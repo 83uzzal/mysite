@@ -28,10 +28,11 @@
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/favicon-32x32.png">
-  <!-- Essential Ad Scripts (Top Level) -->
+
+    <!-- Essential Ad Scripts (Top Level) -->
     <script src="https://pl29323595.profitablecpmratenetwork.com/a7/e5/b5/a7e5b5cd06d2569e6d418bcea089c5b1.js"></script>
     <script src="https://pl29323597.profitablecpmratenetwork.com/a0/9c/0d/a09c0d299c32f2da312d7296da6049de.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
+	   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -55,163 +56,82 @@
     }
     </script>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const imgs = document.querySelectorAll('img:not([loading])');
-        imgs.forEach(img => img.setAttribute('loading','lazy'));
-    });
-    </script>
+
     <style>
         :root {
             --am-navy: #000835; 
             --btn-green: linear-gradient(90deg, #00b894 0%, #9be15d 100%);
-            --title-purple: #5b53a3;
             --bg-light: #f4f7f9;
         }
 
-        * { box-sizing: border-box; }
-        
-        html, body {
+        body {
             margin: 0;
             padding: 0;
-            height: 100%;
-            width: 100%;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            overflow: hidden; 
-        }
-
-        .main-wrapper {
-            display: flex;
-            height: 100vh;
-            width: 100vw;
-        }
-
-        /* বাম পাশের প্যানেল: এখন ঠিক অর্ধেক (50%) জায়গা নেবে */
-        .brand-side {
-            flex: 0 0 50%; 
-            background-color: var(--am-navy);
-            /* আপনার ইমেজের ফাইল নাম এখানে 'amadeus.png' রাখা হয়েছে */
-            background-image: url('images/Amadeus1.PNG'); 
-            background-size: cover;
-            background-position: center;
-            border-right: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* ডান পাশের প্যানেল: বাকি অর্ধেক জায়গা */
-        .content-side {
-            flex: 0 0 50%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
         }
 
-        /* সাদা কার্ড ডিজাইন */
-        .card {
+        .ad-container { display: flex; justify-content: center; padding: 10px 0; background: white; }
+        
+        .page-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .layout-grid {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .main-card {
             background: #ffffff;
             width: 100%;
-            max-width: 520px;
-            padding: 50px 40px;
+            max-width: 550px;
+            padding: 30px;
             border-radius: 40px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
             text-align: center;
+            border: 1px solid #eee;
         }
 
-        /* ব্র্যান্ড হেডার */
-        .brand-header {
-            margin-bottom: 25px;
-        }
-
-        .brand-header h1 {
-            color: var(--am-navy);
-            font-size: 2.2rem;
-            margin: 0;
-            font-weight: 800;
-        }
-
-        .brand-header p {
-            color: #636e72;
-            font-size: 1rem;
-            margin: 5px 0 0 0;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .divider {
-            height: 1px;
-            background: #eee;
-            margin: 20px auto;
-            width: 70%;
-        }
-
-        .status-badge {
-            background: #e1f5fe;
-            color: #0288d1;
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-
-        h2 {
-            color: var(--title-purple);
-            font-size: 2rem;
-            margin: 0 0 15px 0;
-        }
-
-        .description {
-            color: #636e72;
-            line-height: 1.6;
-            font-size: 1rem;
-            margin-bottom: 35px;
-        }
-
-        /* ডাউনলোড বাটন */
-        .btn-dl {
-            display: inline-block;
+        .download-btn {
+            display: block;
             background: var(--btn-green);
             color: white;
             text-decoration: none;
-            padding: 18px 60px;
-            border-radius: 60px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            box-shadow: 0 10px 25px rgba(0, 184, 148, 0.3);
+            padding: 22px;
+            border-radius: 20px;
+            font-size: 1.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            box-shadow: 0 12px 24px rgba(0, 184, 148, 0.4);
             transition: all 0.3s ease;
+            margin-bottom: 30px;
+            border: none;
+            cursor: pointer;
         }
 
-        .btn-dl:hover {
+        .download-btn:hover { 
             transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0, 184, 148, 0.4);
+            box-shadow: 0 15px 30px rgba(0, 184, 148, 0.5);
+            filter: brightness(1.1);
         }
 
-        /* ট্যাগগুলো */
-        .tag-row {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .brand-info h1 { color: var(--am-navy); margin: 10px 0; font-size: 1.8rem; font-weight: 800; }
+        .line { height: 2px; background: #f0f2f5; margin: 20px auto; width: 80%; }
 
-        .tag-item {
-            background: #f1f3f5;
-            color: #adb5bd;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-        }
-
-        /* রেসপনসিভ (ট্যাবলেট ও মোবাইল) */
-        @media (max-width: 1024px) {
-            .main-wrapper { flex-direction: column; overflow-y: auto; }
-            .brand-side { flex: none; height: 40vh; width: 100%; }
-            .content-side { flex: none; width: 100%; padding: 40px 20px; }
+        .sidebar { display: none; flex-direction: column; gap: 20px; }
+        @media (min-width: 1024px) { .sidebar { display: flex; } }
+        
+        @media (max-width: 600px) {
+            .main-card { padding: 20px; border-radius: 25px; }
+            .download-btn { font-size: 1.4rem; padding: 18px; }
         }
     </style>
 </head>
