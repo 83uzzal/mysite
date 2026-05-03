@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Updated viewport for better iOS Safari compatibility -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>America's Leading News Sources | All in One Place</title>
+    
     <!-- 1. Font Awesome Link -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     
@@ -26,23 +28,24 @@
             color: var(--dark); 
             text-align: center; 
             overflow-x: hidden; 
+            /* Fix for iOS momentum scrolling */
+            -webkit-overflow-scrolling: touch;
         }
 
         /* Compact Header Section */
         header { 
             background: linear-gradient(135deg, #0c4a6e 0%, #0284c7 100%); 
             color: var(--white); 
-            padding: 30px 15px; /* Padding কমিয়ে ছোট করা হয়েছে */
+            padding: 30px 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .container { max-width: 1200px; margin: auto; padding: 10px; }
 
-        /* Attractive Compact Button */
         .hero-btn { 
             background: var(--button-grad); 
             color: var(--white); 
-            padding: 12px 30px; /* বাটন সাইজ কিছুটা ছোট করা হয়েছে */
+            padding: 12px 30px; 
             font-size: 1.1rem; 
             font-weight: 700; 
             text-decoration: none; 
@@ -64,6 +67,13 @@
 
         .ad-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 20px 0; }
 
+        /* iOS Compatibility: Force display and min-height for ad slots */
+        .sidebar-ad, .banner-box { 
+            display: block !important; 
+            min-height: 50px; 
+            overflow: visible;
+        }
+
         .sidebar-ad { flex: 0 0 160px; display: flex; justify-content: center; }
 
         .main-content { 
@@ -83,6 +93,12 @@
             background: #e0f2fe;
             border-radius: 10px;
             padding: 8px 0;
+        }
+
+        /* Fix for iframes on iOS to prevent auto-collapsing */
+        iframe {
+            max-width: 100% !important;
+            width: 100%;
         }
 
         .news-card { 
@@ -110,7 +126,7 @@
         }
     </style>
 
-    <!-- 2. Top Ads Script (Pop-under) -->
+    <!-- 2. Top Ads Script -->
     <script src="https://pl28661782.profitablecpmratenetwork.com/aa/58/35/aa5835999d14cef7e86b5d2f332cc0e4.js"></script>
 </head>
 <body>
@@ -119,7 +135,7 @@
         <h1 style="margin: 0; font-size: 2rem;">USA News Sources</h1>
         <p style="font-size: 1rem; opacity: 0.9; margin: 5px 0;">All Leading Newspapers in One Place</p>
         
-        <!-- 3. Conversion/Offer Link -->
+        <!-- 3. Conversion Link -->
         <a href="https://www.profitablecpmratenetwork.com/xfc9g5v40?key=9a5574e3e13da52b905d818bb30de5ff" class="hero-btn">
             <i class="fas fa-bolt"></i> READ BREAKING NEWS
         </a>
@@ -152,7 +168,6 @@
                 <script type="text/javascript" src="https://www.highperformanceformat.com/4b1167aac66c2214787957923454007c/invoke.js"></script>
             </div>
 
-            <!-- Content Area -->
             <div class="main-content">
                 <h2 style="color: var(--primary); margin-top: 0;">Top Headlines</h2>
 
@@ -170,7 +185,7 @@
                 </div>
 
                 <!-- 8. Native Ad Container -->
-                <div style="margin: 20px 0;">
+                <div style="margin: 20px 0; min-height: 200px;">
                     <script async="async" data-cfasync="false" src="https://pl28661996.profitablecpmratenetwork.com/33cf4cae65d6d59eb8467b024c0d3272/invoke.js"></script>
                     <div id="container-33cf4cae65d6d59eb8467b024c0d3272"></div>
                 </div>
