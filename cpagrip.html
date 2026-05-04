@@ -1,221 +1,95 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Your Rewards Now!</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Quick Rewards</title>
     <style>
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: #0f172a;
-            color: #f8fafc;
+            font-family: -apple-system, system-ui, sans-serif;
+            background: #f0f2f5;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .main-container {
-            max-width: 500px;
-            width: 100%;
-            background: #1e293b;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border: 1px solid #334155;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .header h1 {
-            color: #fbbf24;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-
-        .status-bar {
-            background: #334155;
-            border-radius: 10px;
-            height: 10px;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .progress {
-            width: 75%;
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6, #10b981);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
-        }
-
-        .section-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #94a3b8;
-            margin: 20px 0 10px 5px;
-            display: block;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .offer-link {
-            display: flex;
-            align-items: center;
-            background: #2d3748;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s;
-            border: 1px solid transparent;
-        }
-
-        .offer-link:hover {
-            background: #374151;
-            border-color: #fbbf24;
-            transform: translateY(-2px);
-        }
-
-        .icon-box {
-            width: 45px;
-            height: 45px;
-            background: #1e293b;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            font-size: 20px;
-            color: #fbbf24;
         }
-
-        .text-box {
-            flex-grow: 1;
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
-        .title {
+        h2 { text-align: center; color: #1a73e8; font-size: 20px; margin-bottom: 15px; }
+        
+        .offer-btn {
             display: block;
+            text-decoration: none;
+            background: #ffffff;
+            border: 2px solid #e8eaed;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
+            color: #3c4043;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 14px;
+            transition: 0.2s;
+            text-align: center;
         }
-
-        .sub-text {
-            font-size: 12px;
-            color: #94a3b8;
-        }
-
-        .arrow {
-            font-size: 18px;
-            color: #10b981;
-        }
-
-        .ca-badge {
-            background: #ef4444;
-            color: white;
+        .offer-btn:active { transform: scale(0.98); background: #f8f9fa; }
+        
+        .global { border-left: 5px solid #34a853; }
+        .ca { border-left: 5px solid #ea4335; }
+        
+        .badge {
             font-size: 10px;
+            color: #fff;
             padding: 2px 6px;
             border-radius: 4px;
-            margin-left: 5px;
+            float: right;
         }
+        .bg-green { background: #34a853; }
+        .bg-red { background: #ea4335; }
 
-        footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 12px;
-            color: #64748b;
-        }
+        .footer { text-align: center; font-size: 11px; color: #70757a; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="header">
-            <h1>🎁 Winner Selection</h1>
-            <p style="font-size: 14px; color: #94a3b8;">Choose an offer below to verify your entry.</p>
-            <div class="status-bar">
-                <div class="progress"></div>
-            </div>
-            <span style="font-size: 11px; color: #10b981;">● 482 users online and claiming</span>
-        </div>
+<div class="container">
+    <h2>🎁 Select Your Gift</h2>
 
-        <!-- Global Offers -->
-        <span class="section-label">International Offers</span>
+    <!-- Global -->
+    <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=74213" class="offer-btn global">
+        $25,000 Deluxe Bucks <span class="badge bg-green">HOT</span>
+    </a>
 
-        <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=74213" class="offer-link" target="_blank">
-            <div class="icon-box"><i class="fas fa-money-check-alt"></i></div>
-            <div class="text-box">
-                <span class="title">Get $25,000 Deluxe Bucks!</span>
-                <span class="sub-text">Exclusive cash reward entry</span>
-            </div>
-            <div class="arrow"><i class="fas fa-chevron-right"></i></div>
-        </a>
+    <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=74820" class="offer-btn global">
+        $1000 Venmo/CashApp <span class="badge bg-green">NEW</span>
+    </a>
 
-        <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=74820" class="offer-link" target="_blank">
-            <div class="icon-box"><i class="fab fa-vimeo-v"></i></div>
-            <div class="text-box">
-                <span class="title">Get $1000 Venmo/CashApp</span>
-                <span class="sub-text">Instant transfer available</span>
-            </div>
-            <div class="arrow"><i class="fas fa-chevron-right"></i></div>
-        </a>
+    <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=73805" class="offer-btn global">
+        Take Surveys - Reward 1
+    </a>
 
-        <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=73805" class="offer-link" target="_blank">
-            <div class="icon-box"><i class="fas fa-clipboard-list"></i></div>
-            <div class="text-box">
-                <span class="title">Start Surveys & Get Rewarded</span>
-                <span class="sub-text">Easy tasks for quick points</span>
-            </div>
-            <div class="arrow"><i class="fas fa-chevron-right"></i></div>
-        </a>
+    <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=73209" class="offer-btn global">
+        Take Surveys - Reward 2
+    </a>
 
-        <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=73209" class="offer-link" target="_blank">
-            <div class="icon-box"><i class="fas fa-poll-h"></i></div>
-            <div class="text-box">
-                <span class="title">Take Surveys Now!</span>
-                <span class="sub-text">High payout opinion tasks</span>
-            </div>
-            <div class="arrow"><i class="fas fa-chevron-right"></i></div>
-        </a>
+    <!-- Canada -->
+    <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=69665" class="offer-btn ca">
+        McDonalds Gift Card <span class="badge bg-red">CA ONLY</span>
+    </a>
 
-        <!-- Canada Offers -->
-        <span class="section-label">Canada Specials <span class="ca-badge">CA Only</span></span>
+    <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=71852" class="offer-btn ca">
+        Treasure Box <span class="badge bg-red">CA ONLY</span>
+    </a>
 
-        <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=69665" class="offer-link" target="_blank">
-            <div class="icon-box"><i class="fas fa-hamburger"></i></div>
-            <div class="text-box">
-                <span class="title">McDonalds Gift Card! <span class="ca-badge">CA</span></span>
-                <span class="sub-text">Free meal voucher for Canada</span>
-            </div>
-            <div class="arrow"><i class="fas fa-chevron-right"></i></div>
-        </a>
-
-        <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=71852" class="offer-link" target="_blank">
-            <div class="icon-box"><i class="fas fa-gem"></i></div>
-            <div class="text-box">
-                <span class="title">Treasure Box! <span class="ca-badge">CA</span></span>
-                <span class="sub-text">Unlock hidden rewards today</span>
-            </div>
-            <div class="arrow"><i class="fas fa-chevron-right"></i></div>
-        </a>
-
+    <div class="footer">
+        © 2026 Secured Verification Portal
     </div>
-
-    <footer>
-        &copy; 2026 Rewards Gateway | Secure SSL Encrypted<br>
-        All offers are verified for validity.
-    </footer>
+</div>
 
 </body>
 </html>
