@@ -3,109 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offers List</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Daily Rewards Hub | Exclusive Offers</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --primary-text: #1c1e21;
+            --secondary-text: #606770;
+            --accent-blue: #007bff;
+            --success-green: #28a745;
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #ccc;
-            padding: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
         }
 
-        .container { max-width: 900px; margin: 0 auto; }
-        
-        .section-header {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: #555;
-            margin: 20px 0 8px 5px;
-            letter-spacing: 2px;
-            border-bottom: 1px solid #111;
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
         }
 
-        /* Ultra Minimal Row */
-        .offer-item {
+        .container {
+            max-width: 800px;
+            margin: -30px auto 40px;
+            padding: 0 15px;
+        }
+
+        .offer-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .offer-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #0a0a0a;
-            margin-bottom: 3px;
-            padding: 10px 12px;
-            border-radius: 4px;
-            border: 1px solid #1a1a1a;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
         }
 
-        .offer-item:hover { border-color: #00d4ff; background: #0f0f0f; }
-
-        .text-group { display: flex; align-items: center; gap: 10px; overflow: hidden; }
-        .text-group i { color: #00d4ff; font-size: 0.8rem; }
-        .full-name { 
-            font-size: 0.8rem; 
-            color: #eee; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
+        .offer-card:hover {
+            transform: scale(1.01);
         }
 
-        .btn-link {
-            background: #00d4ff;
-            color: #000;
-            text-decoration: none;
-            font-size: 0.65rem;
-            font-weight: 900;
-            padding: 5px 12px;
-            border-radius: 3px;
+        .offer-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+        }
+
+        .offer-info p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--secondary-text);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        /* Laptop View Adjustments */
-        @media (min-width: 768px) {
-            .grid-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-            .header-wide { grid-column: span 2; }
+        .claim-btn {
+            background-color: var(--success-green);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .claim-btn:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--secondary-text);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 480px) {
+            .offer-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .claim-btn { width: 100%; box-sizing: border-box; }
         }
     </style>
 </head>
 <body>
 
+<header class="header">
+    <h1>Your Daily Rewards</h1>
+    <p>Select an offer below to get started</p>
+</header>
+
 <div class="container">
-    <div class="grid-wrapper">
-        
-        <!-- Affmine Section -->
-        <div class="header-wide"><div class="section-header">Hot Afm Offers</div></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-bolt"></i><span class="full-name">24913 OkWow - CashApp $850 - CPL (US)</span></div><a href="https://www.af9m8trk.com/TEY11AEP/5JY122KX/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-bolt"></i><span class="full-name">25741 My American Prizes - Amazon $1,000 - CPL (US)</span></div><a href="https://www.af9m8trk.com/TEY11AEP/TJ2123FW/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-bolt"></i><span class="full-name">27280 UpLevelRewards - $1000 Cash Deposit</span></div><a href="https://www.af9m8trk.com/TEY11AEP/4K1123XK/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-bolt"></i><span class="full-name">25582 OkWow - Walmart $1,000 - CPL (US)</span></div><a href="https://www.af9m8trk.com/TEY11AEP/T6M12294/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-bolt"></i><span class="full-name">24951 OkWow - Netflix $100 - CPL (US)</span></div><a href="https://www.af9m8trk.com/TEY11AEP/KDQ122LY/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-bolt"></i><span class="full-name">24914 OkWow - CashApp $650 - CPL (US)</span></div><a href="https://www.af9m8trk.com/TEY11AEP/3AF122KW/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-bolt"></i><span class="full-name">24918 OkWow - Food $200 - CPL (US)</span></div><a href="https://www.af9m8trk.com/TEY11AEP/SUM122L1/" class="btn-link">Link</a></div>
+    <div class="offer-list">
 
-        <!-- Adgain Section -->
-        <div class="header-wide"><div class="section-header">Latest AG Offers</div></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-star"></i><span class="full-name">Reward Zinga - Cash App $1000</span></div><a href="https://www.aplfb8trk.com/3LJ2KBKX/CJNCZSR/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-star"></i><span class="full-name">Reward Zinga - Dollar General $1000</span></div><a href="https://www.aplfb8trk.com/3LJ2KBKX/CJKL7CK/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-star"></i><span class="full-name">Prime Reward Spot - $750 Walmart</span></div><a href="https://www.aplfb8trk.com/3LJ2KBKX/CJD2NF5/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-star"></i><span class="full-name">TrendnDaily - $1000 Cash App Card</span></div><a href="https://www.aplfb8trk.com/3LJ2KBKX/CJ98WXX/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-star"></i><span class="full-name">Coca Cola Jobs (Top Converting)</span></div><a href="https://www.aplfb8trk.com/3LJ2KBKX/CQ6J2J6/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-star"></i><span class="full-name">Kelly Services (Top Converting)</span></div><a href="https://www.aplfb8trk.com/3LJ2KBKX/CQ3Q92Z/" class="btn-link">Link</a></div>
+        <!-- 1. Aldi -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Retail & Grocery</p>
+                <h3>GetnGoods - $1,000 Aldi Rewards</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/17412?s1=MK-F-Alamgir" class="claim-btn">Claim Now</a>
+        </div>
 
-        <!-- CpaZone Section -->
-        <div class="header-wide"><div class="section-header">New Offers CZ</div></div>
-        <div class="offer-item" style="border-color: #00d4ff;"><div class="text-group"><i class="fas fa-link"></i><span class="full-name">Smart Link | High Payout</span></div><a href="https://aff.cpazon.com/links?&pubid=3051&key=308382" class="btn-link">Link</a></div>
+        <!-- 2. Walmart -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Shopping</p>
+                <h3>EDW - Walmart eCard Today</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/20132?s1=MK-F-Alamgir" class="claim-btn">Claim Now</a>
+        </div>
 
-        <!-- Everflow Section -->
-        <div class="header-wide"><div class="section-header">Forever Offers</div></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-circle-check"></i><span class="full-name">4016 - $500 Target Gift Card - CPL</span></div><a href="https://www.wetcj.site/21GFG1GL/845ZSM9/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-circle-check"></i><span class="full-name">4017 - $500 PayPal Gift Card - CPL</span></div><a href="https://www.wetcj.site/21GFG1GL/847CPCW/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-circle-check"></i><span class="full-name">4163 - $500 Netflix Gift Card - CPL</span></div><a href="https://www.wetcj.site/21GFG1GL/8CG4NSJ/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-circle-check"></i><span class="full-name">4284 - Free Samples Guide - Healthy Snacks</span></div><a href="https://www.hiphi.site/21GFG1GL/8KG5KW1/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-circle-check"></i><span class="full-name">4842 - Everyday Winner - Walmart $500</span></div><a href="https://www.loopl.site/21GFG1GL/9K52JJR/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-circle-check"></i><span class="full-name">5090 - Trend'nDaily - iPhone 17 Pro Max</span></div><a href="https://www.wetcj.site/21GFG1GL/B1FFM3C/" class="btn-link">Link</a></div>
-        <div class="offer-item"><div class="text-group"><i class="fas fa-circle-check"></i><span class="full-name">4970 - $500 Christmas Amazon Gift Card</span></div><a href="https://www.wetcj.site/21GFG1GL/9RGRLQH/" class="btn-link">Link</a></div>
+        <!-- 3. PrizeZappy -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Sweepstakes</p>
+                <h3>PrizeZappy - Chance to Win $50K</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/18251?s1=MK-F-Alamgir" class="claim-btn">Enter Now</a>
+        </div>
+
+        <!-- 4. Coke vs Pepsi -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Survey</p>
+                <h3>DailySurge - $1,000 Coke vs Pepsi</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/18396?s1=MK-F-Alamgir" class="claim-btn">Pick Your Side</a>
+        </div>
+
+        <!-- 5. Amazon -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Online Retail</p>
+                <h3>GnG - 1k Amazon Card</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/19630?s1=MK-F-Alamgir" class="claim-btn">Claim Reward</a>
+        </div>
+
+        <!-- 6. Taco Bell -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Food & Dining</p>
+                <h3>CTConnect - Taco Bell $100</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/91?s1=MK-F-Alamgir" class="claim-btn">Claim Now</a>
+        </div>
+
+        <!-- 7. Chick Fil A -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Food & Dining</p>
+                <h3>CTConnect - Chick Fil A $100</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/7?s1=MK-F-Alamgir" class="claim-btn">Claim Now</a>
+        </div>
+
+        <!-- 8. CashApp -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Finance</p>
+                <h3>CTConnect - CashApp $750</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/11788?s1=MK-F-Alamgir" class="claim-btn">Get Cash</a>
+        </div>
+
+        <!-- 9. MDS Payment -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Mobile Apps</p>
+                <h3>MDS - Payment App Reward</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/19044?s1=MK-F-Alamgir" class="claim-btn">Install & Earn</a>
+        </div>
+
+        <!-- 10. Wayfair -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Home Decor</p>
+                <h3>CTConnect - Wayfair Reward</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/20134?s1=MK-F-Alamgir" class="claim-btn">Claim Now</a>
+        </div>
+
+        <!-- 11. Dairy Queen -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Food & Dining</p>
+                <h3>CTConnect - Dairy Queen Reward</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/20143?s1=MK-F-Alamgir" class="claim-btn">Claim Now</a>
+        </div>
+
+        <!-- 12. Apple -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Electronics</p>
+                <h3>Consumer Test Connect - Apple $100</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/19829?s1=MK-F-Alamgir" class="claim-btn">Claim Now</a>
+        </div>
+
+        <!-- 13. Burger King -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Food & Dining</p>
+                <h3>CTConnect - Burger King Card</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/19624?s1=MK-F-Alamgir" class="claim-btn">Claim Now</a>
+        </div>
+
+        <!-- 14. Paypal -->
+        <div class="offer-card">
+            <div class="offer-info">
+                <p>Finance</p>
+                <h3>CTConnect - Paypal $100</h3>
+            </div>
+            <a href="https://smrturl.co/a/sd1e3c6cba4/576?s1=MK-F-Alamgir" class="claim-btn">Get Credit</a>
+        </div>
+
     </div>
 </div>
+
+<footer>
+    <p>&copy; 2026 Rewards Gateway. Not affiliated with the brands listed above.</p>
+</footer>
 
 </body>
 </html>
