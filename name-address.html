@@ -2,132 +2,367 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Live ZIP Search</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA Identity Matcher</title>
 
 <style>
+
+*{
+    box-sizing:border-box;
+}
+
 body{
     margin:0;
-    background:#0f172a;
-    font-family:Arial;
+    font-family:'Segoe UI',sans-serif;
+    background:#f4f7f9;
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
-    color:white;
 }
 
-.box{
-    width:520px;
-    background:#1e293b;
-    padding:25px;
-    border-radius:12px;
+.card{
+    width:100%;
+    max-width:500px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
-h2{ text-align:center; color:#38bdf8; }
+h2{
+    text-align:center;
+    color:#2c3e50;
+    margin-bottom:20px;
+}
 
 input{
     width:100%;
     padding:12px;
-    margin-top:15px;
-    border:none;
+    border:2px solid #ddd;
     border-radius:8px;
+    font-size:16px;
+    margin-bottom:15px;
+    outline:none;
+}
+
+input:focus{
+    border-color:#3498db;
 }
 
 button{
     width:100%;
-    padding:12px;
-    margin-top:15px;
-    background:#38bdf8;
+    padding:13px;
+    background:#3498db;
+    color:white;
     border:none;
     border-radius:8px;
+    font-size:16px;
     font-weight:bold;
+    cursor:pointer;
 }
 
-.result{
-    margin-top:20px;
-    background:#0f172a;
-    padding:15px;
+button:hover{
+    background:#2980b9;
+}
+
+#result{
+    margin-top:25px;
+    padding:20px;
+    background:#fafafa;
     border-radius:10px;
-    line-height:1.8;
+    border-left:5px solid #3498db;
+    display:none;
 }
 
-.label{ color:#38bdf8; font-weight:bold; }
+.row{
+    display:flex;
+    justify-content:space-between;
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+.row:last-child{
+    border-bottom:none;
+}
+
+.label{
+    color:#777;
+    font-size:13px;
+    font-weight:600;
+    text-transform:uppercase;
+}
+
+.value{
+    color:#222;
+    font-weight:700;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="card">
 
-<h2>📍 LIVE ZIP SEARCH</h2>
+<h2>USA Identity Matcher</h2>
 
-<input id="zip" placeholder="Enter ZIP (e.g. 10039)">
+<input
+type="email"
+id="emailBox"
+placeholder="e.g. stefan.rabitsch@gmail.com"
+>
 
-<button onclick="search()">Search</button>
+<button onclick="generateData()">
+Generate Identity
+</button>
 
-<div class="result" id="result"></div>
+<div id="result">
 
+<div class="row">
+<span class="label">First Name:</span>
+<span id="fName" class="value"></span>
+</div>
+
+<div class="row">
+<span class="label">Last Name:</span>
+<span id="lName" class="value"></span>
+</div>
+
+<div class="row">
+<span class="label">Email:</span>
+<span id="email" class="value"></span>
+</div>
+
+<div class="row">
+<span class="label">Street:</span>
+<span id="street" class="value"></span>
+</div>
+
+<div class="row">
+<span class="label">City/State:</span>
+<span id="location" class="value"></span>
+</div>
+
+<div class="row">
+<span class="label">ZIP Code:</span>
+<span id="zip" class="value"></span>
+</div>
+
+<div class="row">
+<span class="label">Phone:</span>
+<span id="phone" class="value"></span>
+</div>
+
+</div>
 </div>
 
 <script>
 
-const firstNames = ["Sarah","Emily","Jessica","Michael","James","John","Emma","Olivia","David","Robert"];
-const lastNames = ["Smith","Johnson","Brown","Williams","Jones","Miller","Davis","Wilson","Taylor","Anderson"];
+// ---------------- REALISTIC USA FIRST NAMES ----------------
+
+const firstNamesDb = [
+
+"James","John","Robert","Michael","William",
+"David","Joseph","Thomas","Charles","Christopher",
+"Daniel","Matthew","Anthony","Mark","Steven",
+"Paul","Andrew","Joshua","Jeremy","Ryan",
+"Emily","Sarah","Jessica","Jennifer","Ashley",
+"Emma","Olivia","Sophia","Mia","Isabella"
+
+];
+
+// ---------------- REALISTIC USA LAST NAMES ----------------
+
+const lastNamesDb = [
+
+"Smith","Johnson","Williams","Brown","Jones",
+"Miller","Davis","Wilson","Taylor","Anderson",
+"Thomas","Moore","Jackson","Martin","Lee",
+"Clark","Lewis","Walker","Hall","Allen"
+
+];
+
+// ---------------- KNOWN FIRST NAME DETECTOR ----------------
+
+const knownFirstNames = [
+
+"james","john","robert","michael","william",
+"david","joseph","thomas","charles","christopher",
+"daniel","matthew","anthony","mark","steven",
+"paul","andrew","joshua","jeremy","ryan",
+"emily","sarah","jessica","jennifer","ashley",
+"emma","olivia","sophia","mia","isabella"
+
+];
+
+// ---------------- ADDRESS DATABASE ----------------
+
+const addresses = [
+
+{
+s:"350 5th Ave",
+c:"New York",
+st:"NY",
+z:"10118",
+p:"212"
+},
+
+{
+s:"711 Hope St",
+c:"Los Angeles",
+st:"CA",
+z:"90017",
+p:"213"
+},
+
+{
+s:"233 S Wacker Dr",
+c:"Chicago",
+st:"IL",
+z:"60606",
+p:"312"
+},
+
+{
+s:"1600 Amphitheatre Pkwy",
+c:"Mountain View",
+st:"CA",
+z:"94043",
+p:"650"
+},
+
+{
+s:"11215 Research Blvd",
+c:"Austin",
+st:"TX",
+z:"78759",
+p:"512"
+},
+
+{
+s:"1701 John F Kennedy Blvd",
+c:"Philadelphia",
+st:"PA",
+z:"19103",
+p:"215"
+}
+
+];
+
+// ---------------- HELPERS ----------------
 
 function rand(arr){
     return arr[Math.floor(Math.random()*arr.length)];
 }
 
-function phone(area){
-    return `(${area || "212"}) ${Math.floor(Math.random()*900)+100}-${Math.floor(Math.random()*9000)+1000}`;
+function capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-async function search(){
+// ---------------- SMART NAME ENGINE ----------------
 
-    let zip = document.getElementById("zip").value;
+function smartName(handle){
 
-    try{
+    handle = handle.toLowerCase();
 
-        let res = await fetch(`https://api.zippopotam.us/us/${zip}`);
-        let data = await res.json();
+    // remove numbers
+    handle = handle.replace(/[0-9]/g,'');
 
-        let place = data.places[0];
+    // 1️⃣ separator-based parsing
+    if(
+        handle.includes('.') ||
+        handle.includes('_') ||
+        handle.includes('-')
+    ){
 
-        let city = place["place name"];
-        let state = place["state abbreviation"];
+        let parts = handle
+            .split(/[._-]/)
+            .filter(p => p.length > 1);
 
-        let seed = 0;
-        for(let i=0;i<zip.length;i++){
-            seed += zip.charCodeAt(i);
+        if(parts.length >= 2){
+
+            return {
+                first: capitalize(parts[0]),
+                last: capitalize(parts[1])
+            };
         }
-
-        let first = firstNames[seed % firstNames.length];
-        let last = lastNames[(seed * 3) % lastNames.length];
-
-        document.getElementById("result").innerHTML = `
-
-            <div><span class="label">ZIP:</span> ${zip}</div>
-
-            <div><span class="label">City:</span> ${city}</div>
-
-            <div><span class="label">State:</span> ${state}</div>
-
-            <div><span class="label">Name:</span> ${first} ${last}</div>
-
-            <div><span class="label">Phone:</span> ${phone(place["area code"])}</div>
-
-            <div><span class="label">Address:</span>
-                ${Math.floor(Math.random()*9000)+100}
-                ${rand(["Main St","Oak Ave","Lake View Dr","River St"])},
-                ${city}, ${state}, ${zip}, USA
-            </div>
-
-        `;
-
-    }catch(err){
-        document.getElementById("result").innerHTML =
-        "❌ ZIP not found in real database";
     }
+
+    // 2️⃣ detect known first name
+    for(let name of knownFirstNames){
+
+        if(handle.startsWith(name)){
+
+            return {
+                first: capitalize(name),
+                last: rand(lastNamesDb)
+            };
+        }
+    }
+
+    // 3️⃣ fallback
+    return null;
+}
+
+// ---------------- MAIN FUNCTION ----------------
+
+function generateData(){
+
+    const input = document
+        .getElementById('emailBox')
+        .value
+        .trim()
+        .toLowerCase();
+
+    if(!input.includes('@')){
+        alert("Please enter a valid email.");
+        return;
+    }
+
+    const handle = input.split('@')[0];
+
+    let parsed = smartName(handle);
+
+    let firstName;
+    let lastName;
+
+    // GOOD MATCH FOUND
+    if(parsed){
+
+        firstName = parsed.first;
+        lastName = parsed.last;
+
+    }else{
+
+        // RANDOM REALISTIC USA NAME
+        firstName = rand(firstNamesDb);
+        lastName = rand(lastNamesDb);
+    }
+
+    // RANDOM ADDRESS
+    const addr = rand(addresses);
+
+    // REALISTIC PHONE
+    const phone =
+        `+1 (${addr.p}) ` +
+        `${Math.floor(200 + Math.random()*700)}-` +
+        `${Math.floor(1000 + Math.random()*9000)}`;
+
+    // GENERATED EMAIL
+    const generatedEmail =
+        `${firstName.toLowerCase()}${lastName.toLowerCase()}@gmail.com`;
+
+    // UI UPDATE
+    document.getElementById('fName').innerText = firstName;
+    document.getElementById('lName').innerText = lastName;
+    document.getElementById('email').innerText = generatedEmail;
+    document.getElementById('street').innerText = addr.s;
+    document.getElementById('location').innerText = `${addr.c}, ${addr.st}`;
+    document.getElementById('zip').innerText = addr.z;
+    document.getElementById('phone').innerText = phone;
+
+    document.getElementById('result').style.display = 'block';
 }
 
 </script>
