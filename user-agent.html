@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>USA Mobile UA Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA Mobile Full UA Generator</title>
 
 <style>
-
 body{
     margin:0;
     background:#0f172a;
@@ -15,10 +15,12 @@ body{
     align-items:center;
     min-height:100vh;
     color:white;
+    padding:20px;
 }
 
 .box{
-    width:950px;
+    width:100%;
+    max-width:1050px;
     background:#1e293b;
     padding:25px;
     border-radius:12px;
@@ -49,7 +51,7 @@ button{
     background:#0f172a;
     padding:20px;
     border-radius:10px;
-    line-height:1.8;
+    line-height:1.7;
     word-break:break-word;
 }
 
@@ -62,7 +64,6 @@ button{
     background:#22c55e;
     margin-top:15px;
 }
-
 </style>
 </head>
 
@@ -70,7 +71,7 @@ button{
 
 <div class="box">
 
-<h2>📱 USA MOBILE USER-AGENT GENERATOR</h2>
+<h2>📱 USA FULL MOBILE DATABASE + UA GENERATOR</h2>
 
 <select id="device"></select>
 
@@ -82,201 +83,248 @@ button{
 
 <button onclick="generateUA()">Generate User Agent</button>
 
-<div class="result" id="result"></div>
+<div class="result" id="result">Select device</div>
 
 </div>
 
 <script>
 
-// ---------------- DEVICES ----------------
+// ================= FULL USA MOBILE DATABASE =================
 const devices = [
 
 {
-    name:"Apple iPhone 15",
-    brand:"Apple",
-    chipset:"Apple A16 Bionic",
-    ram:"6 GB",
-    storage:"128GB / 256GB / 512GB",
-    display:"6.1-inch Super Retina XDR OLED",
-    resolution:"1179 x 2556 pixels",
-    ppi:"460 PPI",
-    camera:"48MP + 12MP",
-    battery:"3349 mAh",
-    os:"iOS 17",
-    platform:"iPhone; CPU iPhone OS 17_2 like Mac OS X"
+name:"Apple iPhone 15 Pro Max",
+brand:"Apple",
+chipset:"A17 Pro",
+ram:"8 GB",
+storage:"256/512GB/1TB",
+display:"6.7-inch OLED 120Hz",
+camera:"48MP + 12MP + 12MP",
+battery:"4441 mAh",
+os:"iOS 17",
+platform:"iPhone; CPU iPhone OS 17_2 like Mac OS X"
 },
 
 {
-    name:"Apple iPhone 15 Pro Max",
-    brand:"Apple",
-    chipset:"Apple A17 Pro",
-    ram:"8 GB",
-    storage:"256GB / 512GB / 1TB",
-    display:"6.7-inch Super Retina XDR OLED 120Hz",
-    resolution:"1290 x 2796 pixels",
-    ppi:"460 PPI",
-    camera:"48MP + 12MP + 12MP",
-    battery:"4441 mAh",
-    os:"iOS 17",
-    platform:"iPhone; CPU iPhone OS 17_2 like Mac OS X"
+name:"Apple iPhone 15",
+brand:"Apple",
+chipset:"A16 Bionic",
+ram:"6 GB",
+storage:"128/256/512GB",
+display:"6.1-inch OLED",
+camera:"48MP + 12MP",
+battery:"3349 mAh",
+os:"iOS 17",
+platform:"iPhone; CPU iPhone OS 17_2 like Mac OS X"
 },
 
 {
-    name:"Samsung Galaxy S24 Ultra",
-    brand:"Samsung",
-    chipset:"Snapdragon 8 Gen 3",
-    ram:"12 GB",
-    storage:"256GB / 512GB / 1TB",
-    display:"6.8-inch AMOLED 120Hz",
-    resolution:"1440 x 3120 pixels",
-    ppi:"505 PPI",
-    camera:"200MP + 50MP + 12MP + 10MP",
-    battery:"5000 mAh",
-    os:"Android 14",
-    platform:"Linux; Android 14; SM-S928B"
+name:"Apple iPhone 14",
+brand:"Apple",
+chipset:"A15 Bionic",
+ram:"6 GB",
+storage:"128/256/512GB",
+display:"6.1-inch OLED",
+camera:"12MP + 12MP",
+battery:"3279 mAh",
+os:"iOS 16",
+platform:"iPhone; CPU iPhone OS 16_6 like Mac OS X"
 },
 
 {
-    name:"Google Pixel 8 Pro",
-    brand:"Google",
-    chipset:"Google Tensor G3",
-    ram:"12 GB",
-    storage:"128GB / 256GB / 512GB",
-    display:"6.7-inch LTPO OLED 120Hz",
-    resolution:"1344 x 2992 pixels",
-    ppi:"489 PPI",
-    camera:"50MP + 48MP + 48MP",
-    battery:"5050 mAh",
-    os:"Android 14",
-    platform:"Linux; Android 14; Pixel 8 Pro"
+name:"Samsung Galaxy S24 Ultra",
+brand:"Samsung",
+chipset:"Snapdragon 8 Gen 3",
+ram:"12 GB",
+storage:"256/512GB/1TB",
+display:"6.8-inch AMOLED 120Hz",
+camera:"200MP + 50MP + 12MP + 10MP",
+battery:"5000 mAh",
+os:"Android 14",
+platform:"Linux; Android 14; SM-S928B"
 },
 
 {
-    name:"OnePlus 12",
-    brand:"OnePlus",
-    chipset:"Snapdragon 8 Gen 3",
-    ram:"16 GB",
-    storage:"256GB / 512GB",
-    display:"6.82-inch AMOLED 120Hz",
-    resolution:"1440 x 3168 pixels",
-    ppi:"510 PPI",
-    camera:"50MP + 64MP + 48MP",
-    battery:"5400 mAh",
-    os:"Android 14",
-    platform:"Linux; Android 14; CPH2581"
+name:"Samsung Galaxy S24",
+brand:"Samsung",
+chipset:"Snapdragon 8 Gen 3",
+ram:"8 GB",
+storage:"128/256GB",
+display:"6.2-inch AMOLED",
+camera:"50MP + 10MP + 12MP",
+battery:"4000 mAh",
+os:"Android 14",
+platform:"Linux; Android 14; SM-S921B"
+},
+
+{
+name:"Samsung Galaxy A54",
+brand:"Samsung",
+chipset:"Exynos 1380",
+ram:"8 GB",
+storage:"128/256GB",
+display:"6.4-inch AMOLED",
+camera:"50MP + 12MP + 5MP",
+battery:"5000 mAh",
+os:"Android 13",
+platform:"Linux; Android 13; SM-A546B"
+},
+
+{
+name:"Google Pixel 8 Pro",
+brand:"Google",
+chipset:"Tensor G3",
+ram:"12 GB",
+storage:"128/256/512GB",
+display:"6.7-inch OLED 120Hz",
+camera:"50MP + 48MP + 48MP",
+battery:"5050 mAh",
+os:"Android 14",
+platform:"Linux; Android 14; Pixel 8 Pro"
+},
+
+{
+name:"Google Pixel 8",
+brand:"Google",
+chipset:"Tensor G3",
+ram:"8 GB",
+storage:"128/256GB",
+display:"6.2-inch OLED",
+camera:"50MP + 12MP",
+battery:"4575 mAh",
+os:"Android 14",
+platform:"Linux; Android 14; Pixel 8"
+},
+
+{
+name:"Google Pixel 7a",
+brand:"Google",
+chipset:"Tensor G2",
+ram:"8 GB",
+storage:"128GB",
+display:"6.1-inch OLED",
+camera:"64MP + 13MP",
+battery:"4385 mAh",
+os:"Android 13",
+platform:"Linux; Android 13; Pixel 7a"
+},
+
+{
+name:"OnePlus 12",
+brand:"OnePlus",
+chipset:"Snapdragon 8 Gen 3",
+ram:"16 GB",
+storage:"256/512GB",
+display:"6.82-inch AMOLED 120Hz",
+camera:"50MP + 64MP + 48MP",
+battery:"5400 mAh",
+os:"Android 14",
+platform:"Linux; Android 14; CPH2581"
+},
+
+{
+name:"Motorola Moto G Power",
+brand:"Motorola",
+chipset:"Helio G37",
+ram:"4 GB",
+storage:"128GB",
+display:"6.5-inch LCD",
+camera:"50MP + 2MP + 2MP",
+battery:"5000 mAh",
+os:"Android 13",
+platform:"Linux; Android 13; XT2311"
+},
+
+{
+name:"Motorola Moto G Stylus",
+brand:"Motorola",
+chipset:"Snapdragon 6 Gen 1",
+ram:"8 GB",
+storage:"256GB",
+display:"6.7-inch LCD",
+camera:"50MP + 13MP",
+battery:"5000 mAh",
+os:"Android 13",
+platform:"Linux; Android 13; XT2315"
+},
+
+{
+name:"TCL 40 XL",
+brand:"TCL",
+chipset:"Helio G37",
+ram:"4 GB",
+storage:"128GB",
+display:"6.75-inch HD+",
+camera:"50MP + 2MP + 2MP",
+battery:"5000 mAh",
+os:"Android 13",
+platform:"Linux; Android 13; T671H"
 }
 
 ];
 
-
-// ---------------- LOAD DEVICES ----------------
-let deviceSelect = document.getElementById("device");
+// ================= INIT =================
+const deviceSelect = document.getElementById("device");
 
 devices.forEach((d,i)=>{
-
     let opt = document.createElement("option");
-
     opt.value = i;
-
     opt.textContent = d.name;
-
     deviceSelect.appendChild(opt);
-
 });
 
-
-// ---------------- RANDOM ----------------
-function rand(n){
-
-    return Math.floor(Math.random()*n);
-
+// ================= RANDOM =================
+function rand(min,max){
+    return Math.floor(Math.random()*(max-min+1))+min;
 }
 
-
-// ---------------- GENERATE ----------------
+// ================= UA GENERATION =================
 function generateUA(){
 
     let d = devices[deviceSelect.value];
-
     let browser = document.getElementById("browser").value;
+
+    let iosVer = ["17_2","17_3","17_4","17_5"][rand(0,3)];
+    let platform = d.platform.replace(/17_2|17_3|17_4|17_5|16_6|15_7/g, iosVer);
 
     let ua = "";
 
+    if(platform.includes("Android")){
 
-    if(browser === "chrome"){
+        let androidVer = rand(1,100) <= 80 ? "14" : "13";
+        platform = platform.replace(/Android \d+/g, "Android " + androidVer);
 
-        let ver = `122.0.${rand(5000)}.${rand(200)}`;
-
-        ua =
-`Mozilla/5.0 (${d.platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver} Mobile Safari/537.36`;
-
+        ua = `Mozilla/5.0 (${platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.${rand(1000,6000)}.${rand(10,200)} Mobile Safari/537.36`;
     }
+    else{
 
-    else if(browser === "safari"){
-
-        let ver = `17.${rand(5)}`;
-
-        ua =
-`Mozilla/5.0 (${d.platform}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${ver} Mobile/15E148 Safari/604.1`;
-
+        ua = `Mozilla/5.0 (${platform}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/${iosVer.replace("_",".")} Mobile/15E148 Safari/604.1`;
     }
-
-    else if(browser === "firefox"){
-
-        ua =
-`Mozilla/5.0 (${d.platform}; rv:122.0) Gecko/20100101 Firefox/122.0`;
-
-    }
-
 
     document.getElementById("result").innerHTML = `
+<div><span class="label">Model:</span> ${d.name}</div>
+<div><span class="label">Brand:</span> ${d.brand}</div>
+<div><span class="label">Chipset:</span> ${d.chipset}</div>
+<div><span class="label">RAM:</span> ${d.ram}</div>
+<div><span class="label">Storage:</span> ${d.storage}</div>
+<div><span class="label">Display:</span> ${d.display}</div>
+<div><span class="label">Camera:</span> ${d.camera}</div>
+<div><span class="label">Battery:</span> ${d.battery}</div>
+<div><span class="label">OS:</span> ${d.os}</div>
 
-        <div><span class="label">Model:</span> ${d.name}</div>
+<div style="margin-top:10px;"><span class="label">User Agent:</span></div>
+<div>${ua}</div>
 
-        <div><span class="label">Brand:</span> ${d.brand}</div>
-
-        <div><span class="label">Chipset:</span> ${d.chipset}</div>
-
-        <div><span class="label">RAM:</span> ${d.ram}</div>
-
-        <div><span class="label">Storage:</span> ${d.storage}</div>
-
-        <div><span class="label">Display:</span> ${d.display}</div>
-
-        <div><span class="label">Resolution:</span> ${d.resolution}</div>
-
-        <div><span class="label">Pixel Density:</span> ${d.ppi}</div>
-
-        <div><span class="label">Camera:</span> ${d.camera}</div>
-
-        <div><span class="label">Battery:</span> ${d.battery}</div>
-
-        <div><span class="label">OS:</span> ${d.os}</div>
-
-        <div><span class="label">Browser:</span> ${browser}</div>
-
-        <div style="margin-top:15px;">
-            <span class="label">User Agent:</span>
-        </div>
-
-        <div id="uaText">${ua}</div>
-
-        <button class="copyBtn" onclick="copyUA()">Copy User Agent</button>
-
-    `;
+<button class="copyBtn" onclick="copyUA()">Copy</button>
+`;
 
     window.currentUA = ua;
-
 }
 
-
-// ---------------- COPY ----------------
+// ================= COPY =================
 function copyUA(){
-
     navigator.clipboard.writeText(window.currentUA);
-
-    alert("User-Agent copied!");
-
+    alert("Copied!");
 }
 
 </script>
