@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Rewards & Giveaways</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .offers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .offer-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.2s, background 0.2s;
+            backdrop-filter: blur(10px);
+        }
+
+        .offer-card:active {
+            transform: scale(0.98);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .offer-details {
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .offer-details h3 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: #fff;
+        }
+
+        .offer-details span {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-weight: bold;
+            background: rgba(56, 189, 248, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .arrow {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        /* Responsive Badge for iPhone */
+        @media (max-width: 380px) {
+            .offer-details h3 { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Exclusive Global Rewards</h1>
+        <p>Select an offer below to participate</p>
+    </div>
+
+    <div class="offers-list">
+        <!-- Germany - iPhone 17 -->
+        <a href="https://smrturl.co/a/s70fd96d5f2/19134?s1=hasan" class="offer-card">
+            <div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <div class="offer-details">
+                <span>Germany Exclusive</span>
+                <h3>Win iPhone 17 Pro</h3>
+            </div>
+            <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+        <!-- Germany - Edeka -->
+        <a href="https://smrturl.co/a/s70fd96d5f2/19137?s1=hasan" class="offer-card">
+            <div class="icon-box"><i class="fa-solid fa-cart-shopping"></i></div>
+            <div class="offer-details">
+                <span>Germany Exclusive</span>
+                <h3>250€ Edeka Voucher</h3>
+            </div>
+            <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+        <!-- Portugal - iPhone 16 -->
+        <a href="https://smrturl.co/a/s70fd96d5f2/8930?s1=hasan" class="offer-card">
+            <div class="icon-box"><i class="fa-solid fa-gift"></i></div>
+            <div class="offer-details">
+                <span>Portugal Exclusive</span>
+                <h3>Win iPhone 16 Pro</h3>
+            </div>
+            <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+        <!-- Austria - Armour -->
+        <a href="https://smrturl.co/a/s70fd96d5f2/19275?s1=hasan" class="offer-card">
+            <div class="icon-box"><i class="fa-solid fa-shirt"></i></div>
+            <div class="offer-details">
+                <span>Austria Exclusive</span>
+                <h3>€500 Armour Voucher</h3>
+            </div>
+            <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+
+        <!-- Germany - Tattoo -->
+        <a href="https://smrturl.co/a/s70fd96d5f2/19133?s1=hasan" class="offer-card">
+            <div class="icon-box"><i class="fa-solid fa-palette"></i></div>
+            <div class="offer-details">
+                <span>Germany Exclusive</span>
+                <h3>Win a Free Tattoo</h3>
+            </div>
+            <div class="arrow"><i class="fa-solid fa-chevron-right"></i></div>
+        </a>
+    </div>
+
+    <div class="footer">
+        &copy; 2026 Premium Offers. All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>
