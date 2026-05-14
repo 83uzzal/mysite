@@ -3,92 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Reward Center</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Reward Center</title>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            padding: 15px;
-        }
+        body { font-family: sans-serif; background: #eef2f5; margin: 0; padding: 10px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 400px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .header { background: #1a73e8; color: white; padding: 15px; text-align: center; }
+        .header h1 { margin: 0; font-size: 1.2rem; }
+        .header p { margin: 3px 0 0; font-size: 0.75rem; opacity: 0.9; }
+        .content { padding: 10px; }
+        
+        .net-box { margin-bottom: 12px; border-radius: 8px; border: 1px solid #ddd; padding: 8px; }
+        .net-title { font-size: 0.75rem; font-weight: bold; text-transform: uppercase; margin-bottom: 6px; display: block; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        
+        /* Network Colors */
+        .cpagrip { border-left: 4px solid #00c2ff; } .cpagrip .net-title { color: #00c2ff; }
+        .cashnet { border-left: 4px solid #ff9800; } .cashnet .net-title { color: #ff9800; }
+        .adblue { border-left: 4px solid #e91e63; } .adblue .net-title { color: #e91e63; }
+        .cpazon { border-left: 4px solid #4caf50; } .cpazon .net-title { color: #4caf50; }
+        .datify { border-left: 4px solid #673ab7; } .datify .net-title { color: #673ab7; }
+        .exness { border-left: 4px solid #212121; } .exness .net-title { color: #212121; }
 
-        .container {
-            width: 100%;
-            max-width: 500px;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #1a73e8, #0d47a1);
-            color: white;
-            padding: 30px 15px;
-        }
-
-        .header h1 { margin: 0; font-size: 1.5rem; }
-        .header p { margin: 5px 0 0; font-size: 0.85rem; opacity: 0.9; }
-
-        .content { padding: 25px 20px; }
-
-        .network-section {
-            margin-bottom: 25px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-        }
-
-        .network-title {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 10px;
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .dropdown {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 2px solid #e1e4e8;
-            font-size: 0.95rem;
-            background: #fff;
-            margin-bottom: 10px;
-            cursor: pointer;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .dropdown:focus { border-color: #1a73e8; }
-
-        .go-btn {
-            width: 100%;
-            padding: 14px;
-            background: #28a745;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-
-        .go-btn:hover { background: #218838; }
-
-        .footer {
-            padding: 15px;
-            font-size: 0.75rem;
-            color: #888;
-            background: #fafafa;
-        }
+        .list { display: flex; flex-direction: column; gap: 4px; }
+        .item { display: flex; justify-content: space-between; align-items: center; background: #f9f9f9; padding: 6px 10px; border-radius: 5px; text-decoration: none; border: 1px solid #f0f0f0; transition: 0.2s; }
+        .item:hover { background: #f0f7ff; border-color: #1a73e8; }
+        .item-text { font-size: 0.82rem; color: #333; font-weight: 500; }
+        .btn { background: #1a73e8; color: white; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        
+        .footer { text-align: center; font-size: 0.65rem; padding: 10px; color: #999; }
     </style>
 </head>
 <body>
@@ -96,172 +37,85 @@
 <div class="container">
     <div class="header">
         <h1>Global Reward Hub</h1>
-        <p>Select your region and claim your exclusive reward</p>
+        <p>Verified Offers - May 2026</p>
     </div>
 
     <div class="content">
-        
-        <!-- CPAGRIP SECTION -->
-        <div class="network-section">
-            <span class="network-title">💎 CPAGrip Offers</span>
-            <select id="cpagrip" class="dropdown">
-                <option value="" disabled selected>-- Select Offer --</option>
-                <option value="https://singingfiles.com/show.php?l=0&u=2487268&id=74820">$1000 Venmo/CashApp (iPhone)</option>
-                <option value="https://singingfiles.com/show.php?l=0&u=2487268&id=74819">$1000 Venmo/CashApp (Android)</option>
-                <option value="https://singingfiles.com/show.php?l=0&u=2487268&id=74764">$500 Walmart (iPhone)</option>
-                <option value="https://singingfiles.com/show.php?l=0&u=2487268&id=74763">$500 Walmart (Android)</option>
-                <option value="https://singingfiles.com/show.php?l=0&u=2487268&id=74437">$100 Ulta Gift Card</option>
-            </select>
-            <button onclick="visit('cpagrip')" class="go-btn">Continue</button>
+        <!-- CPAGRIP -->
+        <div class="net-box cpagrip">
+            <span class="net-title">💎 CPAGrip</span>
+            <div class="list">
+                <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=74820" class="item"><span class="item-text">$1000 Venmo (iOS)</span><span class="btn">GO</span></a>
+                <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=74819" class="item"><span class="item-text">$1000 Venmo (Droid)</span><span class="btn">GO</span></a>
+                <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=74764" class="item"><span class="item-text">$500 Walmart (iOS)</span><span class="btn">GO</span></a>
+                <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=74763" class="item"><span class="item-text">$500 Walmart (Droid)</span><span class="btn">GO</span></a>
+                <a href="https://singingfiles.com/show.php?l=0&u=2487268&id=74437" class="item"><span class="item-text">$100 Ulta Card</span><span class="btn">GO</span></a>
+            </div>
         </div>
 
-        <!-- CN EVERFLOW SECTION -->
-        <div class="network-section">
-            <span class="network-title">US Verified Rewards (CashNetwork)</span>
-            <select id="cn-everflow" class="dropdown">
-                <option value="" disabled selected>-- Select Offer --</option>
-                <option value="https://www.safom.site/21GFG1GL/B27MQT3/">Walmart $100 - CPA</option>
-                <option value="https://www.hiphi.site/21GFG1GL/9RKKD7P/">Black Friday $500 Amazon</option>
-                <option value="https://www.loopl.site/21GFG1GL/9K52JJR/">Walmart $500 Gift Card</option>
-                <option value="https://www.wetcj.site/21GFG1GL/8CG4NSJ/">$500 Netflix Gift Card</option>
-                <option value="https://www.jobox.site/21GFG1GL/7QXNHQC/">Unemployment Support</option>
-                <option value="https://www.wetcj.site/21GFG1GL/847CPCW/">$500 PayPal Gift Card</option>
-                <option value="https://www.wetcj.site/21GFG1GL/9QXHWMS/">Amazon Flex CPA</option>
-                <option value="https://www.yokov.site/21GFG1GL/8R5T6HS/">WFH for Beginners</option>
-            </select>
-            <button onclick="visit('cn-everflow')" class="go-btn">Continue</button>
+        <!-- CASHNETWORK -->
+        <div class="net-box cashnet">
+            <span class="net-title">🇺🇸 CashNetwork (US)</span>
+            <div class="list">
+                <a href="https://www.safom.site/21GFG1GL/B27MQT3/" class="item"><span class="item-text">$100 Walmart</span><span class="btn">GO</span></a>
+                <a href="https://www.hiphi.site/21GFG1GL/9RKKD7P/" class="item"><span class="item-text">$500 Amazon (BF)</span><span class="btn">GO</span></a>
+                <a href="https://www.loopl.site/21GFG1GL/9K52JJR/" class="item"><span class="item-text">$500 Walmart</span><span class="btn">GO</span></a>
+                <a href="https://www.wetcj.site/21GFG1GL/8CG4NSJ/" class="item"><span class="item-text">$500 Netflix</span><span class="btn">GO</span></a>
+                <a href="https://www.jobox.site/21GFG1GL/7QXNHQC/" class="item"><span class="item-text">Unemployment Info</span><span class="btn">GO</span></a>
+                <a href="https://www.wetcj.site/21GFG1GL/847CPCW/" class="item"><span class="item-text">$500 PayPal</span><span class="btn">GO</span></a>
+                <a href="https://www.wetcj.site/21GFG1GL/9QXHWMS/" class="item"><span class="item-text">Amazon Flex CPA</span><span class="btn">GO</span></a>
+                <a href="https://www.yokov.site/21GFG1GL/8R5T6HS/" class="item"><span class="item-text">WFH Beginners</span><span class="btn">GO</span></a>
+            </div>
         </div>
 
-        <!-- ADBLUEMEDIA SECTION -->
-        <div class="network-section">
-            <span class="network-title">🎁 AdBlueMedia Rewards</span>
-            <select id="adblue" class="dropdown">
-                <option value="" disabled selected>-- Select Offer --</option>
-                <option value="https://smrturl.co/a/s70fd96d5f2/18251?s1=hasan">PrizeZappy - Win $50K</option>
-                <option value="https://smrturl.co/a/s70fd96d5f2/19630?s1=hasan">GnG - 1k Amazon</option>
-                <option value="https://smrturl.co/a/s70fd96d5f2/20132?s1=hasan">EDW - Walmart eCard</option>
-                <option value="https://smrturl.co/a/s70fd96d5f2/18396?s1=hasan">$1,000 Coke vs Pepsi</option>
-                <option value="https://smrturl.co/a/s70fd96d5f2/20133?s1=hasan">GnG - CashApp $750</option>
-                <option value="https://smrturl.co/a/s70fd96d5f2/17412?s1=hasan">GetnGoods - $1,000 Aldi</option>
-				<option value="https://smrturl.co/a/s70fd96d5f2/19862?s1=hasan">GnG - Tax Rewards</option>
-            </select>
-            <button onclick="visit('adblue')" class="go-btn">Continue</button>
+        <!-- ADBLUEMEDIA -->
+        <div class="net-box adblue">
+            <span class="net-title">🎁 AdBlueMedia</span>
+            <div class="list">
+                <a href="https://smrturl.co/a/s70fd96d5f2/18251?s1=hasan" class="item"><span class="item-text">PrizeZappy $50K</span><span class="btn">GO</span></a>
+                <a href="https://smrturl.co/a/s70fd96d5f2/19630?s1=hasan" class="item"><span class="item-text">$1k Amazon</span><span class="btn">GO</span></a>
+                <a href="https://smrturl.co/a/s70fd96d5f2/20132?s1=hasan" class="item"><span class="item-text">Walmart eCard</span><span class="btn">GO</span></a>
+                <a href="https://smrturl.co/a/s70fd96d5f2/18396?s1=hasan" class="item"><span class="item-text">$1000 Coke vs Pepsi</span><span class="btn">GO</span></a>
+                <a href="https://smrturl.co/a/s70fd96d5f2/20133?s1=hasan" class="item"><span class="item-text">CashApp $750</span><span class="btn">GO</span></a>
+                <a href="https://smrturl.co/a/s70fd96d5f2/17412?s1=hasan" class="item"><span class="item-text">$1,000 Aldi</span><span class="btn">GO</span></a>
+                <a href="https://smrturl.co/a/s70fd96d5f2/19862?s1=hasan" class="item"><span class="item-text">Tax Rewards</span><span class="btn">GO</span></a>
+            </div>
         </div>
 
-        <!-- EVERFLOW CLIENT SECTION -->
-        <div class="network-section">
-            <span class="network-title">📦 EVERFLOW Premium Retail Offers</span>
-            <select id="everflow" class="dropdown">
-                <option value="" disabled selected>-- Select Offer --</option>
-                <option value="https://www.aplfb8trk.com/3LJ2KBKX/B9WWNX6/">USPS Delivery Reward</option>
-                <option value="https://www.aplfb8trk.com/3LJ2KBKX/BB1NGDD/">Amazon From Home</option>
-                 <option value="https://www.aplfb8trk.com/3LJ2KBKX/BWTSSLS/">Waste Management</option>
-				 <option value="https://www.aplfb8trk.com/3LJ2KBKX/BWSFXW7/">AirBNB</option>
-				 <option value="https://www.aplfb8trk.com/3LJ2KBKX/CMP3TPS/">Cash App $850</option>
-                <option value="https://www.aplfb8trk.com/3LJ2KBKX/CJKL7CK/">Dollar General $1000</option>
-                <option value="https://www.aplfb8trk.com/3LJ2KBKX/CJ7W27B/">Walmart $500 Gift Card</option>
-            </select>
-            <button onclick="visit('everflow')" class="go-btn">Continue</button>
+        <!-- CPAZON -->
+        <div class="net-box cpazon">
+            <span class="net-title">🔥 CPAZON</span>
+            <div class="list">
+                <a href="https://aff.cpazon.com/click?camp=1988&pubid=3051" class="item"><span class="item-text">SmartLink Main</span><span class="btn">GO</span></a>
+                <a href="https://aff.cpazon.com/click?camp=1989&pubid=3051" class="item"><span class="item-text">Webcam Smartlink</span><span class="btn">GO</span></a>
+                <a href="https://aff.cpazon.com/click?camp=1992&pubid=3051" class="item"><span class="item-text">Shein $500 CPL</span><span class="btn">GO</span></a>
+            </div>
         </div>
 
-        <!-- CPAZON  SECTION -->
-        <div class="network-section">
-            <span class="network-title">🔥 CPAZON Smartlinks & Adult</span>
-            <select id="smartlinks" class="dropdown">
-                <option value="" disabled selected>-- Select Offer --</option>
-                <option value="https://aff.cpazon.com/click?camp=1988&pubid=3051">CPAZON SmartLink</option>
-                <option value="https://aff.cpazon.com/click?camp=1989&pubid=3051">High Conv. Webcam</option>
-                <option value="https://aff.cpazon.com/click?camp=1992&pubid=3051">Shein Gift $500 CPL</option>
-            </select>
-            <button onclick="visit('smartlinks')" class="go-btn">Continue</button>
+        <!-- DATIFY -->
+        <div class="net-box datify">
+            <span class="net-title">⚡ DATIFY</span>
+            <div class="list">
+                <a href="https://hotsexdatetoday.com/Qs8Kh1G3?aid=gzdakgbgzk&kid=hgfphpbahkx" class="item"><span class="item-text">Datify Smart (Enola)</span><span class="btn">GO</span></a>
+                <a href="https://hotsexdatetoday.com/rmFtPqsJ?aid=gzpgdpfzhx&kid=hgxppzpbzzk" class="item"><span class="item-text">Datify Smart (Tech)</span><span class="btn">GO</span></a>
+            </div>
         </div>
-		
-<!-- DATIFY SECTION 1 -->
-<div class="network-section">
-    <span class="network-title">🔥 DATIFY Smartlinks(enola99murphy)</span>
 
-    <select id="datify1" class="dropdown">
-        <option value="" disabled selected>-- Select Offer --</option>
-
-        <option value="https://hotsexdatetoday.com/Qs8Kh1G3?aid=gzdakgbgzk&kid=hgfphpbahkx">
-            Datify Smartlink
-        </option>
-
-        <option value="https://hotsexdatetoday.com/Qs8Kh1G3?aid=gzdakgbgzk&kid=hgfphpbahkx">
-            Datify Smartlink1
-        </option>
-    </select>
-
-    <button onclick="visit('datify1')" class="go-btn">
-        Continue
-    </button>
-</div>
-
-
-<!-- DATIFY SECTION 2 -->
-<div class="network-section">
-    <span class="network-title">🔥 DATIFY Smartlinks(tomorrow4tech)</span>
-
-    <select id="datify2" class="dropdown">
-        <option value="" disabled selected>-- Select Offer --</option>
-
-        <option value="https://hotsexdatetoday.com/rmFtPqsJ?aid=gzpgdpfzhx&kid=hgxppzpbzzk">
-            Datify Smartlink
-        </option>
-
-        <option value="https://hotsexdatetoday.com/rmFtPqsJ?aid=gzpgdpfzhx&kid=hgxppzpbzzk">
-            Datify Smartlink1
-        </option>
-    </select>
-
-    <button onclick="visit('datify2')" class="go-btn">
-        Continue
-    </button>
-</div>		
-		
-	<!-- Exnessoffer -->
-<div class="network-section">
-    <span class="network-title">🔥 Exnessoffer</span>
-
-    <select id="exnessoffer" class="dropdown">
-        <option value="" disabled selected>-- Select Offer --</option>
-
-        <option value="https://tr.exnessoffer.com/redirect?aff_id=3416&offer_id=118">
-            World wide adult Tier 1-4 NW
-        </option>
-
-        <option value="https://tr.exnessoffer.com/redirect?aff_id=3416&offer_id=230">
-            World wide smartlink [Email only]
-        </option>
-
-        <option value="https://tr.exnessoffer.com/redirect?aff_id=3416&offer_id=218">
-            Smartlink US CA AU DE UK NL NO DK SE CH
-        </option>
-    </select>
-
-    <button onclick="visit('exnessoffer')" class="go-btn">
-        Continue
-    </button>
-</div>
-
-
+        <!-- EXNESS -->
+        <div class="net-box exness">
+            <span class="net-title">💼 Exness Offer</span>
+            <div class="list">
+                <a href="https://tr.exnessoffer.com/redirect?aff_id=3416&offer_id=118" class="item"><span class="item-text">WW Adult T1-4</span><span class="btn">GO</span></a>
+                <a href="https://tr.exnessoffer.com/redirect?aff_id=3416&offer_id=230" class="item"><span class="item-text">Smartlink (Email)</span><span class="btn">GO</span></a>
+                <a href="https://tr.exnessoffer.com/redirect?aff_id=3416&offer_id=218" class="item"><span class="item-text">Smartlink Premium</span><span class="btn">GO</span></a>
+            </div>
+        </div>
     </div>
 
     <div class="footer">
-        © 2026 Reward Verification Center. All rights reserved.
+        © 2026 Reward Center. Fast & Secure Load.
     </div>
 </div>
-
-<script>
-    function visit(id) {
-        var url = document.getElementById(id).value;
-        if (url) {
-            window.location.href = url;
-        } else {
-            alert("Please select an offer from the list.");
-        }
-    }
-</script>
 
 </body>
 </html>
