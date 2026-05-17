@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced UA Generator + ZIP + IP Checker</title>
+
+<style>
+
+:root{
+    --bg:#0d1117;
+    --card:#161b22;
+    --blue:#3fb1e3;
+    --text:#c9d1d9;
+    --border:#30363d;
+    --green:#238636;
+    --orange:#f59e0b;
+}
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+/* BODY */
+
+body{
+    background-color:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:6px;
+    min-height:100vh;
+}
+
+/* WRAPPER */
+
+.wrapper{
+    width:100%;
+    max-width:1200px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:10px;
+}
+
+/* BOX */
+
+.container{
+    background-color:var(--card);
+    width:100%;
+    border-radius:10px;
+    border:1px solid var(--border);
+    padding:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* HEADER */
+
+.header{
+    text-align:center;
+    color:var(--blue);
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:12px;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--border);
+    padding-bottom:6px;
+    letter-spacing:0.5px;
+}
+
+/* LABEL */
+
+label{
+    display:block;
+    margin-bottom:4px;
+    font-size:12px;
+    color:var(--blue);
+    font-weight:600;
+}
+
+/* INPUT */
+
+select,
+input,
+button{
+    width:100%;
+    padding:8px 10px;
+    margin-bottom:10px;
+    border-radius:6px;
+    outline:none;
+    font-size:12px;
+    background-color:var(--bg);
+    color:#fff;
+    border:1px solid var(--border);
+}
+
+select{
+    cursor:pointer;
+}
+
+/* BUTTON */
+
+button{
+    cursor:pointer;
+    transition:0.25s;
+}
+
+/* GENERATE BUTTON */
+
+.btn-gen{
+    background-color:var(--blue);
+    color:#000;
+    font-weight:700;
+    border:none;
+}
+
+.btn-gen:hover{
+    opacity:0.85;
+}
+
+/* COPY BUTTON */
+
+.btn-copy{
+    background-color:var(--green);
+    border:none;
+    margin-top:10px;
+    font-weight:700;
+    color:#fff;
+}
+
+.btn-copy:hover{
+    opacity:0.9;
+}
+
+/* DETAILS */
+
+.details-box{
+    background-color:var(--bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px;
+    display:none;
+    margin-top:6px;
+}
+
+/* ROW */
+
+.row{
+    display:flex;
+    justify-content:flex-start;
+    align-items:flex-start;
+    gap:5px;
+    margin-bottom:3px;
+    font-size:11px;
+    border-bottom:1px solid #1f242c;
+    padding-bottom:2px;
+    line-height:1.3;
+}
+
+/* KEY */
+
+.key{
+    color:var(--blue);
+    font-weight:700;
+    white-space:nowrap;
+    min-width:75px;
+}
+
+/* VALUE */
+
+.val{
+    color:#fff;
+    word-break:break-word;
+}
+
+/* UA OUTPUT */
+
+.ua-output{
+    background-color:#090c10;
+    border:1px dotted var(--blue);
+    padding:10px;
+    border-radius:6px;
+    margin-top:10px;
+    word-break:break-all;
+    font-family:monospace;
+    color:var(--blue);
+    font-size:11px;
+    line-height:1.35;
+    overflow-wrap:anywhere;
+}
+
+/* RESULT */
+
+.result{
+    margin-top:8px;
+    background:#0f172a;
+    padding:10px;
+    border-radius:8px;
+    line-height:1.45;
+    word-break:break-word;
+    border:1px solid #334155;
+    font-size:11px;
+}
+
+/* LABEL */
+
+.label{
+    color:#38bdf8;
+    font-weight:bold;
+}
+
+/* IP BUTTONS */
+
+.ipBtns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:10px;
+}
+
+.ipBtns a{
+    background:var(--orange);
+    color:black;
+    text-align:center;
+    padding:10px;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:12px;
+}
+
+.ipBtns a:hover{
+    opacity:.92;
+}
+
+a{
+    color:#38bdf8;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+/* MOBILE */
+
+@media(max-width:1100px){
+
+    .wrapper{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:480px){
+
+    body{
+        padding:4px;
+    }
+
+    .container{
+        padding:10px;
+        border-radius:8px;
+    }
+
+    .header{
+        font-size:14px;
+    }
+
+    select,
+    input,
+    button{
+        font-size:11px;
+        padding:7px 8px;
+    }
+
+    .row{
+        font-size:10px;
+    }
+
+    .ua-output{
+        font-size:10px;
+    }
+
+    .result{
+        font-size:10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- ================= UA GENERATOR ================= -->
+
+<div class="container">
+
+<div class="header">📱 UA GENERATOR (20 MODELS)</div>
+
+<label>Select Device Model:</label>
+
+<select id="deviceSelect"></select>
+
+<label>Select Browser:</label>
+
+<select id="browserSelect">
+<option value="Chrome">Chrome</option>
+<option value="Firefox">Firefox</option>
+<option value="Edge">Edge</option>
+<option value="Safari">Safari</option>
+</select>
+
+<button class="btn-gen" onclick="generateUA()">
+Generate UA & Details
+</button>
+
+<div id="detailsArea" class="details-box">
+
+<div id="infoRows"></div>
+
+<div style="margin-top:15px; font-weight:bold; color:var(--blue);">
+Generated User Agent:
+</div>
+
+<div id="uaOutput" class="ua-output"></div>
+
+<button class="btn-copy" id="copyBtn" onclick="copyUA()">
+Copy User Agent
+</button>
+
+</div>
+
+</div>
+
+<!-- ================= ZIP PROFILE ================= -->
+
+<div class="container">
+
+<div class="header">📍 ZIP PROFILE</div>
+
+<input id="zip" placeholder="Enter ZIP (e.g. 10001)">
+
+<button class="btn-gen" onclick="generateProfile()">
+Generate Profile
+</button>
+
+<div class="result" id="zipResult">
+Enter ZIP and generate profile
+</div>
+
+</div>
+
+<!-- ================= IP CHECKER ================= -->
+
+<div class="container">
+
+<div class="header">🌐 IP CHECKER</div>
+
+<input id="ipInput" placeholder="Enter IP (e.g. 8.8.8.8)">
+
+<button class="btn-gen" onclick="checkIP()">
+Check IP
+</button>
+
+<div class="result" id="ipResult">
+Enter IP and check details
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+// ================= DEVICE DATABASE =================
+
+const devices = [
+
+{ "brand": "Apple", "model": "iPhone 16 Pro Max", "chipset": "Apple A18 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.9 inch OLED", "resolution": "1320 x 2868", "ppi": 460, "camera": "48MP + 48MP + 12MP", "battery": "4685 mAh", "os": "iOS 18", "gpu": "Apple GPU", "viewport": "440 x 956", "touch": 5 },
+
+{ "brand": "Apple", "model": "iPhone 16 Pro", "chipset": "Apple A18 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.3 inch OLED", "resolution": "1206 x 2622", "ppi": 460, "camera": "48MP + 48MP + 12MP", "battery": "3582 mAh", "os": "iOS 18", "gpu": "Apple GPU", "viewport": "402 x 874", "touch": 5 },
+
+{ "brand": "Apple", "model": "iPhone 16 Plus", "chipset": "Apple A18", "cpu": "6-core", "ram": "8 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP", "battery": "4674 mAh", "os": "iOS 18", "gpu": "Apple GPU", "viewport": "430 x 932", "touch": 5 },
+
+{ "brand": "Apple", "model": "iPhone 15 Pro Max", "chipset": "Apple A17 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP + 12MP", "battery": "4441 mAh", "os": "iOS 17 / iOS 18", "gpu": "Apple GPU", "viewport": "430 x 932", "touch": 5 },
+
+{ "brand": "Apple", "model": "iPhone 15 Pro", "chipset": "Apple A17 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.1 inch OLED", "resolution": "1179 x 2556", "ppi": 461, "camera": "48MP + 12MP + 12MP", "battery": "3274 mAh", "os": "iOS 17 / iOS 18", "gpu": "Apple GPU", "viewport": "393 x 852", "touch": 5 },
+
+{ "brand": "Apple", "model": "iPhone 15 Plus", "chipset": "Apple A16 Bionic", "cpu": "6-core", "ram": "6 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP", "battery": "4383 mAh", "os": "iOS 17 / iOS 18", "gpu": "Apple GPU", "viewport": "430 x 932", "touch": 5 },
+
+{ "brand": "Samsung", "model": "Galaxy S26 Ultra", "chipset": "Snapdragon 8 Elite Gen 5", "cpu": "8-core", "ram": "12/16 GB", "display": "6.9 inch OLED", "resolution": "1440 x 3120", "ppi": 498, "camera": "200MP + 50MP + 10MP + 50MP", "battery": "5000 mAh", "os": "Android 16", "gpu": "Adreno 840", "viewport": "412 x 923", "touch": 10 },
+
+{ "brand": "Samsung", "model": "Galaxy S25 Ultra", "chipset": "Snapdragon 8 Elite", "cpu": "8-core", "ram": "12/16 GB", "display": "6.8 inch OLED", "resolution": "1440 x 3120", "ppi": 505, "camera": "200MP + 50MP + 10MP + 50MP", "battery": "5000 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 923", "touch": 10 },
+
+{ "brand": "Samsung", "model": "Galaxy S25+", "chipset": "Exynos 2500 / Snapdragon 8 Elite", "cpu": "10-core / 8-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1440 x 3120", "ppi": 513, "camera": "50MP + 10MP + 12MP", "battery": "4900 mAh", "os": "Android 15", "gpu": "Xclipse 950 / Adreno 830", "viewport": "412 x 893", "touch": 10 },
+
+{ "brand": "Samsung", "model": "Galaxy S24+", "chipset": "Exynos 2400 / Snapdragon 8 Gen 3", "cpu": "8/10-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1440 x 3120", "ppi": 513, "camera": "50MP + 10MP + 12MP", "battery": "4900 mAh", "os": "Android 14 / 15", "gpu": "Adreno 750", "viewport": "412 x 893", "touch": 10 },
+
+{ "brand": "Samsung", "model": "Galaxy A57 5G", "chipset": "Exynos 1680", "cpu": "8-core", "ram": "8/12 GB", "display": "6.7 inch OLED", "resolution": "1080 x 2340", "ppi": 390, "camera": "50MP + 12MP + 5MP", "battery": "5000 mAh", "os": "Android 16", "gpu": "Xclipse 550", "viewport": "412 x 893", "touch": 10 },
+
+{ "brand": "Samsung", "model": "Galaxy Z Fold 7", "chipset": "Snapdragon 8 Elite", "cpu": "8-core", "ram": "12/16 GB", "display": "7.6 inch OLED", "resolution": "1856 x 2160", "ppi": 375, "camera": "50MP + 10MP + 12MP", "battery": "4400 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 910", "touch": 10 },
+
+{ "brand": "Google", "model": "Pixel 10 Pro", "chipset": "Tensor G5", "cpu": "8-core", "ram": "16 GB", "display": "6.3 inch OLED", "resolution": "1280 x 2856", "ppi": 495, "camera": "50MP + 48MP + 48MP", "battery": "4700 mAh", "os": "Android 16", "gpu": "PowerVR / IMG Graphics", "viewport": "412 x 918", "touch": 10 },
+
+{ "brand": "Google", "model": "Pixel 9 Pro XL", "chipset": "Tensor G4", "cpu": "8-core", "ram": "16 GB", "display": "6.8 inch OLED", "resolution": "1344 x 2992", "ppi": 486, "camera": "50MP + 48MP + 48MP", "battery": "5060 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 917", "touch": 10 },
+
+{ "brand": "Google", "model": "Pixel 9", "chipset": "Tensor G4", "cpu": "8-core", "ram": "12 GB", "display": "6.3 inch OLED", "resolution": "1080 x 2424", "ppi": 422, "camera": "50MP + 48MP", "battery": "4700 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 924", "touch": 10 },
+
+{ "brand": "Google", "model": "Pixel 8 Pro", "chipset": "Tensor G3", "cpu": "9-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1344 x 2992", "ppi": 489, "camera": "50MP + 48MP + 48MP", "battery": "5050 mAh", "os": "Android 14", "gpu": "Immortalis-G715s MC10", "viewport": "412 x 915", "touch": 10 },
+
+{ "brand": "OnePlus", "model": "OnePlus 13", "chipset": "Snapdragon 8 Elite", "cpu": "8-core", "ram": "12/16/24 GB", "display": "6.82 inch AMOLED", "resolution": "1440 x 3168", "ppi": 510, "camera": "50MP + 50MP + 50MP", "battery": "6000 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 906", "touch": 10 },
+
+{ "brand": "OnePlus", "model": "OnePlus 12", "chipset": "Snapdragon 8 Gen 3", "cpu": "8-core", "ram": "12/16 GB", "display": "6.82 inch AMOLED", "resolution": "1440 x 3168", "ppi": 510, "camera": "50MP + 64MP + 48MP", "battery": "5400 mAh", "os": "Android 14", "gpu": "Adreno 750", "viewport": "412 x 926", "touch": 10 },
+
+{ "brand": "OnePlus", "model": "OnePlus Nord N30 5G", "chipset": "Snapdragon 695 5G", "cpu": "8-core", "ram": "8 GB", "display": "6.72 inch IPS LCD", "resolution": "1080 x 2400", "ppi": 391, "camera": "108MP + 2MP + 2MP", "battery": "5000 mAh", "os": "Android 13 / 14", "gpu": "Adreno 619", "viewport": "393 x 873", "touch": 10 },
+
+{ "brand": "OnePlus", "model": "OnePlus Open", "chipset": "Snapdragon 8 Gen 2", "cpu": "8-core", "ram": "16 GB", "display": "7.82 inch AMOLED", "resolution": "2268 x 2440", "ppi": 426, "camera": "48MP + 64MP + 48MP", "battery": "4805 mAh", "os": "Android 13 / 14", "gpu": "Adreno 740", "viewport": "412 x 920", "touch": 10 }
+
+];
+
+// ================= BROWSER VERSION =================
+
+const browserVers = {
+
+"Chrome": ["147.0.7727.137","146.0.7680.177","145.0.7632.76"],
+
+"Firefox": ["150.0.3","149.0.2","148.0.2"],
+
+"Edge": ["148.0.3967.55","147.0.3912.87","146.0.3856.62"],
+
+"Safari": ["18.4","18.1","17.5"]
+
+};
+
+// ================= LOAD DEVICES =================
+
+const dSelect = document.getElementById('deviceSelect');
+
+devices.forEach((d, i) => {
+
+    dSelect.innerHTML += `<option value="${i}">${d.brand} ${d.model}</option>`;
+
+});
+
+// ================= GENERATE UA =================
+
+function generateUA(){
+
+    const d = devices[dSelect.value];
+
+    const b = document.getElementById('browserSelect').value;
+
+    const ver = browserVers[b][Math.floor(Math.random()*browserVers[b].length)];
+
+    let ua = "";
+
+    if(d.brand === "Apple"){
+
+        let rawOS = d.os.match(/\d+/g);
+
+        let iosMainVersion = rawOS ? rawOS[rawOS.length - 1] : "18";
+
+        let iosFormatted = `${iosMainVersion}_4`;
+
+        let webkitVer = "605.1.15";
+
+        if(b === "Safari"){
+
+            ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) Version/${iosMainVersion}.4 Mobile/15E148 Safari/${webkitVer}`;
+
+        }
+
+        else if(b === "Chrome"){
+
+            ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) CriOS/${ver} Mobile/15E148 Safari/${webkitVer}`;
+
+        }
+
+        else if(b === "Edge"){
+
+            ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) EdgiOS/${ver} Mobile/15E148 Safari/${webkitVer}`;
+
+        }
+
+        else{
+
+            ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) FxiOS/${ver} Mobile/15E148 Safari/${webkitVer}`;
+
+        }
+
+    }
+
+    else{
+
+        let rawAnd = d.os.match(/\d+/);
+
+        let andVer = rawAnd ? rawAnd[0] : "15";
+
+        if(b === "Firefox"){
+
+            ua = `Mozilla/5.0 (Android ${andVer}; Mobile; rv:${ver}) Gecko/${ver} Firefox/${ver}`;
+
+        }
+
+        else if(b === "Edge"){
+
+            ua = `Mozilla/5.0 (Linux; Android ${andVer}; ${d.model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver.split('.')[0]}.0.0.0 Mobile Safari/537.36 EdgA/${ver}`;
+
+        }
+
+        else if(b === "Safari"){
+
+            ua = `Mozilla/5.0 (Linux; Android ${andVer}; ${d.model}) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36`;
+
+        }
+
+        else{
+
+            ua = `Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver} Mobile Safari/537.36`;
+
+        }
+
+    }
+
+    const infoFields = [
+
+        ["Model:", d.brand + " " + d.model],
+        ["Brand:", d.brand],
+        ["Chipset:", d.chipset],
+        ["CPU:", d.cpu],
+        ["RAM:", d.ram],
+        ["Storage:", "256GB / 512GB / 1TB"],
+        ["Display:", d.display],
+        ["Resolution:", d.resolution],
+        ["PPI:", d.ppi],
+        ["Camera:", d.camera],
+        ["Battery:", d.battery],
+        ["OS:", d.os],
+        ["Browser:", b.toLowerCase() + " " + ver],
+        ["GPU:", d.gpu],
+        ["Viewport:", d.viewport],
+        ["Touch:", d.touch],
+        ["Language:", "en-US"],
+        ["Timezone:", "America/New_York"],
+        ["WebRTC:", "Replace"],
+        ["Canvas:", "Noise Enabled"]
+
+    ];
+
+    let html = "";
+
+    infoFields.forEach(f => {
+
+        html += `<div class="row"><span class="key">${f[0]}</span><span class="val">${f[1]}</span></div>`;
+
+    });
+
+    document.getElementById('infoRows').innerHTML = html;
+
+    document.getElementById('uaOutput').innerText = ua;
+
+    document.getElementById('detailsArea').style.display = 'block';
+
+}
+
+// ================= COPY UA =================
+
+function copyUA(){
+
+    const uaText = document.getElementById('uaOutput').innerText;
+
+    navigator.clipboard.writeText(uaText).then(() => {
+
+        const copyBtn = document.getElementById('copyBtn');
+
+        copyBtn.innerText = "✓ Copied!";
+
+        copyBtn.style.backgroundColor = "#17a2b8";
+
+        setTimeout(() => {
+
+            copyBtn.innerText = "Copy User Agent";
+
+            copyBtn.style.backgroundColor = "var(--green)";
+
+        },1500);
+
+    });
+
+}
+
+// ================= RANDOM =================
+
+function rand(min,max){
+
+    return Math.floor(Math.random()*(max-min+1))+min;
+
+}
+
+// ================= ZIP PROFILE =================
+
+const zipAPI = "https://api.zippopotam.us/us/";
+
+const firstNames = [
+"James","John","Robert","Michael","William",
+"David","Joseph","Thomas","Charles","Christopher",
+"Jessica","Emily","Sarah","Ashley","Emma","Olivia"
+];
+
+const lastNames = [
+"Smith","Johnson","Brown","Williams","Jones",
+"Miller","Davis","Wilson","Taylor","Anderson"
+];
+
+const streets = [
+"Main St","Oak Ave","Lake View Dr","Sunset Blvd",
+"Hill Rd","River St","Park Ave","Broadway"
+];
+
+async function generateProfile(){
+
+    let zip = document.getElementById("zip").value.trim();
+
+    if(!zip){
+
+        alert("Enter ZIP Code");
+
+        return;
+
+    }
+
+    try{
+
+        let res = await fetch(zipAPI + zip);
+
+        if(!res.ok){
+
+            throw new Error();
+
+        }
+
+        let data = await res.json();
+
+        let place = data.places[0];
+
+        let city = place["place name"];
+
+        let state = place["state abbreviation"];
+
+        let first = firstNames[rand(0,firstNames.length-1)];
+
+        let last = lastNames[rand(0,lastNames.length-1)];
+
+        let email = `${first.toLowerCase()}${last.toLowerCase()}${rand(1991,2004)}@gmail.com`;
+
+        let phone = `(${rand(200,999)}) ${rand(100,999)}-${rand(1000,9999)}`;
+
+        let address = `${rand(100,9999)} ${streets[rand(0,streets.length-1)]}, ${city}, ${state}, ${zip}`;
+
+        document.getElementById("zipResult").innerHTML = `
+
+<div><span class="label">ZIP:</span> ${zip}</div>
+
+<div><span class="label">City:</span> ${city}</div>
+
+<div><span class="label">State:</span> ${state}</div>
+
+<div><span class="label">Name:</span> ${first} ${last}</div>
+
+<div><span class="label">Email:</span> ${email}</div>
+
+<div><span class="label">Phone:</span> ${phone}</div>
+
+<div><span class="label">Address:</span> ${address}</div>
+
+<div>
+
+<span class="label">Map:</span>
+
+<a href="https://www.google.com/maps/search/${zip}" target="_blank">
+
+Open Location
+
+</a>
+
+</div>
+
+`;
+
+    }
+
+    catch{
+
+        document.getElementById("zipResult").innerHTML =
+        "❌ Invalid ZIP or API Error";
+
+    }
+
+}
+
+// ================= IP CHECKER =================
+
+function checkIP(){
+
+    let ip = document.getElementById("ipInput").value.trim();
+
+    if(!ip){
+
+        alert("Enter IP Address");
+
+        return;
+
+    }
+
+    let ip8Link = `https://ip8.com/ipdetails/${ip}`;
+
+    let scamLink = `https://scamalytics.com/ip/${ip}`;
+
+    document.getElementById("ipResult").innerHTML = `
+
+<div><span class="label">IP:</span> ${ip}</div>
+
+<div class="ipBtns">
+
+<a href="${ip8Link}" target="_blank">
+IP8 CHECK
+</a>
+
+<a href="${scamLink}" target="_blank">
+SCAMALYTICS
+</a>
+
+</div>
+
+<div style="margin-top:10px;">
+
+<span class="label">IP8 Direct:</span><br>
+
+<a href="${ip8Link}" target="_blank">${ip8Link}</a>
+
+</div>
+
+<div style="margin-top:10px;">
+
+<span class="label">Scamalytics Direct:</span><br>
+
+<a href="${scamLink}" target="_blank">${scamLink}</a>
+
+</div>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
