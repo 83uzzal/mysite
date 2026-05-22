@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows Advanced Coherent UA Generator</title>
+
+<style>
+:root{
+    --bg:#0d1117;
+    --card:#161b22;
+    --blue:#3fb1e3;
+    --text:#c9d1d9;
+    --border:#30363d;
+    --green:#238636;
+    --purple:#8b5cf6;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY (leave space for right panel) */
+body{
+    background-color:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:8px;
+    gap:12px;
+    min-height:100vh;
+}
+
+/* MAIN BOX (LEFT PANEL) */
+.container{
+    background-color:var(--card);
+    width:100%;
+    max-width:380px;   /* very compact */
+    border-radius:6px;
+    border:1px solid var(--border);
+    padding:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    color:var(--blue);
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:8px;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--border);
+    padding-bottom:4px;
+    letter-spacing:0.4px;
+}
+
+/* LABEL */
+label{
+    display:block;
+    margin-bottom:4px;
+    font-size:11px;
+    color:var(--blue);
+    font-weight:600;
+}
+
+/* INPUTS */
+select, button{
+    width:100%;
+    padding:6px;
+    margin-bottom:8px;
+    border-radius:5px;
+    outline:none;
+    font-size:11px;
+    background-color:var(--bg);
+    color:#fff;
+    border:1px solid var(--border);
+}
+
+select{ cursor:pointer; }
+
+button{
+    cursor:pointer;
+    transition:0.2s;
+}
+
+/* BUTTONS */
+.btn-gen{
+    background-color:var(--blue);
+    color:#000;
+    font-weight:700;
+    border:none;
+}
+
+.btn-gen:hover{ opacity:0.85; }
+
+.btn-copy{
+    background-color:var(--green);
+    border:none;
+    margin-top:8px;
+    font-weight:700;
+    color:#fff;
+}
+
+.btn-copy:hover{ opacity:0.9; }
+
+/* OUTPUT BOX */
+.details-box{
+    background-color:var(--bg);
+    border:1px solid var(--border);
+    border-radius:5px;
+    padding:6px;
+    display:none;
+    margin-top:6px;
+}
+
+/* ROW */
+.row{
+    display:flex;
+    gap:4px;
+    margin-bottom:2px;
+    font-size:10px;
+    border-bottom:1px solid #1f242c;
+    padding-bottom:2px;
+    line-height:1.1;
+}
+
+.key{
+    color:var(--blue);
+    font-weight:700;
+    min-width:120px;
+}
+
+.val{
+    color:#fff;
+    word-break:break-word;
+}
+
+/* UA OUTPUT */
+.ua-output{
+    background-color:#090c10;
+    border:1px dotted var(--blue);
+    padding:6px;
+    border-radius:5px;
+    margin-top:8px;
+    font-family:monospace;
+    color:var(--purple);
+    font-size:10px;
+    line-height:1.3;
+    word-break:break-all;
+}
+
+/* RIGHT SIDE EMPTY PANEL (READY SPACE) */
+.right-panel{
+    width:100%;
+    max-width:380px;
+    min-height:100%;
+    background:transparent;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+    body{
+        flex-direction:column;
+        align-items:center;
+    }
+    .right-panel{
+        display:none;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">💻 Windows Coherent UA & Fingerprint Generator</div>
+    
+    <label>Select Windows System Profile:</label>
+    <select id="windowsSelect"></select>
+
+    <label>Select Web Browser:</label>
+    <select id="winBrowserSelect">
+        <option value="Chrome">Chrome</option>
+        <option value="Firefox">Firefox</option>
+        <option value="Edge">Edge</option>
+    </select>
+
+    <button class="btn-gen" onclick="generateWindowsUA()">Generate Coherent Environment</button>
+
+    <div id="detailsArea" class="details-box">
+        <div id="infoRows"></div>
+        <div style="margin-top:15px; font-weight:bold; color:var(--blue);">Generated User Agent:</div>
+        <div id="uaOutput" class="ua-output"></div>
+        <button class="btn-copy" id="copyBtn" onclick="copyWindowsUA()">Copy User Agent</button>
+    </div>
+</div>
+
+<script>
+// ================= 10 REALISTIC WINDOWS PROFILES WITH HARDWARE MAPPING =================
+const windowsDevices = [
+
+  { "os": "Windows 11", "brand": "HP", "model": "Victus 15-fa1093dx", "cpu": "Intel Core i5-13420H", "ram": "8 GB DDR4", "gpu": "NVIDIA GeForce RTX 3050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "Inspiron 15 3530", "cpu": "Intel Core i5-1335U", "ram": "16 GB DDR4", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "TUF Gaming F15 FX507VV", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Legion Pro 5 16IRX8", "cpu": "Intel Core i9-13900HX", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Predator Helios 16 PH16-71", "cpu": "Intel Core i7-13700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Omen 16-wf0083dx", "cpu": "Intel Core i7-13700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "G15 5530", "cpu": "Intel Core i5-13450HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 3050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Cyborg 15 A13VF", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Strix G16 G614JVR", "cpu": "Intel Core i9-14900HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Pavilion Plus 14-ew1001xx", "cpu": "Intel Core i5-1335U", "ram": "16 GB LPDDR5x", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "2880 x 1800", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "Alienware m16 R2", "cpu": "Intel Core i7-14700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "LOQ 15IRX9", "cpu": "Intel Core i7-13650HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Nitro V 15 ANV15-51", "cpu": "Intel Core i5-13420H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Razer", "model": "Blade 16 (2024)", "cpu": "Intel Core i9-14900HX", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4090", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4090 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3840 x 2400", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Omen 45L GT22-2000", "cpu": "Intel Core i9-14900K", "ram": "64 GB DDR5", "gpu": "NVIDIA GeForce RTX 4090", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4090 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3840 x 2116", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "XPS Desktop 8960", "cpu": "Intel Core i7-13700", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060 Ti", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Ti Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Legion Tower 5i Gen 8", "cpu": "Intel Core i5-13400F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 3060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Strix G16CHR", "cpu": "Intel Core i7-14700F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Aegis RS 14NUE7", "cpu": "Intel Core i7-14700KF", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070 Super", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Super Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Envy x360 15-fe0053dx", "cpu": "Intel Core i7-1355U", "ram": "16 GB DDR5", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "2-in-1 Laptop" },
+  { "os": "Windows 10 Pro", "brand": "Dell", "model": "Latitude 5440 Business", "cpu": "Intel Core i5-1345U", "ram": "16 GB DDR4", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Business Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "Zenbook Pro 14 OLED", "cpu": "Intel Core i9-13900H", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2880 x 1800", "type": "OLED Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Yoga Pro 9i 16IRP8", "cpu": "Intel Core i9-13905H", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3200 x 2000", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Aspire 5 A515-58GM", "cpu": "Intel Core i5-13420H", "ram": "16 GB DDR4", "gpu": "NVIDIA GeForce RTX 2050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Laptop" },
+  { "os": "Windows 10 Pro", "brand": "HP", "model": "ProBook 450 G10", "cpu": "Intel Core i7-1355U", "ram": "16 GB DDR4", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Business Laptop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Katana 15 B13VGK", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Zephyrus G16 (2024)", "cpu": "Intel Core i9-14900HX", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4080", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4080 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Legion Slim 5 16IRH8", "cpu": "Intel Core i7-13700H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 10 Pro", "brand": "HP", "model": "EliteBook 840 G10", "cpu": "Intel Core i7-1360P", "ram": "16 GB DDR5", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1200", "type": "Business Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "Inspiron 16 Plus 7630", "cpu": "Intel Core i7-13700H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Predator Helios Neo 16", "cpu": "Intel Core i7-14700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Gigabyte", "model": "Aorus 16X (2024)", "cpu": "Intel Core i7-14650HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Samsung", "model": "Galaxy Book3 Ultra", "cpu": "Intel Core i9-13900H", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2880 x 1800", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Victus 15L TG02-1000", "cpu": "Intel Core i5-13400F", "ram": "16 GB DDR4", "gpu": "NVIDIA GeForce RTX 3050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 10 Pro", "brand": "Dell", "model": "OptiPlex Pro 7010 MT", "cpu": "Intel Core i5-13500", "ram": "16 GB DDR5", "gpu": "Intel UHD Graphics 770", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel UHD Graphics 770 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "IdeaCentre Gaming 5i", "cpu": "Intel Core i7-13700F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 3060 Ti", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Strix G13CH", "cpu": "Intel Core i5-14400F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Infinite S3 14NUC7", "cpu": "Intel Core i7-14700F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060 Ti", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Ti Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 10 Pro", "brand": "HP", "model": "ProDesk 400 G9 MT", "cpu": "Intel Core i5-13500", "ram": "16 GB DDR4", "gpu": "Intel UHD Graphics 770", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel UHD Graphics 770 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 10 Pro", "brand": "Dell", "model": "Precision 3660 Tower", "cpu": "Intel Core i9-13900", "ram": "64 GB DDR5", "gpu": "NVIDIA RTX A2000", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA RTX A2000 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3840 x 2160", "type": "Workstation Desktop" },
+  { "os": "Windows 11", "brand": "GIGABYTE", "model": "G5 KF5 (2024)", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" }
+
+
+];
+
+// ================= PROVIDED EXACT BROWSER VERSIONS =================
+const winBrowserVersions = {
+    "Chrome": [
+        "147.0.7727.137", "147.0.7727.138",
+        "146.0.7680.177", "146.0.7680.178", "146.0.7680.216",
+        "145.0.7632.26", "145.0.7632.27", "145.0.7632.45", "145.0.7632.46", "145.0.7632.75", "145.0.7632.76", "145.0.7632.116", "145.0.7632.117"
+    ],
+    "Firefox": [
+        "150.0.1", "150.0.2", "150.0.3",
+        "149.0.1", "149.0.2",
+        "148.0.1", "148.0.2"
+    ],
+    "Edge": [
+        "148.0.3967.54", "148.0.3967.70",
+        "147.0.3912.60", "147.0.3912.72", "147.0.3912.86", "147.0.3912.98",
+        "146.0.3856.54", "146.0.3856.59", "146.0.3856.62"
+    ]
+};
+
+// Populate dropdown
+const winSelect = document.getElementById('windowsSelect');
+windowsDevices.forEach((d, i) => {
+    winSelect.innerHTML += `<option value="${i}">[${d.os}] ${d.brand} ${d.model}</option>`;
+});
+
+function getRandomVersion(browser) {
+    const list = winBrowserVersions[browser];
+    return list[Math.floor(Math.random() * list.length)];
+}
+
+// ================= MAIN GENERATOR FUNCTION =================
+function generateWindowsUA(){
+    const d = windowsDevices[winSelect.value];
+    const b = document.getElementById('winBrowserSelect').value;
+    const ver = getRandomVersion(b);
+    const majorVer = ver.split('.')[0];
+    
+    let ua = "";
+    const ntVersion = "10.0"; 
+    const arch = "Win64; x64";
+
+    // Setup structured client hints string mapping to version selection
+    let clientHintUA = "";
+
+    if(b === "Chrome"){
+        ua = `Mozilla/5.0 (Windows NT ${ntVersion}; ${arch}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver} Safari/537.36`;
+        clientHintUA = `"Not(A:Brand";v="99", "Google Chrome";v="${majorVer}", "Chromium";v="${majorVer}"`;
+    }
+    else if(b === "Edge"){
+        ua = `Mozilla/5.0 (Windows NT ${ntVersion}; ${arch}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${majorVer}.0.0.0 Safari/537.36 Edg/${ver}`;
+        clientHintUA = `"Not(A:Brand";v="99", "Microsoft Edge";v="${majorVer}", "Chromium";v="${majorVer}"`;
+    }
+    else if(b === "Firefox"){
+        ua = `Mozilla/5.0 (Windows NT ${ntVersion}; ${arch}; rv:${ver}) Gecko/20100101 Firefox/${ver}`;
+        clientHintUA = "Not Applicable (Firefox relies on navigator.userAgent)";
+    }
+
+    // Windows Specific Structurally Coherent System Profile Outputs
+    const infoFields = [
+        ["Operating System", d.os],
+        ["Platform Architecture", "x86_64 (64-bit)"],
+        ["Device Identity", d.brand + " " + d.model],
+        ["Processor (CPU)", d.cpu],
+        ["System Memory", d.ram],
+        ["Graphics Hardware", d.gpu],
+        ["Native Resolution", d.resolution],
+        ["Target Browser Build", b + " " + ver],
+        ["Sec-CH-UA (Client Hints)", clientHintUA],
+        ["WebGL Vendor", d.vendor],
+        ["WebGL Renderer", d.renderer],
+        ["Canvas Fingerprint", "Per-Session Canvas Salt Noise (Natural Rendering)"],
+        ["Language Locale", "en-US"],
+        ["System Timezone", "America/New_York"]
+    ];
+
+    let html = "";
+    infoFields.forEach(f => {
+        html += `
+<div class="row" onclick="copyRow(this)">
+    <span class="key">${f[0]}:</span>
+    <span class="val">${f[1]}</span>
+</div>`;
+    });
+
+    document.getElementById('infoRows').innerHTML = html;
+    document.getElementById('uaOutput').innerText = ua;
+    document.getElementById('detailsArea').style.display = 'block';
+}
+
+// ================= COPY INTERACTION =================
+function copyWindowsUA(){
+    const uaText = document.getElementById('uaOutput').innerText;
+    if(!uaText) return;
+    
+    navigator.clipboard.writeText(uaText).then(() => {
+        const copyBtn = document.getElementById('copyBtn');
+        copyBtn.innerText = "✓ Copied!";
+        copyBtn.style.backgroundColor = "#17a2b8";
+        setTimeout(() => {
+            copyBtn.innerText = "Copy User Agent";
+            copyBtn.style.backgroundColor = "var(--green)";
+        }, 1500);
+    });
+}
+
+function copyRow(el){
+    const val = el.querySelector('.val').innerText;
+
+    navigator.clipboard.writeText(val).then(() => {
+        el.style.backgroundColor = "#1f2a37";
+
+        setTimeout(() => {
+            el.style.backgroundColor = "";
+        }, 300);
+    });
+}
+
+</script>
+
+</body>
+</html>
