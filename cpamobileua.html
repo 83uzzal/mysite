@@ -558,15 +558,15 @@ else {
         ["Chipset:", d.chipset],
         ["CPU:", d.cpu],
         ["RAM:", d.ram],
-        ["Display:", d.display],
         ["Resolution:", d.resolution],
         ["OS:", d.os],
         ["Browser:", b.toLowerCase() + " " + ver],
-        ["GPU:", d.gpu],
-        ["Viewport:", d.viewport],
-        ["Timezone:", "America/New_York"],
 		["WebGL Vendor:", finalVendor],
-		["Renderer:", finalRenderer]
+		["Renderer:", finalRenderer],
+		["GPU:", d.gpu],
+		["Display:", d.display],
+        ["Viewport:", d.viewport],
+        ["Timezone:", "America/New_York"]
 
     ];
 
@@ -624,292 +624,20 @@ function rand(min,max){
 const zipAPI = "https://api.zippopotam.us/us/";
 
 const firstNames = [
-"Aaron","Adam","Adrian","Aidan","Alan","Albert","Alex","Alexander","Alfred","Andrew",
-"Anthony","Arthur","Austin","Benjamin","Blake","Brandon","Brian","Bruce","Bryan","Caleb",
-"Cameron","Carl","Carlos","Charles","Christian","Christopher","Cole","Connor","Daniel","David",
-"Dennis","Dominic","Donald","Douglas","Dylan","Edward","Elijah","Eric","Ethan","Evan",
-"Frank","Gabriel","George","Gavin","Gregory","Harold","Harry","Henry","Hunter","Isaac",
-"Jack","Jackson","Jacob","James","Jason","Jayden","Jeffrey","Jeremiah","Jeremy","Jerry",
-"Jesse","John","Jonathan","Jordan","Joseph","Joshua","Julian","Justin","Keith","Kevin",
-"Kyle","Larry","Lawrence","Leo","Leonard","Logan","Louis","Lucas","Luke","Marcus",
-"Mark","Martin","Mason","Matthew","Michael","Nathan","Nicholas","Noah","Oliver","Oscar",
-"Owen","Patrick","Paul","Peter","Philip","Raymond","Richard","Robert","Roger","Ronald",
-"Ryan","Samuel","Scott","Sean","Sebastian","Simon","Stephen","Steven","Thomas","Timothy",
-"Tyler","Victor","Vincent","Walter","Wayne","William","Wyatt","Xavier","Zachary","Abel",
-"Abraham","Ace","Ahmed","Alec","Ali","Allen","Amir","Andre","Andy","Angelo",
-"Antonio","Archer","Asher","Axel","Barry","Beau","Bennett","Billy","Brad","Bradley",
-"Brayden","Brent","Brett","Brody","Bryce","Byron","Cade","Caiden","Calvin","Carter",
-"Cecil","Cedric","Chance","Chandler","Chase","Clark","Clayton","Clifford","Clinton","Cody",
-"Colin","Colton","Corey","Craig","Curtis","Dale","Damian","Damon","Dane","Darren",
-"Dean","Declan","Derek","Desmond","Devin","Diego","Dominick","Donovan","Drake","Drew",
-"Dustin","Eddie","Edgar","Edmund","Eduardo","Eli","Elias","Emerson","Emmanuel","Enzo",
-"Ernest","Eugene","Felix","Fernando","Finn","Francis","Francisco","Frederick","Garrett","Garry",
-"Gavin","Geoffrey","Gerald","Gilbert","Glen","Gordon","Grant","Grayson","Greg","Greyson",
-"Hank","Harrison","Hayden","Hector","Holden","Howard","Hudson","Hugh","Ian","Ivan",
-"Jace","Jake","Jared","Jasper","Javier","Joel","Jonah","Jonas","Jose","Juan",
-"Jude","Kai","Kaleb","Kenneth","Kingston","Kirk","Kristopher","Lance","Landon","Lee",
-"Levi","Liam","Lincoln","Lorenzo","Luis","Malcolm","Manuel","Marco","Mario","Marshall",
-"Martin","Matteo","Max","Maxwell","Miguel","Miles","Milo","Mitchell","Mohamed","Morgan",
-"Nash","Nathaniel","Neil","Nelson","Nicolas","Nolan","Omar","Orlando","Parker","Preston",
-"Prince","Rafael","Randall","Randy","Reed","Reid","Remy","Ricardo","Ricky","Riley",
-"River","Robin","Romeo","Rowan","Russell","Saint","Salvatore","Sam","Santiago","Saul",
-"Shane","Shawn","Silas","Spencer","Stanley","Stefan","Sterling","Steve","Sullivan","Tanner",
-"Taylor","Theo","Theodore","Tony","Travis","Trevor","Tristan","Troy","Tucker","Tyson",
-"Uriah","Vance","Victor","Wade","Walker","Warren","Wesley","Weston","Will","Zane"
+"James","John","Robert","Michael","William",
+"David","Joseph","Thomas","Charles","Christopher",
+"Jessica","Emily","Sarah","Ashley","Emma","Olivia"
 ];
 
 const lastNames = [
-"Adams","Allen","Anderson","Armstrong","Atkinson","Austin","Bailey","Baker","Barnes","Bell",
-"Bennett","Black","Bowman","Boyd","Bradley","Brooks","Brown","Bryant","Burke","Burns",
-"Butler","Campbell","Carter","Castillo","Chapman","Clark","Cole","Collins","Cook","Cooper",
-"Cox","Crawford","Cruz","Cunningham","Daniels","Davidson","Davis","Diaz","Dixon","Douglas",
-"Duncan","Edwards","Elliott","Ellis","Evans","Ferguson","Fernandez","Fisher","Flores","Ford",
-"Foster","Fox","Garcia","Gardner","George","Gibson","Gomez","Gonzalez","Gordon","Graham",
-"Grant","Gray","Green","Griffin","Hall","Hamilton","Hansen","Harris","Harrison","Hart",
-"Harvey","Hayes","Henderson","Henry","Hernandez","Hicks","Hill","Hoffman","Holmes","Howard",
-"Hudson","Hughes","Hunt","Hunter","Jackson","James","Jenkins","Johnson","Johnston","Jones",
-"Jordan","Kelly","Kennedy","Kim","King","Knight","Lane","Larson","Lawrence","Lee",
-"Lewis","Long","Lopez","Marshall","Martin","Martinez","Mason","Matthews","Mcdonald","Mendoza",
-"Meyer","Miller","Mitchell","Moore","Morales","Morgan","Morris","Murphy","Murray","Myers",
-"Nelson","Nguyen","Nichols","Oliver","Olson","Ortiz","Owens","Palmer","Parker","Patel",
-"Patterson","Payne","Perez","Perkins","Perry","Peterson","Phillips","Pierce","Porter","Powell",
-"Price","Ramirez","Reed","Reyes","Reynolds","Rice","Richardson","Rivera","Roberts","Robinson",
-"Rodriguez","Rogers","Ross","Russell","Sanchez","Sanders","Scott","Simmons","Smith","Snyder",
-"Spencer","Stewart","Stone","Sullivan","Taylor","Thomas","Thompson","Torres","Turner","Walker",
-"Wallace","Ward","Warren","Watson","Webb","West","White","Williams","Wilson","Wood",
-"Woods","Wright","Young","Alexander","Alvarez","Arnold","Banks","Barrett","Beck","Berry",
-"Bishop","Bowers","Boyle","Brady","Brewer","Briggs","Brock","Burton","Cain","Caldwell",
-"Cannon","Carpenter","Carr","Carroll","Casey","Chambers","Chandler","Clayton","Cobb","Cohen",
-"Conner","Conway","Cortez","Craig","Curtis","Dean","Dennis","Donovan","Doyle","Drake",
-"Dunn","Erickson","Estrada","Farmer","Fleming","Franklin","Frazier","Freeman","Fuller","Garner",
-"Gilbert","Gill","Goodman","Greene","Gross","Hale","Hammond","Hampton","Hardy","Harper",
-"Hawkins","Haynes","Holland","Hopkins","Horton","Hubbard","Ingram","Jacobs","Jennings","Jensen",
-"Jimenez","Johns","Keller","Kelley","Klein","Lambert","Lamb","Larsen","Leonard","Lindsey",
-"Little","Love","Lucas","Lynch","Mack","Maldonado","Mann","Marsh","Massey","May",
-"McCarthy","McCoy","McGee","McKinney","Medina","Mendez","Montgomery","Montoya","Moon","Moran",
-"Moss","Munoz","Nash","Newton","Norris","Odom","Osborne","Page","Pena","Poole",
-"Pope","Pratt","Quinn","Ramsey","Ramos","Ray","Riley","Rios","Roberts","Roman",
-"Rowe","Salazar","Schmidt","Schneider","Schultz","Sharp","Shaw","Shelton","Silva","Simon",
-"Simpson","Sims","Stephens","Stevens","Tate","Terry","Todd","Valdez","Vargas","Vasquez",
-"Vega","Wade","Wagner","Walsh","Watkins","Weaver","Wells","Wheeler","Whitaker","Wilcox",
-"Wilkins","Willis","Wise","Wolf","Wong","Yates","York","Zimmerman"
+"Smith","Johnson","Brown","Williams","Jones",
+"Miller","Davis","Wilson","Taylor","Anderson"
 ];
-
-
 
 const streets = [
-"Main St",
-"Oak Ave",
-"Pine Rd",
-"Maple Drive",
-"Lake View Dr",
-"Sunset Blvd",
-"Hill Rd",
-"River St",
-"Park Ave",
-"Broadway",
-"Cedar Lane",
-"Washington St",
-"Lincoln Ave",
-"Cherry St",
-"Madison Ave",
-"Forest Drive",
-"Elm Street",
-"Walnut Street",
-"Highland Ave",
-"Dogwood Lane",
-"Spruce Street",
-"Center Street",
-"North Avenue",
-"South Street",
-"East Avenue",
-"West Street",
-"Jackson Blvd",
-"Jefferson Ave",
-"Adams Street",
-"Franklin Street",
-"Monroe Ave",
-"Roosevelt Blvd",
-"Wilson Street",
-"Grant Avenue",
-"Harrison Street",
-"Kennedy Blvd",
-"Laurel Drive",
-"Willow Lane",
-"Aspen Court",
-"Birch Road",
-"Brookside Drive",
-"Creek Road",
-"Valley View Dr",
-"Meadow Lane",
-"Country Club Rd",
-"Fairview Ave",
-"Ridge Road",
-"Sycamore Street",
-"Magnolia Ave",
-"College Street",
-"Church Street",
-"Market Street",
-"Mill Road",
-"Railroad Ave",
-"School Street",
-"Water Street",
-"Liberty Street",
-"Prospect Ave",
-"Center Ave",
-"Parkway Drive",
-"Woodland Drive",
-"Lakeshore Drive",
-"Bay Street",
-"Ocean Avenue",
-"Palm Drive",
-"Cypress Lane",
-"Evergreen Terrace",
-"Greenwood Ave",
-"Redwood Drive",
-"Silver Lake Rd",
-"Golden Gate Ave",
-"Canal Street",
-"Harbor Drive",
-"Bridge Street",
-"Garden Lane",
-"Victoria Ave",
-"King Street",
-"Queen Street",
-"Prince Avenue",
-"Princess Lane",
-"Station Road",
-"Sunrise Blvd",
-"Sunset Lane",
-"Moonlight Drive",
-"Star Road",
-"Skyline Blvd",
-"Mountain View Rd",
-"Prairie Lane",
-"Desert Road",
-"Front Street",
-"Back Bay Rd",
-"Old Mill Rd",
-"New Town Rd",
-"Colonial Drive",
-"Liberty Lane",
-"Independence Ave",
-"Freedom Blvd",
-"Patriot Drive",
-"Constitution Ave",
-"Memorial Drive",
-"Veterans Blvd",
-"Peachtree Street",
-"Magnolia Drive",
-"Bluebird Lane",
-"Robin Hood Rd",
-"Fox Run",
-"Deer Trail",
-"Bear Creek Rd",
-"Hunter Lane",
-"Timber Ridge",
-"Autumn Drive",
-"Summer Street",
-"Spring Valley Rd",
-"Wintergreen Ave",
-"Orchard Lane",
-"Apple Blossom Rd",
-"Grape Vine Ave",
-"Rosewood Drive",
-"Lilac Lane",
-"Jasmine Street",
-"Tulip Drive",
-"Violet Avenue",
-"Daisy Lane",
-"Ivy Court",
-"Coral Way",
-"Seaside Blvd",
-"Bayshore Drive",
-"Harbor Point Rd",
-"Windmill Lane",
-"Stonebridge Rd",
-"Crystal Lake Dr",
-"Rolling Hills Rd",
-"Northgate Drive",
-"Southgate Ave",
-"Eastwood Road",
-"Westwood Drive",
-"Canyon Road",
-"Cliffside Drive",
-"Riverbend Rd",
-"Brookfield Ave",
-"Greenfield Rd",
-"Pleasant Street",
-"Heritage Lane",
-"Summit Ave",
-"Beacon Street",
-"Edgewood Drive",
-"Hillcrest Ave",
-"Crescent Drive",
-"Vista Lane",
-"Shady Oaks Dr",
-"Whispering Pines Rd",
-"Maplewood Ave",
-"Oakwood Drive",
-"Pinecrest Lane",
-"Copperfield Rd",
-"Stonegate Blvd",
-"Riverwalk Drive",
-"Parkside Ave",
-"Linden Street",
-"Hickory Lane",
-"Poplar Street",
-"Clover Drive",
-"Briarwood Ave",
-"Knollwood Rd",
-"Fountain View Dr",
-"Riverside Ave",
-"Lighthouse Lane",
-"Seaview Road",
-"Harvard Street",
-"Oxford Lane",
-"Cambridge Ave",
-"Princeton Rd",
-"Yale Street",
-"Stanford Ave",
-"Columbia Drive",
-"Duke Lane",
-"Berkeley Blvd",
-"Mission Street",
-"Santa Rosa Ave",
-"Pacific Coast Hwy",
-"Hollywood Blvd",
-"Palm Avenue",
-"Beverly Drive",
-"Mulberry Lane",
-"Cottonwood Rd",
-"Ironwood Drive",
-"Silver Street",
-"Gold Street",
-"Diamond Ave",
-"Emerald Lane",
-"Ruby Road",
-"Sapphire Blvd",
-"Topaz Drive",
-"Pearl Street",
-"Crystal Avenue"
+"Main St","Oak Ave","Lake View Dr","Sunset Blvd",
+"Hill Rd","River St","Park Ave","Broadway"
 ];
-
-// ===== RANDOM HELPER =====
-
-function rand(min,max){
-
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-
-}
-
-function pick(arr){
-
-    return arr[rand(0, arr.length - 1)];
-
-}
-
-// ===== GENERATE PROFILE =====
 
 async function generateProfile(){
 
@@ -918,18 +646,18 @@ async function generateProfile(){
     if(!zip){
 
         alert("Enter ZIP Code");
+
         return;
 
     }
 
     try{
 
-        // API CALL
         let res = await fetch(zipAPI + zip);
 
         if(!res.ok){
 
-            throw new Error("Invalid ZIP");
+            throw new Error();
 
         }
 
@@ -941,138 +669,79 @@ async function generateProfile(){
 
         let state = place["state abbreviation"];
 
-        // RANDOM USER
-        let first = pick(firstNames);
+        let first = firstNames[rand(0,firstNames.length-1)];
 
-        let last = pick(lastNames);
+        let last = lastNames[rand(0,lastNames.length-1)];
 
-        // RANDOM YEAR
-        let year = rand(1988, 2005);
+let domains = [
+  "gmail.com","gmail.com","gmail.com","gmail.com","gmail.com","gmail.com",
+  "yahoo.com","yahoo.com",
+  "hotmail.com",
+  "outlook.com"
+];
 
-        // RANDOM EMAIL
-        let emailProviders = [
-            "gmail.com",
-            "outlook.com",
-            "yahoo.com",
-            "hotmail.com"
-        ];
+let emails = [];
 
-        let email =
-            `${first.toLowerCase()}.${last.toLowerCase()}${rand(10,999)}@${pick(emailProviders)}`;
+for(let i = 0; i < 10; i++){
 
-        // US STYLE PHONE
-        let area = rand(201,989);
+    let f = first;   // ✅ FIXED
+    let l = last;    // ✅ FIXED
+    let domain = domains[i];
 
-        let phone =
-            `(${area}) ${rand(200,999)}-${rand(1000,9999)}`;
+    let year = rand(1991, 1999);
 
-        // ADDRESS
-        let address =
-            `${rand(100,9999)} ${pick(streets)}, ${city}, ${state} ${zip}`;
+    let email =
+      `${f.toLowerCase()}.${l.toLowerCase()}${year}@${domain}`;
 
-        // MAP LINK
-        let mapURL =
-            `https://www.google.com/maps/search/${encodeURIComponent(zip)}`;
+    emails.push(email);
+}
 
-        // OUTPUT
-        document.getElementById("zipResult").innerHTML = `
+        let phone = `(${rand(200,999)}) ${rand(100,999)}-${rand(1000,9999)}`;
+
+        let address = `${rand(100,9999)} ${streets[rand(0,streets.length-1)]}, ${city}, ${state}, ${zip}`;
+
+
+
+document.getElementById("zipResult").innerHTML = `
+<div id="zipCopyArea">
 
 <div><span class="label">ZIP:</span> ${zip}</div>
-
 <div><span class="label">City:</span> ${city}</div>
-
 <div><span class="label">State:</span> ${state}</div>
+<div><span class="label">Name:</span> ${first} ${last}</div>
 
-<div><span class="label">Full Name:</span> ${first} ${last}</div>
-
-<div><span class="label">Birth Year:</span> ${year}</div>
-
-<div><span class="label">Email:</span> ${email}</div>
+<div><span class="label">Emails:</span><br>
+${emails.join(", ")}
+</div>
 
 <div><span class="label">Phone:</span> ${phone}</div>
-
 <div><span class="label">Address:</span> ${address}</div>
 
 <div>
 <span class="label">Map:</span>
-<a href="${mapURL}" target="_blank">
+<a href="https://www.google.com/maps/search/?api=1&query=${zip}" target="_blank">
 Open Location
 </a>
 </div>
 
+</div>
+
+<button class="btn-copy" onclick="copyZipProfile(event)">
+Copy ZIP Profile
+</button>
 `;
+
 
     }
 
-    catch(err){
+    catch{
 
-        console.error(err);
-
-        document.getElementById("zipResult").innerHTML = `
-<div style="color:red;">
-❌ Invalid ZIP Code or API Error
-</div>
-`;
+        document.getElementById("zipResult").innerHTML =
+        "❌ Invalid ZIP or API Error";
 
     }
 
 }
-
-// ================= IP CHECKER =================
-
-function checkIP(){
-
-    let ip = document.getElementById("ipInput").value.trim();
-
-    if(!ip){
-
-        alert("Enter IP Address");
-
-        return;
-
-    }
-
-    let ip8Link = `https://ip8.com/ipdetails/${ip}`;
-
-    let scamLink = `https://scamalytics.com/ip/${ip}`;
-
-    document.getElementById("ipResult").innerHTML = `
-
-<div><span class="label">IP:</span> ${ip}</div>
-
-<div class="ipBtns">
-
-<a href="${ip8Link}" target="_blank">
-IP8 CHECK
-</a>
-
-<a href="${scamLink}" target="_blank">
-SCAMALYTICS
-</a>
-
-</div>
-
-<div style="margin-top:10px;">
-
-<span class="label">IP8 Direct:</span><br>
-
-<a href="${ip8Link}" target="_blank">${ip8Link}</a>
-
-</div>
-
-<div style="margin-top:10px;">
-
-<span class="label">Scamalytics Direct:</span><br>
-
-<a href="${scamLink}" target="_blank">${scamLink}</a>
-
-</div>
-
-`;
-
-}
-
-
 
 // ================= IP CHECKER =================
 
@@ -1155,6 +824,26 @@ function copyRow(el){
             el.style.backgroundColor = "";
         }, 300);
     });
+}
+
+function copyZipProfile(){
+
+    const text = document.getElementById("zipCopyArea").innerText;
+
+    navigator.clipboard.writeText(text).then(() => {
+
+        const btn = event.target;
+
+        btn.innerText = "✓ Copied!";
+        btn.style.background = "#17a2b8";
+
+        setTimeout(() => {
+            btn.innerText = "Copy ZIP Profile";
+            btn.style.background = "var(--green)";
+        }, 1500);
+
+    });
+
 }
 
 </script>
