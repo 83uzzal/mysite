@@ -696,10 +696,220 @@ const lastNames = [
 ];
 
 
+
 const streets = [
-"Main St","Oak Ave","Lake View Dr","Sunset Blvd",
-"Hill Rd","River St","Park Ave","Broadway"
+"Main St",
+"Oak Ave",
+"Pine Rd",
+"Maple Drive",
+"Lake View Dr",
+"Sunset Blvd",
+"Hill Rd",
+"River St",
+"Park Ave",
+"Broadway",
+"Cedar Lane",
+"Washington St",
+"Lincoln Ave",
+"Cherry St",
+"Madison Ave",
+"Forest Drive",
+"Elm Street",
+"Walnut Street",
+"Highland Ave",
+"Dogwood Lane",
+"Spruce Street",
+"Center Street",
+"North Avenue",
+"South Street",
+"East Avenue",
+"West Street",
+"Jackson Blvd",
+"Jefferson Ave",
+"Adams Street",
+"Franklin Street",
+"Monroe Ave",
+"Roosevelt Blvd",
+"Wilson Street",
+"Grant Avenue",
+"Harrison Street",
+"Kennedy Blvd",
+"Laurel Drive",
+"Willow Lane",
+"Aspen Court",
+"Birch Road",
+"Brookside Drive",
+"Creek Road",
+"Valley View Dr",
+"Meadow Lane",
+"Country Club Rd",
+"Fairview Ave",
+"Ridge Road",
+"Sycamore Street",
+"Magnolia Ave",
+"College Street",
+"Church Street",
+"Market Street",
+"Mill Road",
+"Railroad Ave",
+"School Street",
+"Water Street",
+"Liberty Street",
+"Prospect Ave",
+"Center Ave",
+"Parkway Drive",
+"Woodland Drive",
+"Lakeshore Drive",
+"Bay Street",
+"Ocean Avenue",
+"Palm Drive",
+"Cypress Lane",
+"Evergreen Terrace",
+"Greenwood Ave",
+"Redwood Drive",
+"Silver Lake Rd",
+"Golden Gate Ave",
+"Canal Street",
+"Harbor Drive",
+"Bridge Street",
+"Garden Lane",
+"Victoria Ave",
+"King Street",
+"Queen Street",
+"Prince Avenue",
+"Princess Lane",
+"Station Road",
+"Sunrise Blvd",
+"Sunset Lane",
+"Moonlight Drive",
+"Star Road",
+"Skyline Blvd",
+"Mountain View Rd",
+"Prairie Lane",
+"Desert Road",
+"Front Street",
+"Back Bay Rd",
+"Old Mill Rd",
+"New Town Rd",
+"Colonial Drive",
+"Liberty Lane",
+"Independence Ave",
+"Freedom Blvd",
+"Patriot Drive",
+"Constitution Ave",
+"Memorial Drive",
+"Veterans Blvd",
+"Peachtree Street",
+"Magnolia Drive",
+"Bluebird Lane",
+"Robin Hood Rd",
+"Fox Run",
+"Deer Trail",
+"Bear Creek Rd",
+"Hunter Lane",
+"Timber Ridge",
+"Autumn Drive",
+"Summer Street",
+"Spring Valley Rd",
+"Wintergreen Ave",
+"Orchard Lane",
+"Apple Blossom Rd",
+"Grape Vine Ave",
+"Rosewood Drive",
+"Lilac Lane",
+"Jasmine Street",
+"Tulip Drive",
+"Violet Avenue",
+"Daisy Lane",
+"Ivy Court",
+"Coral Way",
+"Seaside Blvd",
+"Bayshore Drive",
+"Harbor Point Rd",
+"Windmill Lane",
+"Stonebridge Rd",
+"Crystal Lake Dr",
+"Rolling Hills Rd",
+"Northgate Drive",
+"Southgate Ave",
+"Eastwood Road",
+"Westwood Drive",
+"Canyon Road",
+"Cliffside Drive",
+"Riverbend Rd",
+"Brookfield Ave",
+"Greenfield Rd",
+"Pleasant Street",
+"Heritage Lane",
+"Summit Ave",
+"Beacon Street",
+"Edgewood Drive",
+"Hillcrest Ave",
+"Crescent Drive",
+"Vista Lane",
+"Shady Oaks Dr",
+"Whispering Pines Rd",
+"Maplewood Ave",
+"Oakwood Drive",
+"Pinecrest Lane",
+"Copperfield Rd",
+"Stonegate Blvd",
+"Riverwalk Drive",
+"Parkside Ave",
+"Linden Street",
+"Hickory Lane",
+"Poplar Street",
+"Clover Drive",
+"Briarwood Ave",
+"Knollwood Rd",
+"Fountain View Dr",
+"Riverside Ave",
+"Lighthouse Lane",
+"Seaview Road",
+"Harvard Street",
+"Oxford Lane",
+"Cambridge Ave",
+"Princeton Rd",
+"Yale Street",
+"Stanford Ave",
+"Columbia Drive",
+"Duke Lane",
+"Berkeley Blvd",
+"Mission Street",
+"Santa Rosa Ave",
+"Pacific Coast Hwy",
+"Hollywood Blvd",
+"Palm Avenue",
+"Beverly Drive",
+"Mulberry Lane",
+"Cottonwood Rd",
+"Ironwood Drive",
+"Silver Street",
+"Gold Street",
+"Diamond Ave",
+"Emerald Lane",
+"Ruby Road",
+"Sapphire Blvd",
+"Topaz Drive",
+"Pearl Street",
+"Crystal Avenue"
 ];
+
+// ===== RANDOM HELPER =====
+
+function rand(min,max){
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+
+}
+
+function pick(arr){
+
+    return arr[rand(0, arr.length - 1)];
+
+}
+
+// ===== GENERATE PROFILE =====
 
 async function generateProfile(){
 
@@ -708,18 +918,18 @@ async function generateProfile(){
     if(!zip){
 
         alert("Enter ZIP Code");
-
         return;
 
     }
 
     try{
 
+        // API CALL
         let res = await fetch(zipAPI + zip);
 
         if(!res.ok){
 
-            throw new Error();
+            throw new Error("Invalid ZIP");
 
         }
 
@@ -731,16 +941,40 @@ async function generateProfile(){
 
         let state = place["state abbreviation"];
 
-        let first = firstNames[rand(0,firstNames.length-1)];
+        // RANDOM USER
+        let first = pick(firstNames);
 
-        let last = lastNames[rand(0,lastNames.length-1)];
+        let last = pick(lastNames);
 
-        let email = `${first.toLowerCase()}${last.toLowerCase()}${rand(1991,2004)}@gmail.com`;
+        // RANDOM YEAR
+        let year = rand(1988, 2005);
 
-        let phone = `(${rand(200,999)}) ${rand(100,999)}-${rand(1000,9999)}`;
+        // RANDOM EMAIL
+        let emailProviders = [
+            "gmail.com",
+            "outlook.com",
+            "yahoo.com",
+            "hotmail.com"
+        ];
 
-        let address = `${rand(100,9999)} ${streets[rand(0,streets.length-1)]}, ${city}, ${state}, ${zip}`;
+        let email =
+            `${first.toLowerCase()}.${last.toLowerCase()}${rand(10,999)}@${pick(emailProviders)}`;
 
+        // US STYLE PHONE
+        let area = rand(201,989);
+
+        let phone =
+            `(${area}) ${rand(200,999)}-${rand(1000,9999)}`;
+
+        // ADDRESS
+        let address =
+            `${rand(100,9999)} ${pick(streets)}, ${city}, ${state} ${zip}`;
+
+        // MAP LINK
+        let mapURL =
+            `https://www.google.com/maps/search/${encodeURIComponent(zip)}`;
+
+        // OUTPUT
         document.getElementById("zipResult").innerHTML = `
 
 <div><span class="label">ZIP:</span> ${zip}</div>
@@ -749,7 +983,9 @@ async function generateProfile(){
 
 <div><span class="label">State:</span> ${state}</div>
 
-<div><span class="label">Name:</span> ${first} ${last}</div>
+<div><span class="label">Full Name:</span> ${first} ${last}</div>
+
+<div><span class="label">Birth Year:</span> ${year}</div>
 
 <div><span class="label">Email:</span> ${email}</div>
 
@@ -758,29 +994,85 @@ async function generateProfile(){
 <div><span class="label">Address:</span> ${address}</div>
 
 <div>
-
 <span class="label">Map:</span>
-
-<a href="https://www.google.com/maps/search/${zip}" target="_blank">
-
+<a href="${mapURL}" target="_blank">
 Open Location
-
 </a>
-
 </div>
 
 `;
 
     }
 
-    catch{
+    catch(err){
 
-        document.getElementById("zipResult").innerHTML =
-        "❌ Invalid ZIP or API Error";
+        console.error(err);
+
+        document.getElementById("zipResult").innerHTML = `
+<div style="color:red;">
+❌ Invalid ZIP Code or API Error
+</div>
+`;
 
     }
 
 }
+
+// ================= IP CHECKER =================
+
+function checkIP(){
+
+    let ip = document.getElementById("ipInput").value.trim();
+
+    if(!ip){
+
+        alert("Enter IP Address");
+
+        return;
+
+    }
+
+    let ip8Link = `https://ip8.com/ipdetails/${ip}`;
+
+    let scamLink = `https://scamalytics.com/ip/${ip}`;
+
+    document.getElementById("ipResult").innerHTML = `
+
+<div><span class="label">IP:</span> ${ip}</div>
+
+<div class="ipBtns">
+
+<a href="${ip8Link}" target="_blank">
+IP8 CHECK
+</a>
+
+<a href="${scamLink}" target="_blank">
+SCAMALYTICS
+</a>
+
+</div>
+
+<div style="margin-top:10px;">
+
+<span class="label">IP8 Direct:</span><br>
+
+<a href="${ip8Link}" target="_blank">${ip8Link}</a>
+
+</div>
+
+<div style="margin-top:10px;">
+
+<span class="label">Scamalytics Direct:</span><br>
+
+<a href="${scamLink}" target="_blank">${scamLink}</a>
+
+</div>
+
+`;
+
+}
+
+
 
 // ================= IP CHECKER =================
 
