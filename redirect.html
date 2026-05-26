@@ -14,7 +14,7 @@
         p { color: #555; font-size: 0.9rem; margin: 0; font-weight: 500; }
     </style>
     <script>
-        // সম্পূর্ণ ৪৭টি অফার লিংকের ডাটাবেজ (কোনো মিসিং নেই)
+        // সম্পূর্ণ ৪৭টি অফার লিংকের ডাটাবেজ
         const offers = {
             // --- AFFMINE 1 ---
             "aff_amz1000": "https://www.af9m8trk.com/BL6116FS/TJ2123FW/",
@@ -79,14 +79,17 @@
         };
 
         function routeOffer() {
+            // URL থেকে প্যারামিটার নেওয়ার সময় কেস-ইনসেন্সিটিভ সেফটি নিশ্চিত করা
             const params = new URLSearchParams(window.location.search);
-            const offerId = params.get('id');
+            
+            // 'id' অথবা 'Id' যেকোনো একটি থাকলেই ডাটা রিড করবে
+            const offerId = params.get('id') || params.get('Id');
             
             if (offerId && offers[offerId]) {
                 // নির্দিষ্ট অফার লিংকে রিডাইরেক্ট করবে
                 window.location.href = offers[offerId];
             } else {
-                // আইডি না মিললে আপনার মেইন ডোমেনে ফেরত নিয়ে যাবে
+                // আইডি না মিললে বা ফাঁকা থাকলে মেইন ল্যান্ডিং পেজে ব্যাক করবে
                 window.location.href = "https://www.usaoffers.online/";
             }
         }
