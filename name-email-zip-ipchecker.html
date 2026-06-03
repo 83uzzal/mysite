@@ -99,7 +99,7 @@ button {
     font-weight: bold;
 }
 
-/* ডিসপ্লে বক্স স্ক্রলিং এরিয়া */
+/* ডিসপ্লে বক্স স্ক্রলিং এরিয়া */
 .display-box {
     border: 1px solid #eaeaea;
     padding: 8px;
@@ -113,6 +113,30 @@ button {
 
 .display-box div {
     padding: 2px 0;
+}
+
+/* ইন্ডিভিজুয়াল নাম ও বাটনের জন্য স্টাইল */
+.name-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f3f4f6;
+    padding: 4px 0 !important;
+}
+
+.btn-inline-copy {
+    padding: 2px 6px;
+    font-size: 10px;
+    margin: 0;
+    background: #3b82f6;
+    color: white;
+}
+.btn-inline-copy:hover {
+    background: #2563eb;
+}
+.btn-inline-copy.used {
+    background: #9ca3af;
+    cursor: not-allowed;
 }
 
 .email-item {
@@ -174,7 +198,7 @@ a:hover {
         
         <div class="btn-group">
             <button class="btn-success" onclick="generateNames()">Generate</button>
-            <button class="btn-primary" onclick="copyNames()">Copy</button>
+            <button class="btn-primary" onclick="copyNames()">Copy All</button>
             <button class="btn-info" onclick="downloadNames()">JSON</button>
         </div>
 
@@ -262,9 +286,25 @@ function generateNames(){
     }
     generatedNamesList = Array.from(set);
     document.getElementById("nameCount").innerHTML = "Total: " + generatedNamesList.length;
+    
     let html = "";
-    generatedNamesList.forEach(n => { html += "<div>" + n + "</div>"; });
+    generatedNamesList.forEach((n, index) => { 
+        html += `<div class="name-item">
+            <span>${n}</span>
+            <button class="btn-inline-copy" onclick="copySingleName(this, '${n.replace(/'/g, "\\'")}')">Copy</button>
+        </div>`; 
+    });
     document.getElementById("nameList").innerHTML = html;
+}
+
+function copySingleName(buttonElement, nameText) {
+    navigator.clipboard.writeText(nameText).then(() => {
+        buttonElement.innerText = "✓ Used";
+        buttonElement.classList.add("used");
+        buttonElement.disabled = true; // একবার কপি হলে বাটনটি ডিজেবল হয়ে যাবে
+    }).catch(err => {
+        alert("Failed to copy name.");
+    });
 }
 
 function copyNames(){
