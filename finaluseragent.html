@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced UA & Environment Generator</title>
+
+<style>
+:root{
+    --bg:#0d1117;
+    --card:#161b22;
+    --blue:#3fb1e3;
+    --text:#c9d1d9;
+    --border:#30363d;
+    --green:#238636;
+    --orange:#f59e0b;
+    --purple:#8b5cf6;
+}
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
+/* BODY */
+body{
+    background-color:var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI',sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:12px;
+    min-height:100vh;
+}
+
+/* WRAPPER */
+.wrapper{
+    width:100%;
+    max-width:1000px;
+    display:grid;
+    grid-template-columns:1fr 1fr; /* দুই প্যানেল লেআউট */
+    gap:12px;
+}
+
+/* BOX */
+.container{
+    background-color:var(--card);
+    width:100%;
+    border-radius:8px;
+    border:1px solid var(--border);
+    padding:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+/* HEADER */
+.header{
+    text-align:center;
+    color:var(--blue);
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:12px;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--border);
+    padding-bottom:6px;
+    letter-spacing:0.5px;
+}
+
+/* LABEL */
+label{
+    display:block;
+    margin-bottom:4px;
+    font-size:11px;
+    color:var(--blue);
+    font-weight:600;
+}
+
+/* INPUT */
+select,
+button{
+    width:100%;
+    padding:6px 8px;
+    margin-bottom:8px;
+    border-radius:6px;
+    outline:none;
+    font-size:11px;
+    background-color:var(--bg);
+    color:#fff;
+    border:1px solid var(--border);
+}
+
+select{
+    cursor:pointer;
+}
+
+/* BUTTON */
+button{
+    cursor:pointer;
+    transition:0.2s;
+}
+
+/* GENERATE BUTTON */
+.btn-gen{
+    background-color:var(--blue);
+    color:#000;
+    font-weight:700;
+    border:none;
+}
+
+.btn-gen:hover{
+    opacity:0.85;
+}
+
+/* COPY BUTTON */
+.btn-copy{
+    background-color:var(--green);
+    border:none;
+    margin-top:10px;
+    font-weight:700;
+    color:#fff;
+}
+
+.btn-copy:hover{
+    opacity:0.9;
+}
+
+/* DETAILS */
+.details-box{
+    background-color:var(--bg);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px;
+    display:none;
+    margin-top:6px;
+}
+
+/* ROW */
+.row{
+    display:flex;
+    justify-content:flex-start;
+    align-items:flex-start;
+    gap:5px;
+    margin-bottom:2px;
+    font-size:10px;
+    border-bottom:1px solid #1f242c;
+    padding-bottom:2px;
+    line-height:1.3;
+    cursor:pointer;
+}
+.row:hover {
+    background-color: #1c2128;
+}
+
+/* KEY */
+.key{
+    color:var(--blue);
+    font-weight:700;
+    white-space:nowrap;
+    min-width:115px;
+}
+
+/* VALUE */
+.val{
+    color:#fff;
+    word-break:break-word;
+}
+
+/* UA OUTPUT */
+.ua-output{
+    background-color:#090c10;
+    border:1px dotted var(--blue);
+    padding:8px;
+    border-radius:6px;
+    margin-top:10px;
+    word-break:break-all;
+    font-family:monospace;
+    font-size:10px;
+    line-height:1.35;
+    overflow-wrap:anywhere;
+}
+
+.ua-mobile-color {
+    color: var(--blue);
+}
+
+.ua-windows-color {
+    color: var(--purple);
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:800px){
+    .wrapper{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:480px){
+    body{
+        padding:6px;
+    }
+
+    .container{
+        padding:10px;
+    }
+
+    .header{
+        font-size:12px;
+    }
+
+    select,
+    button{
+        font-size:11px;
+        padding:7px 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="container">
+        <div class="header">📱 Mobile & Apple UA Generator</div>
+        
+        <label>Select Device Model:</label>
+        <select id="deviceSelect"></select>
+
+        <label>Select Browser:</label>
+        <select id="browserSelect">
+            <option value="Chrome">Chrome</option>
+            <option value="Firefox">Firefox</option>
+            <option value="Edge">Edge</option>
+            <option value="Safari">Safari</option>
+        </select>
+
+        <button class="btn-gen" onclick="generateUA()">Generate Mobile Environment</button>
+
+        <div id="detailsArea" class="details-box">
+            <div id="infoRows"></div>
+            <div style="margin-top:15px; font-weight:bold; color:var(--blue);">Generated User Agent:</div>
+            <div id="uaOutput" class="ua-output ua-mobile-color"></div>
+            <button class="btn-copy" id="copyBtn" onclick="copyUA()">Copy User Agent</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">💻 Windows Coherent UA & Fingerprint Generator</div>
+        
+        <label>Select Windows System Profile:</label>
+        <select id="windowsSelect"></select>
+
+        <label>Select Web Browser:</label>
+        <select id="winBrowserSelect">
+            <option value="Chrome">Chrome</option>
+            <option value="Firefox">Firefox</option>
+            <option value="Edge">Edge</option>
+        </select>
+
+        <button class="btn-gen" onclick="generateWindowsUA()">Generate Coherent Environment</button>
+
+        <div id="winDetailsArea" class="details-box">
+            <div id="winInfoRows"></div>
+            <div style="margin-top:15px; font-weight:bold; color:var(--blue);">Generated User Agent:</div>
+            <div id="winUaOutput" class="ua-output ua-windows-color"></div>
+            <button class="btn-copy" id="winCopyBtn" onclick="copyWindowsUA()">Copy User Agent</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// ================= MOBILE DEVICES DATABASE =================
+const devices = [
+{ "brand": "Apple", "model": "iPhone 16 Pro Max", "chipset": "Apple A18 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.9 inch OLED", "resolution": "1320 x 2868", "ppi": 460, "camera": "48MP + 48MP + 12MP", "battery": "4685 mAh", "os": "iOS 18", "gpu": "Apple GPU", "viewport": "440 x 956", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 16 Pro", "chipset": "Apple A18 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.3 inch OLED", "resolution": "1206 x 2622", "ppi": 460, "camera": "48MP + 48MP + 12MP", "battery": "3582 mAh", "os": "iOS 18", "gpu": "Apple GPU", "viewport": "402 x 874", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 16 Plus", "chipset": "Apple A18", "cpu": "6-core", "ram": "8 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP", "battery": "4674 mAh", "os": "iOS 18", "gpu": "Apple GPU", "viewport": "430 x 932", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 15 Pro Max", "chipset": "Apple A17 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP + 12MP", "battery": "4441 mAh", "os": "iOS 17 / iOS 18", "gpu": "Apple GPU", "viewport": "430 x 932", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 15 Pro", "chipset": "Apple A17 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.1 inch OLED", "resolution": "1179 x 2556", "ppi": 461, "camera": "48MP + 12MP + 12MP", "battery": "3274 mAh", "os": "iOS 17 / iOS 18", "gpu": "Apple GPU", "viewport": "393 x 852", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 15 Plus", "chipset": "Apple A16 Bionic", "cpu": "6-core", "ram": "6 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP", "battery": "4383 mAh", "os": "iOS 17 / iOS 18", "gpu": "Apple GPU", "viewport": "430 x 932", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Samsung", "model": "Galaxy S26 Ultra", "chipset": "Snapdragon 8 Elite Gen 5", "cpu": "8-core", "ram": "12/16 GB", "display": "6.9 inch OLED", "resolution": "1440 x 3120", "ppi": 498, "camera": "200MP + 50MP + 10MP + 50MP", "battery": "5000 mAh", "os": "Android 16", "gpu": "Adreno 840", "viewport": "412 x 923", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 840" },
+{ "brand": "Samsung", "model": "Galaxy S25 Ultra", "chipset": "Snapdragon 8 Elite", "cpu": "8-core", "ram": "12/16 GB", "display": "6.8 inch OLED", "resolution": "1440 x 3120", "ppi": 505, "camera": "200MP + 50MP + 10MP + 50MP", "battery": "5000 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 923", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
+{ "brand": "Samsung", "model": "Galaxy S25+", "chipset": "Exynos 2500 / Snapdragon 8 Elite", "cpu": "10-core / 8-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1440 x 3120", "ppi": 513, "camera": "50MP + 10MP + 12MP", "battery": "4900 mAh", "os": "Android 15", "gpu": "Xclipse 950 / Adreno 830", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Samsung Electronics)", "webgl_renderer": "Xclipse 950" },
+{ "brand": "Samsung", "model": "Galaxy S24+", "chipset": "Exynos 2400 / Snapdragon 8 Gen 3", "cpu": "8/10-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1440 x 3120", "ppi": 513, "camera": "50MP + 10MP + 12MP", "battery": "4900 mAh", "os": "Android 14 / 15", "gpu": "Adreno 750", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 750" },
+{ "brand": "Samsung", "model": "Galaxy A57 5G", "chipset": "Exynos 1680", "cpu": "8-core", "ram": "8/12 GB", "display": "6.7 inch OLED", "resolution": "1080 x 2340", "ppi": 390, "camera": "50MP + 12MP + 5MP", "battery": "5000 mAh", "os": "Android 16", "gpu": "Xclipse 550", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Samsung Electronics)", "webgl_renderer": "Xclipse 550" },
+{ "brand": "Samsung", "model": "Galaxy Z Fold 7", "chipset": "Snapdragon 8 Elite", "cpu": "8-core", "ram": "12/16 GB", "display": "7.6 inch OLED", "resolution": "1856 x 2160", "ppi": 375, "camera": "50MP + 10MP + 12MP", "battery": "4400 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 910", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
+{ "brand": "Google", "model": "Pixel 10 Pro", "chipset": "Tensor G5", "cpu": "8-core", "ram": "16 GB", "display": "6.3 inch OLED", "resolution": "1280 x 2856", "ppi": 495, "camera": "50MP + 48MP + 48MP", "battery": "4700 mAh", "os": "Android 16", "gpu": "PowerVR / IMG Graphics", "viewport": "412 x 918", "touch": 10, "webgl_vendor": "Google Inc. (Imagination Technologies)", "webgl_renderer": "PowerVR Rogue B-Series" },
+{ "brand": "Google", "model": "Pixel 9 Pro XL", "chipset": "Tensor G4", "cpu": "8-core", "ram": "16 GB", "display": "6.8 inch OLED", "resolution": "1344 x 2992", "ppi": 486, "camera": "50MP + 48MP + 48MP", "battery": "5060 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 917", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC7" },
+{ "brand": "Google", "model": "Pixel 9", "chipset": "Tensor G4", "cpu": "8-core", "ram": "12 GB", "display": "6.3 inch OLED", "resolution": "1080 x 2424", "ppi": 422, "camera": "50MP + 48MP", "battery": "4700 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 924", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC7" },
+{ "brand": "Google", "model": "Pixel 8 Pro", "chipset": "Tensor G3", "cpu": "9-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1344 x 2992", "ppi": 489, "camera": "50MP + 48MP + 48MP", "battery": "5050 mAh", "os": "Android 14", "gpu": "Immortalis-G715s MC10", "viewport": "412 x 915", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715" },
+{ "brand": "OnePlus", "model": "OnePlus 13", "chipset": "Snapdragon 8 Elite", "cpu": "8-core", "ram": "12/16/24 GB", "display": "6.82 inch AMOLED", "resolution": "1440 x 3168", "ppi": 510, "camera": "50MP + 50MP + 50MP", "battery": "6000 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 906", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
+{ "brand": "OnePlus", "model": "OnePlus 12", "chipset": "Snapdragon 8 Gen 3", "cpu": "8-core", "ram": "12/16 GB", "display": "6.82 inch AMOLED", "resolution": "1440 x 3168", "ppi": 510, "camera": "50MP + 64MP + 48MP", "battery": "5400 mAh", "os": "Android 14", "gpu": "Adreno 750", "viewport": "412 x 926", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 750" },
+{ "brand": "OnePlus", "model": "OnePlus Nord N30 5G", "chipset": "Snapdragon 695 5G", "cpu": "8-core", "ram": "8 GB", "display": "6.72 inch IPS LCD", "resolution": "1080 x 2400", "ppi": 391, "camera": "108MP + 2MP + 2MP", "battery": "5000 mAh", "os": "Android 13 / 14", "gpu": "Adreno 619", "viewport": "393 x 873", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 619" },
+{ "brand": "OnePlus", "model": "OnePlus Open", "chipset": "Snapdragon 8 Gen 2", "cpu": "8-core", "ram": "16 GB", "display": "7.82 inch AMOLED", "resolution": "2268 x 2440", "ppi": 426, "camera": "48MP + 64MP + 48MP", "battery": "4805 mAh", "os": "Android 13 / 14", "gpu": "Adreno 740", "viewport": "412 x 920", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 740" }
+];
+
+const browserVers = {
+"Chrome": ["147.0.7727.137","146.0.7680.177","145.0.7632.76"],
+"Firefox": ["150.0.3","149.0.2","148.0.2"],
+"Edge": ["148.0.3967.55","147.0.3912.87","146.0.3856.62"],
+"Safari": ["18.4","18.1","17.5"]
+};
+
+// ================= WINDOWS PROFILES DATABASE =================
+const windowsDevices = [
+  { "os": "Windows 11", "brand": "HP", "model": "Victus 15-fa1093dx", "cpu": "Intel Core i5-13420H", "ram": "8 GB DDR4", "gpu": "NVIDIA GeForce RTX 3050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "Inspiron 15 3530", "cpu": "Intel Core i5-1335U", "ram": "16 GB DDR4", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "TUF Gaming F15 FX507VV", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Legion Pro 5 16IRX8", "cpu": "Intel Core i9-13900HX", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Predator Helios 16 PH16-71", "cpu": "Intel Core i7-13700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Omen 16-wf0083dx", "cpu": "Intel Core i7-13700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "G15 5530", "cpu": "Intel Core i5-13450HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 3050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Cyborg 15 A13VF", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Strix G16 G614JVR", "cpu": "Intel Core i9-14900HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Pavilion Plus 14-ew1001xx", "cpu": "Intel Core i5-1335U", "ram": "16 GB LPDDR5x", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "2880 x 1800", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "Alienware m16 R2", "cpu": "Intel Core i7-14700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "LOQ 15IRX9", "cpu": "Intel Core i7-13650HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Nitro V 15 ANV15-51", "cpu": "Intel Core i5-13420H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Razer", "model": "Blade 16 (2024)", "cpu": "Intel Core i9-14900HX", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4090", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4090 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3840 x 2400", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Omen 45L GT22-2000", "cpu": "Intel Core i9-14900K", "ram": "64 GB DDR5", "gpu": "NVIDIA GeForce RTX 4090", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4090 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3840 x 2116", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "XPS Desktop 8960", "cpu": "Intel Core i7-13700", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060 Ti", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Ti Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Legion Tower 5i Gen 8", "cpu": "Intel Core i5-13400F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 3060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Strix G16CHR", "cpu": "Intel Core i7-14700F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Aegis RS 14NUE7", "cpu": "Intel Core i7-14700KF", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070 Super", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Super Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Envy x360 15-fe0053dx", "cpu": "Intel Core i7-1355U", "ram": "16 GB DDR5", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "2-in-1 Laptop" },
+  { "os": "Windows 10 Pro", "brand": "Dell", "model": "Latitude 5440 Business", "cpu": "Intel Core i5-1345U", "ram": "16 GB DDR4", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Business Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "Zenbook Pro 14 OLED", "cpu": "Intel Core i9-13900H", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2880 x 1800", "type": "OLED Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Yoga Pro 9i 16IRP8", "cpu": "Intel Core i9-13905H", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3200 x 2000", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Aspire 5 A515-58GM", "cpu": "Intel Core i5-13420H", "ram": "16 GB DDR4", "gpu": "NVIDIA GeForce RTX 2050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Laptop" },
+  { "os": "Windows 10 Pro", "brand": "HP", "model": "ProBook 450 G10", "cpu": "Intel Core i7-1355U", "ram": "16 GB DDR4", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Business Laptop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Katana 15 B13VGK", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Zephyrus G16 (2024)", "cpu": "Intel Core i9-14900HX", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4080", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4080 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Legion Slim 5 16IRH8", "cpu": "Intel Core i7-13700H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 10 Pro", "brand": "HP", "model": "EliteBook 840 G10", "cpu": "Intel Core i7-1360P", "ram": "16 GB DDR5", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1200", "type": "Business Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "Inspiron 16 Plus 7630", "cpu": "Intel Core i7-13700H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Predator Helios Neo 16", "cpu": "Intel Core i7-14700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Gigabyte", "model": "Aorus 16X (2024)", "cpu": "Intel Core i7-14650HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Samsung", "model": "Galaxy Book3 Ultra", "cpu": "Intel Core i9-13900H", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2880 x 1800", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Victus 15L TG02-1000", "cpu": "Intel Core i5-13400F", "ram": "16 GB DDR4", "gpu": "NVIDIA GeForce RTX 3050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 10 Pro", "brand": "Dell", "model": "OptiPlex Pro 7010 MT", "cpu": "Intel Core i5-13500", "ram": "16 GB DDR5", "gpu": "Intel UHD Graphics 770", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel UHD Graphics 770 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "IdeaCentre Gaming 5i", "cpu": "Intel Core i7-13700F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 3060 Ti", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Strix G13CH", "cpu": "Intel Core i5-14400F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Infinite S3 14NUC7", "cpu": "Intel Core i7-14700F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060 Ti", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Ti Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 10 Pro", "brand": "HP", "model": "ProDesk 400 G9 MT", "cpu": "Intel Core i5-13500", "ram": "16 GB DDR4", "gpu": "Intel UHD Graphics 770", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel UHD Graphics 770 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 10 Pro", "brand": "Dell", "model": "Precision 3660 Tower", "cpu": "Intel Core i9-13900", "ram": "64 GB DDR5", "gpu": "NVIDIA RTX A2000", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA RTX A2000 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3840 x 2160", "type": "Workstation Desktop" },
+  { "os": "Windows 11", "brand": "GIGABYTE", "model": "G5 KF5 (2024)", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" }
+];
+
+const winBrowserVersions = {
+    "Chrome": [
+        "147.0.7727.137", "147.0.7727.138",
+        "146.0.7680.177", "146.0.7680.178", "146.0.7680.216",
+        "145.0.7632.26", "145.0.7632.27", "145.0.7632.45", "145.0.7632.46", "145.0.7632.75", "145.0.7632.76", "145.0.7632.116", "145.0.7632.117"
+    ],
+    "Firefox": [
+        "150.0.1", "150.0.2", "150.0.3",
+        "149.0.1", "149.0.2",
+        "148.0.1", "148.0.2"
+    ],
+    "Edge": [
+        "148.0.3967.54", "148.0.3967.70",
+        "147.0.3912.60", "147.0.3912.72", "147.0.3912.86", "147.0.3912.98",
+        "146.0.3856.54", "146.0.3856.59", "146.0.3856.62"
+    ]
+};
+
+// ================= INITIALIZE DROPDOWNS =================
+const dSelect = document.getElementById('deviceSelect');
+devices.forEach((d, i) => {
+    dSelect.innerHTML += `<option value="${i}">${d.brand} ${d.model}</option>`;
+});
+
+const winSelect = document.getElementById('windowsSelect');
+windowsDevices.forEach((d, i) => {
+    winSelect.innerHTML += `<option value="${i}">[${d.os}] ${d.brand} ${d.model}</option>`;
+});
+
+// ================= MOBILE LOGIC FUNCTIONS =================
+function generateUA(){
+    const d = devices[dSelect.value];
+    const b = document.getElementById('browserSelect').value;
+    const ver = browserVers[b][Math.floor(Math.random()*browserVers[b].length)];
+    let ua = "";
+
+    if(d.brand === "Apple"){
+        let rawOS = d.os.match(/\d+/g);
+        let iosMainVersion = rawOS ? rawOS[rawOS.length - 1] : "18";
+        let iosFormatted = `${iosMainVersion}_4`;
+        let webkitVer = "605.1.15";
+
+        if(b === "Safari"){
+            ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) Version/${iosMainVersion}.4 Mobile/15E148 Safari/${webkitVer}`;
+        }
+        else if(b === "Chrome"){
+            ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) CriOS/${ver} Mobile/15E148 Safari/${webkitVer}`;
+        }
+        else if(b === "Edge"){
+            ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) EdgiOS/${ver} Mobile/15E148 Safari/${webkitVer}`;
+        }
+        else{
+            ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) FxiOS/${ver} Mobile/15E148 Safari/${webkitVer}`;
+        }
+    }
+    else{
+        let rawAnd = d.os.match(/\d+/);
+        let andVer = rawAnd ? rawAnd[0] : "15";
+
+        if(b === "Firefox"){
+            ua = `Mozilla/5.0 (Android ${andVer}; Mobile; rv:${ver}) Gecko/${ver} Firefox/${ver}`;
+        }
+        else if(b === "Edge"){
+            ua = `Mozilla/5.0 (Linux; Android ${andVer}; ${d.model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver.split('.')[0]}.0.0.0 Mobile Safari/537.36 EdgA/${ver}`;
+        }
+        else if(b === "Safari"){
+            ua = `Mozilla/5.0 (Linux; Android ${andVer}; ${d.model}) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36`;
+        }
+        else {
+            ua = `Mozilla/5.0 (Linux; Android ${andVer}; ${d.model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver} Mobile Safari/537.36`;
+        }
+    }
+
+    let finalVendor = d.webgl_vendor;
+    let finalRenderer = d.webgl_renderer;
+
+    if (d.brand !== "Apple") {
+        if (b === "Firefox") {
+            finalVendor = d.webgl_vendor.replace("Google Inc. ", "");
+        } else if (b === "Chrome" || b === "Edge") {
+            let match = d.webgl_vendor.match(/\(([^)]+)\)/);
+            if (match && match[1]) {
+                finalVendor = "Google Inc. (" + match[1] + ")";
+            } else {
+                finalVendor = d.webgl_vendor; 
+            }
+        }
+    }
+
+    const infoFields = [
+        ["Model:", d.brand + " " + d.model],
+        ["CPU: 🚀", d.cpu],
+        ["RAM: 🚀", d.ram],
+        ["Resolution: 🚀", d.resolution],
+        ["OS: 🚀", d.os],
+        ["Browser: 🚀", b.toLowerCase() + " " + ver],
+        ["WebGL Vendor: 🚀", finalVendor],
+        ["Renderer: 🚀", finalRenderer],
+    ];
+
+    let html = "";
+    infoFields.forEach(f => {
+        html += `<div class="row" onclick="copyRow(this)" title="Click to copy value"><span class="key">${f[0]}</span><span class="val">${f[1]}</span></div>`;
+    });
+
+    document.getElementById('infoRows').innerHTML = html;
+    document.getElementById('uaOutput').innerText = ua;
+    document.getElementById('detailsArea').style.display = 'block';
+}
+
+function copyUA(){
+    const uaText = document.getElementById('uaOutput').innerText;
+    navigator.clipboard.writeText(uaText).then(() => {
+        const copyBtn = document.getElementById('copyBtn');
+        copyBtn.innerText = "✓ Copied!";
+        copyBtn.style.backgroundColor = "#17a2b8";
+        setTimeout(() => {
+            copyBtn.innerText = "Copy User Agent";
+            copyBtn.style.backgroundColor = "var(--green)";
+        }, 1500);
+    });
+}
+
+// ================= WINDOWS LOGIC FUNCTIONS =================
+function getWinRandomVersion(browser) {
+    const list = winBrowserVersions[browser];
+    return list[Math.floor(Math.random() * list.length)];
+}
+
+function generateWindowsUA(){
+    const d = windowsDevices[winSelect.value];
+    const b = document.getElementById('winBrowserSelect').value;
+    const ver = getWinRandomVersion(b);
+    const majorVer = ver.split('.')[0];
+    
+    let ua = "";
+    const ntVersion = "10.0"; 
+    const arch = "Win64; x64";
+    let clientHintUA = "";
+
+    if(b === "Chrome"){
+        ua = `Mozilla/5.0 (Windows NT ${ntVersion}; ${arch}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver} Safari/537.36`;
+        clientHintUA = `"Not(A:Brand";v="99", "Google Chrome";v="${majorVer}", "Chromium";v="${majorVer}"`;
+    }
+    else if(b === "Edge"){
+        ua = `Mozilla/5.0 (Windows NT ${ntVersion}; ${arch}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${majorVer}.0.0.0 Safari/537.36 Edg/${ver}`;
+        clientHintUA = `"Not(A:Brand";v="99", "Microsoft Edge";v="${majorVer}", "Chromium";v="${majorVer}"`;
+    }
+    else if(b === "Firefox"){
+        ua = `Mozilla/5.0 (Windows NT ${ntVersion}; ${arch}; rv:${ver}) Gecko/20100101 Firefox/${ver}`;
+        clientHintUA = "Not Applicable (Firefox relies on navigator.userAgent)";
+    }
+
+    const infoFields = [
+        ["Operating System:", d.os],
+        ["Processor (CPU):", d.cpu],
+        ["System Memory:", d.ram],
+        ["Native Resolution:", d.resolution],
+        ["Target Browser Build:", b + " " + ver],
+        ["WebGL Vendor:", d.vendor],
+        ["WebGL Renderer:", d.renderer],
+    ];
+
+    let html = "";
+    infoFields.forEach(f => {
+        html += `<div class="row" onclick="copyRow(this)" title="Click to copy value"><span class="key">${f[0]}</span><span class="val">${f[1]}</span></div>`;
+    });
+
+    document.getElementById('winInfoRows').innerHTML = html;
+    document.getElementById('winUaOutput').innerText = ua;
+    document.getElementById('winDetailsArea').style.display = 'block';
+}
+
+function copyWindowsUA(){
+    const uaText = document.getElementById('winUaOutput').innerText;
+    if(!uaText) return;
+    
+    navigator.clipboard.writeText(uaText).then(() => {
+        const copyBtn = document.getElementById('winCopyBtn');
+        copyBtn.innerText = "✓ Copied!";
+        copyBtn.style.backgroundColor = "#17a2b8";
+        setTimeout(() => {
+            copyBtn.innerText = "Copy User Agent";
+            copyBtn.style.backgroundColor = "var(--green)";
+        }, 1500);
+    });
+}
+
+// ================= GLOBAL UTILITY FUNCTIONS =================
+function copyRow(el){
+    const val = el.querySelector('.val').innerText;
+    navigator.clipboard.writeText(val).then(() => {
+        const originalBg = el.style.backgroundColor;
+        el.style.backgroundColor = "#1f2a37";
+        setTimeout(() => {
+            el.style.backgroundColor = originalBg;
+        }, 300);
+    });
+}
+</script>
+
+</body>
+</html>
