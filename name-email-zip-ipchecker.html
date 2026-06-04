@@ -255,6 +255,7 @@ a:hover {
 <script>
 let generatedNamesList = [];
 let generatedEmailsList = [];
+let usedNames = new Set(); // কপি করা নামগুলো ট্র্যাক রাখার জন্য
 
 const firstNames = [
     "James","John","Robert","Michael","William","David","Richard","Joseph","Thomas","Charles",
@@ -276,8 +277,28 @@ const streets = [
     "Main St","Oak Ave","Lake View Dr","Sunset Blvd","Hill Rd","River St","Park Ave","Broadway"
 ];
 
+// পেজ ওপেন বা রিলোড হলে LocalStorage থেকে ডেটা অটোমেটিক লোড হবে
+window.onload = function() {
+    if (localStorage.getItem('generatedNames')) {
+        generatedNamesList = JSON.parse(localStorage.getItem('generatedNames'));
+        document.getElementById("nameCount").innerHTML = "Total: " + generatedNamesList.length;
+    }
+    if (localStorage.getItem('usedNames')) {
+        usedNames = new Set(JSON.parse(localStorage.getItem('usedNames')));
+    }
+    if (localStorage.getItem('generatedEmails')) {
+        generatedEmailsList = JSON.parse(localStorage.getItem('generatedEmails'));
+        document.getElementById("emailStats").innerHTML = "Total Generated: " + generatedEmailsList.length;
+        renderEmails();
+    }
+    if (generatedNamesList.length > 0) {
+        renderNames();
+    }
+};
+
 function generateNames(){
     generatedNamesList = [];
+    usedNames.clear(); // নতুন করে জেনারেট করলে আগের Used হিস্ট্রি মুছে যাবে
     let set = new Set();
     while(set.size < 1000){
         let f = firstNames[Math.floor(Math.random()*firstNames.length)];
@@ -285,13 +306,24 @@ function generateNames(){
         set.add(f + " " + l);
     }
     generatedNamesList = Array.from(set);
-    document.getElementById("nameCount").innerHTML = "Total: " + generatedNamesList.length;
     
+    // ব্রাউজার মেমরিতে ডেটা সেভ করা
+    localStorage.setItem('generatedNames', JSON.stringify(generatedNamesList));
+    localStorage.setItem('usedNames', JSON.stringify(Array.from(usedNames)));
+    
+    document.getElementById("nameCount").innerHTML = "Total: " + generatedNamesList.length;
+    renderNames();
+}
+
+function renderNames() {
     let html = "";
     generatedNamesList.forEach((n, index) => { 
+        const isUsed = usedNames.has(n);
         html += `<div class="name-item">
             <span>${n}</span>
-            <button class="btn-inline-copy" onclick="copySingleName(this, '${n.replace(/'/g, "\\'")}')">Copy</button>
+            <button class="btn-inline-copy ${isUsed ? 'used' : ''}" ${isUsed ? 'disabled' : ''} onclick="copySingleName(this, '${n.replace(/'/g, "\\'")}')">
+                ${isUsed ? '✓ Used' : 'Copy'}
+            </button>
         </div>`; 
     });
     document.getElementById("nameList").innerHTML = html;
@@ -301,7 +333,11 @@ function copySingleName(buttonElement, nameText) {
     navigator.clipboard.writeText(nameText).then(() => {
         buttonElement.innerText = "✓ Used";
         buttonElement.classList.add("used");
-        buttonElement.disabled = true; // একবার কপি হলে বাটনটি ডিজেবল হয়ে যাবে
+        buttonElement.disabled = true;
+        
+        // ব্যবহৃত নামটি লিস্টে যোগ করে সেভ করা
+        usedNames.add(nameText);
+        localStorage.setItem('usedNames', JSON.stringify(Array.from(usedNames)));
     }).catch(err => {
         alert("Failed to copy name.");
     });
@@ -351,8 +387,15 @@ function generateEmails(){
 
     let unique = [...new Set(formats)];
     generatedEmailsList = unique.slice(0, 120).map(x => x + "@gmail.com");
+    
+    // ইমেইল লিস্ট ব্রাউজারে সেভ করা
+    localStorage.setItem('generatedEmails', JSON.stringify(generatedEmailsList));
+    
     document.getElementById("emailStats").innerHTML = "Total Generated: " + generatedEmailsList.length;
+    renderEmails();
+}
 
+function renderEmails() {
     let html = "";
     generatedEmailsList.forEach(email => { html += `<div class="email-item">${email}</div>`; });
     document.getElementById("emailResult").innerHTML = html;
