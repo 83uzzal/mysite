@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewards Portal | Exclusive Offers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .card:hover { transform: translateY(-8px); transition: 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-indigo-950 to-purple-950 text-white min-h-screen">
+
+    <header class="sticky top-0 z-50 glass">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-extrabold tracking-tight">⚡ Rewards Portal</h1>
+        </div>
+    </header>
+
+    <section class="text-center py-16 px-4">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-3">Claim Your Rewards</h2>
+        <p class="text-white/60">Verified gift cards & opportunities for your device</p>
+    </section>
+
+    <main class="max-w-6xl mx-auto px-4 pb-16">
+        <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </main>
+
+    <script>
+        const offers = [
+            { name: "7-Eleven Gift Card", platform: "Apple iOS", img: "https://picsum.photos/id/10/800/600", link: "https://singingfiles.com/show.php?l=0&u=2487268&id=69083" },
+            { name: "$1000 Venmo/CashApp", platform: "Apple iOS", img: "https://picsum.photos/id/20/800/600", link: "https://singingfiles.com/show.php?l=0&u=2487268&id=74820" },
+            { name: "$500 Walmart Card", platform: "Apple iOS", img: "https://picsum.photos/id/30/800/600", link: "https://singingfiles.com/show.php?l=0&u=2487268&id=74764" },
+            { name: "$1000 Venmo/CashApp", platform: "Android", img: "https://picsum.photos/id/40/800/600", link: "https://singingfiles.com/show.php?l=0&u=2487268&id=74819" },
+            { name: "$100 Ulta Gift Card", platform: "Android", img: "https://picsum.photos/id/50/800/600", link: "https://singingfiles.com/show.php?l=0&u=2487268&id=74437" },
+            { name: "Sneakers Gift Card", platform: "Android", img: "https://picsum.photos/id/60/800/600", link: "https://singingfiles.com/show.php?l=0&u=2487268&id=72846" },
+            { name: "$750 Amazon Gift", platform: "Desktop", img: "https://picsum.photos/id/70/800/600", link: "https://singingfiles.com/show.php?l=0&u=2487268&id=74856" },
+            { name: "Paid Surveys", platform: "Desktop", img: "https://picsum.photos/id/80/800/600", link: "https://singingfiles.com/show.php?l=0&u=2487268&id=73209" }
+        ];
+
+        const grid = document.getElementById("grid");
+        offers.forEach(o => {
+            grid.innerHTML += `
+                <div class="card glass rounded-2xl overflow-hidden shadow-xl">
+                    <img src="${o.img}" alt="${o.name}" class="h-44 w-full object-cover" loading="lazy">
+                    <div class="p-5">
+                        <span class="text-xs font-bold text-pink-400 uppercase tracking-widest">${o.platform}</span>
+                        <h3 class="font-bold text-lg mb-4">${o.name}</h3>
+                        <a href="${o.link}" target="_blank" 
+                           class="block text-center bg-gradient-to-r from-pink-500 to-indigo-500 hover:from-pink-600 hover:to-indigo-600 py-3 rounded-xl font-bold transition-all shadow-lg">
+                           Claim Now
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+	<footer class="text-center py-10 border-t border-white/10 mt-10">
+    <p class="text-white/40 text-sm">&copy; 2026 Rewards Portal. All Rights Reserved.</p>
+    <p class="text-white/30 text-xs mt-2">Connecting you with the best opportunities globally.</p>
+</footer>
+</body>
+</html>
