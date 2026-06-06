@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rewards Hub Pro</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .glass {
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    transition: 0.3s ease;
+  }
+</style>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-50 via-white to-slate-100 text-slate-800">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 glass border-b">
+  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-extrabold text-indigo-600">RewardsHub Pro</h1>
+
+    <nav class="space-x-6 text-sm font-semibold">
+      <a href="#home" class="hover:text-indigo-600">Home</a>
+      <a href="#offers" class="hover:text-indigo-600">Offers</a>
+      <a href="#about" class="hover:text-indigo-600">About</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="text-center py-20 px-4">
+  <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
+    Unlock Premium Rewards & Opportunities
+  </h2>
+
+  <p class="max-w-2xl mx-auto text-slate-600 mb-8">
+    Explore curated gift cards, cashback offers, and job opportunities from top brands worldwide.
+  </p>
+
+  <a href="#offers"
+     class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition">
+     Browse Offers
+  </a>
+</section>
+
+<!-- SEARCH + FILTER -->
+<section class="max-w-6xl mx-auto px-4 mb-8 flex flex-col md:flex-row gap-4">
+  
+  <input id="searchInput"
+         type="text"
+         placeholder="Search offers..."
+         class="w-full px-4 py-3 rounded-xl border shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+
+  <select id="filter"
+          class="px-4 py-3 rounded-xl border shadow-sm">
+    <option value="all">All Categories</option>
+    <option value="Amazon">Amazon</option>
+    <option value="Walmart">Walmart</option>
+    <option value="Cash">Cash App</option>
+    <option value="Job">Jobs</option>
+  </select>
+</section>
+
+<!-- OFFERS -->
+<main id="offers" class="max-w-6xl mx-auto px-4 pb-20">
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="offerContainer"></div>
+
+</main>
+
+<!-- ABOUT -->
+<section id="about" class="bg-white py-16 border-t">
+  <div class="max-w-3xl mx-auto text-center px-4">
+    <h3 class="text-3xl font-bold mb-4">About Us</h3>
+    <p class="text-slate-600">
+      We connect users with global promotional offers and opportunities.
+      Our platform is designed for fast browsing, filtering, and easy access.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-900 text-slate-400 text-center py-6 text-sm">
+  © 2026 RewardsHub Pro. All rights reserved.
+</footer>
+
+<script>
+const offers = [
+  {id:6091,name:"Amazon $750",type:"Amazon"},
+  {id:6090,name:"Amazon $1000",type:"Amazon"},
+  {id:6089,name:"Walmart $750",type:"Walmart"},
+  {id:6088,name:"Walmart $1000",type:"Walmart"},
+  {id:6087,name:"Cash App $750",type:"Cash"},
+  {id:6086,name:"Cash App $1000",type:"Cash"},
+  {id:6073,name:"Coca Cola Jobs",type:"Job"},
+  {id:6072,name:"Dollar Tree Job",type:"Job"},
+  {id:6071,name:"Kelly Services",type:"Job"},
+  {id:5958,name:"Aldi $750",type:"Walmart"},
+  {id:5957,name:"Cash App Bonus",type:"Cash"},
+  {id:5956,name:"Walmart $750 Deal",type:"Walmart"},
+  {id:5954,name:"Trend Cash Offer",type:"Cash"},
+  {id:5953,name:"Walmart $500",type:"Walmart"},
+  {id:5952,name:"Cash Pitch $750",type:"Cash"},
+  {id:5594,name:"Driver Job",type:"Job"}
+];
+
+const container = document.getElementById("offerContainer");
+const search = document.getElementById("searchInput");
+const filter = document.getElementById("filter");
+
+function render(data){
+  container.innerHTML = "";
+
+  data.forEach(o => {
+    const img = `https://picsum.photos/seed/${o.id}/600/400`;
+
+    container.innerHTML += `
+      <div class="card bg-white rounded-2xl shadow-md overflow-hidden border">
+        <img src="${img}" class="h-40 w-full object-cover">
+
+        <div class="p-4">
+          <h3 class="font-bold text-lg">${o.name}</h3>
+          <p class="text-xs text-slate-400 mb-3">ID: ${o.id}</p>
+
+          <a href="#" class="block text-center bg-indigo-600 text-white py-2 rounded-xl hover:bg-indigo-700 transition">
+            Claim Now
+          </a>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function filterData(){
+  let value = search.value.toLowerCase();
+  let cat = filter.value;
+
+  let result = offers.filter(o => {
+    let matchSearch = o.name.toLowerCase().includes(value);
+    let matchCat = (cat === "all") || o.type === cat;
+    return matchSearch && matchCat;
+  });
+
+  render(result);
+}
+
+search.addEventListener("input", filterData);
+filter.addEventListener("change", filterData);
+
+render(offers);
+</script>
+
+</body>
+</html>
