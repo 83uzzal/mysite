@@ -5452,75 +5452,111 @@ function downloadNames(){
 }
 
 // ================= CARD 2 LOGIC =================
-function generateEmails(){
+function generateEmails() {
     let fullName = document.getElementById("fullname").value.trim().toLowerCase();
-    if(!fullName){ alert("Enter a full name"); return; }
+    if (!fullName) { alert("Enter a full name"); return; }
 
     let parts = fullName.split(/\s+/);
     let first = parts[0] || "";
-    let last = parts[parts.length-1] || "";
+    let last = parts[parts.length - 1] || "";
     let formats = [];
 
-    formats.push(first+last, first+"."+last, first+"_"+last, first+"-"+last);
-    formats.push(last+first, last+"."+first, last+"_"+first, last+"-"+first);
-    formats.push(first.charAt(0)+last, first+last.charAt(0), last.charAt(0)+first, last+first.charAt(0));
-    formats.push(first.charAt(0)+last.charAt(0)+first, first.charAt(0)+last.charAt(0)+last);
-    formats.push(first+first, last+last, first+first+last, first+last+last);
+    // ================= BASIC =================
+    formats.push(
+        first + last,
+        first + "." + last,
+        first + "_" + last,
+        first + "-" + last,
 
+        last + first,
+        last + "." + first,
+        last + "_" + first,
+        last + "-" + first,
+
+        first.charAt(0) + last,
+        first + last.charAt(0),
+        last.charAt(0) + first,
+        last + first.charAt(0)
+    );
+
+    // ================= SPECIFIC NUMBERS =================
+    let specificNums = [98, 97, 95, 91, 1998, 1995, 1996, 1992, 1993];
+
+    specificNums.forEach(n => {
+        formats.push(
+            last + "." + first + n,
+            first + "." + last + n,
+            last + first + n,
+            first + last + n
+        );
+    });
+
+    // ================= KEYWORDS =================
     ["official","real","online","vip","live","hub","pro","world","global","usa",
-"uk","ca","au","eu","asia","bd",
-"team","group","club","family","fans","fan",
-"media","news","blog","site","web","net",
-"store","shop","market","mall","deal","offers",
-"service","support","help","care","contact",
-"admin","owner","staff","manager","office",
-"business","company","corp","inc","ltd",
-"digital","tech","it","dev","design","studio",
-"creative","works","lab","labs","solutions",
-"systems","network","networks","cloud",
-"secure","safe","trust","trusted","verified",
-"best","top","prime","plus","elite","premium",
-"gold","silver","diamond","platinum",
-"express","smart","easy","quick","fast",
-"zone","point","spot","place","center",
-"central","direct","connect","link",
-"today","daily","weekly","now","live24",
-"365","24x7","247",
-"master","expert","guru","king","queen",
-"x","xx","xyz","official1","official2",
-"real1","real123","pro1","vip1"].forEach(word => {
-        formats.push(first+word, first+last+word);
+     "team","group","club","media","tech","it"].forEach(word => {
+        formats.push(
+            first + word,
+            first + last + word,
+            last + first + word
+        );
     });
 
-    [1,2,3,4,5,7,8,9,11,12,21,22,23,24,69,77,88,91,92,93,94,95,96,97,98,99,100,101,111,123,321,555,777,888,999].forEach(n => {
-        formats.push(first+last+n, first+"."+last+n, first+"_"+last+n, first.charAt(0)+last+n, first+last.charAt(0)+n);
+    // ================= NUMBERS =================
+    [1,2,3,5,7,11,21,22,69,77,88,99,100,123,777,888,999].forEach(n => {
+        formats.push(
+            first + last + n,
+            first + "." + last + n,
+            last + "." + first + n
+        );
     });
 
-    for(let y=1975; y<=2000; y++){ formats.push(first+last+y, first+"."+last+y); }
-    for(let y=75; y<=99; y++){ formats.push(first+last+y); }
-    for(let y=0; y<=25; y++){ formats.push(first+last+String(y).padStart(2,"0")); }
+    // ================= YEAR 1975–2000 =================
+    for (let y = 1975; y <= 2000; y++) {
+        formats.push(
+            first + last + y,
+            first + "." + last + y,
+            last + "." + first + y
+        );
+    }
 
+    // ================= SHORT YEAR 00–25 =================
+    for (let y = 0; y <= 25; y++) {
+        let yy = String(y).padStart(2, "0");
+        formats.push(first + last + yy);
+    }
+
+    // ================= UNIQUE =================
     let unique = [...new Set(formats)];
+
     generatedEmailsList = [
-    ...unique.slice(0,120).map(x => x + "@gmail.com"),
-    ...unique.slice(0,40).map(x => x + "@yahoo.com"),
-    ...unique.slice(0,20).map(x => x + "@hotmail.com"),
-    ...unique.slice(0,20).map(x => x + "@outlook.com")
-];
-    
+        ...unique.slice(0, 120).map(x => x + "@gmail.com"),
+        ...unique.slice(0, 40).map(x => x + "@yahoo.com"),
+        ...unique.slice(0, 20).map(x => x + "@hotmail.com"),
+        ...unique.slice(0, 20).map(x => x + "@outlook.com")
+    ];
+
     localStorage.setItem('generatedEmails', JSON.stringify(generatedEmailsList));
-    document.getElementById("emailStats").innerHTML = "Total Generated: " + generatedEmailsList.length;
+
+    document.getElementById("emailStats").innerHTML =
+        "Total Generated: " + generatedEmailsList.length;
+
     renderEmails();
 }
 
 function renderEmails() {
     let html = "";
-    generatedEmailsList.forEach(email => { html += `<div class="email-item">${email}</div>`; });
+    generatedEmailsList.forEach(email => {
+        html += `<div class="email-item">${email}</div>`;
+    });
     document.getElementById("emailResult").innerHTML = html;
 }
 
-function copyEmails(){
-    if(generatedEmailsList.length === 0){ alert("Generate patterns first!"); return; }
+function copyEmails() {
+    if (generatedEmailsList.length === 0) { 
+        alert("Generate patterns first!"); 
+        return; 
+    }
+
     navigator.clipboard.writeText(generatedEmailsList.join("\n"));
     alert(generatedEmailsList.length + " usernames copied.");
 }
