@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <title>My Offer Links Dashboard</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f4f4f9; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        .link-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #ddd; align-items: center; }
+        .delete-btn { background: #ff4d4d; color: white; border: none; padding: 5px 10px; cursor: pointer; }
+        .copy-btn { background: #4caf50; color: white; border: none; padding: 5px 10px; cursor: pointer; margin-right: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>অফার লিঙ্ক ম্যানেজমেন্ট</h2>
+    <input type="text" id="linkInput" placeholder="এখানে লিঙ্কটি পেস্ট করুন...">
+    <button onclick="addLink()">লিঙ্ক যোগ করুন</button>
+    <hr>
+    <div id="linkList"></div>
+</div>
+
+<script>
+    function addLink() {
+        let input = document.getElementById("linkInput");
+        if(input.value === "") return;
+        
+        let div = document.createElement("div");
+        div.className = "link-item";
+        div.innerHTML = `<span>${input.value}</span> 
+            <div>
+                <button class="copy-btn" onclick="copyText('${input.value}')">Copy</button>
+                <button class="delete-btn" onclick="this.parentElement.parentElement.remove()">Delete</button>
+            </div>`;
+        document.getElementById("linkList").appendChild(div);
+        input.value = "";
+    }
+
+    function copyText(text) {
+        navigator.clipboard.writeText(text);
+        alert("লিঙ্কটি কপি হয়েছে!");
+    }
+</script>
+
+</body>
+</html>
