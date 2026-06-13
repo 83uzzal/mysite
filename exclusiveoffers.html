@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RewardsHub Pro | Elite Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap');
+        body { font-family: 'Outfit', sans-serif; background-color: #0f172a; color: white; }
+        .glass { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .neon-border:hover { box-shadow: 0 0 15px rgba(99, 102, 241, 0.5); border-color: #6366f1; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <header class="max-w-6xl mx-auto mb-12 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-600">RewardsHub Pro</h1>
+        <p class="text-slate-400">Select your premium reward and start earning today.</p>
+    </header>
+
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-4 mb-10">
+        <input id="searchInput" type="text" placeholder="Search your rewards..." class="flex-1 bg-slate-800 border border-slate-700 px-6 py-3 rounded-xl focus:outline-none focus:border-indigo-500">
+        <select id="filter" class="bg-slate-800 border border-slate-700 px-6 py-3 rounded-xl focus:outline-none">
+            <option value="all">All Categories</option>
+            <option value="Amazon">Amazon</option>
+            <option value="Walmart">Walmart</option>
+            <option value="Cash">Cash App</option>
+            <option value="Job">Jobs</option>
+            <option value="Retail">Retail</option>
+        </select>
+    </div>
+
+    <main class="max-w-6xl mx-auto">
+        <div id="offerContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </main>
+
+    <script>
+        const offers = [
+            { id:6091, name:"Amazon $750", type:"Amazon", image:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CR3HXR4/" },
+            { id:6090, name:"Amazon $1000", type:"Amazon", image:"https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CR2532H/" },
+            { id:6089, name:"Walmart $750", type:"Walmart", image:"https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CQZQ69W/" },
+            { id:6088, name:"Walmart $1000", type:"Walmart", image:"https://images.unsplash.com/photo-1607082350899-7e105aa886ae?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CQXC9K9/" },
+            { id:6087, name:"Cash App $750", type:"Cash", image:"https://images.unsplash.com/photo-1556742044-3c52d6e88c62?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CQTZDSN/" },
+            { id:6086, name:"Cash App $1000", type:"Cash", image:"https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CQSKJ43/" },
+            { id:5958, name:"$750 Aldi", type:"Retail", image:"https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CJGSFWC/" },
+            { id:5957, name:"$750 Cash App", type:"Cash", image:"https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CJFFK5Q/" },
+            { id:5956, name:"$750 Walmart", type:"Walmart", image:"https://images.unsplash.com/photo-1481437156560-3205f6a55735?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CJD2NF5/" },
+            { id:5955, name:"$500 Aldi Gift Card", type:"Retail", image:"https://images.unsplash.com/photo-1579113800032-c38bd7635818?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CJBMRNJ/" },
+            { id:5641, name:"Costco", type:"Retail", image:"https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/BZQLDKW/" },
+            { id:5258, name:"Part Time", type:"Job", image:"https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/B9QQ2PC/" },
+            { id:6070, name:"Waste Management", type:"Job", image:"https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CQ2CDBC/" },
+			            { id:6091, name:"Amazon $750", type:"Amazon", image:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CR3HXR4/" },
+            { id:6090, name:"Amazon $1000", type:"Amazon", image:"https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CR2532H/" },
+            { id:6089, name:"Walmart $750", type:"Walmart", image:"https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=800&q=80", link:"https://www.aplfb8trk.com/3P31FPJ2/CQZQ69W/" }
+        ];
+
+        const container = document.getElementById("offerContainer");
+        const searchInput = document.getElementById("searchInput");
+        const filter = document.getElementById("filter");
+
+        function render(data) {
+            container.innerHTML = data.map(item => `
+                <div class="glass neon-border rounded-2xl overflow-hidden p-3 transition-all duration-300">
+                    <img src="${item.image}" alt="${item.name}" class="w-full h-40 object-cover rounded-xl mb-4">
+                    <span class="text-[10px] font-bold text-indigo-400 bg-indigo-900/50 px-2 py-1 rounded-md uppercase tracking-wider">${item.type}</span>
+                    <h3 class="font-bold text-lg mt-2 mb-4 truncate">${item.name}</h3>
+                    <a href="${item.link}" target="_blank" class="block w-full py-2 bg-indigo-600 hover:bg-indigo-500 text-center rounded-lg font-bold transition">Claim Now</a>
+                </div>
+            `).join("");
+        }
+
+        function filterData() {
+            const val = searchInput.value.toLowerCase();
+            const cat = filter.value;
+            render(offers.filter(i => (i.name.toLowerCase().includes(val)) && (cat === "all" || i.type === cat)));
+        }
+
+        searchInput.addEventListener("input", filterData);
+        filter.addEventListener("change", filterData);
+        render(offers);
+    </script>
+	
+	<footer class="max-w-6xl mx-auto mt-20 py-10 border-t border-slate-800 text-center">
+    <div class="flex flex-col items-center">
+        <h3 class="text-xl font-bold text-white mb-2">RewardsHub Pro</h3>
+        <p class="text-slate-500 text-sm mb-6 max-w-sm">
+            Providing premium rewards and opportunities since 2026. Your gateway to exclusive offers.
+        </p>
+        <div class="flex gap-6 text-slate-400 text-sm mb-8">
+            <a href="#" class="hover:text-indigo-400 transition">Privacy Policy</a>
+            <a href="#" class="hover:text-indigo-400 transition">Terms of Service</a>
+            <a href="#" class="hover:text-indigo-400 transition">Contact Support</a>
+        </div>
+        <p class="text-slate-600 text-xs">© 2026 RewardsHub Pro. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
