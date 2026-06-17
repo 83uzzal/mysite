@@ -14,9 +14,11 @@
     background: rgba(255,255,255,0.7);
     backdrop-filter: blur(10px);
   }
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
   .card:hover {
     transform: translateY(-6px);
-    transition: 0.3s ease;
   }
 </style>
 </head>
@@ -58,12 +60,12 @@
          class="w-full px-4 py-3 rounded-xl border shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
 
   <select id="filter"
-          class="px-4 py-3 rounded-xl border shadow-sm">
+          class="px-4 py-3 rounded-xl border shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-400">
     <option value="all">All Categories</option>
     <option value="Amazon">Amazon</option>
+    <option value="Cash">Cash App / Zelle</option>
     <option value="Walmart">Walmart</option>
-    <option value="Cash">Cash App</option>
-    <option value="Job">Jobs</option>
+    <option value="Other">Other Rewards</option>
   </select>
 </section>
 
@@ -84,28 +86,64 @@
 </section>
 
 <footer class="bg-slate-900 text-slate-400 text-center py-6 text-sm">
-  © 2026 RewardsHub Pro. All rights reserved.
+  &copy; 2026 RewardsHub Pro. All rights reserved.
 </footer>
 
 <script>
+// Your complete 15 offers with links
 const offers = [
-  {id:6091,name:"Amazon $750",type:"Amazon",link:"https://www.aplfb8trk.com/3LJ2KBKX/CR3HXR4/"},
-  {id:6090,name:"Amazon $1000",type:"Amazon",link:"https://www.aplfb8trk.com/3LJ2KBKX/CR2532H/"},
-  {id:6089,name:"Walmart $750",type:"Walmart",link:"https://www.aplfb8trk.com/3LJ2KBKX/CQZQ69W/"},
-  {id:6088,name:"Walmart $1000",type:"Walmart",link:"https://www.aplfb8trk.com/3LJ2KBKX/CQXC9K9/"},
-  {id:6087,name:"Cash App $750",type:"Cash",link:"https://www.aplfb8trk.com/3LJ2KBKX/CQTZDSN/"},
-  {id:6086,name:"Cash App $1000",type:"Cash",link:"https://www.aplfb8trk.com/3LJ2KBKX/CQSKJ43/"},
-  {id:6073,name:"Coca Cola Jobs",type:"Job",link:"https://www.aplfb8trk.com/3LJ2KBKX/CQ6J2J6/"},
-  {id:6072,name:"Dollar Tree",type:"Job",link:"https://www.aplfb8trk.com/3LJ2KBKX/CQ555RK/"},
-  {id:6071,name:"Kelly Services",type:"Job",link:"https://www.aplfb8trk.com/3LJ2KBKX/CQ3Q92Z/"},
-  {id:5958,name:"Aldi $750",type:"Walmart",link:"https://www.aplfb8trk.com/3LJ2KBKX/CJGSFWC/"},
-  {id:5957,name:"Cash App $750",type:"Cash",link:"https://www.aplfb8trk.com/3LJ2KBKX/CJFFK5Q/"},
-  {id:5956,name:"Walmart $750",type:"Walmart",link:"https://www.aplfb8trk.com/3LJ2KBKX/CJD2NF5/"},
-  {id:5954,name:"TrendnDaily $1000",type:"Cash",link:"https://www.aplfb8trk.com/3LJ2KBKX/CJ98WXX/"},
-  {id:5953,name:"$500 Walmart Gift Card",type:"Walmart",link:"https://www.aplfb8trk.com/3LJ2KBKX/CJ7W27B/"},
-  {id:5952,name:"$750 Cash Pitch",type:"Cash",link:"https://www.aplfb8trk.com/3LJ2KBKX/CJ6H5GP/"},
-  {id:5594,name:"Driver Job",type:"Job",link:"https://www.aplfb8trk.com/3LJ2KBKX/BWFBW1C/"}
+  {id: 4385, name: "Rewards US - Cash $750 - (US)", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/W8F12MFY/"},
+  {id: 18603, name: "Rewards US - Amazon $750", type: "Amazon", url: "https://www.af9m8trk.com/BL6116FS/54612BXY/"},
+  {id: 18651, name: "Rewards UK - Shein £750 Shopping", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/16F12BVJ/"},
+  {id: 18652, name: "iPhone 15 Pro Max Bonus $750", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/JFD12BVR/"},
+  {id: 18653, name: "Amazon Bonus $750", type: "Amazon", url: "https://www.af9m8trk.com/BL6116FS/MGH12BVQ/"},
+  {id: 24913, name: "OkWow - CashApp $850", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/5JY122KX/"},
+  {id: 24918, name: "OkWow - Food $200", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/SUM122L1/"},
+  {id: 24951, name: "OkWow - Netflix $100", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/KDQ122LY/"},
+  {id: 25582, name: "OkWow - Walmart $1,000", type: "Walmart", url: "https://www.af9m8trk.com/BL6116FS/T6M12294/"},
+  {id: 25741, name: "American Prizes Amazon $1,000", type: "Amazon", url: "https://www.af9m8trk.com/BL6116FS/TJ2123FW/"},
+  {id: 27279, name: "UpLevelRewards - Zelle $750", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/8LP123XC/"},
+  {id: 27280, name: "UpLevelRewards - $1000 Cash Deposit", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/4K1123XK/"},
+  {id: 27281, name: "UpLevelRewards - Target $750", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/HMG123XJ/"},
+  {id: 27282, name: "UpLevelRewards - McDonald's $100", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/UPW123XH/"},
+  {id: 24913, name: "OkWow - CashApp $850", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/5JY122KX/"},
+  {id: 27283, name: "UpLevelRewards - Costco $750", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/NB9123XG/"}
 ];
+
+// High quality professional pictures matching each brand category
+const imageMap = {
+  amazon: "https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=600&auto=format&fit=crop&q=80", 
+  walmart: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80", 
+  cash: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=80", 
+  cashapp: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=600&auto=format&fit=crop&q=80", 
+  zelle: "https://images.unsplash.com/photo-1628872451522-017302a793a5?w=400&q=70&auto=format&fit=crop", 
+  iphone: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&auto=format&fit=crop&q=80", 
+  shein: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&auto=format&fit=crop&q=80", 
+  netflix: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400&q=70&auto=format&fit=crop", 
+  mcdonald: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=70&auto=format&fit=crop", 
+  food: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&auto=format&fit=crop&q=80", 
+  target: "https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?w=400&q=70&auto=format&fit=crop", 
+  costco: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=600&auto=format&fit=crop&q=80", 
+  default: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&auto=format&fit=crop&q=80" 
+};
+
+// Auto pick related image depending on name
+function getRelevantImage(name) {
+  const lowerName = name.toLowerCase();
+  if (lowerName.includes("amazon")) return imageMap.amazon;
+  if (lowerName.includes("walmart")) return imageMap.walmart;
+  if (lowerName.includes("cashapp") || lowerName.includes("cash app")) return imageMap.cashapp;
+  if (lowerName.includes("zelle")) return imageMap.zelle;
+  if (lowerName.includes("cash")) return imageMap.cash;
+  if (lowerName.includes("iphone")) return imageMap.iphone;
+  if (lowerName.includes("shein")) return imageMap.shein;
+  if (lowerName.includes("netflix")) return imageMap.netflix;
+  if (lowerName.includes("mcdonald")) return imageMap.mcdonald;
+  if (lowerName.includes("food")) return imageMap.food;
+  if (lowerName.includes("target")) return imageMap.target;
+  if (lowerName.includes("costco")) return imageMap.costco;
+  return imageMap.default;
+}
 
 const container = document.getElementById("offerContainer");
 const search = document.getElementById("searchInput");
@@ -114,18 +152,27 @@ const filter = document.getElementById("filter");
 function render(data){
   container.innerHTML = "";
 
+  if(data.length === 0) {
+    container.innerHTML = `<p class="col-span-full text-center text-slate-400 py-10">No offers match your criteria.</p>`;
+    return;
+  }
+
   data.forEach(o => {
-    const img = `https://picsum.photos/seed/${o.id}/600/400`;
+    const img = getRelevantImage(o.name);
 
     container.innerHTML += `
-      <div class="card bg-white rounded-2xl shadow-md overflow-hidden border">
-        <img src="${img}" class="h-40 w-full object-cover">
-
-        <div class="p-4">
-          <h3 class="font-bold text-lg">${o.name}</h3>
-          <p class="text-xs text-slate-400 mb-3">ID: ${o.id}</p>
-
-          <a href="${o.link}" target="_blank" class="block text-center bg-indigo-600 text-white py-2 rounded-xl hover:bg-indigo-700 transition">
+      <div class="card bg-white rounded-2xl shadow-md overflow-hidden border flex flex-col justify-between">
+        <div>
+          <div class="h-40 w-full overflow-hidden bg-slate-100">
+            <img src="${img}" class="h-40 w-full object-cover transition duration-500 hover:scale-105" alt="${o.name}">
+          </div>
+          <div class="p-4">
+            <h3 class="font-bold text-lg mb-1 line-clamp-2">${o.name}</h3>
+            <p class="text-xs text-slate-400 mb-3">ID: ${o.id}</p>
+          </div>
+        </div>
+        <div class="p-4 pt-0">
+          <a href="${o.url}" target="_blank" rel="noopener noreferrer" class="block text-center bg-indigo-600 text-white py-2 rounded-xl hover:bg-indigo-700 transition font-semibold">
             Claim Now
           </a>
         </div>
@@ -139,7 +186,7 @@ function filterData(){
   let cat = filter.value;
 
   let result = offers.filter(o => {
-    let matchSearch = o.name.toLowerCase().includes(value);
+    let matchSearch = o.name.toLowerCase().includes(value) || o.id.toString().includes(value);
     let matchCat = (cat === "all") || o.type === cat;
     return matchSearch && matchCat;
   });
@@ -150,6 +197,7 @@ function filterData(){
 search.addEventListener("input", filterData);
 filter.addEventListener("change", filterData);
 
+// Initial Render
 render(offers);
 </script>
 
