@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RewardsHub Pro | Elite Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f8fafc; }
+        .hero-gradient { background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%); }
+    </style>
+</head>
+<body>
+
+<header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <h1 class="text-2xl font-extrabold text-indigo-700 tracking-tight">RewardsHub Pro</h1>
+        <div class="space-x-8 text-sm font-semibold text-slate-600">
+            <a href="#home" class="hover:text-indigo-600">Home</a>
+            <a href="#offers" class="hover:text-indigo-600">Offers</a>
+            <a href="#about" class="hover:text-indigo-600">About</a>
+        </div>
+    </nav>
+</header>
+
+<section id="home" class="hero-gradient text-white py-20 px-6 rounded-b-[3rem] text-center">
+    <h2 class="text-5xl font-extrabold mb-6">Unlock Premium Rewards & Opportunities</h2>
+    <p class="text-indigo-100 text-lg max-w-xl mx-auto mb-10">Explore curated gift cards, cashback offers, and opportunities from top brands worldwide.</p>
+    <a href="#offers" class="bg-white text-indigo-700 px-10 py-4 rounded-full font-bold shadow-xl hover:bg-slate-100 transition">Browse Offers</a>
+</section>
+
+<section class="max-w-6xl mx-auto px-6 -mt-10">
+    <div class="bg-white p-6 rounded-3xl shadow-xl shadow-indigo-100 flex flex-col md:flex-row gap-4">
+        <input id="searchInput" type="text" placeholder="Search rewards by name or ID..." class="flex-1 px-6 py-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none focus:ring-2 focus:ring-indigo-500">
+        <select id="filter" class="px-6 py-4 rounded-2xl bg-slate-50 border border-slate-200 outline-none cursor-pointer">
+            <option value="all">All Categories</option>
+            <option value="Amazon">Amazon</option>
+            <option value="Walmart">Walmart</option>
+            <option value="Cash">Cash App</option>
+            <option value="Other">Other Rewards</option>
+        </select>
+    </div>
+</section>
+
+<main id="offers" class="max-w-6xl mx-auto px-6 py-16">
+    <div id="offerContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"></div>
+</main>
+
+<section id="about" class="max-w-6xl mx-auto px-6 py-16 text-center border-t border-slate-100">
+    <h2 class="text-3xl font-extrabold text-slate-800 mb-4">About Our Dashboard</h2>
+    <p class="text-slate-500 max-w-2xl mx-auto">A premium rewards dashboard designed for fast access to global offers, cashback deals, and job listings.</p>
+</section>
+
+<footer class="py-12 text-center border-t border-slate-200 bg-white">
+    <p class="text-slate-500 font-semibold mb-2">© 2026 RewardsHub Pro. All rights reserved.</p>
+    <div class="flex justify-center gap-6 text-sm text-slate-400">
+        <a href="#home" class="hover:text-indigo-600">Home</a> 
+        <a href="#offers" class="hover:text-indigo-600">Offers</a> 
+        <a href="#about" class="hover:text-indigo-600">About</a>
+    </div>
+</footer>
+
+<script>
+    // 100% updated list with your 8 new offers and links
+    const offers = [
+        {id: 24916, name: "OkWow - Aldi $100", type: "Other", link: "https://www.af9m8trk.com/BL6116FS/GDZ122L3/"},
+        {id: 24917, name: "OkWow - Royal Cruise $100", type: "Other", link: "https://www.af9m8trk.com/BL6116FS/R98122L2/"},
+        {id: 24918, name: "OkWow - Food $200", type: "Other", link: "https://www.af9m8trk.com/BL6116FS/SUM122L1/"},
+        {id: 24931, name: "OkWow - Shein $100", type: "Other", link: "https://www.af9m8trk.com/BL6116FS/MRR122LC/"},
+        {id: 24951, name: "OkWow - Netflix $100", type: "Other", link: "https://www.af9m8trk.com/BL6116FS/KDQ122LY/"},
+        {id: 25582, name: "OkWow - Walmart $1,000", type: "Walmart", link: "https://www.af9m8trk.com/BL6116FS/T6M12294/"},
+        {id: 25740, name: "RewardZinga - CashApp $1,000", type: "Cash", link: "https://www.af9m8trk.com/BL6116FS/9PC123FX/"},
+        {id: 25741, name: "My American Prizes - Amazon $1,000", type: "Amazon", link: "https://www.af9m8trk.com/BL6116FS/TJ2123FW/"}
+    ];
+
+    // 8 Completely non-repeating unique high-quality image URLs mapped exactly to each offer ID
+    const uniqueImages = {
+        24916: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=500&q=80&auto=format&fit=crop", // Aldi / Grocery Store
+        24917: "https://images.unsplash.com/photo-1548574505-5e239809ee19?w=500&q=80&auto=format&fit=crop", // Royal Cruise Ship
+        24918: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80&auto=format&fit=crop", // Food Platter
+        24931: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80&auto=format&fit=crop", // Shein / Shopping Clothes
+        24951: "https://images.unsplash.com/photo-1574375927938-d5a98e8edd86?w=500&q=80&auto=format&fit=crop", // Netflix Home Screen
+        25582: "https://images.unsplash.com/photo-1601599561264-731ede97f1c9?w=500&q=80&auto=format&fit=crop", // Walmart Interior
+        25740: "https://images.unsplash.com/photo-1563013544-824ae1d704d3?w=500&q=80&auto=format&fit=crop", // CashApp Wallet
+        25741: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=500&q=80&auto=format&fit=crop", // Amazon Shopping Pack
+        default: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500&q=80&auto=format&fit=crop"
+    };
+
+    const container = document.getElementById("offerContainer");
+    const search = document.getElementById("searchInput");
+    const filter = document.getElementById("filter");
+
+    function render(data) {
+        if(data.length === 0) {
+            container.innerHTML = `<p class="col-span-full text-center text-slate-400 py-12 font-medium">No rewards matched your search criteria.</p>`;
+            return;
+        }
+
+        container.innerHTML = data.map(o => {
+            // Strictly fetch unique image by its respective offer ID
+            const img = uniqueImages[o.id] || uniqueImages.default;
+            return `
+                <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition duration-300 flex flex-col justify-between">
+                    <div>
+                        <div class="w-full h-36 overflow-hidden rounded-2xl mb-4 bg-slate-50">
+                            <img src="${img}" 
+                                 class="w-full h-full object-cover transition duration-500 hover:scale-105" 
+                                 alt="${o.name}"
+                                 onerror="this.onerror=null; this.src='${uniqueImages.default}';">
+                        </div>
+                        <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-widest">${o.type}</span>
+                        <h3 class="font-bold text-base mt-3 mb-1 line-clamp-2 text-slate-800" title="${o.name}">${o.name}</h3>
+                        <p class="text-xs text-slate-400 mb-5">ID: ${o.id}</p>
+                    </div>
+                    <a href="${o.link}" target="_blank" rel="noopener noreferrer" class="block text-center bg-slate-900 text-white py-3 rounded-2xl font-bold hover:bg-indigo-600 transition shadow-sm">Claim Now</a>
+                </div>
+            `;
+        }).join("");
+    }
+
+    function update() {
+        const val = search.value.toLowerCase();
+        const cat = filter.value;
+        
+        const filtered = offers.filter(o => {
+            const matchSearch = o.name.toLowerCase().includes(val) || o.id.toString().includes(val);
+            const matchCat = (cat === "all" || o.type === cat);
+            return matchSearch && matchCat;
+        });
+        
+        render(filtered);
+    }
+
+    search.addEventListener("input", update);
+    filter.addEventListener("change", update);
+    
+    // Fire up initialization
+    render(offers);
+</script>
+</body>
+</html>
