@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Proxy Format Converter</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 750px; margin: 30px auto; padding: 20px; background-color: #f8f9fa; color: #333; }
+        h2 { text-align: center; color: #2c3e50; }
+        p { color: #666; font-size: 14px; text-align: center; }
+        textarea { width: 100%; height: 150px; padding: 12px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; font-family: monospace; font-size: 14px; resize: vertical; }
+        .btn-convert { background-color: #007bff; color: white; border: none; padding: 12px; cursor: pointer; border-radius: 6px; width: 100%; font-size: 16px; font-weight: bold; margin-top: 10px; }
+        .btn-convert:hover { background-color: #0056b3; }
+        .output-section { margin-top: 25px; display: none; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .btn-download { background-color: #28a745; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 4px; font-size: 14px; font-weight: bold; }
+        .btn-download:hover { background-color: #218838; }
+        .proxy-list { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 10px; max-height: 350px; overflow-y: auto; }
+        .proxy-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border-bottom: 1px solid #eee; font-family: monospace; font-size: 13px; word-break: break-all; }
+        .proxy-item:last-child { border-bottom: none; }
+        .proxy-text { flex-grow: 1; margin-right: 10px; }
+        .btn-copy { background-color: #6c757d; color: white; border: none; padding: 4px 8px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; }
+        .btn-copy:hover { background-color: #5a6268; }
+    </style>
+</head>
+<body>
+
+    <h2>Bulk Proxy Format Converter</h2>
+    <p>প্রতি লাইনে একটি করে প্রক্সি পেস্ট করুন (যেমন: <code>user:pass@host:port</code> অথবা <code>user:pass:host:port</code>)</p>
+    
+    <textarea id="inputProxies" placeholder="4e9MauroiAOdEc1:eaGkiUl6wXvHOIH_country...:8080@://proxy-cheap.com&#10;user2:pass2@host2.com:3128"></textarea>
+    <button class="btn-convert" onclick="convertBulkProxies()">Convert All Proxies</button>
+
+    <div id="outputSection" class="output-section">
+        <div class="action-header">
+            <h3>Converted Result (host:port:user:pass):</h3>
+            <button class="btn-download" onclick="downloadAllProxies()">📥 Download All (.txt)</button>
+        </div>
+        <div id="proxyList" class="proxy-list"></div>
+    </div>
+
+    <script>
+        let allConvertedProxies = [];
+
+        function convertBulkProxies() {
+            let inputText = document.getElementById("inputProxies").value.trim();
+            if (!inputText) {
+                alert("দয়া করে আগে প্রক্সি লিস্ট পেস্ট করুন!");
+                return;
+            }
+
+            let lines = inputText.split("\n");
+            let listContainer = document.getElementById("proxyList");
+            listContainer.innerHTML = ""; // Clear old results
+            allConvertedProxies = []; // Reset array
+
+            lines.forEach((line) => {
+                let currentLine = line.trim();
+                if (!currentLine) return; // Skip empty lines
+
+                let host = "", port = "", user = "", pass = "";
+
+                // Case 1: user:pass@host:port Format
+                if (currentLine.includes("@")) {
+                    let parts = currentLine.split("@");
+                    if (parts.length === 2) {
+                        let credentials = parts[0].split(":");
+                        let server = parts[1].split(":");
+                        if (credentials.length >= 2 && server.length >= 2) {
+                            user = credentials[0];
+                            pass = credentials.slice(1).join(":"); // handles colon inside passwords
+                            host = server[0];
+                            port = server[1];
+                        }
+                    }
+                } 
+                // Case 2: Split by colon without @ (user:pass:host:port or host:port:user:pass)
+                else {
+                    let parts = currentLine.split(":");
+                    if (parts.length >= 4) {
+                        // If 2nd element is a number, it is already host:port:user:pass
+                        if (!isNaN(parts[1]) && parts[1].length <= 5) {
+                            host = parts[0];
+                            port = parts[1];
+                            user = parts[2];
+                            pass = parts.slice(3).join(":");
+                        } 
+                        // If 4th element (last part) is a number, it is user:pass:host:port
+                        else if (!isNaN(parts[3]) && parts[3].length <= 5) {
+                            user = parts[0];
+                            pass = parts[1];
+                            host = parts[2];
+                            port = parts[3];
+                        }
+                        // Default Fallback
+                        else {
+                            user = parts[0];
+                            pass = parts[1];
+                            host = parts[2];
+                            port = parts[3];
+                        }
+                    }
+                }
+
+                // Format Output
+                let finalProxy = "";
+                if (host && port && user && pass) {
+                    finalProxy = `${host}:${port}:${user}:${pass}`;
+                } else {
+                    finalProxy = `${currentLine} -> [Error: Invalid format]`;
+                }
+
+                allConvertedProxies.push(finalProxy);
+
+                // Create UI Elements for each line
+                let itemDiv = document.createElement("div");
+                itemDiv.className = "proxy-item";
+
+                let textSpan = document.createElement("span");
+                textSpan.className = "proxy-text";
+                textSpan.innerText = finalProxy;
+
+                let copyBtn = document.createElement("button");
+                copyBtn.className = "btn-copy";
+                copyBtn.innerText = "📋 Copy";
+                
+                // Individual Copy Button Logic
+                copyBtn.onclick = function() {
+                    navigator.clipboard.writeText(finalProxy).then(() => {
+                        copyBtn.innerText = "✅ Copied!";
+                        copyBtn.style.backgroundColor = "#28a745";
+                        setTimeout(() => {
+                            copyBtn.innerText = "📋 Copy";
+                            copyBtn.style.backgroundColor = "#6c757d";
+                        }, 1500);
+                    });
+                };
+
+                itemDiv.appendChild(textSpan);
+                itemDiv.appendChild(copyBtn);
+                listContainer.appendChild(itemDiv);
+            });
+
+            // Show result block
+            document.getElementById("outputSection").style.display = "block";
+        }
+
+        // Bulk Download Logic (.txt File)
+        function downloadAllProxies() {
+            if (allConvertedProxies.length === 0) return;
+            
+            let textToSave = allConvertedProxies.join("\r\n");
+            let blob = new Blob([textToSave], { type: "text/plain;charset=utf-8" });
+            let textToSaveAsURL = window.URL.createObjectURL(blob);
+            let fileNameToSaveAs = "converted_proxies.txt";
+
+            let downloadLink = document.createElement("a");
+            downloadLink.download = fileNameToSaveAs;
+            downloadLink.href = textToSaveAsURL;
+            downloadLink.style.display = "none";
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
+    </script>
+
+</body>
+</html>
