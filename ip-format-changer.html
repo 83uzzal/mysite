@@ -5,22 +5,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bulk Proxy Format Converter</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 750px; margin: 30px auto; padding: 20px; background-color: #f8f9fa; color: #333; }
-        h2 { text-align: center; color: #2c3e50; }
-        p { color: #666; font-size: 14px; text-align: center; }
-        textarea { width: 100%; height: 150px; padding: 12px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 6px; font-family: monospace; font-size: 14px; resize: vertical; }
-        .btn-convert { background-color: #007bff; color: white; border: none; padding: 12px; cursor: pointer; border-radius: 6px; width: 100%; font-size: 16px; font-weight: bold; margin-top: 10px; }
-        .btn-convert:hover { background-color: #0056b3; }
-        .output-section { margin-top: 25px; display: none; }
-        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .btn-download { background-color: #28a745; color: white; border: none; padding: 8px 15px; cursor: pointer; border-radius: 4px; font-size: 14px; font-weight: bold; }
-        .btn-download:hover { background-color: #218838; }
-        .proxy-list { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 10px; max-height: 350px; overflow-y: auto; }
-        .proxy-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; border-bottom: 1px solid #eee; font-family: monospace; font-size: 13px; word-break: break-all; }
-        .proxy-item:last-child { border-bottom: none; }
-        .proxy-text { flex-grow: 1; margin-right: 10px; }
-        .btn-copy { background-color: #6c757d; color: white; border: none; padding: 4px 8px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; }
-        .btn-copy:hover { background-color: #5a6268; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 750px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+            text-align: center;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+        }
+        .btn-convert {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .btn-convert:hover {
+            background-color: #0056b3;
+        }
+        .output-section {
+            margin-top: 25px;
+            display: none;
+        }
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .btn-download {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .btn-download:hover {
+            background-color: #218838;
+        }
+        .proxy-list {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .proxy-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+            font-family: monospace;
+            font-size: 13px;
+            word-break: break-all;
+            transition: all 0.3s ease;
+        }
+        .proxy-item:last-child {
+            border-bottom: none;
+        }
+        /* ব্যবহৃত বা কপি করা প্রক্সির স্টাইল */
+        .proxy-item.used {
+            background-color: #f1f3f5;
+        }
+        .proxy-item.used .proxy-text {
+            color: #adb5bd;
+            text-decoration: line-through; /* লেখা কেটে দেওয়ার জন্য (ঐচ্ছিক) */
+        }
+        .proxy-text {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+        .button-group {
+            display: flex;
+            gap: 5px;
+        }
+        .btn-copy {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        .btn-copy:hover {
+            background-color: #5a6268;
+        }
+        .btn-mark-used {
+            background-color: #e2e3e5;
+            color: #383d41;
+            border: 1px solid #d6d8db;
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        .btn-mark-used:hover {
+            background-color: #d6d8db;
+        }
+        .btn-mark-used.is-used {
+            background-color: #ffc107;
+            color: #000;
+            border-color: #ffc107;
+        }
     </style>
 </head>
 <body>
@@ -45,7 +164,7 @@
         function convertBulkProxies() {
             let inputText = document.getElementById("inputProxies").value.trim();
             if (!inputText) {
-                alert("দয়া করে আগে প্রক্সি লিস্ট পেস্ট করুন!");
+                alert("দয়া করে আগে প্রক্সি লিস্ট পেস্ট করুন!");
                 return;
             }
 
@@ -68,31 +187,28 @@
                         let server = parts[1].split(":");
                         if (credentials.length >= 2 && server.length >= 2) {
                             user = credentials[0];
-                            pass = credentials.slice(1).join(":"); // handles colon inside passwords
+                            pass = credentials.slice(1).join(":"); 
                             host = server[0];
                             port = server[1];
                         }
                     }
                 } 
-                // Case 2: Split by colon without @ (user:pass:host:port or host:port:user:pass)
+                // Case 2: Split by colon without @
                 else {
                     let parts = currentLine.split(":");
                     if (parts.length >= 4) {
-                        // If 2nd element is a number, it is already host:port:user:pass
                         if (!isNaN(parts[1]) && parts[1].length <= 5) {
                             host = parts[0];
                             port = parts[1];
                             user = parts[2];
                             pass = parts.slice(3).join(":");
                         } 
-                        // If 4th element (last part) is a number, it is user:pass:host:port
                         else if (!isNaN(parts[3]) && parts[3].length <= 5) {
                             user = parts[0];
                             pass = parts[1];
                             host = parts[2];
                             port = parts[3];
-                        }
-                        // Default Fallback
+                        } 
                         else {
                             user = parts[0];
                             pass = parts[1];
@@ -112,7 +228,7 @@
 
                 allConvertedProxies.push(finalProxy);
 
-                // Create UI Elements for each line
+                // Create UI Elements
                 let itemDiv = document.createElement("div");
                 itemDiv.className = "proxy-item";
 
@@ -120,15 +236,29 @@
                 textSpan.className = "proxy-text";
                 textSpan.innerText = finalProxy;
 
+                // Button Group Container
+                let btnGroup = document.createElement("div");
+                btnGroup.className = "button-group";
+
                 let copyBtn = document.createElement("button");
                 copyBtn.className = "btn-copy";
                 copyBtn.innerText = "📋 Copy";
-                
+
+                let usedBtn = document.createElement("button");
+                usedBtn.className = "btn-mark-used";
+                usedBtn.innerText = "⬜ Used?";
+
                 // Individual Copy Button Logic
                 copyBtn.onclick = function() {
                     navigator.clipboard.writeText(finalProxy).then(() => {
                         copyBtn.innerText = "✅ Copied!";
                         copyBtn.style.backgroundColor = "#28a745";
+                        
+                        // কপি করলেই ব্যাকগ্রাউন্ড হালকা করার জন্য এবং Used স্ট্যাটাস দেওয়ার জন্য
+                        itemDiv.classList.add("used");
+                        usedBtn.innerText = "✔ Used";
+                        usedBtn.classList.add("is-used");
+
                         setTimeout(() => {
                             copyBtn.innerText = "📋 Copy";
                             copyBtn.style.backgroundColor = "#6c757d";
@@ -136,8 +266,23 @@
                     });
                 };
 
+                // Manual Used/Unused Toggle Logic
+                usedBtn.onclick = function() {
+                    if(itemDiv.classList.contains("used")) {
+                        itemDiv.classList.remove("used");
+                        usedBtn.innerText = "⬜ Used?";
+                        usedBtn.classList.remove("is-used");
+                    } else {
+                        itemDiv.classList.add("used");
+                        usedBtn.innerText = "✔ Used";
+                        usedBtn.classList.add("is-used");
+                    }
+                };
+
+                btnGroup.appendChild(copyBtn);
+                btnGroup.appendChild(usedBtn);
                 itemDiv.appendChild(textSpan);
-                itemDiv.appendChild(copyBtn);
+                itemDiv.appendChild(btnGroup);
                 listContainer.appendChild(itemDiv);
             });
 
@@ -148,12 +293,10 @@
         // Bulk Download Logic (.txt File)
         function downloadAllProxies() {
             if (allConvertedProxies.length === 0) return;
-            
             let textToSave = allConvertedProxies.join("\r\n");
             let blob = new Blob([textToSave], { type: "text/plain;charset=utf-8" });
             let textToSaveAsURL = window.URL.createObjectURL(blob);
             let fileNameToSaveAs = "converted_proxies.txt";
-
             let downloadLink = document.createElement("a");
             downloadLink.download = fileNameToSaveAs;
             downloadLink.href = textToSaveAsURL;
@@ -163,6 +306,5 @@
             document.body.removeChild(downloadLink);
         }
     </script>
-
 </body>
 </html>
