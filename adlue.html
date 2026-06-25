@@ -1,768 +1,97 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Rewards Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Exclusive Offers</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-ZFYWLM9B1C');
+</script>
     <style>
         :root {
-            --bg-dark: #0b0d17;
-            --card-bg: #131625;
-            --text-main: #ffffff;
-            --text-muted: #8b949e;
-            --primary-glow: linear-gradient(135deg, #ff007b, #7928ca);
-            --btn-glow: linear-gradient(135deg, #00f2fe, #4facfe);
-            --accent-green: #00ffaa;
+            --primary: #6366f1;
+            --accent: #f43f5e;
+            --bg: #0f172a;
+            --card: rgba(30, 41, 59, 0.7);
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            padding: 20px 10px;
-            display: flex;
-            justify-content: center;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        /* Top Notification */
-        .live-counter {
-            background: rgba(0, 255, 170, 0.1);
-            border: 1px solid var(--accent-green);
-            color: var(--accent-green);
-            text-align: center;
-            padding: 10px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            letter-spacing: 0.5px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(180deg, #fff 30%, #a5b4fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-
-        header p {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        .timer-badge {
-            display: inline-block;
-            background: #ff0055;
-            color: #fff;
-            font-size: 12px;
-            font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 20px;
-            margin-top: 10px;
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
-        }
-
-        /* Modern Tabs system */
-        .tabs-container {
-            display: flex;
-            background: #1c2035;
-            padding: 6px;
-            border-radius: 16px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 14px 5px;
-            border: none;
-            background: none;
-            font-size: 13px;
-            font-weight: 800;
-            color: #626984;
-            cursor: pointer;
-            border-radius: 12px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-transform: uppercase;
-        }
-
-        .tab-btn.active {
-            background: var(--primary-glow);
-            color: #fff;
-            box-shadow: 0 8px 20px rgba(121, 40, 202, 0.4);
-        }
-
-        /* Offer Cards Content */
-        .panel-content {
-            display: none;
-        }
-
-        .panel-content.active {
-            display: block;
-            animation: slideUp 0.4s ease;
-        }
-
-        .offer-card {
-            background: var(--card-bg);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            border: 1px solid #22273e;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .offer-card:hover {
-            transform: translateY(-4px);
-            border-color: #3b436b;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-        }
-
-        .offer-title {
-            font-size: 17px;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 4px;
-        }
-
-        .tag-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .offer-tag {
-            font-size: 10px;
-            background: #1f2438;
-            padding: 4px 10px;
-            border-radius: 8px;
-            color: #9ca3af;
-            font-weight: 600;
-        }
-
-        .status-tag {
-            font-size: 11px;
-            color: var(--accent-green);
-            font-weight: bold;
-        }
-
-        /* Scarcity Progress Bar */
-        .progress-container {
-            width: 100%;
-            background: #1a1e31;
-            height: 6px;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #ff007b, #00f2fe);
-            border-radius: 10px;
-        }
-
-        .progress-text {
-            font-size: 11px;
-            color: var(--text-muted);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* Premium Buttons */
-        .claim-btn {
-            background: var(--btn-glow);
-            color: #030712;
-            text-decoration: none;
-            padding: 12px 24px;
-            font-size: 13px;
-            font-weight: 800;
-            border-radius: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
-            text-align: center;
-        }
-
-        .claim-btn:hover {
-            transform: scale(1.03);
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
-        }
-
-        /* Live Toast Notification Popup */
-        .toast-notification {
-            position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1c2035;
-            border: 1px solid #3b436b;
-            padding: 12px 20px;
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            z-index: 9999;
-            width: 90%;
-            max-width: 400px;
-            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .toast-notification.show {
-            bottom: 20px;
-        }
-
-        .toast-icon {
-            width: 10px;
-            height: 10px;
-            background: var(--accent-green);
-            border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-green);
-        }
-
-        .toast-text {
-            font-size: 12px;
-            color: #fff;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 12px;
-            color: #4b526d;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: linear-gradient(135deg, var(--bg), #1e293b); color: #fff; padding-bottom: 30px; }
+        
+        .header { text-align: center; padding: 40px 20px; }
+        .header h1 { font-size: 1.8rem; margin-bottom: 10px; background: linear-gradient(to right, #818cf8, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .container { max-width: 500px; margin: 0 auto; padding: 0 15px; }
+        
+        .tabs-container { display: flex; gap: 5px; background: rgba(0,0,0,0.2); padding: 5px; border-radius: 12px; margin-bottom: 20px; }
+        .tab-btn { flex: 1; padding: 10px; cursor: pointer; text-align: center; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
+        .tab-btn.active { background: var(--primary); }
+        
+        .tab-content { display: none; animation: fadeIn 0.4s; }
+        .tab-content.active { display: block; }
+        
+        .offer-card { background: var(--card); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: white; transition: 0.3s; }
+        .offer-card:hover { border-color: var(--primary); transform: scale(1.02); }
+        
+        .icon-box { width: 40px; height: 40px; background: rgba(99, 102, 241, 0.2); color: #818cf8; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
+        
+        .btn-claim { background: var(--accent); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); animation: pulse 2s infinite; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(244, 63, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); } }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <!-- Live Online Counter -->
-    <div class="live-counter">⚡ 1,482 users online - Rewards are locking fast!</div>
-
-    <header>
-        <h1>Premium Rewards Vault</h1>
-        <p>Select your preferred option below and claim your digital reward instantly.</p>
-        <div class="timer-badge">CLOSING IN: <span id="countdown">04:59</span></div>
-    </header>
-
-    <!-- Premium Navigation Tabs -->
-    <div class="tabs-container">
-        <button class="tab-btn active" onclick="openPanel(event, 'panel1')">Top Rewards</button>
-        <button class="tab-btn" onclick="openPanel(event, 'panel2')">Mega Win</button>
-        <button class="tab-btn" onclick="openPanel(event, 'panel3')">Trending</button>
-    </div>
-
-    <!-- PANEL 1 -->
-    <div id="panel1" class="panel-content active">
-        <!-- Card 1 -->
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Taco Bell $100 Gift Card</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Food & Drink</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>88%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 88%"></div></div>
-        </div>
-        <!-- Card 2 -->
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Chance to Win $50K</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Grand Raffle</span>
-                        <span class="status-tag" style="color: #ff007b;">🔥 High Value</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>94%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 94%"></div></div>
-        </div>
-        <!-- Card 3 -->
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Chick Fil A $100 Gift Card</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Fast Food</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>79%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 79%"></div></div>
-        </div>
-        <!-- Card 4 -->
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">CashApp $750 Reward</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Instant Cash</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>91%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 91%"></div></div>
-        </div>
-        <!-- Card 5 -->
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Paypal $100 Credit</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Wallet Balance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>85%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 85%"></div></div>
-        </div>
-        <!-- Card 6 -->
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Lululemon GiftCard</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Apparel</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>72%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 72%"></div></div>
-        </div>
-        <!-- Card 7 -->
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Cash App $1000 Promo</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Big Reward</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>89%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 89%"></div></div>
-        </div>
-        <!-- Card 8 -->
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Cash App $750 (3.28$)</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Bonus Finance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>93%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 93%"></div></div>
-        </div>
-        <!-- Card 9 -->
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Grocery Card $1000</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Supermarket</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>81%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 81%"></div></div>
-        </div>
-    </div>
-
-    <!-- PANEL 2 -->
-    <div id="panel2" class="panel-content">
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Chance to Win $50K</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Grand Raffle</span>
-                        <span class="status-tag" style="color: #ff007b;">🔥 High Value</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u653891&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>94%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 94%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Taco Bell $100 Gift Card</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Food</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u578522&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>84%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 84%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Chick Fil A $100 Gift Card</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Food</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u578522&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>76%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 76%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">CashApp $750 Reward</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Finance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u578522&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>90%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 90%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Grocery Card $1000</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Groceries</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u578522&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>83%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 83%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Paypal $100 Credit</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Finance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u578522&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>87%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 87%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Lululemon GiftCard</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Shopping</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u578522&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>70%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 70%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Cash App $1000 Promo</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Finance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u578522&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>85%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 85%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Cash App $750</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Finance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u578522&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>91%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 91%"></div></div>
-        </div>
-    </div>
-
-    <!-- PANEL 3 -->
-    <div id="panel3" class="panel-content">
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Taco Bell $100 Gift Card</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Food</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u794924&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>83%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 83%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Chance to Win $50K</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Grand Raffle</span>
-                        <span class="status-tag" style="color: #ff007b;">🔥 High Value</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u794924&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>95%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 95%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Chick Fil A $100 Gift Card</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Food</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u794924&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>72%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 72%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">CashApp $750 Reward</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Finance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u794924&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>89%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 89%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Grocery Card $1000</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Groceries</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u794924&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>80%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 80%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Paypal $100 Credit</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Finance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u794924&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>84%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 84%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Lululemon GiftCard</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Shopping</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u794924&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>68%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 68%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Cash App $1000 Promo</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Finance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u794924&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>87%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 87%"></div></div>
-        </div>
-        <div class="offer-card">
-            <div class="card-row">
-                <div class="offer-info">
-                    <div class="offer-title">Cash App $750</div>
-                    <div class="tag-wrapper">
-                        <span class="offer-tag">Finance</span>
-                        <span class="status-tag">✓ Available</span>
-                    </div>
-                </div>
-                <a href="https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u794924&sub5=Tat_mamunMR-H" target="_blank" class="claim-btn">Claim</a>
-            </div>
-            <div class="progress-text"><span>Slots Filled</span> <span>90%</span></div>
-            <div class="progress-container"><div class="progress-bar" style="width: 90%"></div></div>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Secured Premium Panels. All connections encrypted.</p>
-    </footer>
+<div class="header">
+    <h1>🔥 Trending Rewards</h1>
+    <p style="font-size: 0.9rem; opacity: 0.7;">Select your prize below</p>
 </div>
 
-<!-- Dynamic Live Conversion Toast Notification -->
-<div id="toast" class="toast-notification">
-    <div class="toast-icon"></div>
-    <div class="toast-text" id="toast-msg">Someone just claimed a $750 CashApp Reward!</div>
+<div class="container">
+    <div class="tabs-container">
+        <div class="tab-btn active" onclick="switchTab(event, 'panel1')">Panel 1</div>
+        <div class="tab-btn" onclick="switchTab(event, 'panel2')">Panel 2</div>
+        <div class="tab-btn" onclick="switchTab(event, 'panel3')">Panel 3</div>
+    </div>
+
+    <!-- JavaScript Injection for Clean Code -->
+    <div id="panel1" class="tab-content active"></div>
+    <div id="panel2" class="tab-content"></div>
+    <div id="panel3" class="tab-content"></div>
 </div>
 
 <script>
-    // Tab Handler
-    function openPanel(evt, panelId) {
-        var i, panelContent, tabBtns;
-        panelContent = document.getElementsByClassName("panel-content");
-        for (i = 0; i < panelContent.length; i++) {
-            panelContent[i].style.display = "none";
-            panelContent[i].classList.remove("active");
-        }
-        tabBtns = document.getElementsByClassName("tab-btn");
-        for (i = 0; i < tabBtns.length; i++) {
-            tabBtns[i].classList.remove("active");
-        }
-        document.getElementById(panelId).style.display = "block";
-        document.getElementById(panelId).classList.add("active");
-        evt.currentTarget.classList.add("active");
-    }
-
-    // Countdown Timer System
-    function startTimer(duration, display) {
-        var timer = duration, minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-            display.textContent = minutes + ":" + seconds;
-            if (--timer < 0) { timer = duration; }
-        }, 1000);
-    }
-
-    // Fake Conversion Notification Generator
-    const names = ["James", "Emma", "Oliver", "Sophia", "Liam", "Ava", "Noah", "Isabella", "Lucas", "Mia"];
-    const states = ["New York", "California", "Texas", "Florida", "Chicago", "Ohio", "Georgia", "Michigan"];
-    const rewards = ["$750 CashApp Reward", "$100 Taco Bell Card", "$1000 Grocery Card", "$100 PayPal Credit", "$100 Chick-Fil-A Card"];
-
-    function showRandomToast() {
-        const toast = document.getElementById("toast");
-        const toastMsg = document.getElementById("toast-msg");
-        
-        const randomName = names[Math.floor(Math.random() * names.length)];
-        const randomState = states[Math.floor(Math.random() * states.length)];
-        const randomReward = rewards[Math.floor(Math.random() * rewards.length)];
-        
-        toastMsg.innerHTML = `🎉 <b>${randomName}</b> from ${randomState} just claimed a <b>${randomReward}</b>!`;
-        toast.classList.add("show");
-        
-        setTimeout(() => {
-            toast.classList.remove("show");
-        }, 4000); // Popup stays for 4 seconds
-    }
-
-    window.onload = function () {
-        // Init Timer
-        var fiveMinutes = 60 * 5, display = document.querySelector('#countdown');
-        startTimer(fiveMinutes, display);
-
-        // Run Live Toast alerts every 7 seconds
-        setInterval(showRandomToast, 7000);
+    const data = {
+        panel1: [["DailySurge Coke vs Pepsi", "https://app.hawktrk.com/click?pid=2&offer_id=18396&sub2=u653891&sub5=Tat_mamunMR-H"],["GnG - 1k Amazon", "https://app.hawktrk.com/click?pid=2&offer_id=19630&sub2=u653891&sub5=Tat_mamunMR-H"],["GnG - Tax Rewards", "https://app.hawktrk.com/click?pid=2&offer_id=19862&sub2=u653891&sub5=Tat_mamunMR-H"],["GnG - CashApp $750", "https://app.hawktrk.com/click?pid=2&offer_id=20133&sub2=u653891&sub5=Tat_mamunMR-H"],["CTConnect - Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u653891&sub5=Tat_mamunMR-H"],["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u653891&sub5=Tat_mamunMR-H"],["CTConnect - Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u653891&sub5=Tat_mamunMR-H"],["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u653891&sub5=Tat_mamunMR-H"],["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u653891&sub5=Tat_mamunMR-H"],["CTConnect - Lululemon", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u653891&sub5=Tat_mamunMR-H"],["Reward Spark - $1000", "https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u653891&sub5=Tat_mamunMR-H"],["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u653891&sub5=Tat_mamunMR-H"],["Rewards Locker - $1000", "https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u653891&sub5=Tat_mamunMR-H"]],
+        panel2: [["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u578522&sub5=Tat_mamunMR-H"],["CTConnect - Taco Bell", "https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u578522&sub5=Tat_mamunMR-H"],["CTConnect - Chick Fil A", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u578522&sub5=Tat_mamunMR-H"],["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u578522&sub5=Tat_mamunMR-H"],["Rewards Locker - Grocery", "https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u578522&sub5=Tat_mamunMR-H"],["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u578522&sub5=Tat_mamunMR-H"],["CTConnect - Lululemon", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u578522&sub5=Tat_mamunMR-H"],["Reward Spark - Cash App", "https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u578522&sub5=Tat_mamunMR-H"],["CTConnect - Cash App 750", "https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u578522&sub5=Tat_mamunMR-H"]],
+        panel3: [["CTConnect - Taco Bell", "https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u794924&sub5=Tat_mamunMR-H"],["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u794924&sub5=Tat_mamunMR-H"],["CTConnect - Chick Fil A", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u794924&sub5=Tat_mamunMR-H"],["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u794924&sub5=Tat_mamunMR-H"],["Rewards Locker - Grocery", "https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u794924&sub5=Tat_mamunMR-H"],["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u794924&sub5=Tat_mamunMR-H"],["CTConnect - Lululemon", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u794924&sub5=Tat_mamunMR-H"],["Reward Spark - Cash App", "https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u794924&sub5=Tat_mamunMR-H"],["CTConnect - Cash App 750", "https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u794924&sub5=Tat_mamunMR-H"]]
     };
-</script>
 
+    function render() {
+        for (let p in data) {
+            document.getElementById(p).innerHTML = data[p].map(o => `
+                <a href="${o[1]}" class="offer-card">
+                    <div style="display:flex; align-items:center;">
+                        <div class="icon-box"><i class="fas fa-gift"></i></div>
+                        <div><div style="font-size:0.9rem; font-weight:600;">${o[0]}</div><div style="font-size:0.7rem; opacity:0.6;">Limited Time Offer</div></div>
+                    </div>
+                    <div class="btn-claim">CLAIM</div>
+                </a>`).join('');
+        }
+    }
+    function switchTab(e, id) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        e.currentTarget.classList.add('active');
+    }
+    render();
+</script>
 </body>
 </html>
