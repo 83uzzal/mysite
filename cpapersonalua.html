@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advanced UA Generator + ZIP + IP Checker</title>
+<title>Advanced UA & Environment Generator</title>
 
 <style>
-
 :root{
     --bg:#0d1117;
     --card:#161b22;
@@ -15,10 +14,10 @@
     --border:#30363d;
     --green:#238636;
     --orange:#f59e0b;
+    --purple:#8b5cf6;
 }
 
 /* RESET */
-
 *{
     margin:0;
     padding:0;
@@ -32,7 +31,6 @@ body{
 }
 
 /* BODY */
-
 body{
     background-color:var(--bg);
     color:var(--text);
@@ -40,63 +38,57 @@ body{
     display:flex;
     justify-content:center;
     align-items:flex-start;
-    padding:6px;
+    padding:12px;
     min-height:100vh;
 }
 
 /* WRAPPER */
-
 .wrapper{
     width:100%;
-    max-width:1200px;
+    max-width:1000px;
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:6px;
+    grid-template-columns:1fr 1fr; /* দুই প্যানেল লেআউট */
+    gap:12px;
 }
 
 /* BOX */
-
 .container{
     background-color:var(--card);
     width:100%;
     border-radius:8px;
     border:1px solid var(--border);
-    padding:8px;
+    padding:12px;
     box-shadow:0 5px 15px rgba(0,0,0,0.4);
 }
 
 /* HEADER */
-
 .header{
     text-align:center;
     color:var(--blue);
     font-size:13px;
     font-weight:700;
-    margin-bottom:8px;
+    margin-bottom:12px;
     text-transform:uppercase;
     border-bottom:1px solid var(--border);
-    padding-bottom:4px;
+    padding-bottom:6px;
     letter-spacing:0.5px;
 }
 
 /* LABEL */
-
 label{
     display:block;
     margin-bottom:4px;
-    font-size:12px;
+    font-size:11px;
     color:var(--blue);
     font-weight:600;
 }
 
 /* INPUT */
-
 select,
-input,
 button{
     width:100%;
-    padding:4px 8px;
-    margin-bottom:6px;
+    padding:6px 8px;
+    margin-bottom:8px;
     border-radius:6px;
     outline:none;
     font-size:11px;
@@ -110,14 +102,12 @@ select{
 }
 
 /* BUTTON */
-
 button{
     cursor:pointer;
-    transition:0.25s;
+    transition:0.2s;
 }
 
 /* GENERATE BUTTON */
-
 .btn-gen{
     background-color:var(--blue);
     color:#000;
@@ -130,7 +120,6 @@ button{
 }
 
 /* COPY BUTTON */
-
 .btn-copy{
     background-color:var(--green);
     border:none;
@@ -144,7 +133,6 @@ button{
 }
 
 /* DETAILS */
-
 .details-box{
     background-color:var(--bg);
     border:1px solid var(--border);
@@ -155,7 +143,6 @@ button{
 }
 
 /* ROW */
-
 .row{
     display:flex;
     justify-content:flex-start;
@@ -164,30 +151,29 @@ button{
     margin-bottom:2px;
     font-size:10px;
     border-bottom:1px solid #1f242c;
-    padding-bottom:1px;
+    padding-bottom:2px;
     line-height:1.3;
+    cursor:pointer;
 }
 .row:hover {
     background-color: #1c2128;
 }
-/* KEY */
 
+/* KEY */
 .key{
     color:var(--blue);
     font-weight:700;
     white-space:nowrap;
-    min-width:75px;
+    min-width:115px;
 }
 
 /* VALUE */
-
 .val{
     color:#fff;
     word-break:break-word;
 }
 
 /* UA OUTPUT */
-
 .ua-output{
     background-color:#090c10;
     border:1px dotted var(--blue);
@@ -196,117 +182,44 @@ button{
     margin-top:10px;
     word-break:break-all;
     font-family:monospace;
-    color:var(--blue);
     font-size:10px;
     line-height:1.35;
     overflow-wrap:anywhere;
 }
 
-/* RESULT */
-
-.result{
-    margin-top:8px;
-    background:#0f172a;
-    padding:8px;
-    border-radius:8px;
-    line-height:1.45;
-    word-break:break-word;
-    border:1px solid #334155;
-    font-size:10px;
+.ua-mobile-color {
+    color: var(--blue);
 }
 
-/* LABEL */
-
-.label{
-    color:#38bdf8;
-    font-weight:bold;
+.ua-windows-color {
+    color: var(--purple);
 }
 
-/* IP BUTTONS */
-
-.ipBtns{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-top:10px;
-}
-
-.ipBtns a{
-    background:var(--orange);
-    color:black;
-    text-align:center;
-    padding:10px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:bold;
-    font-size:12px;
-}
-
-.ipBtns a:hover{
-    opacity:.92;
-}
-
-a{
-    color:#38bdf8;
-    text-decoration:none;
-}
-
-a:hover{
-    text-decoration:underline;
-}
-
-/* MOBILE */
-
-@media(max-width:1100px){
-
+/* MOBILE RESPONSIVE */
+@media(max-width:800px){
     .wrapper{
         grid-template-columns:1fr;
     }
-
 }
 
 @media(max-width:480px){
-
     body{
-        padding:4px;
+        padding:6px;
     }
 
     .container{
         padding:10px;
-        border-radius:8px;
     }
 
     .header{
-        font-size:14px;
+        font-size:12px;
     }
 
     select,
-    input,
     button{
         font-size:11px;
         padding:7px 8px;
     }
-
-    .row{
-        font-size:10px;
-    }
-
-    .ua-output{
-        font-size:10px;
-    }
-
-    .result{
-        font-size:10px;
-    }
-}
-#zipResult div{
-    cursor:pointer;
-    padding:2px 4px;
-    border-radius:4px;
-}
-
-#zipResult div:hover{
-    background:#1c2128;
 }
 </style>
 </head>
@@ -315,235 +228,256 @@ a:hover{
 
 <div class="wrapper">
 
-<!-- ================= UA GENERATOR ================= -->
+    <div class="container">
+        <div class="header">📱 Mobile & Apple UA Generator</div>
+        
+        <label>Select Device Model:</label>
+        <select id="deviceSelect"></select>
 
-<div class="container">
+        <label>Select Browser:</label>
+        <select id="browserSelect">
+            <option value="Chrome">Chrome</option>
+            <option value="Firefox">Firefox</option>
+            <option value="Edge">Edge</option>
+            <option value="Safari">Safari</option>
+        </select>
 
-<div class="header">📱 UA GENERATOR (20 MODELS)</div>
+        <button class="btn-gen" onclick="generateUA()">Generate Mobile Environment</button>
 
-<label>Select Device Model:</label>
+        <div id="detailsArea" class="details-box">
+            <div id="infoRows"></div>
+            <div style="margin-top:15px; font-weight:bold; color:var(--blue);">Generated User Agent:</div>
+            <div id="uaOutput" class="ua-output ua-mobile-color"></div>
+            <button class="btn-copy" id="copyBtn" onclick="copyUA()">Copy User Agent</button>
+        </div>
+    </div>
 
-<select id="deviceSelect"></select>
+    <div class="container">
+        <div class="header">💻 Windows Coherent UA & Fingerprint Generator</div>
+        
+        <label>Select Windows System Profile:</label>
+        <select id="windowsSelect"></select>
 
-<label>Select Browser:</label>
+        <label>Select Web Browser:</label>
+        <select id="winBrowserSelect">
+            <option value="Chrome">Chrome</option>
+            <option value="Firefox">Firefox</option>
+            <option value="Edge">Edge</option>
+        </select>
 
-<select id="browserSelect">
-<option value="Chrome">Chrome</option>
-<option value="Firefox">Firefox</option>
-<option value="Edge">Edge</option>
-<option value="Safari">Safari</option>
-</select>
+        <button class="btn-gen" onclick="generateWindowsUA()">Generate Coherent Environment</button>
 
-<button class="btn-gen" onclick="generateUA()">
-Generate UA & Details
-</button>
-
-<div id="detailsArea" class="details-box">
-
-<div id="infoRows"></div>
-
-<div style="margin-top:15px; font-weight:bold; color:var(--blue);">
-Generated User Agent:
-</div>
-
-<div id="uaOutput" class="ua-output"></div>
-
-<button class="btn-copy" id="copyBtn" onclick="copyUA()">
-Copy User Agent
-</button>
-
-</div>
-
-</div>
-
-<!-- ================= ZIP PROFILE ================= -->
-
-<div class="container">
-
-<div class="header">📍 ZIP PROFILE</div>
-
-<input id="zip" placeholder="Enter ZIP (e.g. 10001)">
-
-<button class="btn-gen" onclick="generateProfile()">
-Generate Profile
-</button>
-
-<div class="result" id="zipResult">
-Enter ZIP and generate profile
-</div>
-
-</div>
-
-<!-- ================= IP CHECKER ================= -->
-
-<div class="container">
-
-<div class="header">🌐 IP CHECKER</div>
-
-<input id="ipInput" placeholder="Enter IP (e.g. 8.8.8.8)">
-
-<button class="btn-gen" onclick="checkIP()">
-Check IP
-</button>
-
-<div class="result" id="ipResult">
-Enter IP and check details
-</div>
-
-</div>
+        <div id="winDetailsArea" class="details-box">
+            <div id="winInfoRows"></div>
+            <div style="margin-top:15px; font-weight:bold; color:var(--blue);">Generated User Agent:</div>
+            <div id="winUaOutput" class="ua-output ua-windows-color"></div>
+            <button class="btn-copy" id="winCopyBtn" onclick="copyWindowsUA()">Copy User Agent</button>
+        </div>
+    </div>
 
 </div>
 
 <script>
-
-// ================= DEVICE DATABASE =================
-
+// ================= MOBILE DEVICES DATABASE =================
 const devices = [
-{ "brand": "Apple", "model": "iPhone 16 Pro Max", "chipset": "Apple A18 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.9 inch OLED", "resolution": "1320 x 2868", "ppi": 460, "camera": "48MP + 48MP + 12MP", "battery": "4685 mAh", "os": "iOS 18", "gpu": "Apple GPU", "viewport": "440 x 956", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
 
-{ "brand": "Apple", "model": "iPhone 16 Pro", "chipset": "Apple A18 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.3 inch OLED", "resolution": "1206 x 2622", "ppi": 460, "camera": "48MP + 48MP + 12MP", "battery": "3582 mAh", "os": "iOS 18", "gpu": "Apple GPU", "viewport": "402 x 874", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 17 Pro Max", "chipset": "Apple A19 Pro", "cpu": "6-core", "ram": "12 GB", "display": "6.9 inch OLED", "resolution": "1320 x 2868", "ppi": 460, "camera": "48MP + 48MP + 48MP", "battery": "4832 mAh", "os": "iOS 26", "gpu": "Apple GPU (6-core)", "viewport": "440 x 956", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 17e", "chipset": "Apple A19", "cpu": "6-core", "ram": "8 GB", "display": "6.1 inch OLED", "resolution": "1170 x 2532", "ppi": 460, "camera": "48MP + 12MP", "battery": "4005 mAh", "os": "iOS 26", "gpu": "Apple GPU (4-core)", "viewport": "390 x 844", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 17 Pro", "chipset": "Apple A19 Pro", "cpu": "6-core", "ram": "12 GB", "display": "6.3 inch OLED", "resolution": "1206 x 2622", "ppi": 460, "camera": "48MP + 48MP + 48MP", "battery": "3998 mAh", "os": "iOS 26", "gpu": "Apple GPU (6-core)", "viewport": "402 x 874", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 17", "chipset": "Apple A19", "cpu": "6-core", "ram": "8 GB", "display": "6.3 inch OLED", "resolution": "1206 x 2622", "ppi": 460, "camera": "48MP + 48MP", "battery": "3692 mAh", "os": "iOS 26", "gpu": "Apple GPU (5-core)", "viewport": "402 x 874", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 16e", "chipset": "Apple A18", "cpu": "6-core", "ram": "8 GB", "display": "6.1 inch OLED", "resolution": "1170 x 2532", "ppi": 460, "camera": "48MP + 12MP", "battery": "4005 mAh", "os": "iOS 18", "gpu": "Apple GPU (5-core)", "viewport": "390 x 844", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 16", "chipset": "Apple A18", "cpu": "6-core", "ram": "8 GB", "display": "6.1 inch OLED", "resolution": "1179 x 2556", "ppi": 460, "camera": "48MP + 12MP", "battery": "3561 mAh", "os": "iOS 18", "gpu": "Apple GPU (5-core)", "viewport": "393 x 852", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 16 Plus", "chipset": "Apple A18", "cpu": "6-core", "ram": "8 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP", "battery": "4674 mAh", "os": "iOS 18", "gpu": "Apple GPU (5-core)", "viewport": "430 x 932", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 15", "chipset": "Apple A16 Bionic", "cpu": "6-core", "ram": "6 GB", "display": "6.1 inch OLED", "resolution": "1179 x 2556", "ppi": 460, "camera": "48MP + 12MP", "battery": "3349 mAh", "os": "iOS 17", "gpu": "Apple GPU (5-core)", "viewport": "393 x 852", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+{ "brand": "Apple", "model": "iPhone 14", "chipset": "Apple A15 Bionic", "cpu": "6-core", "ram": "6 GB", "display": "6.1 inch OLED", "resolution": "1170 x 2532", "ppi": 460, "camera": "12MP + 12MP", "battery": "3279 mAh", "os": "iOS 16", "gpu": "Apple GPU (5-core)", "viewport": "390 x 844", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
 
-{ "brand": "Apple", "model": "iPhone 16 Plus", "chipset": "Apple A18", "cpu": "6-core", "ram": "8 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP", "battery": "4674 mAh", "os": "iOS 18", "gpu": "Apple GPU", "viewport": "430 x 932", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+ // === SAMSUNG (26 - 60) ===
 
-{ "brand": "Apple", "model": "iPhone 15 Pro Max", "chipset": "Apple A17 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP + 12MP", "battery": "4441 mAh", "os": "iOS 17 / iOS 18", "gpu": "Apple GPU", "viewport": "430 x 932", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+  { "brand": "Samsung", "model": "Galaxy S25 Ultra", "chipset": "Snapdragon 8 Elite for Galaxy", "cpu": "8-core", "ram": "12/16 GB", "display": "6.8 inch OLED", "resolution": "1440 x 3120", "ppi": 505, "camera": "200MP + 50MP + 10MP + 50MP", "battery": "5000 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 923", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
+  { "brand": "Samsung", "model": "Galaxy S25+", "chipset": "Snapdragon 8 Elite for Galaxy", "cpu": "8-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1440 x 3120", "ppi": 513, "camera": "50MP + 10MP + 12MP", "battery": "4900 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
+  { "brand": "Samsung", "model": "Galaxy S25", "chipset": "Snapdragon 8 Elite for Galaxy", "cpu": "8-core", "ram": "12 GB", "display": "6.2 inch OLED", "resolution": "1080 x 2340", "ppi": 416, "camera": "50MP + 10MP + 12MP", "battery": "4000 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "360 x 780", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
+  { "brand": "Samsung", "model": "Galaxy S24 Ultra", "chipset": "Snapdragon 8 Gen 3 for Galaxy", "cpu": "8-core", "ram": "12 GB", "display": "6.8 inch OLED", "resolution": "1440 x 3120", "ppi": 505, "camera": "200MP + 50MP + 10MP + 12MP", "battery": "5000 mAh", "os": "Android 14 / 15", "gpu": "Adreno 750", "viewport": "412 x 923", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 750" },
+  { "brand": "Samsung", "model": "Galaxy S24+", "chipset": "Snapdragon 8 Gen 3 for Galaxy", "cpu": "8-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1440 x 3120", "ppi": 513, "camera": "50MP + 10MP + 12MP", "battery": "4900 mAh", "os": "Android 14 / 15", "gpu": "Adreno 750", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 750" },
+  { "brand": "Samsung", "model": "Galaxy S24", "chipset": "Snapdragon 8 Gen 3 for Galaxy", "cpu": "8-core", "ram": "8 GB", "display": "6.2 inch OLED", "resolution": "1080 x 2340", "ppi": 416, "camera": "50MP + 10MP + 12MP", "battery": "4000 mAh", "os": "Android 14 / 15", "gpu": "Adreno 750", "viewport": "360 x 780", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 750" },
+  { "brand": "Samsung", "model": "Galaxy S24 FE", "chipset": "Exynos 2400e", "cpu": "10-core", "ram": "8 GB", "display": "6.7 inch OLED", "resolution": "1080 x 2340", "ppi": 385, "camera": "50MP + 8MP + 12MP", "battery": "4700 mAh", "os": "Android 14 / 15", "gpu": "Xclipse 940", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Samsung Electronics)", "webgl_renderer": "Xclipse 940" },
+  { "brand": "Samsung", "model": "Galaxy S23 Ultra", "chipset": "Snapdragon 8 Gen 2 for Galaxy", "cpu": "8-core", "ram": "8/12 GB", "display": "6.8 inch OLED", "resolution": "1440 x 3088", "ppi": 500, "camera": "200MP + 10MP + 10MP + 12MP", "battery": "5000 mAh", "os": "Android 13 / 15", "gpu": "Adreno 740", "viewport": "412 x 884", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 740" },
+  { "brand": "Samsung", "model": "Galaxy S23+", "chipset": "Snapdragon 8 Gen 2 for Galaxy", "cpu": "8-core", "ram": "8 GB", "display": "6.6 inch OLED", "resolution": "1080 x 2340", "ppi": 393, "camera": "50MP + 10MP + 12MP", "battery": "4700 mAh", "os": "Android 13 / 15", "gpu": "Adreno 740", "viewport": "360 x 780", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 740" },
+  { "brand": "Samsung", "model": "Galaxy S23", "chipset": "Snapdragon 8 Gen 2 for Galaxy", "cpu": "8-core", "ram": "8 GB", "display": "6.1 inch OLED", "resolution": "1080 x 2340", "ppi": 425, "camera": "50MP + 10MP + 12MP", "battery": "3900 mAh", "os": "Android 13 / 15", "gpu": "Adreno 740", "viewport": "360 x 780", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 740" },
+  { "brand": "Samsung", "model": "Galaxy S23 FE", "chipset": "Snapdragon 8 Gen 1", "cpu": "8-core", "ram": "8 GB", "display": "6.4 inch OLED", "resolution": "1080 x 2340", "ppi": 403, "camera": "50MP + 8MP + 12MP", "battery": "4500 mAh", "os": "Android 13 / 15", "gpu": "Adreno 730", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 730" },
 
-{ "brand": "Apple", "model": "iPhone 15 Pro", "chipset": "Apple A17 Pro", "cpu": "6-core", "ram": "8 GB", "display": "6.1 inch OLED", "resolution": "1179 x 2556", "ppi": 461, "camera": "48MP + 12MP + 12MP", "battery": "3274 mAh", "os": "iOS 17 / iOS 18", "gpu": "Apple GPU", "viewport": "393 x 852", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
 
-{ "brand": "Apple", "model": "iPhone 15 Plus", "chipset": "Apple A16 Bionic", "cpu": "6-core", "ram": "6 GB", "display": "6.7 inch OLED", "resolution": "1290 x 2796", "ppi": 460, "camera": "48MP + 12MP", "battery": "4383 mAh", "os": "iOS 17 / iOS 18", "gpu": "Apple GPU", "viewport": "430 x 932", "touch": 5, "webgl_vendor": "Apple Inc.", "webgl_renderer": "Apple GPU" },
+ 
 
-{ "brand": "Samsung", "model": "Galaxy S26 Ultra", "chipset": "Snapdragon 8 Elite Gen 5", "cpu": "8-core", "ram": "12/16 GB", "display": "6.9 inch OLED", "resolution": "1440 x 3120", "ppi": 498, "camera": "200MP + 50MP + 10MP + 50MP", "battery": "5000 mAh", "os": "Android 16", "gpu": "Adreno 840", "viewport": "412 x 923", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 840" },
+ // === GOOGLE (61 - 72) ===
 
-{ "brand": "Samsung", "model": "Galaxy S25 Ultra", "chipset": "Snapdragon 8 Elite", "cpu": "8-core", "ram": "12/16 GB", "display": "6.8 inch OLED", "resolution": "1440 x 3120", "ppi": 505, "camera": "200MP + 50MP + 10MP + 50MP", "battery": "5000 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 923", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
+  { "brand": "Google", "model": "Pixel 9 Pro XL", "chipset": "Tensor G4", "cpu": "8-core", "ram": "16 GB", "display": "6.8 inch OLED", "resolution": "1344 x 2992", "ppi": 486, "camera": "50MP + 48MP + 48MP", "battery": "5060 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 917", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC7" },
+  { "brand": "Google", "model": "Pixel 9 Pro", "chipset": "Tensor G4", "cpu": "8-core", "ram": "16 GB", "display": "6.3 inch OLED", "resolution": "1280 x 2856", "ppi": 495, "camera": "50MP + 48MP + 48MP", "battery": "4700 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 918", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC7" },
+  { "brand": "Google", "model": "Pixel 9 Pro Fold", "chipset": "Tensor G4", "cpu": "8-core", "ram": "16 GB", "display": "8.0 inch OLED", "resolution": "2076 x 2152", "ppi": 373, "camera": "48MP + 10.5MP + 10.8MP", "battery": "4650 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 920", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC7" },
+  { "brand": "Google", "model": "Pixel 9", "chipset": "Tensor G4", "cpu": "8-core", "ram": "12 GB", "display": "6.3 inch OLED", "resolution": "1080 x 2424", "ppi": 422, "camera": "50MP + 48MP", "battery": "4700 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 924", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC7" },
+  { "brand": "Google", "model": "Pixel 8 Pro", "chipset": "Tensor G3", "cpu": "9-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1344 x 2992", "ppi": 489, "camera": "50MP + 48MP + 48MP", "battery": "5050 mAh", "os": "Android 14 / 15", "gpu": "Immortalis-G715s MC10", "viewport": "412 x 915", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC10" },
+  { "brand": "Google", "model": "Pixel 8", "chipset": "Tensor G3", "cpu": "9-core", "ram": "8 GB", "display": "6.2 inch OLED", "resolution": "1080 x 2400", "ppi": 428, "camera": "50MP + 12MP", "battery": "4575 mAh", "os": "Android 14 / 15", "gpu": "Immortalis-G715s MC10", "viewport": "412 x 915", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC10" },
+  { "brand": "Google", "model": "Pixel 8a", "chipset": "Tensor G3", "cpu": "9-core", "ram": "8 GB", "display": "6.1 inch OLED", "resolution": "1080 x 2400", "ppi": 430, "camera": "64MP + 13MP", "battery": "4492 mAh", "os": "Android 14 / 15", "gpu": "Immortalis-G715s MC10", "viewport": "412 x 915", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC10" },
+  { "brand": "Google", "model": "Pixel Fold", "chipset": "Tensor G2", "cpu": "8-core", "ram": "12 GB", "display": "7.6 inch OLED", "resolution": "1840 x 2208", "ppi": 380, "camera": "48MP + 10.8MP + 10.8MP", "battery": "4821 mAh", "os": "Android 13 / 14 / 15", "gpu": "Mali-G710 MP7", "viewport": "412 x 892", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G710 MP7" },
+  { "brand": "Google", "model": "Pixel 7 Pro", "chipset": "Tensor G2", "cpu": "8-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1440 x 3120", "ppi": 512, "camera": "50MP + 48MP + 12MP", "battery": "5000 mAh", "os": "Android 13 / 14 / 15", "gpu": "Mali-G710 MP7", "viewport": "412 x 892", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G710 MP7" },
+  { "brand": "Google", "model": "Pixel 7", "chipset": "Tensor G2", "cpu": "8-core", "ram": "8 GB", "display": "6.3 inch OLED", "resolution": "1080 x 2400", "ppi": 416, "camera": "50MP + 12MP", "battery": "4355 mAh", "os": "Android 13 / 14 / 15", "gpu": "Mali-G710 MP7", "viewport": "412 x 915", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G710 MP7" },
+  { "brand": "Google", "model": "Pixel 7a", "chipset": "Tensor G2", "cpu": "8-core", "ram": "8 GB", "display": "6.1 inch OLED", "resolution": "1080 x 2400", "ppi": 429, "camera": "64MP + 13MP", "battery": "4385 mAh", "os": "Android 13 / 14 / 15", "gpu": "Mali-G710 MP7", "viewport": "412 x 915", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G710 MP7" },
+  { "brand": "Google", "model": "Pixel 6a", "chipset": "Tensor", "cpu": "8-core", "ram": "6 GB", "display": "6.1 inch OLED", "resolution": "1080 x 2400", "ppi": 429, "camera": "12.2MP + 12MP", "battery": "4410 mAh", "os": "Android 12 / 13 / 14 / 15", "gpu": "Mali-G78 MP20", "viewport": "412 x 915", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G78 MP20" },
 
-{ "brand": "Samsung", "model": "Galaxy S25+", "chipset": "Exynos 2500 / Snapdragon 8 Elite", "cpu": "10-core / 8-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1440 x 3120", "ppi": 513, "camera": "50MP + 10MP + 12MP", "battery": "4900 mAh", "os": "Android 15", "gpu": "Xclipse 950 / Adreno 830", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Samsung Electronics)", "webgl_renderer": "Xclipse 950" },
 
-{ "brand": "Samsung", "model": "Galaxy S24+", "chipset": "Exynos 2400 / Snapdragon 8 Gen 3", "cpu": "8/10-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1440 x 3120", "ppi": 513, "camera": "50MP + 10MP + 12MP", "battery": "4900 mAh", "os": "Android 14 / 15", "gpu": "Adreno 750", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 750" },
+  // === ONEPLUS (73 - 82) ===
 
-{ "brand": "Samsung", "model": "Galaxy A57 5G", "chipset": "Exynos 1680", "cpu": "8-core", "ram": "8/12 GB", "display": "6.7 inch OLED", "resolution": "1080 x 2340", "ppi": 390, "camera": "50MP + 12MP + 5MP", "battery": "5000 mAh", "os": "Android 16", "gpu": "Xclipse 550", "viewport": "412 x 893", "touch": 10, "webgl_vendor": "Google Inc. (Samsung Electronics)", "webgl_renderer": "Xclipse 550" },
+  { "brand": "OnePlus", "model": "OnePlus 13", "chipset": "Snapdragon 8 Elite (Gen 4 class)", "cpu": "8-core", "ram": "12/16 GB", "display": "6.82 inch AMOLED", "resolution": "1440 x 3168", "ppi": 510, "camera": "50MP + 50MP + 50MP", "battery": "6000 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 906", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
+  { "brand": "OnePlus", "model": "OnePlus 12", "chipset": "Snapdragon 8 Gen 3", "cpu": "8-core", "ram": "12/16 GB", "display": "6.82 inch AMOLED", "resolution": "1440 x 3168", "ppi": 510, "camera": "50MP + 48MP + 64MP (periscope telephoto)", "battery": "5400 mAh", "os": "Android 14 / 15", "gpu": "Adreno 750", "viewport": "412 x 926", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 750" },
+  { "brand": "OnePlus", "model": "OnePlus 12R", "chipset": "Snapdragon 8 Gen 2", "cpu": "8-core", "ram": "8/16 GB", "display": "6.78 inch AMOLED", "resolution": "1264 x 2780", "ppi": 450, "camera": "50MP + 8MP + 2MP", "battery": "5500 mAh", "os": "Android 14 / 15", "gpu": "Adreno 740", "viewport": "412 x 906", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 740" },
+  { "brand": "OnePlus", "model": "OnePlus 11", "chipset": "Snapdragon 8 Gen 2", "cpu": "8-core", "ram": "8/12/16 GB", "display": "6.7 inch AMOLED", "resolution": "1440 x 3216", "ppi": 525, "camera": "50MP + 32MP + 48MP", "battery": "5000 mAh", "os": "Android 13 / 14 / 15", "gpu": "Adreno 740", "viewport": "412 x 921", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 740" },
+  { "brand": "OnePlus", "model": "OnePlus Open", "chipset": "Snapdragon 8 Gen 2", "cpu": "8-core", "ram": "16 GB", "display": "7.82 inch AMOLED", "resolution": "2268 x 2440", "ppi": 426, "camera": "48MP + 64MP + 48MP", "battery": "4805 mAh", "os": "Android 13 / 14 / 15", "gpu": "Adreno 740", "viewport": "412 x 920", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 740" },
+  { "brand": "OnePlus", "model": "OnePlus Nord 4", "chipset": "Snapdragon 7+ Gen 3", "cpu": "8-core", "ram": "8/12/16 GB", "display": "6.74 inch AMOLED", "resolution": "1240 x 2772", "ppi": 450, "camera": "50MP + 8MP", "battery": "5500 mAh", "os": "Android 14 / 15", "gpu": "Adreno 732", "viewport": "412 x 924", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 732" },
+  { "brand": "OnePlus", "model": "OnePlus Nord CE 4", "chipset": "Snapdragon 7 Gen 3", "cpu": "8-core", "ram": "8 GB", "display": "6.7 inch AMOLED", "resolution": "1080 x 2412", "ppi": 394, "camera": "50MP + 8MP", "battery": "5500 mAh", "os": "Android 14 / 15", "gpu": "Adreno 720", "viewport": "412 x 921", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 720" },
+  { "brand": "OnePlus", "model": "OnePlus Nord N30 5G", "chipset": "Snapdragon 695 5G", "cpu": "8-core", "ram": "8 GB", "display": "6.72 inch IPS LCD", "resolution": "1080 x 2400", "ppi": 391, "camera": "108MP + 2MP + 2MP", "battery": "5000 mAh", "os": "Android 13 / 14 / 15", "gpu": "Adreno 619", "viewport": "393 x 873", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 619" },
+  { "brand": "OnePlus", "model": "OnePlus Nord N20 5G", "chipset": "Snapdragon 695 5G", "cpu": "8-core", "ram": "6 GB", "display": "6.43 inch AMOLED", "resolution": "1080 x 2400", "ppi": 409, "camera": "64MP + 2MP + 2MP", "battery": "4500 mAh", "os": "Android 11 / 12", "gpu": "Adreno 619", "viewport": "360 x 800", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 619" },
+  { "brand": "OnePlus", "model": "OnePlus Pad", "chipset": "Dimensity 9000", "cpu": "8-core", "ram": "8/12 GB", "display": "11.61 inch IPS LCD", "resolution": "2000 x 2800", "ppi": 296, "camera": "13MP", "battery": "9510 mAh", "os": "Android 13 / 14 / 15", "gpu": "Mali-G710 MC10", "viewport": "800 x 1120", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G710 MC10" },
 
-{ "brand": "Samsung", "model": "Galaxy Z Fold 7", "chipset": "Snapdragon 8 Elite", "cpu": "8-core", "ram": "12/16 GB", "display": "7.6 inch OLED", "resolution": "1856 x 2160", "ppi": 375, "camera": "50MP + 10MP + 12MP", "battery": "4400 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 910", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
 
-{ "brand": "Google", "model": "Pixel 10 Pro", "chipset": "Tensor G5", "cpu": "8-core", "ram": "16 GB", "display": "6.3 inch OLED", "resolution": "1280 x 2856", "ppi": 495, "camera": "50MP + 48MP + 48MP", "battery": "4700 mAh", "os": "Android 16", "gpu": "PowerVR / IMG Graphics", "viewport": "412 x 918", "touch": 10, "webgl_vendor": "Google Inc. (Imagination Technologies)", "webgl_renderer": "PowerVR Rogue B-Series" },
+ // === MOTOROLA (83 - 92) ===
 
-{ "brand": "Google", "model": "Pixel 9 Pro XL", "chipset": "Tensor G4", "cpu": "8-core", "ram": "16 GB", "display": "6.8 inch OLED", "resolution": "1344 x 2992", "ppi": 486, "camera": "50MP + 48MP + 48MP", "battery": "5060 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 917", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC7" },
+{ "brand": "Motorola", "model": "Edge 50 Ultra", "chipset": "Snapdragon 8s Gen 3", "cpu": "8-core", "ram": "12/16 GB", "display": "6.7 inch P-OLED", "resolution": "1220 x 2712", "ppi": 446, "camera": "50MP + 64MP + 50MP", "battery": "4500 mAh", "os": "Android 14", "gpu": "Adreno 735", "viewport": "412 x 825", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 735" },
+{ "brand": "Motorola", "model": "Edge 50 Pro", "chipset": "Snapdragon 7 Gen 3", "cpu": "8-core", "ram": "8/12 GB", "display": "6.7 inch P-OLED", "resolution": "1220 x 2712", "ppi": 446, "camera": "50MP + 10MP + 13MP", "battery": "4500 mAh", "os": "Android 14", "gpu": "Adreno 720", "viewport": "412 x 825", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 720" },
+{ "brand": "Motorola", "model": "Razr+ 2024 (Razr 50 Ultra)", "chipset": "Snapdragon 8s Gen 3", "cpu": "8-core", "ram": "12 GB", "display": "6.9 inch Foldable LTPO AMOLED", "resolution": "1080 x 2640", "ppi": 413, "camera": "50MP + 50MP", "battery": "4000 mAh", "os": "Android 14", "gpu": "Adreno 735", "viewport": "393 x 851", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 735" },
+{ "brand": "Motorola", "model": "Razr+ 2023 (Razr 40 Ultra)", "chipset": "Snapdragon 8+ Gen 1", "cpu": "8-core", "ram": "8/12 GB", "display": "6.9 inch Foldable LTPO AMOLED", "resolution": "1080 x 2640", "ppi": 413, "camera": "12MP + 13MP", "battery": "3800 mAh", "os": "Android 13", "gpu": "Adreno 730", "viewport": "393 x 851", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 730" },
+{ "brand": "Motorola", "model": "Moto G Stylus 5G (2024)", "chipset": "Snapdragon 6 Gen 1", "cpu": "8-core", "ram": "8 GB", "display": "6.7 inch P-OLED", "resolution": "1080 x 2400", "ppi": 395, "camera": "50MP + 13MP", "battery": "5000 mAh", "os": "Android 14", "gpu": "Adreno 710", "viewport": "412 x 846", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 710" },
+{ "brand": "Motorola", "model": "Moto G Power 5G (2024)", "chipset": "MediaTek Dimensity 7020", "cpu": "8-core", "ram": "8 GB", "display": "6.7 inch IPS LCD", "resolution": "1080 x 2400", "ppi": 391, "camera": "50MP + 2MP", "battery": "5000 mAh", "os": "Android 14", "gpu": "IMG BXM-8-256", "viewport": "412 x 846", "touch": 10, "webgl_vendor": "Google Inc. (Imagination Technologies)", "webgl_renderer": "PowerVR BXM-8-256" },
+{ "brand": "Motorola", "model": "Moto G84 5G", "chipset": "Snapdragon 695 5G", "cpu": "8-core", "ram": "8/12 GB", "display": "6.5 inch P-OLED", "resolution": "1080 x 2400", "ppi": 405, "camera": "50MP + 8MP", "battery": "5000 mAh", "os": "Android 13", "gpu": "Adreno 619", "viewport": "393 x 851", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 619" },
+{ "brand": "Motorola", "model": "Moto G54 5G", "chipset": "MediaTek Dimensity 7020", "cpu": "8-core", "ram": "4/8/12 GB", "display": "6.5 inch IPS LCD", "resolution": "1080 x 2400", "ppi": 405, "camera": "50MP + 2MP", "battery": "5000 mAh", "os": "Android 13", "gpu": "IMG BXM-8-256", "viewport": "393 x 851", "touch": 10, "webgl_vendor": "Google Inc. (Imagination Technologies)", "webgl_renderer": "PowerVR BXM-8-256" },
+{ "brand": "Motorola", "model": "Edge+ (2023)", "chipset": "Snapdragon 8 Gen 2", "cpu": "8-core", "ram": "8 GB", "display": "6.67 inch OLED", "resolution": "1080 x 2400", "ppi": 394, "camera": "50MP + 50MP + 12MP", "battery": "5100 mAh", "os": "Android 13", "gpu": "Adreno 740", "viewport": "412 x 846", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 740" },
+{ "brand": "Motorola", "model": "ThinkPhone", "chipset": "Snapdragon 8+ Gen 1", "cpu": "8-core", "ram": "8/12 GB", "display": "6.6 inch P-OLED", "resolution": "1080 x 2400", "ppi": 402, "camera": "50MP + 13MP + 2MP", "battery": "5000 mAh", "os": "Android 13", "gpu": "Adreno 730", "viewport": "412 x 846", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 730" },
 
-{ "brand": "Google", "model": "Pixel 9", "chipset": "Tensor G4", "cpu": "8-core", "ram": "12 GB", "display": "6.3 inch OLED", "resolution": "1080 x 2424", "ppi": 422, "camera": "50MP + 48MP", "battery": "4700 mAh", "os": "Android 14 / 15", "gpu": "Mali-G715 MC7", "viewport": "412 x 924", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715 MC7" },
-
-{ "brand": "Google", "model": "Pixel 8 Pro", "chipset": "Tensor G3", "cpu": "9-core", "ram": "12 GB", "display": "6.7 inch OLED", "resolution": "1344 x 2992", "ppi": 489, "camera": "50MP + 48MP + 48MP", "battery": "5050 mAh", "os": "Android 14", "gpu": "Immortalis-G715s MC10", "viewport": "412 x 915", "touch": 10, "webgl_vendor": "Google Inc. (ARM)", "webgl_renderer": "Mali-G715" },
-
-{ "brand": "OnePlus", "model": "OnePlus 13", "chipset": "Snapdragon 8 Elite", "cpu": "8-core", "ram": "12/16/24 GB", "display": "6.82 inch AMOLED", "resolution": "1440 x 3168", "ppi": 510, "camera": "50MP + 50MP + 50MP", "battery": "6000 mAh", "os": "Android 15", "gpu": "Adreno 830", "viewport": "412 x 906", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 830" },
-
-{ "brand": "OnePlus", "model": "OnePlus 12", "chipset": "Snapdragon 8 Gen 3", "cpu": "8-core", "ram": "12/16 GB", "display": "6.82 inch AMOLED", "resolution": "1440 x 3168", "ppi": 510, "camera": "50MP + 64MP + 48MP", "battery": "5400 mAh", "os": "Android 14", "gpu": "Adreno 750", "viewport": "412 x 926", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 750" },
-
-{ "brand": "OnePlus", "model": "OnePlus Nord N30 5G", "chipset": "Snapdragon 695 5G", "cpu": "8-core", "ram": "8 GB", "display": "6.72 inch IPS LCD", "resolution": "1080 x 2400", "ppi": 391, "camera": "108MP + 2MP + 2MP", "battery": "5000 mAh", "os": "Android 13 / 14", "gpu": "Adreno 619", "viewport": "393 x 873", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 619" },
-
-{ "brand": "OnePlus", "model": "OnePlus Open", "chipset": "Snapdragon 8 Gen 2", "cpu": "8-core", "ram": "16 GB", "display": "7.82 inch AMOLED", "resolution": "2268 x 2440", "ppi": 426, "camera": "48MP + 64MP + 48MP", "battery": "4805 mAh", "os": "Android 13 / 14", "gpu": "Adreno 740", "viewport": "412 x 920", "touch": 10, "webgl_vendor": "Google Inc. (Qualcomm)", "webgl_renderer": "Adreno (TM) 740" }
 ];
 
-// ================= BROWSER VERSION =================
-
 const browserVers = {
-
 "Chrome": ["147.0.7727.137","146.0.7680.177","145.0.7632.76"],
-
 "Firefox": ["150.0.3","149.0.2","148.0.2"],
-
 "Edge": ["148.0.3967.55","147.0.3912.87","146.0.3856.62"],
-
 "Safari": ["18.4","18.1","17.5"]
-
 };
 
-// ================= LOAD DEVICES =================
+// ================= WINDOWS PROFILES DATABASE =================
+const windowsDevices = [
+  { "os": "Windows 11", "brand": "HP", "model": "Victus 15-fa1093dx", "cpu": "Intel Core i5-13420H", "ram": "8 GB DDR4", "gpu": "NVIDIA GeForce RTX 3050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "Inspiron 15 3530", "cpu": "Intel Core i5-1335U", "ram": "16 GB DDR4", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "TUF Gaming F15 FX507VV", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Legion Pro 5 16IRX8", "cpu": "Intel Core i9-13900HX", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Predator Helios 16 PH16-71", "cpu": "Intel Core i7-13700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Omen 16-wf0083dx", "cpu": "Intel Core i7-13700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "G15 5530", "cpu": "Intel Core i5-13450HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 3050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Cyborg 15 A13VF", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Strix G16 G614JVR", "cpu": "Intel Core i9-14900HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Pavilion Plus 14-ew1001xx", "cpu": "Intel Core i5-1335U", "ram": "16 GB LPDDR5x", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "2880 x 1800", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "Alienware m16 R2", "cpu": "Intel Core i7-14700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "LOQ 15IRX9", "cpu": "Intel Core i7-13650HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Nitro V 15 ANV15-51", "cpu": "Intel Core i5-13420H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Razer", "model": "Blade 16 (2024)", "cpu": "Intel Core i9-14900HX", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4090", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4090 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3840 x 2400", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Omen 45L GT22-2000", "cpu": "Intel Core i9-14900K", "ram": "64 GB DDR5", "gpu": "NVIDIA GeForce RTX 4090", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4090 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3840 x 2116", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "XPS Desktop 8960", "cpu": "Intel Core i7-13700", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060 Ti", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Ti Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Legion Tower 5i Gen 8", "cpu": "Intel Core i5-13400F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 3060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Strix G16CHR", "cpu": "Intel Core i7-14700F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Aegis RS 14NUE7", "cpu": "Intel Core i7-14700KF", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070 Super", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Super Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Envy x360 15-fe0053dx", "cpu": "Intel Core i7-1355U", "ram": "16 GB DDR5", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "2-in-1 Laptop" },
+  { "os": "Windows 10 Pro", "brand": "Dell", "model": "Latitude 5440 Business", "cpu": "Intel Core i5-1345U", "ram": "16 GB DDR4", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Business Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "Zenbook Pro 14 OLED", "cpu": "Intel Core i9-13900H", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2880 x 1800", "type": "OLED Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Yoga Pro 9i 16IRP8", "cpu": "Intel Core i9-13905H", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3200 x 2000", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Aspire 5 A515-58GM", "cpu": "Intel Core i5-13420H", "ram": "16 GB DDR4", "gpu": "NVIDIA GeForce RTX 2050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 2050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Laptop" },
+  { "os": "Windows 10 Pro", "brand": "HP", "model": "ProBook 450 G10", "cpu": "Intel Core i7-1355U", "ram": "16 GB DDR4", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Business Laptop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Katana 15 B13VGK", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Zephyrus G16 (2024)", "cpu": "Intel Core i9-14900HX", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4080", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4080 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "Legion Slim 5 16IRH8", "cpu": "Intel Core i7-13700H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 10 Pro", "brand": "HP", "model": "EliteBook 840 G10", "cpu": "Intel Core i7-1360P", "ram": "16 GB DDR5", "gpu": "Intel Iris Xe Graphics", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel Iris Xe Graphics Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1200", "type": "Business Laptop" },
+  { "os": "Windows 11", "brand": "Dell", "model": "Inspiron 16 Plus 7630", "cpu": "Intel Core i7-13700H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "Acer", "model": "Predator Helios Neo 16", "cpu": "Intel Core i7-14700HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Gigabyte", "model": "Aorus 16X (2024)", "cpu": "Intel Core i7-14650HX", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1600", "type": "Gaming Laptop" },
+  { "os": "Windows 11", "brand": "Samsung", "model": "Galaxy Book3 Ultra", "cpu": "Intel Core i9-13900H", "ram": "32 GB DDR5", "gpu": "NVIDIA GeForce RTX 4070", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Direct3D11 vs_5_0 ps_5_0)", "resolution": "2880 x 1800", "type": "Laptop" },
+  { "os": "Windows 11", "brand": "HP", "model": "Victus 15L TG02-1000", "cpu": "Intel Core i5-13400F", "ram": "16 GB DDR4", "gpu": "NVIDIA GeForce RTX 3050", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3050 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 10 Pro", "brand": "Dell", "model": "OptiPlex Pro 7010 MT", "cpu": "Intel Core i5-13500", "ram": "16 GB DDR5", "gpu": "Intel UHD Graphics 770", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel UHD Graphics 770 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "Lenovo", "model": "IdeaCentre Gaming 5i", "cpu": "Intel Core i7-13700F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 3060 Ti", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 3060 Ti Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "ASUS", "model": "ROG Strix G13CH", "cpu": "Intel Core i5-14400F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 11", "brand": "MSI", "model": "Infinite S3 14NUC7", "cpu": "Intel Core i7-14700F", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060 Ti", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Ti Direct3D11 vs_5_0 ps_5_0)", "resolution": "2560 x 1440", "type": "Desktop" },
+  { "os": "Windows 10 Pro", "brand": "HP", "model": "ProDesk 400 G9 MT", "cpu": "Intel Core i5-13500", "ram": "16 GB DDR4", "gpu": "Intel UHD Graphics 770", "vendor": "Google Inc. (Intel)", "renderer": "ANGLE (Intel, Intel UHD Graphics 770 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Desktop" },
+  { "os": "Windows 10 Pro", "brand": "Dell", "model": "Precision 3660 Tower", "cpu": "Intel Core i9-13900", "ram": "64 GB DDR5", "gpu": "NVIDIA RTX A2000", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA RTX A2000 Direct3D11 vs_5_0 ps_5_0)", "resolution": "3840 x 2160", "type": "Workstation Desktop" },
+  { "os": "Windows 11", "brand": "GIGABYTE", "model": "G5 KF5 (2024)", "cpu": "Intel Core i7-13620H", "ram": "16 GB DDR5", "gpu": "NVIDIA GeForce RTX 4060", "vendor": "Google Inc. (NVIDIA)", "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 4060 Direct3D11 vs_5_0 ps_5_0)", "resolution": "1920 x 1080", "type": "Gaming Laptop" }
+];
 
+const winBrowserVersions = {
+    "Chrome": [
+        "147.0.7727.137", "147.0.7727.138",
+        "146.0.7680.177", "146.0.7680.178", "146.0.7680.216",
+        "145.0.7632.26", "145.0.7632.27", "145.0.7632.45", "145.0.7632.46", "145.0.7632.75", "145.0.7632.76", "145.0.7632.116", "145.0.7632.117"
+    ],
+    "Firefox": [
+        "150.0.1", "150.0.2", "150.0.3",
+        "149.0.1", "149.0.2",
+        "148.0.1", "148.0.2"
+    ],
+    "Edge": [
+        "148.0.3967.54", "148.0.3967.70",
+        "147.0.3912.60", "147.0.3912.72", "147.0.3912.86", "147.0.3912.98",
+        "146.0.3856.54", "146.0.3856.59", "146.0.3856.62"
+    ]
+};
+
+// ================= INITIALIZE DROPDOWNS =================
 const dSelect = document.getElementById('deviceSelect');
-
 devices.forEach((d, i) => {
-
     dSelect.innerHTML += `<option value="${i}">${d.brand} ${d.model}</option>`;
-
 });
 
-// ================= GENERATE UA =================
+const winSelect = document.getElementById('windowsSelect');
+windowsDevices.forEach((d, i) => {
+    winSelect.innerHTML += `<option value="${i}">[${d.os}] ${d.brand} ${d.model}</option>`;
+});
 
+// ================= MOBILE LOGIC FUNCTIONS =================
 function generateUA(){
-
     const d = devices[dSelect.value];
-
     const b = document.getElementById('browserSelect').value;
-
     const ver = browserVers[b][Math.floor(Math.random()*browserVers[b].length)];
-
     let ua = "";
 
     if(d.brand === "Apple"){
-
         let rawOS = d.os.match(/\d+/g);
-
-let iosMainVersion = d.os.match(/\d+/)[0];
-let iosMinor = Math.floor(Math.random() * 5);
-let iosFormatted = `${iosMainVersion}_${iosMinor}`;
-
+        let iosMainVersion = rawOS ? rawOS[rawOS.length - 1] : "18";
+        let iosFormatted = `${iosMainVersion}_4`;
         let webkitVer = "605.1.15";
 
         if(b === "Safari"){
-
             ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) Version/${iosMainVersion}.4 Mobile/15E148 Safari/${webkitVer}`;
-
         }
-
         else if(b === "Chrome"){
-
             ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) CriOS/${ver} Mobile/15E148 Safari/${webkitVer}`;
-
         }
-
         else if(b === "Edge"){
-
             ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) EdgiOS/${ver} Mobile/15E148 Safari/${webkitVer}`;
-
         }
-
         else{
-
             ua = `Mozilla/5.0 (iPhone; CPU iPhone OS ${iosFormatted} like Mac OS X) AppleWebKit/${webkitVer} (KHTML, like Gecko) FxiOS/${ver} Mobile/15E148 Safari/${webkitVer}`;
-
         }
-
     }
-
     else{
-
         let rawAnd = d.os.match(/\d+/);
-
         let andVer = rawAnd ? rawAnd[0] : "15";
 
         if(b === "Firefox"){
-
             ua = `Mozilla/5.0 (Android ${andVer}; Mobile; rv:${ver}) Gecko/${ver} Firefox/${ver}`;
-
         }
-
         else if(b === "Edge"){
-
             ua = `Mozilla/5.0 (Linux; Android ${andVer}; ${d.model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver.split('.')[0]}.0.0.0 Mobile Safari/537.36 EdgA/${ver}`;
-
         }
-
         else if(b === "Safari"){
-
             ua = `Mozilla/5.0 (Linux; Android ${andVer}; ${d.model}) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36`;
-
         }
+        else {
+            ua = `Mozilla/5.0 (Linux; Android ${andVer}; ${d.model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver} Mobile Safari/537.36`;
+        }
+    }
 
-else {
-    // 🌟 এখানে ডাইনামিক অ্যান্ড্রয়েড ভার্সন এবং মডেল সেট করা হলো
-    ua = `Mozilla/5.0 (Linux; Android ${andVer}; ${d.model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver} Mobile Safari/537.36`;
-}
-
-    } // এই ব্র্যাকেটটি হলো if-else এর শেষ সীমা
-	
-    // ⬇️ ঠিক এখানে পুরানো লজিকটি মুছে এই সংশোধিত লজিকটি বসিয়ে দিন ⬇️
     let finalVendor = d.webgl_vendor;
     let finalRenderer = d.webgl_renderer;
 
@@ -561,1679 +495,116 @@ else {
     }
 
     const infoFields = [
-
         ["Model:", d.brand + " " + d.model],
-        ["Chipset:", d.chipset],
-        ["CPU:", d.cpu],
-        ["RAM:", d.ram],
-        ["Display:", d.display],
-        ["Resolution:", d.resolution],
-        ["OS:", d.os],
-        ["Browser:", b.toLowerCase() + " " + ver],
-        ["GPU:", d.gpu],
-        ["Viewport:", d.viewport],
-        ["Timezone:", "America/New_York"],
-		["WebGL Vendor:", finalVendor],
-		["Renderer:", finalRenderer]
-
+        ["CPU: 🚀", d.cpu],
+        ["RAM: 🚀", d.ram],
+        ["Resolution: 🚀", d.resolution],
+        ["OS: 🚀", d.os],
+        ["Browser: 🚀", b.toLowerCase() + " " + ver],
+        ["WebGL Vendor: 🚀", finalVendor],
+        ["Renderer: 🚀", finalRenderer],
     ];
 
     let html = "";
-
-infoFields.forEach(f => {
-    // এখানে onclick="copyRow(this)" এবং title যুক্ত করা হয়েছে
-    html += `<div class="row" onclick="copyRow(this)" title="Click to copy value" style="cursor: pointer;"><span class="key">${f[0]}</span><span class="val">${f[1]}</span></div>`;
-});
+    infoFields.forEach(f => {
+        html += `<div class="row" onclick="copyRow(this)" title="Click to copy value"><span class="key">${f[0]}</span><span class="val">${f[1]}</span></div>`;
+    });
 
     document.getElementById('infoRows').innerHTML = html;
-
     document.getElementById('uaOutput').innerText = ua;
-
     document.getElementById('detailsArea').style.display = 'block';
-
 }
-
-// ================= COPY UA =================
 
 function copyUA(){
-
     const uaText = document.getElementById('uaOutput').innerText;
-
     navigator.clipboard.writeText(uaText).then(() => {
-
         const copyBtn = document.getElementById('copyBtn');
-
         copyBtn.innerText = "✓ Copied!";
-
         copyBtn.style.backgroundColor = "#17a2b8";
-
         setTimeout(() => {
-
             copyBtn.innerText = "Copy User Agent";
-
             copyBtn.style.backgroundColor = "var(--green)";
+        }, 1500);
+    });
+}
 
-        },1500);
+// ================= WINDOWS LOGIC FUNCTIONS =================
+function getWinRandomVersion(browser) {
+    const list = winBrowserVersions[browser];
+    return list[Math.floor(Math.random() * list.length)];
+}
 
+function generateWindowsUA(){
+    const d = windowsDevices[winSelect.value];
+    const b = document.getElementById('winBrowserSelect').value;
+    const ver = getWinRandomVersion(b);
+    const majorVer = ver.split('.')[0];
+    
+    let ua = "";
+    const ntVersion = "10.0"; 
+    const arch = "Win64; x64";
+    let clientHintUA = "";
+
+    if(b === "Chrome"){
+        ua = `Mozilla/5.0 (Windows NT ${ntVersion}; ${arch}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ver} Safari/537.36`;
+        clientHintUA = `"Not(A:Brand";v="99", "Google Chrome";v="${majorVer}", "Chromium";v="${majorVer}"`;
+    }
+    else if(b === "Edge"){
+        ua = `Mozilla/5.0 (Windows NT ${ntVersion}; ${arch}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${majorVer}.0.0.0 Safari/537.36 Edg/${ver}`;
+        clientHintUA = `"Not(A:Brand";v="99", "Microsoft Edge";v="${majorVer}", "Chromium";v="${majorVer}"`;
+    }
+    else if(b === "Firefox"){
+        ua = `Mozilla/5.0 (Windows NT ${ntVersion}; ${arch}; rv:${ver}) Gecko/20100101 Firefox/${ver}`;
+        clientHintUA = "Not Applicable (Firefox relies on navigator.userAgent)";
+    }
+
+    const infoFields = [
+        ["Operating System:", d.os],
+        ["Processor (CPU):", d.cpu],
+        ["System Memory:", d.ram],
+        ["Native Resolution:", d.resolution],
+        ["Target Browser Build:", b + " " + ver],
+        ["WebGL Vendor:", d.vendor],
+        ["WebGL Renderer:", d.renderer],
+    ];
+
+    let html = "";
+    infoFields.forEach(f => {
+        html += `<div class="row" onclick="copyRow(this)" title="Click to copy value"><span class="key">${f[0]}</span><span class="val">${f[1]}</span></div>`;
     });
 
+    document.getElementById('winInfoRows').innerHTML = html;
+    document.getElementById('winUaOutput').innerText = ua;
+    document.getElementById('winDetailsArea').style.display = 'block';
 }
 
-
-
-
-// ================= PROFILE LIST =================
-
-const profiles = [
-    {
-        "name": "Shima Abedinzadeh",
-        "email": "abedinzade.shima@gmail.com"
-    },
-    {
-        "name": "Adrian Cansino Lebrero",
-        "email": "acansinolebrero@gmail.com"
-    },
-    {
-        "name": "Alex Ginard",
-        "email": "alexginard@gmail.com"
-    },
-    {
-        "name": "Albert Freeman",
-        "email": "allforfree666@gmail.com"
-    },
-    {
-        "name": "Amore Seymour",
-        "email": "amoreseymour@gmail.com"
-    },
-    {
-        "name": "Andras Barta",
-        "email": "andras.barta.01@gmail.com"
-    },
-    {
-        "name": "Kiril Anestiev",
-        "email": "anestiev@gmail.com"
-    },
-    {
-        "name": "Angela Anirdnajela",
-        "email": "anirdnajelaalleb20@gmail.com"
-    },
-    {
-        "name": "Ann Light",
-        "email": "ann13light@gmail.com"
-    },
-    {
-        "name": "Arthur Guitar",
-        "email": "artguitarship@gmail.com"
-    },
-    {
-        "name": "Atlantios Atlantas",
-        "email": "atlantiosatlantas@gmail.com"
-    },
-    {
-        "name": "Bastian Riccardi",
-        "email": "bastian.riccardi@hotmail.com"
-    },
-    {
-        "name": "Colin Behrens",
-        "email": "behrens.colin@gmail.com"
-    },
-    {
-        "name": "Berge Adderley",
-        "email": "bergadder@gmail.com"
-    },
-    {
-        "name": "Brian Bounty",
-        "email": "bounty1978@gmail.com"
-    },
-    {
-        "name": "Brook Miller",
-        "email": "brokoola@gmail.com"
-    },
-    {
-        "name": "Bryan Harrison",
-        "email": "bryan.business0220@gmail.com"
-    },
-    {
-        "name": "Bugra Phai",
-        "email": "bugphai@hotmail.com"
-    },
-    {
-        "name": "Bui Thi",
-        "email": "buithi016@gmail.com"
-    },
-    {
-        "name": "Christian Carter",
-        "email": "c1superstar89@gmail.com"
-    },
-    {
-        "name": "Alessio Canfora",
-        "email": "canforaalessio@gmail.com"
-    },
-    {
-        "name": "Chen Spencer",
-        "email": "chenspec@gmail.com"
-    },
-    {
-        "name": "Chloe Boulette",
-        "email": "ciboulette89@hotmail.com"
-    },
-    {
-        "name": "Clash King",
-        "email": "clashofking205@gmail.com"
-    },
-    {
-        "name": "Daniel Sampaio Neto",
-        "email": "danielsampaioneto@gmail.com"
-    },
-    {
-        "name": "Danny Moore",
-        "email": "dannymoore1973@gmail.com"
-    },
-    {
-        "name": "Denise Nicole",
-        "email": "denisenicole400@gmail.com"
-    },
-    {
-        "name": "Dennis Doktoor",
-        "email": "dendoktoor@gmail.com"
-    },
-    {
-        "name": "Diane Vance",
-        "email": "diane5154@gmail.com"
-    },
-    {
-        "name": "Dinesh Batavia",
-        "email": "dinesh.batavia@gmail.com"
-    },
-    {
-        "name": "Jack Djaa",
-        "email": "djaa316@gmail.com"
-    },
-    {
-        "name": "David Nebred",
-        "email": "dnebred@hotmail.com"
-    },
-    {
-        "name": "Dzikry Kabir",
-        "email": "dzikrykbir5@gmail.com"
-    },
-    {
-        "name": "Dr. Adrian",
-        "email": "dr.adrian@gmail.com"
-    },
-    {
-        "name": "Endriq Photography",
-        "email": "endriqphotography@gmail.com"
-    },
-    {
-        "name": "Erik Jonatas",
-        "email": "erikjonatas360@gmail.com"
-    },
-    {
-        "name": "Ernesto Picsart",
-        "email": "ernesto.picsart@gmail.com"
-    },
-    {
-        "name": "Evan Laccio",
-        "email": "evanlaccio@gmail.com"
-    },
-    {
-        "name": "Farid Bouddounit",
-        "email": "fbouddounit@gmail.com"
-    },
-    {
-        "name": "Fikri Fatih",
-        "email": "fikrifatih94@gmail.com"
-    },
-    {
-        "name": "Fine Art Equine",
-        "email": "fineartequine@gmail.com"
-    },
-    {
-        "name": "Frank Flutie",
-        "email": "flutie8211@gmail.com"
-    },
-    {
-        "name": "Peter Fragden",
-        "email": "fragdenpeter@gmail.com"
-    },
-    {
-        "name": "Gavin Quendel",
-        "email": "g.quendel@icloud.com"
-    },
-    {
-        "name": "Geds Arts",
-        "email": "geds.arts@gmail.com"
-    },
-    {
-        "name": "Gillian Mcg",
-        "email": "gillian.mcg@outlook.com"
-    },
-    {
-        "name": "Ham Ngapo",
-        "email": "hamngapo@gmail.com"
-    },
-    {
-        "name": "Henrik Müller",
-        "email": "hen2850@gmail.com"
-    },
-    {
-        "name": "Henryk Niestroj",
-        "email": "henryk.niestroj@gmail.com"
-    },
-    {
-        "name": "Gabor Holdosi",
-        "email": "holdosi@gmail.com"
-    },
-    {
-        "name": "Hoppell Klopfer",
-        "email": "hoppellklopfer@gmail.com"
-    },
-    {
-        "name": "Ian Explore",
-        "email": "inforexplore@gmail.com"
-    },
-    {
-        "name": "Inna Mikitas",
-        "email": "innamikitas@gmail.com"
-    },
-    {
-        "name": "Inspiration Feed",
-        "email": "inspirationfeed@yahoo.com"
-    },
-    {
-        "name": "Ioan Masay",
-        "email": "ioanmasay@gmail.com"
-    },
-    {
-        "name": "Irene Schnabel",
-        "email": "irene.schnabel@gmail.com"
-    },
-    {
-        "name": "Isopintex Design",
-        "email": "isopintex@gmail.com"
-    },
-    {
-        "name": "I. Svyatkovsky",
-        "email": "isvyatkovsky@gmail.com"
-    },
-    {
-        "name": "Ivan Cayaban",
-        "email": "ivan.cayaban@gmail.com"
-    },
-    {
-        "name": "Jaap Wolf",
-        "email": "jaapwolf51@gmail.com"
-    },
-    {
-        "name": "Jake Inaz",
-        "email": "jakeinaz43@gmail.com"
-    },
-    {
-        "name": "Jambul Boy",
-        "email": "jambulboy@yahoo.com"
-    },
-    {
-        "name": "JM Emporium",
-        "email": "jmemporium79@gmail.com"
-    },
-    {
-        "name": "John Andy",
-        "email": "jhnndy@proton.me"
-    },
-    {
-        "name": "J. K. M. Jancso",
-        "email": "jkmjancso@yahoo.com"
-    },
-    {
-        "name": "Joa Schnuerle",
-        "email": "joaschnuerle@hotmail.com"
-    },
-    {
-        "name": "John Weinhardt",
-        "email": "john_weinhardt@yahoo.com"
-    },
-    {
-        "name": "J. P. Willson",
-        "email": "jpwillson97@gmail.com"
-    },
-    {
-        "name": "Julius Rjh",
-        "email": "julius.rjh@gmail.com"
-    },
-    {
-        "name": "Julius Weber",
-        "email": "julius.we2004@gmail.com"
-    },
-    {
-        "name": "Kamiel Verwer",
-        "email": "kamielverwer@hotmail.com"
-    },
-    {
-        "name": "Kanti Chakma",
-        "email": "kantichakma221@gmail.com"
-    },
-    {
-        "name": "Karlee Heck",
-        "email": "karlee.heck@yahoo.com"
-    },
-    {
-        "name": "Kathryn Smith",
-        "email": "kathryn.6532@gmail.com"
-    },
-    {
-        "name": "Katya Ershova",
-        "email": "katya.ershova1997@gmail.com"
-    },
-    {
-        "name": "Kerd Kanno",
-        "email": "kerdkanno087@gmail.com"
-    },
-    {
-        "name": "Khah Hee",
-        "email": "khahhee@gmail.com"
-    },
-    {
-        "name": "Khalil Mazari",
-        "email": "khalilmazari171@gmail.com"
-    },
-    {
-        "name": "Khairul Islam",
-        "email": "khirulislam898@gmail.com"
-    },
-    {
-        "name": "Kirk Mimi",
-        "email": "kirkandmimi@yahoo.com"
-    },
-    {
-        "name": "Kirzh Rosas",
-        "email": "kirzhrosas@gmail.com"
-    },
-    {
-        "name": "Kraken Topazio",
-        "email": "kraken.topazio@gmail.com"
-    },
-    {
-        "name": "Kurowska Rolik",
-        "email": "kurowska.rolik@gmail.com"
-    },
-    {
-        "name": "Laily Ramli",
-        "email": "lailyramli1@gmail.com"
-    },
-    {
-        "name": "La Vallee",
-        "email": "lavalleedupetitpre@gmail.com"
-    },
-    {
-        "name": "Leet Creative",
-        "email": "leetcreative@gmail.com"
-    },
-    {
-        "name": "Lena Helfinger",
-        "email": "lena.helfinger@gmail.com"
-    },
-    {
-        "name": "Loi Tran",
-        "email": "loitran99999@gmail.com"
-    },
-    {
-        "name": "Long Pham",
-        "email": "longpm2709@gmail.com"
-    },
-    {
-        "name": "Lubov Lisitsa",
-        "email": "lubovlisitsa@gmail.com"
-    },
-    {
-        "name": "Luis Humanoide",
-        "email": "luishumanoide@gmail.com"
-    },
-    {
-        "name": "Mabel Amber",
-        "email": "mabelamber@gmail.com"
-    },
-    {
-        "name": "Male Shoane",
-        "email": "maleshoane@gmail.com"
-    },
-    {
-        "name": "Mano Colonel",
-        "email": "mano_colonel@yahoo.com"
-    },
-    {
-        "name": "Maria Kraynova",
-        "email": "mariakraynova.srb@gmail.com"
-    },
-    {
-        "name": "Matus Kanagy",
-        "email": "matuskanagykoros@gmail.com"
-    },
-    {
-        "name": "Max Friend",
-        "email": "max_urfriend@yahoo.com"
-    },
-    {
-        "name": "Alex Menzinger",
-        "email": "menzinger13@aol.com"
-    },
-    {
-        "name": "Matthew Green",
-        "email": "messmattygreen@gmail.com"
-    },
-    {
-        "name": "Mili Vigerova",
-        "email": "mili.vigerova@gmail.com"
-    },
-    {
-        "name": "Mima Pink",
-        "email": "mimapink.jb@gmail.com"
-    },
-    {
-        "name": "Minh Bui",
-        "email": "minhbuibk86@gmail.com"
-    },
-    {
-        "name": "Mircea Iancu",
-        "email": "mircea.iancu.2011@gmail.com"
-    },
-    {
-        "name": "M. M. Rahman",
-        "email": "mmr_123@hotmail.com"
-    },
-    {
-        "name": "Moira Nazzari",
-        "email": "moira.nazzari@gmail.com"
-    },
-    {
-        "name": "Monicore Studio",
-        "email": "monicore@gmail.com"
-    },
-    {
-        "name": "Morris Moore",
-        "email": "mrnomore@hotmail.com"
-    },
-    {
-        "name": "My Priva",
-        "email": "mypriva@gmail.com"
-    },
-    {
-        "name": "Mystiqe Blogging",
-        "email": "mystiqe.blogging@gmail.com"
-    },
-    {
-        "name": "Neena Satine",
-        "email": "neenasatine@gmail.com"
-    },
-    {
-        "name": "Nico Franz",
-        "email": "nicofranz.nf@googlemail.com"
-    },
-    {
-        "name": "Nina Garman",
-        "email": "ninagarman@outlook.com"
-    },
-    {
-        "name": "Noel Bauza",
-        "email": "noel.bauza@gmail.com"
-    },
-    {
-        "name": "Off The Vine Studio",
-        "email": "offthevinestudio@gmail.com"
-    },
-    {
-        "name": "Oficial Bureau",
-        "email": "oficialbureau@gmail.com"
-    },
-    {
-        "name": "Olcay Ertem",
-        "email": "olcayertem06@hotmail.com"
-    },
-    {
-        "name": "Olga Sheshukova",
-        "email": "olgasheshukova@gmail.com"
-    },
-    {
-        "name": "Omar Medina",
-        "email": "omarmedinafilms@gmail.com"
-    },
-    {
-        "name": "Paizuri Ime",
-        "email": "paizuriime@outlook.com"
-    },
-    {
-        "name": "Pavan Kalyan",
-        "email": "pavankalyan129143@gmail.com"
-    },
-    {
-        "name": "Paladiy Zaporozhye",
-        "email": "paladiy31.zp@gmail.com"
-    },
-    {
-        "name": "Anna Palinska",
-        "email": "palinska_anna@hotmail.com"
-    },
-    {
-        "name": "Pam J. Pat",
-        "email": "pamjpat@gmail.com"
-    },
-    {
-        "name": "Patrik Houstecky",
-        "email": "patrik.houstecky@gmail.com"
-    },
-    {
-        "name": "Pete Linforth",
-        "email": "petelinforth99@gmail.com"
-    },
-    {
-        "name": "Peter Mauler",
-        "email": "peter_mauler@hotmail.com"
-    },
-    {
-        "name": "Peter Der Grosse",
-        "email": "peterdergrosse@posteo.de"
-    },
-    {
-        "name": "Piero Martinez",
-        "email": "pierom1420@gmail.com"
-    },
-    {
-        "name": "Piro Ford",
-        "email": "piro4d@gmail.com"
-    },
-    {
-        "name": "Peter Smith",
-        "email": "pitxsb12@gmail.com"
-    },
-    {
-        "name": "Pixsite Studio",
-        "email": "pixsitestudio@gmail.com"
-    },
-    {
-        "name": "Playlist Tom",
-        "email": "plqylistsom@gmail.com"
-    },
-    {
-        "name": "Plaster Brain",
-        "email": "plasterbrain@gmail.com"
-    },
-    {
-        "name": "Rainer Kopischke",
-        "email": "rainer.kopischke@gmail.com"
-    },
-    {
-        "name": "Ramone Gomes",
-        "email": "ramonegomes73@gmail.com"
-    },
-    {
-        "name": "Randy Masters",
-        "email": "randymastersny@aol.com"
-    },
-    {
-        "name": "Rayson Login",
-        "email": "raysonlogin@gmail.com"
-    },
-    {
-        "name": "Vatania Rev",
-        "email": "revvatania@gmail.com"
-    },
-    {
-        "name": "R. G. Songo",
-        "email": "rgsongo@hotmail.com"
-    },
-    {
-        "name": "Robson R. J.",
-        "email": "robson.racj@gmail.com"
-    },
-    {
-        "name": "Roman Grac",
-        "email": "romangrac@gmail.com"
-    },
-    {
-        "name": "Rony Final",
-        "email": "rony.final@gmail.com"
-    },
-    {
-        "name": "Roxanne Smith",
-        "email": "roxanne454665@yahoo.com"
-    },
-    {
-        "name": "R. S. Ukraine",
-        "email": "rsforukraine@gmail.com"
-    },
-    {
-        "name": "S. Nikiel",
-        "email": "s.nikiel.mojegory@gmail.com"
-    },
-    {
-        "name": "Sabrina North",
-        "email": "sabrina.nwimages@gmail.com"
-    },
-    {
-        "name": "Saile Campos",
-        "email": "sailecampos@gmail.com"
-    },
-    {
-        "name": "Sandiford World",
-        "email": "sandifordworld@bigpond.com"
-    },
-    {
-        "name": "Sarah Trummer",
-        "email": "sarah.trmmr@gmail.com"
-    },
-    {
-        "name": "Kasun Chamara",
-        "email": "schamara.kasun@gmail.com"
-    },
-    {
-        "name": "Sergei Tokmakov",
-        "email": "sergei.tokmakov@gmail.com"
-    },
-    {
-        "name": "Serhii Petroshchuk",
-        "email": "serhiipetroshchuk@gmail.com"
-    },
-    {
-        "name": "Sheikh Rasel",
-        "email": "sheikhrasel7709@gmail.com"
-    },
-    {
-        "name": "Simon Stark",
-        "email": "simon73@gmail.com"
-    },
-    {
-        "name": "Skitter Photos",
-        "email": "skitterphotos@gmail.com"
-    },
-    {
-        "name": "S. M. Pratt",
-        "email": "smpratt90@gmail.com"
-    },
-    {
-        "name": "Sohrob Shah",
-        "email": "sohrob76@gmail.com"
-    },
-    {
-        "name": "Sorcery Soap",
-        "email": "sorcerysoap@gmail.com"
-    },
-    {
-        "name": "Star 7 Propaganda",
-        "email": "star7propaganda@gmail.com"
-    },
-    {
-        "name": "Star Chim",
-        "email": "starchim01@gmail.com"
-    },
-    {
-        "name": "Stan Songs",
-        "email": "stanssongs@gmail.com"
-    },
-    {
-        "name": "Susana Marta",
-        "email": "susanamarta2012@gmail.com"
-    },
-    {
-        "name": "S. V. Klimkin",
-        "email": "svklimkin@gmail.com"
-    },
-    {
-        "name": "Tim Raell",
-        "email": "timraell@gmail.com"
-    },
-    {
-        "name": "Vinh Tran",
-        "email": "tranvinhckm@gmail.com"
-    },
-    {
-        "name": "Trevor Thompson",
-        "email": "trethou@yahoo.com"
-    },
-    {
-        "name": "Tri Le Photography",
-        "email": "trilephotography@gmail.com"
-    },
-    {
-        "name": "True Tied Tales",
-        "email": "truetiedtales@gmail.com"
-    },
-    {
-        "name": "Uas Bondarenko",
-        "email": "uas.bondarenko@gmail.com"
-    },
-    {
-        "name": "Uttara Das",
-        "email": "uttara1320@gmail.com"
-    },
-    {
-        "name": "Vaivography Design",
-        "email": "vaivography@gmail.com"
-    },
-    {
-        "name": "Alexandre Vanier",
-        "email": "vanier.alexandre@gmail.com"
-    },
-    {
-        "name": "Vesna Harni",
-        "email": "vesnaharni@gmail.com"
-    },
-    {
-        "name": "Viktoriya Bilan",
-        "email": "viktoriyabilan848@gmail.com"
-    },
-    {
-        "name": "Carlos Villaverde",
-        "email": "villaverde0721@gmail.com"
-    },
-    {
-        "name": "Milan Vladosek",
-        "email": "vladosek92@gmail.com"
-    },
-    {
-        "name": "Wallula Munro",
-        "email": "wallula.munro@y7mail.com"
-    },
-    {
-        "name": "William Hayes",
-        "email": "wfhayes@hotmail.com"
-    },
-    {
-        "name": "Richard Brooks",
-        "email": "workinwithrich25@gmail.com"
-    },
-    {
-        "name": "Yogendra Sharma",
-        "email": "yogendraias@gmail.com"
-    },
-    {
-        "name": "Farhat Iqbal Entertainment",
-        "email": "farhatiqbalent@gmail.com"
-    },
-
-    {
-        "name": "Anna Stills",
-        "email": "annas.stills@gmail.com"
-    },
-    {
-        "name": "Misty Quinn",
-        "email": "mystiqe.blogging@gmail.com"
-    },
-    {
-        "name": "Raimon Perez",
-        "email": "raimonpe@gmail.com"
-    },
-    {
-        "name": "Afif Kusuma",
-        "email": "afifkusuma88@gmail.com"
-    },
-    {
-        "name": "Thomas Chung",
-        "email": "thomaschung@msn.com"
-    },
-    {
-        "name": "Aaron Hamlet",
-        "email": "hamletaa@gmail.com"
-    },
-    {
-        "name": "Mark Hemmings",
-        "email": "markjhemmings9@gmail.com"
-    },
-    {
-        "name": "Brian Gwer",
-        "email": "brigwer@gmail.com"
-    },
-    {
-        "name": "Victor Song",
-        "email": "vampire_songs@hotmail.com"
-    },
-    {
-        "name": "Larry White Jr",
-        "email": "larrywhitejr@gmail.com"
-    },
-    {
-        "name": "Alex Menzinger",
-        "email": "menzinger13@aol.com"
-    },
-    {
-        "name": "Hoppell Klopfer",
-        "email": "hoppellklopfer@gmail.com"
-    },
-    {
-        "name": "Rachel Portugal",
-        "email": "racportugal92@gmail.com"
-    },
-    {
-        "name": "Scott Terry",
-        "email": "terscottpromotes@gmail.com"
-    },
-    {
-        "name": "Samuel Eschiro",
-        "email": "samueleschiro@hotmail.com"
-    },
-    {
-        "name": "Vesna Harni",
-        "email": "vesnaharni@gmail.com"
-    },
-    {
-        "name": "Mano Colonel",
-        "email": "mano_colonel@yahoo.com"
-    },
-    {
-        "name": "Roman Kruglov",
-        "email": "krugrom1@gmail.com"
-    },
-    {
-        "name": "Anthony Rood",
-        "email": "antherood@gmail.com"
-    },
-    {
-        "name": "Stan Songs",
-        "email": "stanssongs@gmail.com"
-    },
-    {
-        "name": "Marco Lachmann",
-        "email": "marco.lachmann@me.com"
-    },
-    {
-        "name": "Atlantios Atlantas",
-        "email": "atlantiosatlantas@gmail.com"
-    },
-    {
-        "name": "Dantaon Loveless",
-        "email": "lovelessdantaon@gmail.com"
-    },
-    {
-        "name": "Bugra Phai",
-        "email": "bugphai@hotmail.com"
-    },
-    {
-        "name": "Gerald Axon",
-        "email": "ger1axg@gmail.com"
-    },
-    {
-        "name": "Roman Grac",
-        "email": "romangrac@gmail.com"
-    },
-    {
-        "name": "Matthew Morse",
-        "email": "matthewjmorse@gmail.com"
-    },
-    {
-        "name": "Robert Cyganik",
-        "email": "robert.cyganik@gmail.com"
-    },
-    {
-        "name": "Mabel Amber",
-        "email": "mabelamber@gmail.com"
-    },
-    {
-        "name": "Kong Tea",
-        "email": "kongtea@gmail.com"
-    },
-    {
-        "name": "Neesan Mustika",
-        "email": "mustika.neesan@gmail.com"
-    },
-    {
-        "name": "Mircea Iancu",
-        "email": "mircea.iancu.2011@gmail.com"
-    },
-    {
-        "name": "Edwin Rucci",
-        "email": "edwinrucci@yahoo.com"
-    },
-    {
-        "name": "William Hayes",
-        "email": "wfhayes@hotmail.com"
-    },
-    {
-        "name": "Ian Kelsall",
-        "email": "ikelsall@gmail.com"
-    },
-    {
-        "name": "Jolke Balt",
-        "email": "jolkebalt@gmail.com"
-    },
-    {
-        "name": "Robert Smith",
-        "email": "robert.168@yahoo.com"
-    },
-    {
-        "name": "G. K. Yakieva",
-        "email": "yakievagk8@gmail.com"
-    },
-    {
-        "name": "Youri Alkayyis",
-        "email": "youri.alkayyis171@gmail.com"
-    },
-    {
-        "name": "Roberto Cofenat",
-        "email": "robertocofenat@gmail.com"
-    },
-    {
-        "name": "Maria Michelle",
-        "email": "mariamichelle117@gmail.com"
-    },
-    {
-        "name": "Natalia Lav",
-        "email": "lavnatalia83@gmail.com"
-    },
-    {
-        "name": "Brian Bounty",
-        "email": "bounty1978@gmail.com"
-    },
-    {
-        "name": "M. Z. Matuszewski",
-        "email": "m.z.matuszewski@gmail.com"
-    },
-    {
-        "name": "Berge Adderley",
-        "email": "bergadder@gmail.com"
-    },
-    {
-        "name": "John Vieli",
-        "email": "jvieli@gmail.com"
-    },
-    {
-        "name": "William Hayes",
-        "email": "wfhayes@hotmail.com"
-    },
-    {
-        "name": "Gerald Axon",
-        "email": "ger1axg@gmail.com"
-    },
-    {
-        "name": "Ian Kelsall",
-        "email": "ikelsall@gmail.com"
-    },
-    {
-        "name": "Jolke Balt",
-        "email": "jolkebalt@gmail.com"
-    },
-    {
-        "name": "Aaron Hamlet",
-        "email": "hamletaa@gmail.com"
-    },
-    {
-        "name": "Hassan Ross",
-        "email": "hasznossz@gmail.com"
-    },
-    {
-        "name": "Ian Fredrick",
-        "email": "inspirationfeed@yahoo.com"
-    },
-    {
-        "name": "Thomas Warren",
-        "email": "tomorrow4tech@gmail.com"
-    },
-    {
-        "name": "Kai Pilger",
-        "email": "kai.pilger@t-online.de"
-    },
-    {
-        "name": "Peter Der Grosse",
-        "email": "peterdergrosse@posteo.de"
-    },
-    {
-        "name": "Paul Poland",
-        "email": "fotoreporterpoland@hotmail.com"
-    },
-    {
-        "name": "Marco Lachmann",
-        "email": "marco.lachmann@me.com"
-    },
-    {
-        "name": "Peter Pock",
-        "email": "pock.pm@gmail.com"
-    },
-    {
-        "name": "Stuart Kasic",
-        "email": "stukastic@gmail.com"
-    },
-    {
-        "name": "Scholty Müller",
-        "email": "scholty2006@hotmail.de"
-    },
-    {
-        "name": "P. A. Gonzalez",
-        "email": "papgonzalez2016@hotmail.com"
-    },
-    {
-        "name": "Tobias Brunner",
-        "email": "brunner.tobias@pm.me"
-    },
-    {
-        "name": "Boris Weber",
-        "email": "bodyworks@gmx.net"
-    },
-    {
-        "name": "Till Vallee",
-        "email": "till.vallee@gmail.com"
-    },
-    {
-        "name": "Thomas Chung",
-        "email": "thomaschung@msn.com"
-    },
-    {
-        "name": "Arzana Alili",
-        "email": "arzana.alili@gmail.com"
-    },
-    {
-        "name": "Sofia Terzoni",
-        "email": "sofiterzoni@gmail.com"
-    },
-    {
-        "name": "Bugra Phai",
-        "email": "bugphai@hotmail.com"
-    },
-    {
-        "name": "Emmanuel Puz",
-        "email": "emmanuel.puz@gmail.com"
-    },
-    {
-        "name": "Dennis Doktoor",
-        "email": "dendoktoor@gmail.com"
-    },
-    {
-        "name": "Nicholas Crey",
-        "email": "neocreywork@gmail.com"
-    },
-    {
-        "name": "Ega Thinking",
-        "email": "egathinking@gmail.com"
-    },
-    {
-        "name": "Rodman Lewis",
-        "email": "rodmanlb@hotmail.com"
-    },
-    {
-        "name": "Stan Songs",
-        "email": "stanssongs@gmail.com"
-    },
-    {
-        "name": "Timothy Mio",
-        "email": "tiempomio@hotmail.com"
-    },
-    {
-        "name": "Julius Rjh",
-        "email": "julius.rjh@gmail.com"
-    },
-    {
-        "name": "Tairis Fonseca",
-        "email": "tairisfonseca@gmail.com"
-    },
-    {
-        "name": "Boris Nameis",
-        "email": "nameisbor@hotmail.com"
-    },
-    {
-        "name": "Frank Flutie",
-        "email": "flutie8211@gmail.com"
-    },
-];
-
-// ================= USED PROFILE STORAGE =================
-
-let usedProfiles =
-JSON.parse(localStorage.getItem("usedProfiles")) || [];
-
-// ================= STREETS =================
-
-const streets = [
-    "Main St",
-    "Oak Ave",
-    "Lake View Dr",
-    "Sunset Blvd",
-    "Hill Rd",
-    "River St",
-    "Park Ave",
-    "Broadway",
-	"Wall Street",
-"Broadway",
-"Fifth Avenue",
-"Madison Avenue",
-"Park Avenue",
-"Lexington Avenue",
-"Pennsylvania Avenue",
-"Michigan Avenue",
-"Sunset Boulevard",
-"Hollywood Boulevard",
-"Wilshire Boulevard",
-"Melrose Avenue",
-"Rodeo Drive",
-"Lombard Street",
-"Canal Street",
-"Bourbon Street",
-"Beale Street",
-"Peachtree Street",
-"Ocean Drive",
-"Collins Avenue",
-"Las Vegas Boulevard",
-"Elm Street",
-"Maple Street",
-"Oak Street",
-"Pine Street",
-"Cedar Street",
-"Washington Street",
-"Jefferson Street",
-"Jackson Street",
-"Lincoln Avenue",
-"Adams Street",
-"Franklin Street",
-"Monroe Street",
-"Church Street",
-"Center Street",
-"Main Street",
-"High Street",
-"Walnut Street",
-"River Road",
-"Lake Shore Drive",
-"Park Place",
-"Prospect Avenue",
-"Liberty Street",
-"Market Street",
-"State Street",
-"Union Street",
-"King Street",
-"Queen Street",
-"College Avenue",
-"Mill Road",
-"Railroad Avenue",
-"Bridge Street",
-"School Street",
-"Water Street",
-"Front Street",
-"North Street",
-"South Street",
-"East Street",
-"West Street",
-"Hillcrest Drive",
-"Riverside Drive",
-"Forest Avenue",
-"Meadow Lane",
-"Valley Road",
-"Highland Avenue",
-"Sycamore Street",
-"Magnolia Avenue",
-"Cypress Drive",
-"Evergreen Terrace",
-"Laurel Lane",
-"Willow Street",
-"Spruce Street",
-"Dogwood Drive",
-"Cherry Lane",
-"Birch Road",
-"Aspen Court",
-"Brookside Drive",
-"Creek Road",
-"Fairview Avenue",
-"Ridge Road",
-"Summit Avenue",
-"Beacon Street",
-"Edgewood Drive",
-"Harrison Avenue",
-"Grant Street",
-"Roosevelt Boulevard",
-"Kennedy Boulevard",
-"Wilson Avenue",
-"Taylor Street",
-"Thomas Avenue",
-"Johnson Street",
-"Lee Avenue",
-"Davis Street",
-"Clark Street",
-"Lakeview Drive",
-"Mountain View Road",
-"Bay Street",
-"Harbor Drive",
-"Seaside Avenue",
-"Palm Drive",
-"Canyon Road",
-"Vista Lane",
-"Shady Lane",
-"Pleasant Street",
-"Heritage Drive",
-"Stonebridge Road",
-"Riverwalk Drive",
-"Parkside Avenue",
-"Woodland Drive",
-"Greenwood Avenue",
-"Northgate Drive",
-"Southgate Avenue",
-"Eastwood Drive",
-"Westwood Avenue",
-"Mission Street",
-"Santa Monica Boulevard",
-"Pacific Coast Highway",
-"Mulholland Drive",
-"Ventura Boulevard",
-"Beverly Drive",
-"Sunrise Highway",
-"Atlantic Avenue",
-"Central Avenue",
-"Grand Avenue",
-"Columbus Avenue",
-"Cambridge Street",
-"Harvard Avenue",
-"Princeton Road",
-"Yale Street",
-"Stanford Avenue",
-"Columbia Road",
-"Duke Street",
-"Berkeley Avenue",
-"Austin Street",
-"Dallas Parkway",
-"Houston Street",
-"Phoenix Avenue",
-"Orlando Drive",
-"Tampa Road",
-"Nashville Pike",
-"Memphis Avenue",
-"Denver Boulevard",
-"Seattle Drive",
-"Portland Avenue",
-"Boston Road",
-"Brooklyn Avenue",
-"Queens Boulevard",
-"Bronx River Road",
-"Staten Island Expressway"
-];
-
-// ================= RANDOM FUNCTION (ADD THIS - REQUIRED) =================
-
-function rand(min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// ================= STREET + HOUSE NUMBER (FIXED) =================
-
-function generateStreet(){
-    return `${rand(100, 9999)} ${streets[rand(0, streets.length - 1)]}`;
-}
-// ================= COPY FUNCTION =================
-
-function copyText(el){
-
-const val = el.querySelector('.label')
-    ? el.innerText.replace(el.querySelector('.label').innerText, '').trim()
-    : el.innerText.trim();
-
-    navigator.clipboard.writeText(val).then(() => {
-
-        el.style.background = "#1f2a37";
-
+function copyWindowsUA(){
+    const uaText = document.getElementById('winUaOutput').innerText;
+    if(!uaText) return;
+    
+    navigator.clipboard.writeText(uaText).then(() => {
+        const copyBtn = document.getElementById('winCopyBtn');
+        copyBtn.innerText = "✓ Copied!";
+        copyBtn.style.backgroundColor = "#17a2b8";
         setTimeout(() => {
-            el.style.background = "";
-        }, 300);
-
+            copyBtn.innerText = "Copy User Agent";
+            copyBtn.style.backgroundColor = "var(--green)";
+        }, 1500);
     });
 }
 
-// ================= GENERATE PROFILE =================
-
-async function generateProfile(){
-
-    let zip = document.getElementById("zip").value.trim();
-
-    if(!zip){
-
-        alert("Enter ZIP / Postcode");
-        return;
-
-    }
-
-    // normalize input
-    zip = zip.toUpperCase().replace(/\s+/g,'');
-
-    let phone, address;
-
-    // ================= GET UNUSED PROFILE =================
-
-    const availableProfiles = profiles.filter(p =>
-        !usedProfiles.includes(p.email)
-    );
-
-    // no profiles left
-    if(availableProfiles.length === 0){
-
-        document.getElementById("zipResult").innerHTML =
-        "❌ No profiles left";
-
-        return;
-
-    }
-
-    // random unused profile
-    const profile =
-    availableProfiles[
-        rand(0, availableProfiles.length - 1)
-    ];
-
-    const fullName = profile.name;
-    const email = profile.email;
-
-    // save used email
-    usedProfiles.push(email);
-
-    localStorage.setItem(
-        "usedProfiles",
-        JSON.stringify(usedProfiles)
-    );
-
-    // random phone
-    phone = `(${rand(200,999)}) ${rand(100,999)}-${rand(1000,9999)}`;
-
-    // ================= UK POSTCODE CHECK =================
-
-    const ukRegex =
-    /^[A-Z]{1,2}\d[A-Z\d]?\d[A-Z]{2}$/i;
-
-    if(ukRegex.test(zip)){
-
-        try{
-
-            let ukRes =
-            await fetch(`https://api.postcodes.io/postcodes/${zip}`);
-
-            if(ukRes.ok){
-
-                let ukData = await ukRes.json();
-
-                if(ukData.status === 200){
-
-                    let result = ukData.result;
-
-                    let city =
-                    result.admin_district || "London";
-
-                    let country =
-                    "United Kingdom";
-
-                    let lat =
-                    result.latitude;
-
-                    let lng =
-                    result.longitude;
-
-                    address =
-                    `${zip}, ${city}, UK`;
-
-                    document.getElementById("zipResult").innerHTML = `
-
-<div onclick="copyText(this)">
-<span class="label">Country Code:</span> UK
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Country:</span> ${country}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">ZIP:</span> ${zip}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">City:</span> ${city}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">State:</span> England
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Latitude:</span> ${lat}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Longitude:</span> ${lng}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Name:</span> ${fullName}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Email:</span> ${email}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Phone:</span> ${phone}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Address:</span> ${address}
-</div>
-
-<div style="margin-top:10px;">
-<a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank">
-Open Exact Google Map Location 
-</a>
-</div>
-
-`;
-
-                    return;
-
-                }
-
-            }
-
-        }catch(e){
-
-            console.log(e);
-
-        }
-
-    }
-
-    // ================= GLOBAL ZIP FALLBACK =================
-
-    const countries = [
-        "us",
-        "ca",
-        "in",
-        "de",
-        "fr",
-        "au",
-        "bd"
-    ];
-
-    let data = null;
-    let usedCountry = null;
-
-    for(let c of countries){
-
-        try{
-
-            let res =
-            await fetch(`https://api.zippopotam.us/${c}/${zip}`);
-
-            if(res.ok){
-
-                let json = await res.json();
-
-                if(json?.places?.length > 0){
-
-                    data = json;
-                    usedCountry = c.toUpperCase();
-
-                    break;
-
-                }
-
-            }
-
-        }catch(e){
-
-            console.log(e);
-
-        }
-
-    }
-
-    // ================= NO MATCH =================
-
-    if(!data){
-
-        document.getElementById("zipResult").innerHTML =
-        "❌ No valid postcode found in supported databases";
-
-        return;
-
-    }
-
-    let place = data.places[0];
-
-    let city =
-    place["place name"] || "Unknown";
-
-    let state =
-    place["state abbreviation"] ||
-    place["state"] ||
-    "Unknown";
-
-    let country =
-    data.country;
-
-    let lat =
-    place["latitude"];
-
-    let lng =
-    place["longitude"];
-
-const street = generateStreet();
-
-address =
-`${street}, ${city}, ${state}, ${zip}`;
-
-    // ================= OUTPUT =================
-
-    document.getElementById("zipResult").innerHTML = `
-
-<div onclick="copyText(this)">
-<span class="label">Country Code:</span> ${usedCountry}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Country:</span> ${country}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">ZIP:</span> ${zip}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">City:</span> ${city}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">State:</span> ${state}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Latitude:</span> ${lat}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Longitude:</span> ${lng}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Name:</span> ${fullName}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Email:</span> ${email}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Phone:</span> ${phone}
-</div>
-
-<div onclick="copyText(this)">
-<span class="label">Address:</span> ${address}
-</div>
-
-<div style="margin-top:10px;">
-<a href="https://www.google.com/maps?q=${lat},${lng}" target="_blank">
-Open Exact Location in Google MAP
-</a>
-</div>
-
-`;
-
-}
-// ================= IP CHECKER =================
-
-function checkIP(){
-
-    let ip = document.getElementById("ipInput").value.trim();
-
-    if(!ip){
-
-        alert("Enter IP Address");
-
-        return;
-
-    }
-
-    let ip8Link = `https://ip8.com/ipdetails/${ip}`;
-
-    let scamLink = `https://scamalytics.com/ip/${ip}`;
-
-    document.getElementById("ipResult").innerHTML = `
-
-<div><span class="label">IP:</span> ${ip}</div>
-
-<div class="ipBtns">
-
-<a href="${ip8Link}" target="_blank">
-IP8 CHECK
-</a>
-
-<a href="${scamLink}" target="_blank">
-SCAMALYTICS
-</a>
-
-</div>
-
-<div style="margin-top:10px;">
-
-<span class="label">IP8 Direct:</span><br>
-
-<a href="${ip8Link}" target="_blank">${ip8Link}</a>
-
-</div>
-
-<div style="margin-top:10px;">
-
-<span class="label">Scamalytics Direct:</span><br>
-
-<a href="${scamLink}" target="_blank">${scamLink}</a>
-
-</div>
-
-`;
-
-}
-
-
-
-
+// ================= GLOBAL UTILITY FUNCTIONS =================
 function copyRow(el){
     const val = el.querySelector('.val').innerText;
-
     navigator.clipboard.writeText(val).then(() => {
+        const originalBg = el.style.backgroundColor;
         el.style.backgroundColor = "#1f2a37";
-
         setTimeout(() => {
-            el.style.backgroundColor = "";
+            el.style.backgroundColor = originalBg;
         }, 300);
     });
 }
-
 </script>
-
 
 </body>
 </html>
