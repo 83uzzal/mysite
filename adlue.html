@@ -57,15 +57,16 @@
         <div class="tab-btn active" onclick="switchTab(event, 'panel1')">Panel 1</div>
         <div class="tab-btn" onclick="switchTab(event, 'panel2')">Panel 2</div>
         <div class="tab-btn" onclick="switchTab(event, 'panel3')">Panel 3</div>
+        <div class="tab-btn" onclick="switchTab(event, 'bigPanel')">Big Panel</div>
     </div>
 
     <div id="panel1" class="tab-content active"></div>
     <div id="panel2" class="tab-content"></div>
     <div id="panel3" class="tab-content"></div>
+    <div id="bigPanel" class="tab-content"></div>
 </div>
 
 <script>
-    // এখানে কি (Keys) গুলো ছোট হাতের অক্ষরে (panel1, panel2...) করা হয়েছে HTML আইডি-র সাথে মিলানোর জন্য
     const data = {
         panel1: [
             ["Consumer Test Connect - Aldi $100", "https://app.hawktrk.com/click?pid=2&offer_id=21419&sub2=u653891&sub5=Tat_mamunMR-Hasan"],
@@ -78,7 +79,7 @@
             ["Reward Spark - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u653891&sub5=Tat_mamunMR-Hasan"],
             ["CTConnect - Cash App 750 3.28$", "https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u653891&sub5=Tat_mamunMR-Hasan"],
             ["Rewards Locker - Grocery Card $1000", "https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u653891&sub5=Tat_mamunMR-Hasan"]
-        ], // <--- এখানে কমা নিশ্চিত করা হয়েছে
+        ],
         panel2: [
             ["CTConnect - Visa $750", "https://app.hawktrk.com/click?pid=2&offer_id=21345&sub2=u578522&sub5=Tat_mamunMR-Hasan"],
             ["CTConnect - Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u578522&sub5=Tat_mamunMR-Hasan"],
@@ -89,17 +90,24 @@
             ["CTConnect - Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u578522&sub5=Tat_mamunMR-Hasan"],
             ["Reward Spark - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u578522&sub5=Tat_mamunMR-Hasan"],
             ["CTConnect - Cash App 750", "https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u578522&sub5=Tat_mamunMR-Hasan"]
-        ], // <--- এখানে কমা বসানো হয়েছে যা আগে বাদ পড়েছিল
+        ],
         panel3: [
-            ["CTConnect - Taco Bell", "https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u794924&sub5=Tat_mamunMR-H"],
-            ["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u794924&sub5=Tat_mamunMR-H"],
-            ["CTConnect - Chick Fil A", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u794924&sub5=Tat_mamunMR-H"],
-            ["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u794924&sub5=Tat_mamunMR-H"],
-            ["Rewards Locker - Grocery", "https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u794924&sub5=Tat_mamunMR-H"],
-            ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u794924&sub5=Tat_mamunMR-H"],
-            ["CTConnect - Lululemon", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u794924&sub5=Tat_mamunMR-H"],
-            ["Reward Spark - Cash App", "https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u794924&sub5=Tat_mamunMR-H"],
-            ["CTConnect - Cash App 750", "https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u794924&sub5=Tat_mamunMR-H"]
+            ["CTConnect - Taco Bell", "https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u794924&sub5=Tat_mamunMR-Hasan"],
+            ["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u794924&sub5=Tat_mamunMR-Hasan"],
+            ["CTConnect - Chick Fil A", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u794924&sub5=Tat_mamunMR-Hasan"],
+            ["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u794924&sub5=Tat_mamunMR-Hasan"],
+            ["Rewards Locker - Grocery", "https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u794924&sub5=Tat_mamunMR-Hasan"],
+            ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u794924&sub5=Tat_mamunMR-Hasan"],
+            ["CTConnect - Lululemon", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u794924&sub5=Tat_mamunMR-Hasan"],
+            ["Reward Spark - Cash App", "https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u794924&sub5=Tat_mamunMR-Hasan"],
+            ["CTConnect - Cash App 750", "https://app.hawktrk.com/click?pid=2&offer_id=663&sub2=u794924&sub5=Tat_mamunMR-Hasan"]
+        ],
+        bigPanel: [
+            ["CTConnect - Visa $750", "https://app.hawktrk.com/click?pid=2&offer_id=21345&sub2=u628012&sub5=Tat_mamunMR-Hasan"],
+            ["Rewards Locker - Grocery Card $1000", "https://app.hawktrk.com/click?pid=2&offer_id=20830&sub2=u628012&sub5=Tat_mamunMR-Hasan"],
+            ["GnG - CashApp $750", "https://app.hawktrk.com/click?pid=2&offer_id=20133&sub2=u628012&sub5=Tat_mamunMR-Hasan"],
+            ["Reward Spark - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=16024&sub2=u628012&sub5=Tat_mamunMR-Hasan"],
+            ["GetnGoods - $1,000 Aldi Rewards", "https://app.hawktrk.com/click?pid=2&offer_id=17412&sub2=u628012&sub5=Tat_mamunMR-Hasan"]
         ]
     };
 
