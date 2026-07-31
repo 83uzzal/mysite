@@ -54,61 +54,36 @@
 
 <div class="container">
     <div class="tabs-container">
-        <div class="tab-btn active" onclick="switchTab(event, 'panel1')">Panel 1</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel2')">Panel 2</div>
-		<div class="tab-btn" onclick="switchTab(event, 'panel2')">New Panel</div>
+        <div class="tab-btn active" onclick="switchTab(event, 'panel2')">New Panel</div>
         <div class="tab-btn" onclick="switchTab(event, 'panel3')">Panel 3</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel4')">Panel 4</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel5')">Panel 5</div>
-        <div class="tab-btn" onclick="switchTab(event, 'bigPanel')">Big Panel</div>
     </div>
 
-    <div id="panel1" class="tab-content active"></div>
-    <div id="panel2" class="tab-content"></div>
+    <div id="panel2" class="tab-content active"></div>
     <div id="panel3" class="tab-content"></div>
-    <div id="panel4" class="tab-content"></div>
-    <div id="panel5" class="tab-content"></div>
-    <div id="bigPanel" class="tab-content"></div>
 </div>
 
 <script>
     const data = {
-          panel1: [
-
-        ],
         panel2: [
-		        ],
-				
-        New Panel: [
-		    ["CTConnect - $100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u817071&sub5=H"],
+            ["CTConnect - $100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u817071&sub5=H"],
             ["AmericanQuotesClub - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u817071&sub5=H"],
             ["CTConnect - Gas GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=21614&sub2=u817071&sub5=H"],
             ["CTConnect - Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u817071&sub5=H"],
             ["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u817071&sub5=H"],
             ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u817071&sub5=H"],
-			 ["PrizeZappy - Chance to Win $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u817071&sub5=H"],
-			  ["Consumer Test Connect - Pizza Hut $100", "https://app.hawktrk.com/click?pid=2&offer_id=22004&sub2=u817071&sub5=H"],
+            ["PrizeZappy - Chance to Win $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u817071&sub5=H"],
+            ["Consumer Test Connect - Pizza Hut $100", "https://app.hawktrk.com/click?pid=2&offer_id=22004&sub2=u817071&sub5=H"],
             ["CTConnect - Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u817071&sub5=H"]
-
         ],
         panel3: [
             ["CTConnect - Gas GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=21614&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
             ["CTConnect - $100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u799535&sub5=Tat_mamunMR-Hasan"],
             ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
-			["SuperSweepstakes - 500k Prize", "https://app.hawktrk.com/click?pid=2&offer_id=21495&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
-			["AmericanQuotesClub - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
-			["Consumer Test Connect - Pizza Hut $100", "https://app.hawktrk.com/click?pid=2&offer_id=22004&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
-			["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
+            ["SuperSweepstakes - 500k Prize", "https://app.hawktrk.com/click?pid=2&offer_id=21495&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
+            ["AmericanQuotesClub - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
+            ["Consumer Test Connect - Pizza Hut $100", "https://app.hawktrk.com/click?pid=2&offer_id=22004&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
+            ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u799509&sub5=Tat_mamunMR-Hasan"],
             ["CTConnect - Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u799509&sub5=Tat_mamunMR-Hasan"]
-        ],
-        panel4: [
-
-        ],
-        panel5: [
-
-        ],
-        bigPanel: [
-
         ]
     };
 
@@ -117,7 +92,7 @@
             const element = document.getElementById(p);
             if(element) {
                 element.innerHTML = data[p].map(o => `
-                    <a href="${o[1]}" class="offer-card">
+                    <a href="${o[1]}" target="_blank" class="offer-card">
                         <div style="display:flex; align-items:center;">
                             <div class="icon-box"><i class="fas fa-gift"></i></div>
                             <div>
