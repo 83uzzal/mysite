@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Unlimited Bulk Email & Data Generator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 900px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .options-panel {
+            background: #f8f9fa;
+            border: 1px dashed #cbd5e1;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+
+        .checkbox-label input {
+            width: auto;
+            cursor: pointer;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .btn-copy { background-color: #e67e22; }
+        .btn-copy:hover { background-color: #d35400; }
+        .btn-export { background-color: #2ecc71; }
+        .btn-export:hover { background-color: #27ae60; }
+        .btn-clear { background-color: #e74c3c; }
+        .btn-clear:hover { background-color: #c0392b; }
+
+        textarea {
+            width: 100%;
+            height: 320px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            resize: vertical;
+            background-color: #fafafa;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .meta-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .status-msg {
+            font-size: 13px;
+            color: #7f8c8d;
+        }
+
+        .counter-badge {
+            font-size: 13px;
+            font-weight: 600;
+            background: #e2e8f0;
+            padding: 3px 10px;
+            border-radius: 12px;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📧 Pro Unlimited US Email & Combo Generator</h2>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="count">কতটি ইমেইল জেনারেট করবেন?</label>
+            <input type="number" id="count" value="100" min="1" max="10000">
+        </div>
+        <div class="control-group">
+            <label for="domain">ডোমেইন / প্রোভাইডার সিলেক্ট করুন</label>
+            <select id="domain">
+                <option value="all_us">Mix All USA Providers</option>
+                <option value="gmail.com">Gmail (gmail.com)</option>
+                <option value="hotmail.com">Hotmail (hotmail.com)</option>
+                <option value="aol.com">AOL Mail (aol.com)</option>
+                <option value="yahoo.com">Yahoo Mail (yahoo.com)</option>
+                <option value="outlook.com">Outlook (outlook.com)</option>
+                <option value="comcast.net">Comcast Xfinity (comcast.net)</option>
+                <option value="sbcglobal.net">SBCGlobal (sbcglobal.net)</option>
+                <option value="icloud.com">Apple iCloud (icloud.com)</option>
+                <option value="proton.me">Proton Mail (proton.me)</option>
+            </select>
+        </div>
+        <div class="control-group" style="align-self: flex-end;">
+            <button id="genBtn" onclick="generateEmails()">জেনারেট করুন</button>
+        </div>
+    </div>
+
+    <!-- Options Panel -->
+    <div class="options-panel">
+        <span style="font-size: 13px; font-weight: 600; color: #475569;">ফরম্যাট অপশন:</span>
+        <label class="checkbox-label">
+            <input type="checkbox" id="useDots" checked> ডট (.) রাখুন
+        </label>
+        <label class="checkbox-label">
+            <input type="checkbox" id="useUnderscore" checked> আন্ডারস্কোর (_) রাখুন
+        </label>
+        <label class="checkbox-label">
+            <input type="checkbox" id="useHyphen" checked> হাইফেন (-) রাখুন
+        </label>
+        <label class="checkbox-label">
+            <input type="checkbox" id="useNumbers" checked> র্যান্ডম সংখ্যা (85-99/1985-1999)
+        </label>
+        <label class="checkbox-label" style="margin-left: auto; color: #d97706; font-weight: 600;">
+            <input type="checkbox" id="genPassword"> পাসওয়ার্ড সহ (Combo)
+        </label>
+    </div>
+
+    <div class="meta-info">
+        <div id="status" class="status-msg"></div>
+        <div id="counter" class="counter-badge">Total: 0</div>
+    </div>
+
+    <textarea id="emailOutput" placeholder="জেনারেট করা ইমেইল/কম্বো লিস্ট এখানে দেখা যাবে..."></textarea>
+
+    <div class="actions">
+        <div class="control-group" style="flex: 0.6;">
+            <label>&nbsp;</label>
+            <button id="copyBtn" class="btn-copy" onclick="copyEmails()">📋 কপি করুন</button>
+        </div>
+        <div class="control-group" style="flex: 0.5;">
+            <label>&nbsp;</label>
+            <button class="btn-clear" onclick="clearOutput()">🗑️ ক্লিয়ার</button>
+        </div>
+        <div class="control-group">
+            <label for="format">ডাউনলোড ফরম্যাট</label>
+            <select id="format">
+                <option value="txt">TXT (.txt)</option>
+                <option value="csv">CSV (.csv)</option>
+                <option value="json">JSON (.json)</option>
+                <option value="html">HTML (.html)</option>
+            </select>
+        </div>
+        <div class="control-group" style="align-self: flex-end;">
+            <button class="btn-export" onclick="exportEmails()">ডাউনলোড ফাইল</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const tags = ["ny", "fl", "tx", "ca", "usa", "pro", "net", "dev", "tech", "us", "official", "real", "home", "work", "web", "site"];
+    const usDomains = ["gmail.com", "hotmail.com", "aol.com", "yahoo.com", "outlook.com", "comcast.net", "sbcglobal.net", "icloud.com"];
+    
+    const namePrefixes = ["alex", "chris", "sam", "jordan", "taylor", "morgan", "casey", "riley", "avery", "logan", "drew", "skyler", "cameron", "reese", "quinn", "pat", "jamie", "dakota", "hayden", "rowan"];
+    const nameSuffixes = ["man", "son", "ford", "wood", "berg", "field", "ton", "ley", "land", "smith", "well", "stone", "brook", "vance", "cross", "hart"];
+
+    // Global Unique Email Storage (Prevents duplicates across multiple generation clicks)
+    let globalEmailSet = new Set();
+    let currentEmails = [];
+
+    const getRandom = arr => arr[Math.floor(Math.random() * arr.length)];
+    const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    // Strict Range Selection for Numbers: 85-99 OR 1985-1999
+    function getCustomRangeNum() {
+        const choice = Math.random() < 0.5;
+        return choice ? getRandomNum(85, 99) : getRandomNum(1985, 1999);
+    }
+
+    function generateStrongPassword() {
+        const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%";
+        let pass = "";
+        for (let i = 0; i < 12; i++) {
+            pass += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return pass;
+    }
+
+    async function fetchOnlineNames(count) {
+        try {
+            const res = await fetch(`https://randomuser.me/api/?results=${count}&nat=us&inc=name`);
+            if (!res.ok) throw new Error("API Limit");
+            const data = await res.json();
+            return data.results.map(item => ({
+                first: item.name.first.toLowerCase().replace(/[^a-z]/g, ''),
+                last: item.name.last.toLowerCase().replace(/[^a-z]/g, '')
+            }));
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function generateDynamicName() {
+        const first = getRandom(namePrefixes) + getRandom(nameSuffixes);
+        const last = getRandom(namePrefixes) + getRandom(nameSuffixes);
+        return { first, last };
+    }
+
+    async function generateEmails() {
+        const count = parseInt(document.getElementById('count').value);
+        const selectedDomain = document.getElementById('domain').value;
+        const genBtn = document.getElementById('genBtn');
+        const status = document.getElementById('status');
+        const counter = document.getElementById('counter');
+
+        const useDots = document.getElementById('useDots').checked;
+        const useUnderscore = document.getElementById('useUnderscore').checked;
+        const useHyphen = document.getElementById('useHyphen').checked;
+        const useNumbers = document.getElementById('useNumbers').checked;
+        const genPassword = document.getElementById('genPassword').checked;
+        
+        genBtn.disabled = true;
+        status.innerText = "অনলাইন API থেকে ইউজারনেম আনা হচ্ছে...";
+        
+        let rawNames = await fetchOnlineNames(count);
+
+        if (rawNames) {
+            status.innerText = "অনলাইন ডাটাবেজ ব্যবহার করে ইউজার নেম ফেচ করা হয়েছে।";
+        } else {
+            status.innerText = "অফলাইন ডায়নামিক এনজিন থেকে নাম জেনারেট করা হয়েছে।";
+            rawNames = [];
+            for (let i = 0; i < count; i++) {
+                rawNames.push(generateDynamicName());
+            }
+        }
+
+        let targetSize = globalEmailSet.size + count;
+        let attempts = 0;
+
+        while (globalEmailSet.size < targetSize && attempts < count * 5) {
+            attempts++;
+            const nameObj = rawNames[Math.floor(Math.random() * rawNames.length)] || generateDynamicName();
+            const fn = nameObj.first;
+            const ln = nameObj.last;
+            
+            let separators = [];
+            if (useDots) separators.push('.');
+            if (useUnderscore) separators.push('_');
+            if (useHyphen) separators.push('-');
+            
+            let sep = separators.length > 0 ? getRandom(separators) : '';
+            let numStr = useNumbers ? getCustomRangeNum() : '';
+            let tagStr = getRandom(tags);
+
+            let domain = selectedDomain === "all_us" ? getRandom(usDomains) : selectedDomain;
+            let username = "";
+
+            const patternChoice = getRandomNum(1, 6);
+            switch(patternChoice) {
+                case 1: username = `${fn}${sep}${ln}${numStr}`; break;
+                case 2: username = `${fn}${sep}${ln}${sep}${numStr}`; break;
+                case 3: username = `${fn}${numStr}${ln}`; break;
+                case 4: username = `${fn.charAt(0)}${sep}${ln}${numStr}`; break;
+                case 5: username = `${fn}${sep}${tagStr}${numStr}`; break;
+                case 6: username = `${ln}${sep}${fn}${numStr}`; break;
+            }
+
+            // Cleanup any trailing/leading/multiple separators
+            username = username.replace(/[._-]{2,}/g, sep).replace(/^[._-]|[._-]$/g, '');
+
+            let emailEntry = `${username}@${domain}`;
+            if (genPassword) {
+                emailEntry += `:${generateStrongPassword()}`;
+            }
+
+            globalEmailSet.add(emailEntry);
+        }
+
+        currentEmails = Array.from(globalEmailSet);
+        document.getElementById('emailOutput').value = currentEmails.join('\n');
+        counter.innerText = `Total: ${currentEmails.length}`;
+        genBtn.disabled = false;
+    }
+
+    function copyEmails() {
+        const output = document.getElementById('emailOutput');
+        if (!output.value) {
+            alert("কপি করার জন্য কোনো ডাটা নেই!");
+            return;
+        }
+
+        output.select();
+        output.setSelectionRange(0, 999999);
+
+        navigator.clipboard.writeText(output.value).then(() => {
+            const copyBtn = document.getElementById('copyBtn');
+            const originalText = copyBtn.innerText;
+            copyBtn.innerText = "✅ কপি হয়েছে!";
+            setTimeout(() => {
+                copyBtn.innerText = originalText;
+            }, 2000);
+        }).catch(() => {
+            alert("কপি করতে সমস্যা হয়েছে!");
+        });
+    }
+
+    function clearOutput() {
+        document.getElementById('emailOutput').value = "";
+        globalEmailSet.clear();
+        currentEmails = [];
+        document.getElementById('counter').innerText = "Total: 0";
+        document.getElementById('status').innerText = "";
+    }
+
+    function exportEmails() {
+        if (currentEmails.length === 0) {
+            alert("আগে ডাটা জেনারেট করুন!");
+            return;
+        }
+
+        const format = document.getElementById('format').value;
+        const isCombo = document.getElementById('genPassword').checked;
+        let content = "";
+        let mimeType = "text/plain";
+        let filename = `emails.${format}`;
+
+        if (format === 'txt') {
+            content = currentEmails.join('\n');
+            mimeType = 'text/plain';
+        } else if (format === 'csv') {
+            content = isCombo ? "Email Address,Password\n" + currentEmails.map(e => e.replace(':', ',')).join('\n')
+                              : "Email Address\n" + currentEmails.join('\n');
+            mimeType = 'text/csv';
+        } else if (format === 'json') {
+            if (isCombo) {
+                const jsonObj = currentEmails.map(e => {
+                    const parts = e.split(':');
+                    return { email: parts[0], password: parts[1] };
+                });
+                content = JSON.stringify(jsonObj, null, 2);
+            } else {
+                content = JSON.stringify(currentEmails, null, 2);
+            }
+            mimeType = 'application/json';
+        } else if (format === 'html') {
+            content = `<!DOCTYPE html>\n<html>\n<head>\n<title>Email List</title>\n</head>\n<body>\n<ul>\n` + 
+                      currentEmails.map(e => `  <li>${e}</li>`).join('\n') + 
+                      `\n</ul>\n</body>\n</html>`;
+            mimeType = 'text/html';
+        }
+
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // Auto-generate on load
+    generateEmails();
+</script>
+
+</body>
+</html>
