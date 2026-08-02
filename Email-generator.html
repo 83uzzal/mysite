@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlimited Bulk Email Generator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 850px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .btn-copy {
+            background-color: #e67e22;
+        }
+
+        .btn-copy:hover {
+            background-color: #d35400;
+        }
+
+        .btn-export {
+            background-color: #2ecc71;
+        }
+
+        .btn-export:hover {
+            background-color: #27ae60;
+        }
+
+        textarea {
+            width: 100%;
+            height: 320px;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 13px;
+            resize: vertical;
+            background-color: #fafafa;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .status-msg {
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📧 Unlimited US Email Generator</h2>
+
+    <div class="controls">
+        <div class="control-group">
+            <label for="count">কতটি ইমেইল জেনারেট করবেন?</label>
+            <input type="number" id="count" value="100" min="1" max="10000">
+        </div>
+        <div class="control-group">
+            <label for="domain">ডোমেইন / প্রোভাইডার সিলেক্ট করুন</label>
+            <select id="domain">
+                <option value="all_us">Mix All USA Providers</option>
+                <option value="gmail.com">Gmail (gmail.com)</option>
+                <option value="hotmail.com">Hotmail (hotmail.com)</option>
+                <option value="aol.com">AOL Mail (aol.com)</option>
+                <option value="yahoo.com">Yahoo Mail (yahoo.com)</option>
+                <option value="outlook.com">Outlook (outlook.com)</option>
+                <option value="comcast.net">Comcast Xfinity (comcast.net)</option>
+                <option value="sbcglobal.net">SBCGlobal (sbcglobal.net)</option>
+                <option value="icloud.com">Apple iCloud (icloud.com)</option>
+                <option value="proton.me">Proton Mail (proton.me)</option>
+            </select>
+        </div>
+        <div class="control-group" style="align-self: flex-end;">
+            <button id="genBtn" onclick="generateEmails()">জেনারেট করুন</button>
+        </div>
+    </div>
+    <div id="status" class="status-msg"></div>
+
+    <textarea id="emailOutput" placeholder="জেনারেট করা ইমেইলগুলো এখানে দেখা যাবে..."></textarea>
+
+    <div class="actions">
+        <div class="control-group" style="flex: 0.8;">
+            <label>&nbsp;</label>
+            <button id="copyBtn" class="btn-copy" onclick="copyEmails()">📋 কপি করুন</button>
+        </div>
+        <div class="control-group">
+            <label for="format">ডাউনলোড ফরম্যাট</label>
+            <select id="format">
+                <option value="txt">TXT (.txt)</option>
+                <option value="csv">CSV (.csv)</option>
+                <option value="json">JSON (.json)</option>
+                <option value="html">HTML (.html)</option>
+            </select>
+        </div>
+        <div class="control-group" style="align-self: flex-end;">
+            <button class="btn-export" onclick="exportEmails()">ডাউনলোড ফাইল</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const tags = ["ny", "fl", "tx", "ca", "usa", "pro", "net", "dev", "tech", "us", "official", "real", "home", "work", "web", "site"];
+    const usDomains = ["gmail.com", "hotmail.com", "aol.com", "yahoo.com", "outlook.com", "comcast.net", "sbcglobal.net", "icloud.com"];
+    
+    const namePrefixes = ["alex", "chris", "sam", "jordan", "taylor", "morgan", "casey", "riley", "avery", "logan", "drew", "skyler", "cameron", "reese", "quinn", "pat", "jamie", "dakota", "hayden", "rowan"];
+    const nameSuffixes = ["man", "son", "ford", "wood", "berg", "field", "ton", "ley", "land", "smith", "well", "stone", "brook", "vance", "cross", "hart"];
+
+    let currentEmails = [];
+
+    const getRandom = arr => arr[Math.floor(Math.random() * arr.length)];
+    const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    async function fetchOnlineNames(count) {
+        try {
+            const res = await fetch(`https://randomuser.me/api/?results=${count}&nat=us&inc=name`);
+            if (!res.ok) throw new Error("API Limit");
+            const data = await res.json();
+            return data.results.map(item => ({
+                first: item.name.first.toLowerCase().replace(/[^a-z]/g, ''),
+                last: item.name.last.toLowerCase().replace(/[^a-z]/g, '')
+            }));
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function generateDynamicName() {
+        const first = getRandom(namePrefixes) + getRandom(nameSuffixes);
+        const last = getRandom(namePrefixes) + getRandom(nameSuffixes);
+        return { first, last };
+    }
+
+    async function generateEmails() {
+        const count = parseInt(document.getElementById('count').value);
+        const selectedDomain = document.getElementById('domain').value;
+        const genBtn = document.getElementById('genBtn');
+        const status = document.getElementById('status');
+        
+        genBtn.disabled = true;
+        status.innerText = "অনলাইন API থেকে ইউনিক ইউজারনেম আনা হচ্ছে...";
+        currentEmails = [];
+
+        let nameList = await fetchOnlineNames(count);
+
+        if (nameList) {
+            status.innerText = "অনলাইন ডাটাবেজ ব্যবহার করে রিয়েল ইমেইল জেনারেট করা হয়েছে।";
+        } else {
+            status.innerText = "অফলাইন ডায়নামিক এনজিন থেকে আনলিমিটেড ইমেইল জেনারেট করা হয়েছে।";
+            nameList = [];
+            for (let i = 0; i < count; i++) {
+                nameList.push(generateDynamicName());
+            }
+        }
+
+        for (let i = 0; i < count; i++) {
+            const fn = nameList[i].first;
+            const ln = nameList[i].last;
+            const tag = getRandom(tags);
+            const num = getRandomNum(10, 99);
+            const longNum = getRandomNum(1980, 2005);
+            
+            let domain = selectedDomain === "all_us" ? getRandom(usDomains) : selectedDomain;
+            let username = "";
+
+            const patternChoice = getRandomNum(1, 10);
+
+            switch(patternChoice) {
+                case 1: username = `${fn}.${ln}.${tag}`; break;
+                case 2: username = `${fn}.${ln}.${num}`; break;
+                case 3: username = `${fn}${ln}${num}`; break;
+                case 4: username = `${fn}_${ln}`; break;
+                case 5: username = `${fn}.${ln.charAt(0)}`; break;
+                case 6: username = `${fn.charAt(0)}.${ln}${longNum}`; break;
+                case 7: username = `${fn}-${ln}-${tag}`; break;
+                case 8: username = `${ln}.${fn}`; break;
+                case 9: username = `${fn}_${tag}_${num}`; break;
+                case 10: username = `${fn}${ln}${tag}`; break;
+            }
+
+            currentEmails.push(`${username}@${domain}`);
+        }
+
+        document.getElementById('emailOutput').value = currentEmails.join('\n');
+        genBtn.disabled = false;
+    }
+
+    function copyEmails() {
+        const output = document.getElementById('emailOutput');
+        if (!output.value) {
+            alert("কপি করার জন্য কোনো ইমেইল নেই!");
+            return;
+        }
+
+        output.select();
+        output.setSelectionRange(0, 999999); // Mobile compatibility
+
+        navigator.clipboard.writeText(output.value).then(() => {
+            const copyBtn = document.getElementById('copyBtn');
+            const originalText = copyBtn.innerText;
+            copyBtn.innerText = "✅ কপি হয়েছে!";
+            setTimeout(() => {
+                copyBtn.innerText = originalText;
+            }, 2000);
+        }).catch(err => {
+            alert("কপি করতে সমস্যা হয়েছে!");
+        });
+    }
+
+    function exportEmails() {
+        if (currentEmails.length === 0) {
+            alert("আগে ইমেইল জেনারেট করুন!");
+            return;
+        }
+
+        const format = document.getElementById('format').value;
+        let content = "";
+        let mimeType = "text/plain";
+        let filename = `emails.${format}`;
+
+        if (format === 'txt') {
+            content = currentEmails.join('\n');
+            mimeType = 'text/plain';
+        } else if (format === 'csv') {
+            content = "Email Address\n" + currentEmails.join('\n');
+            mimeType = 'text/csv';
+        } else if (format === 'json') {
+            content = JSON.stringify(currentEmails, null, 2);
+            mimeType = 'application/json';
+        } else if (format === 'html') {
+            content = `<!DOCTYPE html>\n<html>\n<head>\n<title>Email List</title>\n</head>\n<body>\n<ul>\n` + 
+                      currentEmails.map(e => `  <li>${e}</li>`).join('\n') + 
+                      `\n</ul>\n</body>\n</html>`;
+            mimeType = 'text/html';
+        }
+
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // Auto-generate on load
+    generateEmails();
+</script>
+
+</body>
+</html>
