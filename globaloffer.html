@@ -20,85 +20,147 @@
             --card: rgba(30, 41, 59, 0.7);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: linear-gradient(135deg, var(--bg), #1e293b); color: #fff; padding-bottom: 30px; }
+        body { 
+            background: linear-gradient(135deg, var(--bg), #1e293b); 
+            color: #fff; 
+            padding-bottom: 30px; 
+            min-height: 100vh;
+        }
         
-        .header { text-align: center; padding: 40px 20px; }
-        .header h1 { font-size: 1.8rem; margin-bottom: 10px; background: linear-gradient(to right, #818cf8, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header { text-align: center; padding: 30px 15px 20px; }
+        .header h1 { 
+            font-size: clamp(1.4rem, 5vw, 1.8rem); 
+            margin-bottom: 6px; 
+            background: linear-gradient(to right, #818cf8, #f472b6); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
         
-        .container { max-width: 500px; margin: 0 auto; padding: 0 15px; }
+        .container { max-width: 500px; margin: 0 auto; padding: 0 12px; }
         
-        .tabs-container { display: flex; flex-wrap: wrap; gap: 5px; background: rgba(0,0,0,0.2); padding: 5px; border-radius: 12px; margin-bottom: 20px; }
-        .tab-btn { flex: 1; min-width: 70px; padding: 10px; cursor: pointer; text-align: center; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
+        .tabs-container { 
+            display: flex; 
+            gap: 8px; 
+            background: rgba(0,0,0,0.3); 
+            padding: 6px; 
+            border-radius: 12px; 
+            margin-bottom: 16px; 
+        }
+        .tab-btn { 
+            flex: 1; 
+            padding: 12px 8px; 
+            cursor: pointer; 
+            text-align: center; 
+            border-radius: 8px; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            transition: 0.3s; 
+            word-break: break-word;
+        }
         .tab-btn.active { background: var(--primary); }
         
         .tab-content { display: none; animation: fadeIn 0.4s; }
         .tab-content.active { display: block; }
         
-        .offer-card { background: var(--card); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: white; transition: 0.3s; }
-        .offer-card:hover { border-color: var(--primary); transform: scale(1.02); }
+        .offer-card { 
+            background: var(--card); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 14px; 
+            padding: 14px; 
+            margin-bottom: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            text-decoration: none; 
+            color: white; 
+            transition: 0.2s; 
+            gap: 10px;
+        }
+        .offer-card:active { transform: scale(0.98); }
+        .offer-card:hover { border-color: var(--primary); }
         
-        .icon-box { width: 40px; height: 40px; background: rgba(99, 102, 241, 0.2); color: #818cf8; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
+        .card-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+        .icon-box { 
+            width: 38px; 
+            height: 38px; 
+            flex-shrink: 0;
+            background: rgba(99, 102, 241, 0.2); 
+            color: #818cf8; 
+            border-radius: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .offer-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .offer-sub { font-size: 0.7rem; opacity: 0.6; margin-top: 2px; }
         
-        .btn-claim { background: var(--accent); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); animation: pulse 2s infinite; }
+        .btn-claim { 
+            background: var(--accent); 
+            padding: 8px 14px; 
+            border-radius: 20px; 
+            font-size: 0.7rem; 
+            font-weight: bold; 
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); 
+            animation: pulse 2s infinite; 
+        }
         
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(244, 63, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); } }
     </style>
 </head>
 <body>
 
 <div class="header">
     <h1>🔥 Trending Rewards</h1>
-    <p style="font-size: 0.9rem; opacity: 0.7;">Select your prize below</p>
+    <p style="font-size: 0.85rem; opacity: 0.7;">Select your prize below</p>
 </div>
 
 <div class="container">
     <div class="tabs-container">
-        <div class="tab-btn active" onclick="switchTab(event, 'panel1')">Panel 1</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel2')">Panel 2</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel3')">Panel 3</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel4')">Panel 4</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel5')">Panel 5</div>
-        <div class="tab-btn" onclick="switchTab(event, 'bigPanel')">Big Panel</div>
+        <div class="tab-btn active" onclick="switchTab(event, 'Adblumedia_Panel_New02')">Panel New02</div>
+        <div class="tab-btn" onclick="switchTab(event, 'Adblumedia_Panel_New05')">Panel New05</div>
     </div>
 
-    <div id="panel1" class="tab-content active"></div>
-    <div id="panel2" class="tab-content"></div>
-    <div id="panel3" class="tab-content"></div>
-    <div id="panel4" class="tab-content"></div>
-    <div id="panel5" class="tab-content"></div>
-    <div id="bigPanel" class="tab-content"></div>
+    <div id="Adblumedia_Panel_New02" class="tab-content active"></div>
+    <div id="Adblumedia_Panel_New05" class="tab-content"></div>
 </div>
 
 <script>
     const data = {
-   panel1: [
-
-],
-panel2: [
-  ["Primerewardspot - Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u809811&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u809811&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u809811&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u809811&sub5=Tat_mamunMR-HasanD"],
-  ["AmericanQuotesClub - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u809811&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u809811&sub5=Tat_mamunMR-HasanD"],
-  ["EDW - MDM Excusives", "https://app.hawktrk.com/click?pid=2&offer_id=23136&sub2=u809811&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - $100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u809811&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - Gas GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=21614&sub2=u809811&sub5=Tat_mamunMR-HasanD"],
-  ["PrizeZappy - Chance to Win $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u809811&sub5=Tat_mamunMR-HasanD"]
-],
-panel3: [
-  ["Primerewardspot - Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u804798&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u804798&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u804798&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u804798&sub5=Tat_mamunMR-HasanD"],
-  ["AmericanQuotesClub - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u804798&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u804798&sub5=Tat_mamunMR-HasanD"],
-  ["EDW - MDM Excusives", "https://app.hawktrk.com/click?pid=2&offer_id=23136&sub2=u804798&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - $100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u804798&sub5=Tat_mamunMR-HasanD"],
-  ["CTConnect - Gas GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=21614&sub2=u804798&sub5=Tat_mamunMR-HasanD"],
-  ["PrizeZappy - Chance to Win $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u804798&sub5=Tat_mamunMR-HasanD"]
-]
+        Adblumedia_Panel_New02: [
+            ["Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u525758&sub5=MH-3"],
+            ["Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u525758&sub5=MH-3"],
+            ["Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u525758&sub5=MH-3"],
+            ["Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u525758&sub5=MH-3"],
+            ["CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u525758&sub5=MH-3"],
+            ["$100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u525758&sub5=MH-3"],
+            ["Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u525758&sub5=MH-3"],
+            ["Amazon Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=21737&sub2=u525758&sub5=MH-3"],
+            ["Grocery Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=21494&sub2=u525758&sub5=MH-3"],
+            ["Adidas Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=16067&sub2=u525758&sub5=MH-3"],
+            ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u525758&sub5=MH-3"]
+        ],
+        Adblumedia_Panel_New05: [
+            ["Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u824013&sub5=MH-3"],
+            ["Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u824013&sub5=MH-3"],
+            ["Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u824013&sub5=MH-3"],
+            ["Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u824013&sub5=MH-3"],
+            ["CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u824013&sub5=MH-3"],
+            ["$100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u824013&sub5=MH-3"],
+            ["Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=91&sub2=u824013&sub5=MH-3"],
+            ["Amazon Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=21737&sub2=u824013&sub5=MH-3"],
+            ["Grocery Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=21494&sub2=u824013&sub5=MH-3"],
+            ["Adidas Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=16067&sub2=u824013&sub5=MH-3"],
+            ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u824013&sub5=MH-3"]
+        ]
     };
 
     function render() {
@@ -106,12 +168,12 @@ panel3: [
             const element = document.getElementById(p);
             if(element) {
                 element.innerHTML = data[p].map(o => `
-                    <a href="${o[1]}" class="offer-card">
-                        <div style="display:flex; align-items:center;">
+                    <a href="${o[1]}" class="offer-card" target="_blank" rel="noopener">
+                        <div class="card-left">
                             <div class="icon-box"><i class="fas fa-gift"></i></div>
-                            <div>
-                                <div style="font-size:0.9rem; font-weight:600;">${o[0]}</div>
-                                <div style="font-size:0.7rem; opacity:0.6;">Limited Time Offer</div>
+                            <div style="min-width:0;">
+                                <div class="offer-title">${o[0]}</div>
+                                <div class="offer-sub">Limited Time Offer</div>
                             </div>
                         </div>
                         <div class="btn-claim">CLAIM</div>
