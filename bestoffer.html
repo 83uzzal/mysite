@@ -125,59 +125,65 @@
 
 <div class="container">
     <div class="tabs-container">
-        <div class="tab-btn active" onclick="switchTab(event, 'Adblumedia_Panel_New02')">Panel New01</div>
-        <div class="tab-btn active" onclick="switchTab(event, 'Adblumedia_Panel_New02')">Panel New02</div>
+        <div class="tab-btn active" onclick="switchTab(event, 'Adblumedia_Panel_New01')">Panel New01</div>
+        <div class="tab-btn" onclick="switchTab(event, 'Adblumedia_Panel_New02')">Panel New02</div>
         <div class="tab-btn" onclick="switchTab(event, 'Adblumedia_Panel_New03')">Panel New03</div>
         <div class="tab-btn" onclick="switchTab(event, 'Adblumedia_Panel_New05')">Panel New05</div>
     </div>
 
-    <div id="Adblumedia_Panel_New02" class="tab-content active"></div>
+    <div id="Adblumedia_Panel_New01" class="tab-content active"></div>
+    <div id="Adblumedia_Panel_New02" class="tab-content"></div>
     <div id="Adblumedia_Panel_New03" class="tab-content"></div>
     <div id="Adblumedia_Panel_New05" class="tab-content"></div>
 </div>
 
 <script>
     const data = {
-
-                Adblumedia_Panel_New01: [
-                ["RTO USA (SOI)", "https://track.offersbounty.com//tr?offer_id=21&aff_id=292"],
-             ["Huggies - SOI - US Only", "https://track.offersbounty.com//tr?offer_id=15&aff_id=292"],
-  ["Walmart Bonus $750", "https://mathnixadvertising871.o18.click/c?o=21832079&m=4818&a=723601&aff_click_id={replace_it}&sub_aff_id={replace_it}&aff_sub1={Lead Hunter-10}"],
-            ["Rewards US - Cash $1000", "https://mathnixadvertising871.o18.click/c?o=21832071&m=4818&a=723601&aff_click_id={replace_it}&sub_aff_id={replace_it}&aff_sub1={Lead Hunter-10}"]
-
+        Adblumedia_Panel_New01: [
+            ["Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u597359&sub5=Hunter-10"],
+            ["Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u597359&sub5=Hunter-10"],
+            ["Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=23755&sub2=u597359&sub5=Hunter-10"],
+            ["Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u597359&sub5=Hunter-10"],
+            ["TJ Maxx GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=23615&sub2=u597359&sub5=Hunter-10"],
+            ["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u597359&sub5=Hunter-10"],
+            ["Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u597359&sub5=Hunter-10"],
+            ["RewardsFlow - Shein 750", "https://app.hawktrk.com/click?pid=2&offer_id=23797&sub2=u597359&sub5=Hunter-10"],
+            ["CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u597359&sub5=Hunter-10"],
+            ["$100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u597359&sub5=Hunter-10"],
+            ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u597359&sub5=Hunter-10"],
+            ["Aus-Amazon $500 ", "https://app.hawktrk.com/click?pid=2&offer_id=23587&sub2=u597359&sub5=Hunter-10"],
+            ["Po-Biedronka Gift Card ", "https://app.hawktrk.com/click?pid=2&offer_id=15613&sub2=u597359&sub5=Hunter-10"]
         ],
-        
         Adblumedia_Panel_New02: [
-                ["RTO USA (SOI)", "https://track.offersbounty.com//tr?offer_id=21&aff_id=292"],
-             ["Huggies - SOI - US Only", "https://track.offersbounty.com//tr?offer_id=15&aff_id=292"],
-  ["Walmart Bonus $750", "https://mathnixadvertising871.o18.click/c?o=21832079&m=4818&a=723601&aff_click_id={replace_it}&sub_aff_id={replace_it}&aff_sub1={Lead Hunter-10}"],
+            ["RTO USA (SOI)", "https://track.offersbounty.com//tr?offer_id=21&aff_id=292"],
+            ["Huggies - SOI - US Only", "https://track.offersbounty.com//tr?offer_id=15&aff_id=292"],
+            ["Walmart Bonus $750", "https://mathnixadvertising871.o18.click/c?o=21832079&m=4818&a=723601&aff_click_id={replace_it}&sub_aff_id={replace_it}&aff_sub1={Lead Hunter-10}"],
             ["Rewards US - Cash $1000", "https://mathnixadvertising871.o18.click/c?o=21832071&m=4818&a=723601&aff_click_id={replace_it}&sub_aff_id={replace_it}&aff_sub1={Lead Hunter-10}"]
-
         ],
         Adblumedia_Panel_New03: [
-    ["Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u810316&sub5=Hunter-10"],
-    ["Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u810316&sub5=Hunter-10"],
+            ["Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u810316&sub5=Hunter-10"],
+            ["Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u810316&sub5=Hunter-10"],
             ["Aus-Amazon $500 ", "https://app.hawktrk.com/click?pid=2&offer_id=23587&sub2=u810316&sub5=Hunter-10"],
             ["Po-Biedronka Gift Card ", "https://app.hawktrk.com/click?pid=2&offer_id=15613&sub2=u810316&sub5=Hunter-10"],
-    ["Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u810316&sub5=Hunter-10"],
-    ["TJ Maxx GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=23615&sub2=u810316&sub5=Hunter-10"],
-    ["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u810316&sub5=Hunter-10"],
-    ["Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u810316&sub5=Hunter-10"],
-    ["Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u810316&sub5=Hunter-10"],
-    ["CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u810316&sub5=Hunter-10"],
-    ["$100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u810316&sub5=Hunter-10"],
-    ["Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=23755&sub2=u810316&sub5=Hunter-10"],
-    ["Amazon Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=21737&sub2=u810316&sub5=Hunter-10"],
-    ["Grocery Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=21494&sub2=u810316&sub5=Hunter-10"],
-    ["Adidas Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=16067&sub2=u810316&sub5=Hunter-10"],
-    ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u810316&sub5=Hunter-10"]
+            ["Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u810316&sub5=Hunter-10"],
+            ["TJ Maxx GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=23615&sub2=u810316&sub5=Hunter-10"],
+            ["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u810316&sub5=Hunter-10"],
+            ["Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u810316&sub5=Hunter-10"],
+            ["Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u810316&sub5=Hunter-10"],
+            ["CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u810316&sub5=Hunter-10"],
+            ["$100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u810316&sub5=Hunter-10"],
+            ["Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=23755&sub2=u810316&sub5=Hunter-10"],
+            ["Amazon Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=21737&sub2=u810316&sub5=Hunter-10"],
+            ["Grocery Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=21494&sub2=u810316&sub5=Hunter-10"],
+            ["Adidas Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=16067&sub2=u810316&sub5=Hunter-10"],
+            ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u810316&sub5=Hunter-10"]
         ],
         Adblumedia_Panel_New05: [
             ["cpazon.com_1", "https://aff.cpazon.com/links?&pubid=3051&key=214956"],
             ["cpazon.com_2", "https://aff.cpazon.com/click?camp=2281&pubid=3051"],
-    ["iMON_1", "https://paysale.g2afse.com/click?pid=137487&offer_id=7852&sub1=Hunter-10"],
+            ["iMON_1", "https://paysale.g2afse.com/click?pid=137487&offer_id=7852&sub1=Hunter-10"],
             ["iMON_2", "https://paysale.g2afse.com/click?pid=137169&offer_id=7852&sub1=Hunter-10"],
-    ["iMON_3", "https://mycutemates.com/tds/ae?tds_campaign=s4980bil&tdsId=s4980bil_r&s1=int&utm_source=int&utm_sub=opnfnlconf&clickid={clickid}&subid=Hunter-15"]        
+            ["iMON_3", "https://mycutemates.com/tds/ae?tds_campaign=s4980bil&tdsId=s4980bil_r&s1=int&utm_source=int&utm_sub=opnfnlconf&clickid={clickid}&subid=Hunter-15"]        
         ]
     };
 
