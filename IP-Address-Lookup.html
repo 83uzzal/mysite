@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Address Lookup Tool</title>
+    <!-- Add faker.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/faker@5.5.3/dist/faker.min.js"></script>
+    <style>
+        /* --- General Styling --- */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #1c1e21;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* --- Main Container --- */
+        .container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 650px;
+        }
+
+        h1 {
+            color: #1c1e21;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* --- Form & Input Styling --- */
+        .lookup-form {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        #ipInput {
+            flex-grow: 1;
+            padding: 14px 18px;
+            border: 1px solid #dddfe2;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        #ipInput:focus {
+            outline: none;
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px #e7f3ff;
+        }
+
+        .lookup-btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            background-color: #1877f2;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .lookup-btn:hover {
+            background-color: #166fe5;
+        }
+        
+        .lookup-btn:disabled {
+            background-color: #9bb9e8;
+            cursor: not-allowed;
+        }
+
+        /* --- Result Area Styling --- */
+        #resultContainer {
+            min-height: 50px;
+            text-align: center;
+        }
+
+        /* Hide all result-related elements by default */
+        #loading, #errorMessage, #resultData {
+            display: none;
+        }
+
+        #loading, #errorMessage {
+            font-size: 17px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        #loading {
+            color: #1877f2;
+        }
+
+        #errorMessage {
+            color: #d93025;
+            background-color: #fbe9e7;
+            border: 1px solid #d93025;
+        }
+
+        #resultData {
+            text-align: left;
+        }
+
+        .data-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e4e6eb;
+        }
+
+        .data-item:first-child {
+            border-top: 1px solid #e4e6eb;
+        }
+
+        .data-item:last-child {
+            border-bottom: none;
+        }
+
+        .data-label {
+            font-weight: 600;
+            color: #606770;
+            min-width: 130px;
+        }
+
+        .data-value {
+            font-weight: 500;
+            color: #1c1e21;
+            word-break: break-all;
+            margin-right: 10px;
+            flex-grow: 1;
+        }
+
+        /* --- Copy Button Styling --- */
+        .copy-btn, #copyAllBtn {
+            padding: 8px 14px;
+            border: 1px solid #ccd0d5;
+            border-radius: 6px;
+            background-color: #f0f2f5;
+            color: #1c1e21;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover, #copyAllBtn:hover {
+            background-color: #e4e6eb;
+        }
+        
+        #copyAllBtn {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #42b883;
+            color: white;
+            border-color: #42b883;
+        }
+
+        #copyAllBtn:hover {
+            background-color: #369870;
+            border-color: #369870;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>IP Address Lookup </h1>
+        <form id="lookupForm" class="lookup-form">
+            <input type="text" id="ipInput" placeholder="Enter an IP address (e.g., 172.59.109.12)" required>
+            <button type="submit" class="lookup-btn">Lookup</button>
+        </form>
+
+        <div id="resultContainer">
+            <!-- This is shown while fetching data -->
+            <p id="loading">Fetching location data...</p>
+            
+            <!-- This is shown on error -->
+            <p id="errorMessage"></p>
+            
+            <!-- This is shown on success -->
+            <div id="resultData">
+                <div class="data-item">
+                    <span class="data-label">Name:</span>
+                    <span id="name-value" class="data-value"></span>
+                    <button class="copy-btn" data-copy-target="name-value">Copy</button>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Address:</span>
+                    <span id="address-value" class="data-value"></span>
+                    <button class="copy-btn" data-copy-target="address-value">Copy</button>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">City:</span>
+                    <span id="city-value" class="data-value"></span>
+                    <button class="copy-btn" data-copy-target="city-value">Copy</button>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">State:</span>
+                    <span id="state-value" class="data-value"></span>
+                    <button class="copy-btn" data-copy-target="state-value">Copy</button>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Postal Code:</span>
+                    <span id="postal-code-value" class="data-value"></span>
+                    <button class="copy-btn" data-copy-target="postal-code-value">Copy</button>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Country:</span>
+                    <span id="country-value" class="data-value"></span>
+                    <button class="copy-btn" data-copy-target="country-value">Copy</button>
+                </div>
+                <div class="data-item">
+                    <span class="data-label">Phone Number:</span>
+                    <span id="number-value" class="data-value"></span>
+                    <button class="copy-btn" data-copy-target="number-value">Copy</button>
+                </div>
+                <button id="copyAllBtn">Copy All Data</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Element References ---
+            const form = document.getElementById('lookupForm');
+            const ipInput = document.getElementById('ipInput');
+            const resultContainer = document.getElementById('resultContainer');
+            const loadingMessage = document.getElementById('loading');
+            const errorMessage = document.getElementById('errorMessage');
+            const resultDataDiv = document.getElementById('resultData');
+            const copyAllBtn = document.getElementById('copyAllBtn');
+
+            // --- Event Listeners ---
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault(); // Stop page from reloading
+                const ipAddress = ipInput.value.trim();
+
+                if (!ipAddress) {
+                    showError('Please enter an IP address.');
+                    return;
+                }
+
+                performLookup(ipAddress);
+            });
+
+            // Use event delegation for all copy buttons inside the result div
+            resultDataDiv.addEventListener('click', (event) => {
+                if (event.target.classList.contains('copy-btn')) {
+                    const targetId = event.target.getAttribute('data-copy-target');
+                    const elementToCopy = document.getElementById(targetId);
+                    if (elementToCopy) {
+                        copyToClipboard(elementToCopy.textContent, event.target);
+                    }
+                }
+            });
+
+            copyAllBtn.addEventListener('click', () => {
+                const allDataText = `Name: ${document.getElementById('name-value').textContent}
+Address: ${document.getElementById('address-value').textContent}
+City: ${document.getElementById('city-value').textContent}
+State: ${document.getElementById('state-value').textContent}
+Postal Code: ${document.getElementById('postal-code-value').textContent}
+Country: ${document.getElementById('country-value').textContent}
+Phone Number: ${document.getElementById('number-value').textContent}`;
+                copyToClipboard(allDataText, copyAllBtn);
+            });
+
+            // --- Core Functions ---
+
+            async function performLookup(ipAddress) {
+                showLoading();
+                const apiUrl = `https://tatsuyo.xyz/ipaddresss/?ipaddress=${encodeURIComponent(ipAddress)}`;
+
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) {
+                        throw new Error(`Server responded with ${response.status}: ${response.statusText}`);
+                    }
+                    const data = await response.json();
+                    populateResults(data);
+                } catch (error) {
+                    showError(`Failed to fetch data. Please check the IP or try again later. Error: ${error.message}`);
+                    console.error('Fetch error:', error);
+                }
+            }
+
+            function showLoading() {
+                hideAllMessages();
+                loadingMessage.style.display = 'block';
+            }
+
+            function showError(message) {
+                hideAllMessages();
+                errorMessage.textContent = message;
+                errorMessage.style.display = 'block';
+            }
+
+            function populateResults(data) {
+                // Generate a random name using faker.js
+                const firstName = faker.name.firstName();
+                const lastName = faker.name.lastName();
+                const fullName = `${firstName} ${lastName}`;
+                document.getElementById('name-value').textContent = fullName;
+                
+                // Populate fields, using 'N/A' if data is missing
+                document.getElementById('address-value').textContent = data.Address || 'N/A';
+                document.getElementById('city-value').textContent = data.city || 'N/A';
+                document.getElementById('state-value').textContent = data.state || 'N/A';
+                document.getElementById('postal-code-value').textContent = data['postal code'] || 'N/A';
+                document.getElementById('country-value').textContent = data.country || 'N/A';
+                
+                // Auto-remove +1 from the number if it exists
+                const phoneNumber = data.Number ? data.Number.replace(/^\+1\s*/, '') : 'N/A';
+                document.getElementById('number-value').textContent = phoneNumber;
+
+                hideAllMessages();
+                resultDataDiv.style.display = 'block';
+            }
+            
+            function hideAllMessages() {
+                loadingMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+                resultDataDiv.style.display = 'none';
+            }
+
+            async function copyToClipboard(text, button) {
+                try {
+                    await navigator.clipboard.writeText(text);
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.disabled = true; // Prevent multiple clicks
+
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                    }, 2000); // Revert after 2 seconds
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                    alert('Failed to copy. Please select and copy the text manually.');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
