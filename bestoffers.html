@@ -1,205 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rewards Hub Pro</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-  body { font-family: 'Inter', sans-serif; }
-  .glass {
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(10px);
-  }
-  .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .card:hover {
-    transform: translateY(-6px);
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Offers</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZFYWLM9B1C');
+    </script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --accent: #f43f5e;
+            --bg: #0f172a;
+            --card: rgba(30, 41, 59, 0.7);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: linear-gradient(135deg, var(--bg), #1e293b); 
+            color: #fff; 
+            padding-bottom: 30px; 
+            min-height: 100vh;
+        }
+        
+        .header { text-align: center; padding: 30px 15px 20px; }
+        .header h1 { 
+            font-size: clamp(1.4rem, 5vw, 1.8rem); 
+            margin-bottom: 6px; 
+            background: linear-gradient(to right, #818cf8, #f472b6); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+        
+        .container { max-width: 500px; margin: 0 auto; padding: 0 12px; }
+        
+        .tabs-container { 
+            display: flex; 
+            gap: 8px; 
+            background: rgba(0,0,0,0.3); 
+            padding: 6px; 
+            border-radius: 12px; 
+            margin-bottom: 16px; 
+        }
+        .tab-btn { 
+            flex: 1; 
+            padding: 12px 8px; 
+            cursor: pointer; 
+            text-align: center; 
+            border-radius: 8px; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            transition: 0.3s; 
+            word-break: break-word;
+        }
+        .tab-btn.active { background: var(--primary); }
+        
+        .tab-content { display: none; animation: fadeIn 0.4s; }
+        .tab-content.active { display: block; }
+        
+        .offer-card { 
+            background: var(--card); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 14px; 
+            padding: 14px; 
+            margin-bottom: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            text-decoration: none; 
+            color: white; 
+            transition: 0.2s; 
+            gap: 10px;
+        }
+        .offer-card:active { transform: scale(0.98); }
+        .offer-card:hover { border-color: var(--primary); }
+        
+        .card-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+        .icon-box { 
+            width: 38px; 
+            height: 38px; 
+            flex-shrink: 0;
+            background: rgba(99, 102, 241, 0.2); 
+            color: #818cf8; 
+            border-radius: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .offer-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .offer-sub { font-size: 0.7rem; opacity: 0.6; margin-top: 2px; }
+        
+        .btn-claim { 
+            background: var(--accent); 
+            padding: 8px 14px; 
+            border-radius: 20px; 
+            font-size: 0.7rem; 
+            font-weight: bold; 
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); 
+            animation: pulse 2s infinite; 
+        }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); } }
+    </style>
 </head>
+<body>
 
-<body class="bg-gradient-to-br from-indigo-50 via-white to-slate-100 text-slate-800">
+<div class="header">
+    <h1>🔥 Trending Rewards</h1>
+    <p style="font-size: 0.85rem; opacity: 0.7;">Select your prize below</p>
+</div>
 
-<header class="sticky top-0 z-50 glass border-b">
-  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 class="text-xl font-extrabold text-indigo-600">RewardsHub Pro</h1>
+<div class="container">
+    <div class="tabs-container">
+        <div class="tab-btn active" onclick="switchTab(event, 'Adblumedia_Panel_New02')">Panel New02</div>
+        <div class="tab-btn" onclick="switchTab(event, 'Adblumedia_Panel_New05')">Panel New05</div>
+    </div>
 
-    <nav class="space-x-6 text-sm font-semibold">
-      <a href="#home" class="hover:text-indigo-600">Home</a>
-      <a href="#offers" class="hover:text-indigo-600">Offers</a>
-      <a href="#about" class="hover:text-indigo-600">About</a>
-    </nav>
-  </div>
-</header>
-
-<section id="home" class="text-center py-20 px-4">
-  <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
-    Unlock Premium Rewards & Opportunities
-  </h2>
-
-  <p class="max-w-2xl mx-auto text-slate-600 mb-8">
-    Explore curated gift cards, cashback offers, and job opportunities from top brands worldwide.
-  </p>
-
-  <a href="#offers"
-     class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition">
-     Browse Offers
-  </a>
-</section>
-
-<section class="max-w-6xl mx-auto px-4 mb-8 flex flex-col md:flex-row gap-4">
-  
-  <input id="searchInput"
-         type="text"
-         placeholder="Search offers..."
-         class="w-full px-4 py-3 rounded-xl border shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
-
-  <select id="filter"
-          class="px-4 py-3 rounded-xl border shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-400">
-    <option value="all">All Categories</option>
-    <option value="Amazon">Amazon</option>
-    <option value="Cash">Cash App / Zelle</option>
-    <option value="Walmart">Walmart</option>
-    <option value="Other">Other Rewards</option>
-  </select>
-</section>
-
-<main id="offers" class="max-w-6xl mx-auto px-4 pb-20">
-
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="offerContainer"></div>
-
-</main>
-
-<section id="about" class="bg-white py-16 border-t">
-  <div class="max-w-3xl mx-auto text-center px-4">
-    <h3 class="text-3xl font-bold mb-4">About Us</h3>
-    <p class="text-slate-600">
-      We connect users with global promotional offers and opportunities.
-      Our platform is designed for fast browsing, filtering, and easy access.
-    </p>
-  </div>
-</section>
-
-<footer class="bg-slate-900 text-slate-400 text-center py-6 text-sm">
-  &copy; 2026 RewardsHub Pro. All rights reserved.
-</footer>
+    <div id="Adblumedia_Panel_New02" class="tab-content active"></div>
+    <div id="Adblumedia_Panel_New05" class="tab-content"></div>
+</div>
 
 <script>
-// Your complete 15 offers with links
-const offers = [
-  {id: 4385, name: "Rewards US - Cash $750 - (US)", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/W8F12MFY/"},
-  {id: 18603, name: "Rewards US - Amazon $750", type: "Amazon", url: "https://www.af9m8trk.com/BL6116FS/54612BXY/"},
-  {id: 18651, name: "Rewards UK - Shein £750 Shopping", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/16F12BVJ/"},
-  {id: 18652, name: "iPhone 15 Pro Max Bonus $750", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/JFD12BVR/"},
-  {id: 18653, name: "Amazon Bonus $750", type: "Amazon", url: "https://www.af9m8trk.com/BL6116FS/MGH12BVQ/"},
-  {id: 24913, name: "OkWow - CashApp $850", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/5JY122KX/"},
-  {id: 24918, name: "OkWow - Food $200", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/SUM122L1/"},
-  {id: 24951, name: "OkWow - Netflix $100", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/KDQ122LY/"},
-  {id: 25582, name: "OkWow - Walmart $1,000", type: "Walmart", url: "https://www.af9m8trk.com/BL6116FS/T6M12294/"},
-  {id: 25741, name: "American Prizes Amazon $1,000", type: "Amazon", url: "https://www.af9m8trk.com/BL6116FS/TJ2123FW/"},
-  {id: 27279, name: "UpLevelRewards - Zelle $750", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/8LP123XC/"},
-  {id: 27280, name: "UpLevelRewards - $1000 Cash Deposit", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/4K1123XK/"},
-  {id: 27281, name: "UpLevelRewards - Target $750", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/HMG123XJ/"},
-  {id: 27282, name: "UpLevelRewards - McDonald's $100", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/UPW123XH/"},
-  {id: 24913, name: "OkWow - CashApp $850", type: "Cash", url: "https://www.af9m8trk.com/BL6116FS/5JY122KX/"},
-  {id: 27283, name: "UpLevelRewards - Costco $750", type: "Other", url: "https://www.af9m8trk.com/BL6116FS/NB9123XG/"}
-];
+    const data = {
+        Adblumedia_Panel_New02: [
+            ["Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u597359&sub5=Hunter-20"],
+            ["Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u597359&sub5=Hunter-20"],
+            ["Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=23755&sub2=u597359&sub5=Hunter-20"],
+            ["Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u597359&sub5=Hunter-20"],
+            ["TJ Maxx GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=23615&sub2=u597359&sub5=Hunter-20"],
+            ["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u597359&sub5=Hunter-20"],
+            ["Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u597359&sub5=Hunter-20"],
+            ["RewardsFlow - Shein 750", "https://app.hawktrk.com/click?pid=2&offer_id=23797&sub2=u597359&sub5=Hunter-20"],
+            ["CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u597359&sub5=Hunter-20"],
+            ["$100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u597359&sub5=Hunter-20"],
+            ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u597359&sub5=Hunter-20"]
 
-// High quality professional pictures matching each brand category
-const imageMap = {
-  amazon: "https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?w=600&auto=format&fit=crop&q=80", 
-  walmart: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80", 
-  cash: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&auto=format&fit=crop&q=80", 
-  cashapp: "https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=600&auto=format&fit=crop&q=80", 
-  zelle: "https://images.unsplash.com/photo-1628872451522-017302a793a5?w=400&q=70&auto=format&fit=crop", 
-  iphone: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&auto=format&fit=crop&q=80", 
-  shein: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&auto=format&fit=crop&q=80", 
-  netflix: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=400&q=70&auto=format&fit=crop", 
-  mcdonald: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&q=70&auto=format&fit=crop", 
-  food: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&auto=format&fit=crop&q=80", 
-  target: "https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?w=400&q=70&auto=format&fit=crop", 
-  costco: "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=600&auto=format&fit=crop&q=80", 
-  default: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=600&auto=format&fit=crop&q=80" 
-};
+        ],
+        Adblumedia_Panel_New05: [
 
-// Auto pick related image depending on name
-function getRelevantImage(name) {
-  const lowerName = name.toLowerCase();
-  if (lowerName.includes("amazon")) return imageMap.amazon;
-  if (lowerName.includes("walmart")) return imageMap.walmart;
-  if (lowerName.includes("cashapp") || lowerName.includes("cash app")) return imageMap.cashapp;
-  if (lowerName.includes("zelle")) return imageMap.zelle;
-  if (lowerName.includes("cash")) return imageMap.cash;
-  if (lowerName.includes("iphone")) return imageMap.iphone;
-  if (lowerName.includes("shein")) return imageMap.shein;
-  if (lowerName.includes("netflix")) return imageMap.netflix;
-  if (lowerName.includes("mcdonald")) return imageMap.mcdonald;
-  if (lowerName.includes("food")) return imageMap.food;
-  if (lowerName.includes("target")) return imageMap.target;
-  if (lowerName.includes("costco")) return imageMap.costco;
-  return imageMap.default;
-}
+        ]
+    };
 
-const container = document.getElementById("offerContainer");
-const search = document.getElementById("searchInput");
-const filter = document.getElementById("filter");
-
-function render(data){
-  container.innerHTML = "";
-
-  if(data.length === 0) {
-    container.innerHTML = `<p class="col-span-full text-center text-slate-400 py-10">No offers match your criteria.</p>`;
-    return;
-  }
-
-  data.forEach(o => {
-    const img = getRelevantImage(o.name);
-
-    container.innerHTML += `
-      <div class="card bg-white rounded-2xl shadow-md overflow-hidden border flex flex-col justify-between">
-        <div>
-          <div class="h-40 w-full overflow-hidden bg-slate-100">
-            <img src="${img}" class="h-40 w-full object-cover transition duration-500 hover:scale-105" alt="${o.name}">
-          </div>
-          <div class="p-4">
-            <h3 class="font-bold text-lg mb-1 line-clamp-2">${o.name}</h3>
-            <p class="text-xs text-slate-400 mb-3">ID: ${o.id}</p>
-          </div>
-        </div>
-        <div class="p-4 pt-0">
-          <a href="${o.url}" target="_blank" rel="noopener noreferrer" class="block text-center bg-indigo-600 text-white py-2 rounded-xl hover:bg-indigo-700 transition font-semibold">
-            Claim Now
-          </a>
-        </div>
-      </div>
-    `;
-  });
-}
-
-function filterData(){
-  let value = search.value.toLowerCase();
-  let cat = filter.value;
-
-  let result = offers.filter(o => {
-    let matchSearch = o.name.toLowerCase().includes(value) || o.id.toString().includes(value);
-    let matchCat = (cat === "all") || o.type === cat;
-    return matchSearch && matchCat;
-  });
-
-  render(result);
-}
-
-search.addEventListener("input", filterData);
-filter.addEventListener("change", filterData);
-
-// Initial Render
-render(offers);
+    function render() {
+        for (let p in data) {
+            const element = document.getElementById(p);
+            if(element) {
+                element.innerHTML = data[p].map(o => `
+                    <a href="${o[1]}" class="offer-card" target="_blank" rel="noopener">
+                        <div class="card-left">
+                            <div class="icon-box"><i class="fas fa-gift"></i></div>
+                            <div style="min-width:0;">
+                                <div class="offer-title">${o[0]}</div>
+                                <div class="offer-sub">Limited Time Offer</div>
+                            </div>
+                        </div>
+                        <div class="btn-claim">CLAIM</div>
+                    </a>`).join('');
+            }
+        }
+    }
+    
+    function switchTab(e, id) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        e.currentTarget.classList.add('active');
+    }
+    
+    render();
 </script>
-
 </body>
 </html>
