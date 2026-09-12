@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Offers</title>
+    <title>Exclusive Rewards & Offers</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Tag Manager -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -12,6 +14,10 @@
         gtag('js', new Date());
         gtag('config', 'G-ZFYWLM9B1C');
     </script>
+
+    <!-- Advertica PopUp/Under Ad Tag -->
+    <script type="text/javascript" src="https://data527.click/ae1441a3ab130346acf3/8304368383/?placementName=default"></script>
+
     <style>
         :root {
             --primary: #6366f1;
@@ -19,7 +25,12 @@
             --bg: #0f172a;
             --card: rgba(30, 41, 59, 0.7);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; 
+        }
         body { 
             background: linear-gradient(135deg, var(--bg), #1e293b); 
             color: #fff; 
@@ -27,7 +38,10 @@
             min-height: 100vh;
         }
         
-        .header { text-align: center; padding: 30px 15px 20px; }
+        .header { 
+            text-align: center; 
+            padding: 25px 15px 15px; 
+        }
         .header h1 { 
             font-size: clamp(1.4rem, 5vw, 1.8rem); 
             margin-bottom: 6px; 
@@ -36,7 +50,22 @@
             -webkit-text-fill-color: transparent; 
         }
         
-        .container { max-width: 500px; margin: 0 auto; padding: 0 12px; }
+        .container { 
+            max-width: 500px; 
+            margin: 0 auto; 
+            padding: 0 12px; 
+        }
+
+        /* Ad Placement Styling */
+        .ad-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 12px 0 16px;
+            min-height: 50px;
+            overflow: hidden;
+        }
         
         .tabs-container { 
             display: flex; 
@@ -48,19 +77,28 @@
         }
         .tab-btn { 
             flex: 1; 
-            padding: 12px 8px; 
+            padding: 12px 6px; 
             cursor: pointer; 
             text-align: center; 
             border-radius: 8px; 
-            font-size: 0.85rem; 
+            font-size: 0.8rem; 
             font-weight: 600; 
             transition: 0.3s; 
             word-break: break-word;
+            user-select: none;
         }
-        .tab-btn.active { background: var(--primary); }
+        .tab-btn.active { 
+            background: var(--primary); 
+            box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4);
+        }
         
-        .tab-content { display: none; animation: fadeIn 0.4s; }
-        .tab-content.active { display: block; }
+        .tab-content { 
+            display: none; 
+            animation: fadeIn 0.4s ease-in-out; 
+        }
+        .tab-content.active { 
+            display: block; 
+        }
         
         .offer-card { 
             background: var(--card); 
@@ -74,13 +112,14 @@
             justify-content: space-between; 
             text-decoration: none; 
             color: white; 
-            transition: 0.2s; 
+            transition: all 0.2s ease; 
             gap: 10px;
+            cursor: pointer;
         }
         .offer-card:active { transform: scale(0.98); }
         .offer-card:hover { border-color: var(--primary); }
         
-        .card-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
+        .card-left { display: flex; align-items: center; gap: 12px; min-width: 0; pointer-events: none; }
         .icon-box { 
             width: 38px; 
             height: 38px; 
@@ -110,10 +149,24 @@
             flex-shrink: 0;
             box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); 
             animation: pulse 2s infinite; 
+            pointer-events: none;
+        }
+
+        .featured-card {
+            border: 1px solid var(--accent); 
+            background: rgba(244, 63, 94, 0.15);
+            margin-bottom: 16px;
         }
         
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); } }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(4px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        @keyframes pulse { 
+            0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); } 
+            70% { box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); } 
+            100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); } 
+        }
     </style>
 </head>
 <body>
@@ -124,6 +177,25 @@
 </div>
 
 <div class="container">
+
+    <!-- Advertica Banner Ad Tag -->
+    <div class="ad-wrapper">
+        <ins style="width: 300px; height: 50px; display: inline-block;" data-width="300" data-height="50" class="dad0f29071f" data-domain="https://data527.click" data-affquery="/4e67c6f4af1a14f58193/ad0f29071f/?placementName=default"><script src="https://data527.click/js/responsive.js" async></script></ins>
+    </div>
+
+    <!-- Advertica Direct Smartlink (Featured Bonus Offer) -->
+    <div onclick="openOffer('https://data527.click/30dea1af1c28603a4be7/49e971c5e5/?placementName=default')" class="offer-card featured-card">
+        <div class="card-left">
+            <div class="icon-box" style="background: rgba(244, 63, 94, 0.3); color: var(--accent);"><i class="fas fa-fire"></i></div>
+            <div style="min-width:0;">
+                <div class="offer-title">Exclusive Bonus Offer</div>
+                <div class="offer-sub">Featured Reward • Fast Claim</div>
+            </div>
+        </div>
+        <div class="btn-claim">GET NOW</div>
+    </div>
+
+    <!-- Navigation Tabs -->
     <div class="tabs-container">
         <div class="tab-btn active" onclick="switchTab(event, 'Adblumedia_Panel_New01')">Panel New01</div>
         <div class="tab-btn" onclick="switchTab(event, 'Adblumedia_Panel_New02')">Panel New02</div>
@@ -131,10 +203,12 @@
         <div class="tab-btn" onclick="switchTab(event, 'Adblumedia_Panel_New05')">Panel New05</div>
     </div>
 
+    <!-- Tab Contents -->
     <div id="Adblumedia_Panel_New01" class="tab-content active"></div>
     <div id="Adblumedia_Panel_New02" class="tab-content"></div>
     <div id="Adblumedia_Panel_New03" class="tab-content"></div>
     <div id="Adblumedia_Panel_New05" class="tab-content"></div>
+
 </div>
 
 <script>
@@ -144,22 +218,17 @@
             ["Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u597359&sub5=Killer-10"],
             ["Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=23755&sub2=u597359&sub5=Killer-10"],
             ["Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u597359&sub5=Killer-10"],
-            ["ILS - Samples Reviewer", "https://app.hawktrk.com/click?pid=2&offer_id=23961&sub2=u597359&sub5=Killer-10"],
-            ["Kontent Cloud - Amazon Gift card ($6.00)", "https://app.hawktrk.com/click?pid=2&offer_id=23919&sub2=u597359&sub5=Killer-10"],
-            ["TJ Maxx GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=23615&sub2=u597359&sub5=Killer-10"],
             ["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u597359&sub5=Killer-10"],
             ["Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u597359&sub5=Killer-10"],
-            ["RewardsFlow - Shein 750", "https://app.hawktrk.com/click?pid=2&offer_id=23797&sub2=u597359&sub5=Killer-10"],
             ["CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u597359&sub5=Killer-10"],
             ["$100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u597359&sub5=Killer-10"],
-            ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u597359&sub5=Killer-10"],
-            ["Aus-Amazon $500 ", "https://app.hawktrk.com/click?pid=2&offer_id=23587&sub2=u597359&sub5=Killer-10"],
-            ["Po-Biedronka Gift Card ", "https://app.hawktrk.com/click?pid=2&offer_id=15613&sub2=u597359&sub5=Killer-10"]
+            ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u597359&sub5=Killer-10"]
+
         ],
         Adblumedia_Panel_New02: [
             ["Prime Reward Spot - $750 Walmart", "https://www.aplfb8trk.com/39ZHQTMR/CJD2NF5/?sub1="],
             ["TrendnDaily - $1000 Cash App Card", "https://www.aplfb8trk.com/39ZHQTMR/CJ98WXX/?sub1="]
-           ],
+        ],
         Adblumedia_Panel_New03: [
             ["(20774) Reco Social Android CPE ($11.60)", "https://app.hawktrk.com/click?pid=2&offer_id=20774&sub2=u597359&sub5=Killer-10"],
             ["(6194) Mistplay Android CPE ($12.00)", "https://app.hawktrk.com/click?pid=2&offer_id=6194&sub2=u597359&sub5=Killer-10"],
@@ -168,7 +237,6 @@
             ["(23514) KarmaWhale Android CPE ($5.60)", "https://app.hawktrk.com/click?pid=2&offer_id=23514&sub2=u597359&sub5=Killer-10"],
             ["(21061) myPurina Android CPR ($2.60)", "https://app.hawktrk.com/click?pid=2&offer_id=21061&sub2=u597359&sub5=Killer-10"],
             ["(15512) PureVPN Android CPE ($2.16)", "https://app.hawktrk.com/click?pid=2&offer_id=15512&sub2=u597359&sub5=Killer-10"],
-
             ["(18700) Just Games Android CPE ($4.80)", "https://app.hawktrk.com/click?pid=2&offer_id=18700&sub2=u597359&sub5=Killer-10"],
             ["(20226) Test em All Android CPE ($1.37)", "https://app.hawktrk.com/click?pid=2&offer_id=20226&sub2=u597359&sub5=Killer-10"],
             ["(14746) Malwarebytes Android CPI ($0.40)", "https://app.hawktrk.com/click?pid=2&offer_id=14746&sub2=u597359&sub5=Killer-10"],
@@ -176,7 +244,7 @@
             ["(23498) Ninja Hands Android CPI ($0.33)", "https://app.hawktrk.com/click?pid=2&offer_id=23498&sub2=u597359&sub5=Killer-10"],
             ["(21243) Surfshark Android CPE ($2.80)", "https://app.hawktrk.com/click?pid=2&offer_id=21243&sub2=u597359&sub5=Killer-10"],
             ["(19333) Cash Cow Android CPE ($3.00)", "https://app.hawktrk.com/click?pid=2&offer_id=19333&sub2=u597359&sub5=Killer-10"],
- ["(23953) Aivora Android CPI ($0.56)", "https://app.hawktrk.com/click?pid=2&offer_id=23953&sub2=u597359&sub5=Killer-10"],
+            ["(23953) Aivora Android CPI ($0.56)", "https://app.hawktrk.com/click?pid=2&offer_id=23953&sub2=u597359&sub5=Killer-10"],
             ["(23906) Animo Android CPI ($0.56)", "https://app.hawktrk.com/click?pid=2&offer_id=23906&sub2=u597359&sub5=Killer-10"],
             ["(23855) Brandbee Android CPE ($16.00)", "https://app.hawktrk.com/click?pid=2&offer_id=23855&sub2=u597359&sub5=Killer-10"],
             ["(23979) Fontmaker Android CPE ($1.68)", "https://app.hawktrk.com/click?pid=2&offer_id=23979&sub2=u597359&sub5=Killer-10"],
@@ -191,19 +259,23 @@
             ["cpazon.com_2", "https://aff.cpazon.com/click?camp=2281&pubid=3051"],
             ["Datify-davismiya874", "https://onlyhotdates.com/27ZmKmB8?aid=hbfdhpxbxg&kid=hxdzhxxghbx"],
             ["Datify", "https://hotsexdatetoday.com/Qs8Kh1G3?aid=gzdakgbgzk&kid=hgfphpbahkx"],
-             ["Datify-loveama01", "https://herehotpussies.com/fWwWPcTf?aid=hbgbaffgab&kid=hxhaazbgxab"],
-             ["Datify-Aria", "https://luckynowforever.com/P8mMrct2?aid=gzpxkdpddh&kid=hxhaaffkdag"],
-             ["Datify-Jukku-Sweepstakes", "https://hotsexdatetoday.com/jDS6nQj6?aid=gkfbgbabpx&kid=hxgdpxdpadh"],
+            ["Datify-loveama01", "https://herehotpussies.com/fWwWPcTf?aid=hbgbaffgab&kid=hxhaazbgxab"],
+            ["Datify-Aria", "https://luckynowforever.com/P8mMrct2?aid=gzpxkdpddh&kid=hxhaaffkdag"],
+            ["Datify-Jukku-Sweepstakes", "https://hotsexdatetoday.com/jDS6nQj6?aid=gkfbgbabpx&kid=hxgdpxdpadh"],
             ["iMON_3", "https://boagwj.dlstinguishedate.net/?utm_source=da57dc555e50572d&ban=fb&j1=1&s1=251359&s2=2285105&s3=Hasan&click_id=Hasan"]        
         ]
     };
+
+    function openOffer(url) {
+        window.open(url, '_blank', 'noopener');
+    }
 
     function render() {
         for (let p in data) {
             const element = document.getElementById(p);
             if(element) {
                 element.innerHTML = data[p].map(o => `
-                    <a href="${o[1]}" class="offer-card" target="_blank" rel="noopener">
+                    <div onclick="openOffer('${o[1]}')" class="offer-card">
                         <div class="card-left">
                             <div class="icon-box"><i class="fas fa-gift"></i></div>
                             <div style="min-width:0;">
@@ -212,12 +284,13 @@
                             </div>
                         </div>
                         <div class="btn-claim">CLAIM</div>
-                    </a>`).join('');
+                    </div>`).join('');
             }
         }
     }
     
     function switchTab(e, id) {
+        e.stopPropagation();
         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(id).classList.add('active');
