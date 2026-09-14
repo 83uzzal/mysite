@@ -3,140 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Offers</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-ZFYWLM9B1C');
-    </script>
-    <style>
-        :root {
-            --primary: #6366f1;
-            --accent: #f43f5e;
-            --bg: #0f172a;
-            --card: rgba(30, 41, 59, 0.7);
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background: linear-gradient(135deg, var(--bg), #1e293b); color: #fff; padding-bottom: 30px; }
-        
-        .header { text-align: center; padding: 40px 20px; }
-        .header h1 { font-size: 1.8rem; margin-bottom: 10px; background: linear-gradient(to right, #818cf8, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .container { max-width: 500px; margin: 0 auto; padding: 0 15px; }
-        
-        .tabs-container { display: flex; flex-wrap: wrap; gap: 5px; background: rgba(0,0,0,0.2); padding: 5px; border-radius: 12px; margin-bottom: 20px; }
-        .tab-btn { flex: 1; min-width: 70px; padding: 10px; cursor: pointer; text-align: center; border-radius: 8px; font-size: 0.85rem; font-weight: 600; transition: 0.3s; }
-        .tab-btn.active { background: var(--primary); }
-        
-        .tab-content { display: none; animation: fadeIn 0.4s; }
-        .tab-content.active { display: block; }
-        
-        .offer-card { background: var(--card); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 16px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: white; transition: 0.3s; }
-        .offer-card:hover { border-color: var(--primary); transform: scale(1.02); }
-        
-        .icon-box { width: 40px; height: 40px; background: rgba(99, 102, 241, 0.2); color: #818cf8; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-right: 15px; }
-        
-        .btn-claim { background: var(--accent); padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); animation: pulse 2s infinite; }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(244, 63, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); } }
-    </style>
+    <title>Exclusive Rewards & Offers</title>
+    <!-- Tailwind CSS for modern mobile-friendly styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
 
-<div class="header">
-    <h1>🔥 Trending Rewards</h1>
-    <p style="font-size: 0.9rem; opacity: 0.7;">Select your prize below</p>
-</div>
+    <!-- Header Section with Related Hero Image / Banner -->
+    <header class="relative bg-slate-800 border-b border-slate-700 overflow-hidden shadow-lg">
+        <!-- Background Overlay / Illustration -->
+        <div class="absolute inset-0 z-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1200&auto=format&fit=crop');"></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto py-10 px-4 text-center">
+            <span class="inline-block bg-blue-600/30 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider mb-3 border border-blue-500/30">Verified & Secure Portal</span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Exclusive Offers & Rewards</h1>
+            <p class="text-base sm:text-lg text-slate-300 mt-2 max-w-xl mx-auto">Complete an offer or task below to instantly unlock your rewards, discounts, and services!</p>
+        </div>
+    </header>
 
-<div class="container">
-    <div class="tabs-container">
-        <div class="tab-btn active" onclick="switchTab(event, 'panel1')">Panel 1</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel2')">Panel 2</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel3')">Panel 3</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel4')">Panel 4</div>
-        <div class="tab-btn" onclick="switchTab(event, 'panel5')">Panel 5</div>
-        <div class="tab-btn" onclick="switchTab(event, 'bigPanel')">Big Panel</div>
-    </div>
+    <!-- Main Content / Offer Grid -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
-    <div id="panel1" class="tab-content active"></div>
-    <div id="panel2" class="tab-content"></div>
-    <div id="panel3" class="tab-content"></div>
-    <div id="panel4" class="tab-content"></div>
-    <div id="panel5" class="tab-content"></div>
-    <div id="bigPanel" class="tab-content"></div>
-</div>
+            <!-- Offer 1 -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-xl hover:border-blue-500 transition duration-300">
+                <div>
+                    <span class="text-xs uppercase tracking-wider bg-blue-950 text-blue-300 px-2.5 py-1 rounded-full font-semibold border border-blue-800/50">Sweepstakes</span>
+                    <h2 class="text-lg font-bold text-white mt-3">Sweeps: Win a Free Prize</h2>
+                </div>
+                <div class="mt-6">
+                    <a href="https://www.cdnnd.com/view.php?id=5546842&pub=3361409"
+                       data-interact-trigger
+                       data-tool-id="66447"
+                       data-tool-slug="5mZl"
+                       data-subid="visitor_id_here"
+                       class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 shadow-md">
+                        Claim Offer &rarr;
+                    </a>
+                </div>
+            </div>
 
-<script>
-    const data = {
-    panel1: [
-  ["Primerewardspot - Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u819421&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u819421&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u819421&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u819421&sub5=Tat_mamunMR-HasanH"],
-  ["AmericanQuotesClub - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u819421&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u819421&sub5=Tat_mamunMR-HasanH"],
-  ["EDW - MDM Excusives", "https://app.hawktrk.com/click?pid=2&offer_id=23136&sub2=u819421&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - $100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u819421&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Gas GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=21614&sub2=u819421&sub5=Tat_mamunMR-HasanH"],
-  ["PrizeZappy - Chance to Win $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u819421&sub5=Tat_mamunMR-HasanH"]
-],
-panel2: [
-  ["Primerewardspot - Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u809811&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u809811&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u809811&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u809811&sub5=Tat_mamunMR-HasanH"],
-  ["AmericanQuotesClub - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u809811&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u809811&sub5=Tat_mamunMR-HasanH"],
-  ["EDW - MDM Excusives", "https://app.hawktrk.com/click?pid=2&offer_id=23136&sub2=u809811&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - $100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u809811&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Gas GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=21614&sub2=u809811&sub5=Tat_mamunMR-HasanH"],
-  ["PrizeZappy - Chance to Win $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u809811&sub5=Tat_mamunMR-HasanH"]
-],
-panel3: [
-  ["Primerewardspot - Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u804798&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u804798&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u804798&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u804798&sub5=Tat_mamunMR-HasanH"],
-  ["AmericanQuotesClub - Cash App $1000", "https://app.hawktrk.com/click?pid=2&offer_id=21684&sub2=u804798&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u804798&sub5=Tat_mamunMR-HasanH"],
-  ["EDW - MDM Excusives", "https://app.hawktrk.com/click?pid=2&offer_id=23136&sub2=u804798&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - $100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u804798&sub5=Tat_mamunMR-HasanH"],
-  ["CTConnect - Gas GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=21614&sub2=u804798&sub5=Tat_mamunMR-HasanH"],
-  ["PrizeZappy - Chance to Win $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u804798&sub5=Tat_mamunMR-HasanH"]
-]
-    };
+            <!-- Offer 2 -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-xl hover:border-blue-500 transition duration-300">
+                <div>
+                    <span class="text-xs uppercase tracking-wider bg-purple-950 text-purple-300 px-2.5 py-1 rounded-full font-semibold border border-purple-800/50">Surveys</span>
+                    <h2 class="text-lg font-bold text-white mt-3">Share Your Opinion, Get Rewards</h2>
+                </div>
+                <div class="mt-6">
+                    <a href="https://www.fastrsrvr.com/view.php?id=5546756&pub=3361409"
+                       data-interact-trigger
+                       data-tool-id="66447"
+                       data-tool-slug="5mZl"
+                       data-subid="visitor_id_here"
+                       class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 shadow-md">
+                        Claim Offer &rarr;
+                    </a>
+                </div>
+            </div>
 
-    function render() {
-        for (let p in data) {
-            const element = document.getElementById(p);
-            if(element) {
-                element.innerHTML = data[p].map(o => `
-                    <a href="${o[1]}" class="offer-card">
-                        <div style="display:flex; align-items:center;">
-                            <div class="icon-box"><i class="fas fa-gift"></i></div>
-                            <div>
-                                <div style="font-size:0.9rem; font-weight:600;">${o[0]}</div>
-                                <div style="font-size:0.7rem; opacity:0.6;">Limited Time Offer</div>
-                            </div>
-                        </div>
-                        <div class="btn-claim">CLAIM</div>
-                    </a>`).join('');
-            }
-        }
-    }
-    
-    function switchTab(e, id) {
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        e.currentTarget.classList.add('active');
-    }
-    
-    render();
-</script>
+            <!-- Offer 3 -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-xl hover:border-blue-500 transition duration-300">
+                <div>
+                    <span class="text-xs uppercase tracking-wider bg-green-950 text-green-300 px-2.5 py-1 rounded-full font-semibold border border-green-800/50">Finance</span>
+                    <h2 class="text-lg font-bold text-white mt-3">Firstcard: Build Credit Today</h2>
+                </div>
+                <div class="mt-6">
+                    <a href="https://www.directcpi.com/view.php?id=5546878&pub=3361409"
+                       data-interact-trigger
+                       data-tool-id="66447"
+                       data-tool-slug="5mZl"
+                       data-subid="visitor_id_here"
+                       class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 shadow-md">
+                        Claim Offer &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Offer 4 -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-xl hover:border-blue-500 transition duration-300">
+                <div>
+                    <span class="text-xs uppercase tracking-wider bg-purple-950 text-purple-300 px-2.5 py-1 rounded-full font-semibold border border-purple-800/50">Mobile Opinion</span>
+                    <h2 class="text-lg font-bold text-white mt-3">Earn Haus: Get Paid for Opinions (Mobile)</h2>
+                </div>
+                <div class="mt-6">
+                    <a href="https://www.fastsvr.com/view.php?id=5546809&pub=3361409"
+                       data-interact-trigger
+                       data-tool-id="66447"
+                       data-tool-slug="5mZl"
+                       data-subid="visitor_id_here"
+                       class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 shadow-md">
+                        Claim Offer &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Offer 5 -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-xl hover:border-blue-500 transition duration-300">
+                <div>
+                    <span class="text-xs uppercase tracking-wider bg-green-950 text-green-300 px-2.5 py-1 rounded-full font-semibold border border-green-800/50">Finance</span>
+                    <h2 class="text-lg font-bold text-white mt-3">SoFi: Free Credit Score Check</h2>
+                </div>
+                <div class="mt-6">
+                    <a href="https://www.lnksforyou.com/view.php?id=5546875&pub=3361409"
+                       data-interact-trigger
+                       data-tool-id="66447"
+                       data-tool-slug="5mZl"
+                       data-subid="visitor_id_here"
+                       class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 shadow-md">
+                        Claim Offer &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Offer 6 -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-xl hover:border-blue-500 transition duration-300">
+                <div>
+                    <span class="text-xs uppercase tracking-wider bg-orange-950 text-orange-300 px-2.5 py-1 rounded-full font-semibold border border-orange-800/50">Utilities</span>
+                    <h2 class="text-lg font-bold text-white mt-3">FlickVPN - Unlimited Streaming</h2>
+                </div>
+                <div class="mt-6">
+                    <a href="https://www.directcpi.com/view.php?id=5546874&pub=3361409"
+                       data-interact-trigger
+                       data-tool-id="66447"
+                       data-tool-slug="5mZl"
+                       data-subid="visitor_id_here"
+                       class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 shadow-md">
+                        Claim Offer &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Offer 7 -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-xl hover:border-blue-500 transition duration-300">
+                <div>
+                    <span class="text-xs uppercase tracking-wider bg-red-950 text-red-300 px-2.5 py-1 rounded-full font-semibold border border-red-800/50">Gaming / Bonus</span>
+                    <h2 class="text-lg font-bold text-white mt-3">Claim DraftKings Welcome Bonus (CPC-IOS)</h2>
+                </div>
+                <div class="mt-6">
+                    <a href="https://www.cdnnd.com/view.php?id=5546860&pub=3361409"
+                       data-interact-trigger
+                       data-tool-id="66447"
+                       data-tool-slug="5mZl"
+                       data-subid="visitor_id_here"
+                       class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 shadow-md">
+                        Claim Offer &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Offer 8 -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-xl hover:border-blue-500 transition duration-300">
+                <div>
+                    <span class="text-xs uppercase tracking-wider bg-yellow-950 text-yellow-300 px-2.5 py-1 rounded-full font-semibold border border-yellow-800/50">Cashback</span>
+                    <h2 class="text-lg font-bold text-white mt-3">Shopback</h2>
+                </div>
+                <div class="mt-6">
+                    <a href="https://www.fastsvr.com/view.php?id=5546022&pub=3361409"
+                       data-interact-trigger
+                       data-tool-id="66447"
+                       data-tool-slug="5mZl"
+                       data-subid="visitor_id_here"
+                       class="block w-full text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 shadow-md">
+                        Claim Offer &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- Offer 9 (Spans full width on larger screens) -->
+            <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-xl hover:border-blue-500 transition duration-300 sm:col-span-2">
+                <div>
+                    <span class="text-xs uppercase tracking-wider bg-teal-950 text-teal-300 px-2.5 py-1 rounded-full font-semibold border border-teal-800/50">Mobile Apps</span>
+                    <h2 class="text-lg font-bold text-white mt-3">MyAppFree: Get Paid to Play</h2>
+                </div>
+                <div class="mt-6">
+                    <a href="https://www.appstorevault.mobi/view.php?id=5546143&pub=3361409"
+                       data-interact-trigger
+                       data-tool-id="66447"
+                       data-tool-slug="5mZl"
+                       data-subid="visitor_id_here"
+                       class="block w-full sm:max-w-xs mx-auto text-center bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white font-semibold py-3 px-4 rounded-xl transition duration-150 shadow-md">
+                        Claim Offer &rarr;
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 border-t border-slate-700 py-6 text-center text-xs text-slate-400">
+        <p>&copy; 2026 Exclusive Rewards. All rights reserved.</p>
+    </footer>
+
+    <!-- Required Publisher ID Scripts -->
+    <script>window.CPAlead_PublisherUserId = 3361409;</script>
+    <script src="https://cdnflair.com/js/interact-form.js" async defer></script>
 </body>
 </html>
