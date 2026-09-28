@@ -47,27 +47,20 @@
 
         html {
             width: 100%;
-            height: auto;
             min-height: 100%;
-            overflow-x: hidden;
-            overflow-y: auto;
-            scroll-behavior: smooth;
         }
 
         body {
             width: 100%;
             min-height: 100vh;
-            min-height: 100dvh;
             color: var(--text);
             background: 
                 radial-gradient(circle at top left, rgba(99, 102, 241, 0.16), transparent 35%),
                 radial-gradient(circle at bottom right, rgba(244, 63, 94, 0.10), transparent 35%),
                 linear-gradient(135deg, var(--bg-dark), var(--bg), var(--bg-light));
-            overflow-x: hidden;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
             display: flex;
             flex-direction: column;
+            padding-bottom: 80px; /* Ensures footer and bottom offers are visible */
         }
 
         /* =========================================
@@ -103,7 +96,7 @@
             width: 100%;
             max-width: 520px;
             margin: 0 auto;
-            padding: 0 12px 20px;
+            padding: 0 12px 30px;
             flex: 1 0 auto;
         }
 
@@ -171,7 +164,7 @@
             display: none;
             width: 100%;
             animation: fadeIn 0.25s ease;
-            padding-bottom: 15px; /* Extra spacing for bottom elements */
+            padding-bottom: 20px;
         }
 
         .tab-content.active {
@@ -305,7 +298,7 @@
             width: 100%;
             background: rgba(11, 17, 32, 0.95);
             border-top: 1px solid var(--border);
-            padding: 20px 15px calc(25px + env(safe-area-inset-bottom));
+            padding: 25px 15px calc(30px + env(safe-area-inset-bottom));
             text-align: center;
             margin-top: auto;
         }
@@ -315,21 +308,21 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             align-items: center;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 18px;
             flex-wrap: wrap;
         }
 
         .footer-links a {
             color: var(--muted);
             text-decoration: none;
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             transition: color 0.2s ease;
         }
 
@@ -338,9 +331,9 @@
         }
 
         .footer-text {
-            color: rgba(255, 255, 255, 0.40);
-            font-size: 0.68rem;
-            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.70rem;
+            line-height: 1.5;
         }
 
         /* =========================================
@@ -408,63 +401,18 @@
                 font-size: 0.58rem;
             }
         }
-
-        @media (max-width: 360px) {
-            .tab-btn {
-                min-width: 82px;
-                font-size: 0.64rem;
-                padding: 8px 6px;
-            }
-            .offer-title {
-                font-size: 0.72rem;
-            }
-            .offer-sub {
-                font-size: 0.58rem;
-            }
-            .btn-claim {
-                padding: 5px 8px;
-                font-size: 0.55rem;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .header {
-                padding-top: 35px;
-            }
-            .container {
-                max-width: 540px;
-            }
-            .tabs-container {
-                overflow-x: visible;
-            }
-            .tab-btn {
-                min-width: 0;
-                flex: 1;
-            }
-            .offer-card {
-                padding: 13px;
-                min-height: 66px;
-            }
-            .offer-card:hover {
-                transform: translateY(-2px);
-            }
-        }
     </style>
 </head>
 
 <body>
 
-    <!-- =========================================
-         HEADER
-    ========================================== -->
+    <!-- HEADER -->
     <header class="header">
         <h1>🔥 Trending Rewards</h1>
         <p>Select your prize below</p>
     </header>
 
-    <!-- =========================================
-         MAIN CONTAINER
-    ========================================== -->
+    <!-- MAIN CONTAINER -->
     <main class="container">
 
         <!-- TABS -->
@@ -483,23 +431,15 @@
             </div>
         </nav>
 
-        <!-- PANEL 01 -->
+        <!-- PANEL SECTIONS -->
         <section id="Adblumedia_Panel_New01" class="tab-content active"></section>
-
-        <!-- PANEL 02 -->
         <section id="Affmine_Panel_New02" class="tab-content"></section>
-
-        <!-- PANEL 03 -->
         <section id="Adblumedia_Panel_New03" class="tab-content"></section>
-
-        <!-- PANEL 05 -->
         <section id="Adblumedia_Panel_New05" class="tab-content"></section>
 
     </main>
 
-    <!-- =========================================
-         FOOTER
-    ========================================== -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
@@ -515,9 +455,6 @@
     </footer>
 
     <script>
-        /* =========================================
-           OFFER DATA (ALL ORIGINAL DATA PRESERVED)
-        ========================================= */
         const data = {
             Adblumedia_Panel_New01: [
                 ["Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u597359&sub5=Killer-10"],
@@ -587,9 +524,6 @@
             ]
         };
 
-        /* =========================================
-           ESCAPE HTML
-        ========================================= */
         function escapeHTML(value) {
             return String(value)
                 .replace(/&/g, "&amp;")
@@ -599,17 +533,11 @@
                 .replace(/'/g, "&#039;");
         }
 
-        /* =========================================
-           OPEN OFFER
-        ========================================= */
         function openOffer(url) {
             if (!url) return;
             window.open(url, "_blank", "noopener,noreferrer");
         }
 
-        /* =========================================
-           RENDER OFFERS
-        ========================================= */
         function render() {
             Object.keys(data).forEach(panel => {
                 const container = document.getElementById(panel);
@@ -639,7 +567,6 @@
                         <div class="btn-claim">CLAIM</div>
                     `;
 
-                    /* Event Listeners */
                     card.addEventListener("click", () => openOffer(url));
                     card.addEventListener("keydown", (event) => {
                         if (event.key === "Enter" || event.key === " ") {
@@ -653,9 +580,6 @@
             });
         }
 
-        /* =========================================
-           SWITCH TAB
-        ========================================= */
         function switchTab(id, button) {
             document.querySelectorAll(".tab-content").forEach(content => {
                 content.classList.remove("active");
@@ -672,20 +596,12 @@
 
             if (button) {
                 button.classList.add("active");
-
                 if (window.innerWidth < 768) {
-                    button.scrollIntoView({
-                        behavior: "smooth",
-                        block: "nearest",
-                        inline: "center"
-                    });
+                    button.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
                 }
             }
         }
 
-        /* =========================================
-           TAB CLICK EVENTS
-        ========================================= */
         document.querySelectorAll(".tab-btn").forEach(button => {
             button.addEventListener("click", function() {
                 switchTab(this.dataset.tab, this);
@@ -699,9 +615,6 @@
             });
         });
 
-        /* =========================================
-           INITIALIZE
-        ========================================= */
         render();
     </script>
 </body>
