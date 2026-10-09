@@ -2,185 +2,625 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Offers</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Exclusive Rewards & Offers</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFYWLM9B1C"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'G-ZFYWLM9B1C');
     </script>
+  
     <style>
+        /* =========================================
+           VARIABLES
+        ========================================= */
         :root {
             --primary: #6366f1;
+            --primary-light: #818cf8;
             --accent: #f43f5e;
+            --accent-light: #fb7185;
+            --bg-dark: #0b1120;
             --bg: #0f172a;
-            --card: rgba(30, 41, 59, 0.7);
+            --bg-light: #1e293b;
+            --card: rgba(30, 41, 59, 0.78);
+            --border: rgba(255, 255, 255, 0.09);
+            --text: #ffffff;
+            --muted: rgba(255, 255, 255, 0.60);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { 
-            background: linear-gradient(135deg, var(--bg), #1e293b); 
-            color: #fff; 
-            padding-bottom: 30px; 
+
+        /* =========================================
+           RESET & BASE STYLES
+        ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            width: 100%;
             min-height: 100vh;
+            color: var(--text);
+            background: 
+                radial-gradient(circle at top left, rgba(99, 102, 241, 0.16), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(244, 63, 94, 0.10), transparent 35%),
+                linear-gradient(135deg, var(--bg-dark), var(--bg), var(--bg-light));
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 80px; /* Ensures footer and bottom offers are visible */
         }
-        
-        .header { text-align: center; padding: 30px 15px 20px; }
-        .header h1 { 
-            font-size: clamp(1.4rem, 5vw, 1.8rem); 
-            margin-bottom: 6px; 
-            background: linear-gradient(to right, #818cf8, #f472b6); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
+
+        /* =========================================
+           HEADER
+        ========================================= */
+        .header {
+            width: 100%;
+            text-align: center;
+            padding: calc(18px + env(safe-area-inset-top)) 15px 15px;
         }
-        
-        .container { max-width: 500px; margin: 0 auto; padding: 0 12px; }
-        
-        .tabs-container { 
-            display: flex; 
-            gap: 8px; 
-            background: rgba(0,0,0,0.3); 
-            padding: 6px; 
-            border-radius: 12px; 
-            margin-bottom: 16px; 
+
+        .header h1 {
+            font-size: clamp(1.3rem, 5.5vw, 1.85rem);
+            line-height: 1.25;
+            font-weight: 800;
+            margin-bottom: 6px;
+            background: linear-gradient(90deg, #818cf8, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .tab-btn { 
-            flex: 1; 
-            padding: 12px 8px; 
-            cursor: pointer; 
-            text-align: center; 
-            border-radius: 8px; 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            transition: 0.3s; 
-            word-break: break-word;
+
+        .header p {
+            color: var(--muted);
+            font-size: clamp(0.75rem, 3vw, 0.88rem);
+            line-height: 1.4;
         }
-        .tab-btn.active { background: var(--primary); }
-        
-        .tab-content { display: none; animation: fadeIn 0.4s; }
-        .tab-content.active { display: block; }
-        
-        .offer-card { 
-            background: var(--card); 
-            backdrop-filter: blur(10px); 
-            border: 1px solid rgba(255,255,255,0.1); 
-            border-radius: 14px; 
-            padding: 14px; 
-            margin-bottom: 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            text-decoration: none; 
-            color: white; 
-            transition: 0.2s; 
+
+        /* =========================================
+           MAIN CONTAINER
+        ========================================= */
+        .container {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 0 12px 30px;
+            flex: 1 0 auto;
+        }
+
+        /* =========================================
+           TABS WRAPPER
+        ========================================= */
+        .tabs-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.30);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* =========================================
+           TAB BUTTON
+        ========================================= */
+        .tab-btn {
+            flex: 0 0 auto;
+            min-width: 100px;
+            padding: 10px 12px;
+            border-radius: 9px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.68);
+            font-size: 0.72rem;
+            font-weight: 700;
+            line-height: 1.2;
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .tab-btn.active {
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary), #4f46e5);
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.30);
+        }
+
+        .tab-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* =========================================
+           TAB CONTENT
+        ========================================= */
+        .tab-content {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.25s ease;
+            padding-bottom: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* =========================================
+           OFFER CARD
+        ========================================= */
+        .offer-card {
+            width: 100%;
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 10px;
+            margin-bottom: 9px;
+            padding: 11px 12px;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.86), rgba(30, 41, 59, 0.68));
+            border: 1px solid var(--border);
+            border-radius: 13px;
+            color: #fff;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
         }
-        .offer-card:active { transform: scale(0.98); }
-        .offer-card:hover { border-color: var(--primary); }
-        
-        .card-left { display: flex; align-items: center; gap: 12px; min-width: 0; }
-        .icon-box { 
-            width: 38px; 
-            height: 38px; 
-            flex-shrink: 0;
-            background: rgba(99, 102, 241, 0.2); 
-            color: #818cf8; 
-            border-radius: 10px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+
+        .offer-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            opacity: 0.65;
         }
+
+        .offer-card:hover {
+            border-color: rgba(129, 140, 248, 0.55);
+            background: rgba(38, 51, 74, 0.90);
+            transform: translateY(-1px);
+        }
+
+        .offer-card:active {
+            transform: scale(0.985);
+        }
+
+        /* =========================================
+           LEFT CONTENT
+        ========================================= */
+        .card-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        /* =========================================
+           ICON
+        ========================================= */
+        .icon-box {
+            width: 38px;
+            height: 38px;
+            min-width: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.22), rgba(129, 140, 248, 0.10));
+            color: var(--primary-light);
+            font-size: 15px;
+            border: 1px solid rgba(129, 140, 248, 0.10);
+        }
+
+        /* =========================================
+           OFFER INFORMATION
+        ========================================= */
+        .offer-info {
+            min-width: 0;
+            flex: 1;
+        }
+
         .offer-title {
-            font-size: 0.85rem;
-            font-weight: 600;
+            width: 100%;
+            font-size: clamp(0.76rem, 3.2vw, 0.85rem);
+            font-weight: 650;
+            line-height: 1.35;
+            color: #fff;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .offer-sub { font-size: 0.7rem; opacity: 0.6; margin-top: 2px; }
-        
-        .btn-claim { 
-            background: var(--accent); 
-            padding: 8px 14px; 
-            border-radius: 20px; 
-            font-size: 0.7rem; 
-            font-weight: bold; 
-            flex-shrink: 0;
-            box-shadow: 0 4px 15px rgba(244, 63, 94, 0.3); 
-            animation: pulse 2s infinite; 
+
+        .offer-sub {
+            margin-top: 2px;
+            font-size: clamp(0.62rem, 2.7vw, 0.68rem);
+            line-height: 1.2;
+            color: rgba(255, 255, 255, 0.50);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); } 70% { box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); } }
+
+        /* =========================================
+           CLAIM BUTTON
+        ========================================= */
+        .btn-claim {
+            flex: 0 0 auto;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--accent), #e11d48);
+            color: #fff;
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
+            animation: pulse 2.2s infinite;
+            pointer-events: none;
+        }
+
+        /* =========================================
+           FOOTER STYLES
+        ========================================= */
+        .footer {
+            width: 100%;
+            background: rgba(11, 17, 32, 0.95);
+            border-top: 1px solid var(--border);
+            padding: 25px 15px calc(30px + env(safe-area-inset-bottom));
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 520px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 0.70rem;
+            line-height: 1.5;
+        }
+
+        /* =========================================
+           ANIMATIONS
+        ========================================= */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.35);
+            }
+            70% {
+                box-shadow: 0 0 0 6px rgba(244, 63, 94, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(244, 63, 94, 0);
+            }
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN
+        ========================================= */
+        @media (max-width: 480px) {
+            .header {
+                padding-top: calc(15px + env(safe-area-inset-top));
+                padding-bottom: 12px;
+            }
+            .container {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+            .tabs-container {
+                margin-bottom: 12px;
+                border-radius: 12px;
+            }
+            .tab-btn {
+                min-width: 90px;
+                padding: 9px 8px;
+                font-size: 0.68rem;
+            }
+            .offer-card {
+                min-height: 60px;
+                padding: 9px 10px;
+                margin-bottom: 8px;
+                border-radius: 11px;
+            }
+            .icon-box {
+                width: 35px;
+                height: 35px;
+                min-width: 35px;
+                border-radius: 8px;
+                font-size: 13px;
+            }
+            .btn-claim {
+                padding: 6px 10px;
+                font-size: 0.58rem;
+            }
+        }
     </style>
 </head>
+
 <body>
 
-<div class="header">
-    <h1>🔥 Trending Rewards</h1>
-    <p style="font-size: 0.85rem; opacity: 0.7;">Select your prize below</p>
-</div>
+    <!-- HEADER -->
+    <header class="header">
+        <h1>🔥 Trending Rewards</h1>
+        <p>Select your prize below</p>
+    </header>
 
-<div class="container">
-    <div class="tabs-container">
-        <div class="tab-btn active" onclick="switchTab(event, 'Adblumedia_Panel_New02')">Panel New02</div>
+    <!-- MAIN CONTAINER -->
+    <main class="container">
 
-    </div>
+        <!-- TABS -->
+        <nav class="tabs-container" id="tabsContainer" aria-label="Offer Panels">
+            <div class="tab-btn active" data-tab="Adblumedia_Panel_New01" role="button" tabindex="0">
+                Panel New01
+            </div>
+            <div class="tab-btn" data-tab="Affmine_Panel_New02" role="button" tabindex="0">
+                Affmine_Panel
+            </div>
+            <div class="tab-btn" data-tab="Adblumedia_Panel_New03" role="button" tabindex="0">
+                Panel New03
+            </div>
+            <div class="tab-btn" data-tab="Adblumedia_Panel_New05" role="button" tabindex="0">
+                Panel New05
+            </div>
+        </nav>
 
-    <div id="Adblumedia_Panel_New02" class="tab-content active"></div>
-    <div id="Adblumedia_Panel_New05" class="tab-content"></div>
-</div>
+        <!-- PANEL SECTIONS -->
+        <section id="Adblumedia_Panel_New01" class="tab-content active"></section>
+        <section id="Affmine_Panel_New02" class="tab-content"></section>
+        <section id="Adblumedia_Panel_New03" class="tab-content"></section>
+        <section id="Adblumedia_Panel_New05" class="tab-content"></section>
 
-<script>
-    const data = {
-        Adblumedia_Panel_New02: [
-            ["Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u597359&sub5=Hunter-20"],
-            ["Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u597359&sub5=Hunter-20"],
-            ["Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=23755&sub2=u597359&sub5=Hunter-20"],
-            ["Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u597359&sub5=Hunter-20"],
-            ["TJ Maxx GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=23615&sub2=u597359&sub5=Hunter-20"],
-            ["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u597359&sub5=Hunter-20"],
-            ["Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u597359&sub5=Hunter-20"],
-            ["RewardsFlow - Shein 750", "https://app.hawktrk.com/click?pid=2&offer_id=23797&sub2=u597359&sub5=Hunter-20"],
-            ["CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u597359&sub5=Hunter-20"],
-            ["$100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u597359&sub5=Hunter-20"],
-            ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u597359&sub5=Hunter-20"]
+    </main>
 
-        ],
-        Adblumedia_Panel_New05: [
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <p class="footer-text">
+                &copy; 2026 Exclusive Rewards. All Rights Reserved.<br>
+                Trademarks and logos belong to their respective owners.
+            </p>
+        </div>
+    </footer>
 
-        ]
-    };
+    <script>
+        const data = {
+            Adblumedia_Panel_New01: [
+                ["Win Amazon $1000 Gift Card", "https://app.hawktrk.com/click?pid=2&offer_id=22011&sub2=u597359&sub5=Killer-10"],
+                ["Paypal 100", "https://app.hawktrk.com/click?pid=2&offer_id=576&sub2=u597359&sub5=Killer-10"],
+                ["Taco Bell 100", "https://app.hawktrk.com/click?pid=2&offer_id=23755&sub2=u597359&sub5=Killer-10"],
+                ["Chick Fil A 100", "https://app.hawktrk.com/click?pid=2&offer_id=7&sub2=u597359&sub5=Killer-10"],
+                ["PrizeZappy - $50K", "https://app.hawktrk.com/click?pid=2&offer_id=18251&sub2=u597359&sub5=Killer-10"],
+                ["Lululemon GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=15720&sub2=u597359&sub5=Killer-10"],
+                ["CashApp 750", "https://app.hawktrk.com/click?pid=2&offer_id=11788&sub2=u597359&sub5=Killer-10"],
+                ["$100 Jersey Mikes", "https://app.hawktrk.com/click?pid=2&offer_id=21856&sub2=u597359&sub5=Killer-10"],
+                ["Nike GiftCard", "https://app.hawktrk.com/click?pid=2&offer_id=14565&sub2=u597359&sub5=Killer-10"]
+            ],
 
-    function render() {
-        for (let p in data) {
-            const element = document.getElementById(p);
-            if(element) {
-                element.innerHTML = data[p].map(o => `
-                    <a href="${o[1]}" class="offer-card" target="_blank" rel="noopener">
+            Affmine_Panel_New02: [
+                ["33617 Rewards US - Costco $100 (3.00 USD)", "https://www.af9m8trk.com/NP6117WW/7FY11TL6/?s1=hasan"],
+                ["33616 Rewards US - PayPal $1000 (3.00 USD)", "https://www.af9m8trk.com/NP6117WW/97411TL7/?s1=hasan"],
+                ["33615 Rewards US - Amazon $1000 (3.00 USD)", "https://www.af9m8trk.com/NP6117WW/2G211TKZ/?s1=hasan"],
+                ["33614 Rewards US - Cash $750 (3.00 USD)", "https://www.af9m8trk.com/NP6117WW/GAH11TL1/?s1=hasan"],
+                ["27283 UpLevelRewards - Costco $750 (2.50 USD)", "https://www.af9m8trk.com/NP6117WW/NB9123XG/?s1=hasan"],
+                ["27282 UpLevelRewards - McDonald's $100 (2.50 USD)", "https://www.af9m8trk.com/NP6117WW/UPW123XH/?s1=hasan"],
+                ["27281 Rewards US - Target $750 (2.50 USD)", "https://www.af9m8trk.com/NP6117WW/HMG123XJ/?s1=hasan"],
+                ["27280 UpLevelRewards - $1000 Cash (3.00 USD)", "https://www.af9m8trk.com/NP6117WW/4K1123XK/?s1=hasan"],
+                ["25582 Rewards US - Walmart $1,000 (3.00 USD)", "https://www.af9m8trk.com/NP6117WW/T6M12294/?s1=hasan"],
+                ["24951 Rewards US - Netflix $100 (3.00 USD)", "https://www.af9m8trk.com/NP6117WW/KDQ122LY/?s1=hasan"],
+                ["24916 Rewards US - Aldi $100 (3.00 USD)", "https://www.af9m8trk.com/NP6117WW/GDZ122L3/?s1=hasan"],
+                ["4385 Rewards US - Cash $750 (2.10 USD)", "https://www.af9m8trk.com/NP6117WW/W8F12MFY/?s1=hasan"],
+                ["18603 Rewards US - Amazon $750 (2.10 USD)", "https://www.af9m8trk.com/NP6117WW/54612BXY/?s1=hasan"],
+                ["4414 S&P - Walmart $100 (2.00 USD)", "https://www.af9m8trk.com/NP6117WW/26H12MGS/?s1=hasan"],
+                ["4386 S&P - PayPal $1000 (2.00 USD)", "https://www.af9m8trk.com/NP6117WW/8MM12MFX/?s1=hasan"],
+                ["4420 RZUSA - Google Play $100 (2.00 USD)", "https://www.af9m8trk.com/NP6117WW/WE112MD7/?s1=hasan"],
+                ["4424 RZUSA - Cash $750 (2.00 USD)", "https://www.af9m8trk.com/NP6117WW/W2412MDB/?s1=hasan"],
+                ["7530 S&P - Visa $750 (2.00 USD)", "https://www.af9m8trk.com/NP6117WW/BLR12Q8B/?s1=hasan"]
+            ],
+
+            Adblumedia_Panel_New03: [
+               ["Datify-pradip.chakma", "https://hotsexdatetoday.com/yGkP7yF6?aid=hdagfdfzzb&kid=hxzazzbhpbx"],
+                ["Md.Alamgir_Hasan@outlook.com", "https://findyourcouplehere.com/wkz3s8XT?aid=hdagphxpfx&kid=hxzbadghzab"],
+                ["Datify-gonesh.chakma", "https://sparkleslove.com/T38KLV7c?aid=hdagxbdggk&kid=hxzakpxkbag"],
+                ["Datify-kanti.chakma", "https://onlyhotdates.com/2Yp8zSyq?aid=hdaggxzbxg&kid=hxzakdkdgak"],
+                ["Datify-davismiya874", "https://onlyhotdates.com/27ZmKmB8?aid=hbfdhpxbxg&kid=hxdzhxxghbx"],
+                ["Datify-enola99murphy -P", "https://hotsexdatetoday.com/Qs8Kh1G3?aid=gzdakgbgzk&kid=hgfphpbahkx"],
+                 ["ElanaBrahmer017363 -P", "https://dreamintim.com/YkpD1Dg5?aid=hbkappadak&kid=hxpaaxhzbxb"],
+                 ["Datify-uzzal2011", "https://lovelygirlshere.com/JZGBDxLv?aid=hbzzphfazk&kid=hxxkdazxdab"],
+                ["Datify-loveama01", "https://herehotpussies.com/fWwWPcTf?aid=hbgbaffgab&kid=hxhaazbgxab"],
+                
+               
+                ["Datify-arind", "https://hotpussieshere.com/VY1sgdNZ?aid=gkabzdabxk&kid=hxgkpabbgzb"],             
+                ["Datify-alamgir83831", "https://luckynowforever.com/P8mMrct2?aid=gzpxkdpddh&kid=hxhaaffkdag"],
+                ["Datify-tomorrow4tech", "https://hotsexdatetoday.com/LWmctYWQ?aid=gzpgdpfzhx&kid=hxxhkpakazk"],
+                ["Datify-Aria", "https://luckynowforever.com/P8mMrct2?aid=gzpxkdpddh&kid=hxhaaffkdag"],
+                ["LollieFossell50086", "https://onlyhotdates.com/Q7fkyMYY?aid=hbkaxdxbbx&kid=hxpaabzbkdg"],
+                ["AlbinHaberly669086", "https://meet4singles.com/Y37t1jDk?aid=hbkagzdadh&kid=hxxkkpahxzk"],
+                ["Shanta", "https://sparkleslove.com/KZc3Cmf9?aid=hbgbbpxzag&kid=hxhhdbxkdgk"],
+                ["AngeleCanal76746", "https://sparkleslove.com/FT3nN7D8?aid=hbkaffpkfx&kid=hxxkkddkghx"]
+               
+            ],
+
+            Adblumedia_Panel_New05: [
+                ["cpazon.com_Smart", "https://aff.cpazon.com/links?&pubid=3051&key=214956"],
+                ["LoveDateMe Responsve {US,UK,CA,AU,DE,CH}", "https://aff.cpazon.com/click?camp=2530&pubid=3051"],
+                ["AmeliaDream CPL 21+{US,UK,CA,AU,NZ,IE,ZA}", "https://aff.cpazon.com/click?camp=2531&pubid=3051"],
+                ["Sextngs-Partners SOI 30+{US,UK,CA,AU,NZ,IE}", "https://aff.cpazon.com/click?camp=2541&pubid=3051"],
+                ["Cindymatche SOI 21+{US,UK,CA,AU,NZ,IE,ZA}", "https://aff.cpazon.com/click?camp=2581&pubid=3051"],
+                ["Datify-davismiya874-P", "https://onlyhotdates.com/27ZmKmB8?aid=hbfdhpxbxg&kid=hxdzhxxghbx"],
+                ["Datify-arind", "https://hotpussieshere.com/VY1sgdNZ?aid=gkabzdabxk&kid=hxgkpabbgzb"],
+                ["Datify-enola99murphy-P", "https://hotsexdatetoday.com/Qs8Kh1G3?aid=gzdakgbgzk&kid=hgfphpbahkx"],
+                ["Datify-loveama01", "https://herehotpussies.com/fWwWPcTf?aid=hbgbaffgab&kid=hxhaazbgxab"],
+                ["Datify-alamgir83831", "https://luckynowforever.com/P8mMrct2?aid=gzpxkdpddh&kid=hxhaaffkdag"],
+                ["Datify-shanta4us", "https://sparkleslove.com/KZc3Cmf9?aid=hbgbbpxzag&kid=hxhhdbxkdgk"],
+                ["iMON_3", "https://boagwj.dlstinguishedate.net/?utm_source=da57dc555e50572d&ban=fb&j1=1&s1=251359&s2=2285105&s3=Hasan&click_id=Hasan"],
+                ["Adsempire", "https://sw-lq-hfp.com/tds/ae?tdsId=s5276sag_r&tds_campaign=s5276sag&s1=int&utm_source=int&utm_sub=opnfnl&affid=eab81b6f&subid={Hasan}&subid2={subid2}&clickid={clickid}"]
+            ]
+        };
+
+        function escapeHTML(value) {
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function openOffer(url) {
+            if (!url) return;
+            window.open(url, "_blank", "noopener,noreferrer");
+        }
+
+        function render() {
+            Object.keys(data).forEach(panel => {
+                const container = document.getElementById(panel);
+                if (!container) return;
+
+                container.innerHTML = "";
+
+                data[panel].forEach(offer => {
+                    const title = offer[0];
+                    const url = offer[1];
+
+                    const card = document.createElement("div");
+                    card.className = "offer-card";
+                    card.setAttribute("role", "link");
+                    card.setAttribute("tabindex", "0");
+
+                    card.innerHTML = `
                         <div class="card-left">
-                            <div class="icon-box"><i class="fas fa-gift"></i></div>
-                            <div style="min-width:0;">
-                                <div class="offer-title">${o[0]}</div>
+                            <div class="icon-box">
+                                <i class="fas fa-gift" aria-hidden="true"></i>
+                            </div>
+                            <div class="offer-info">
+                                <div class="offer-title">${escapeHTML(title)}</div>
                                 <div class="offer-sub">Limited Time Offer</div>
                             </div>
                         </div>
                         <div class="btn-claim">CLAIM</div>
-                    </a>`).join('');
+                    `;
+
+                    card.addEventListener("click", () => openOffer(url));
+                    card.addEventListener("keydown", (event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            openOffer(url);
+                        }
+                    });
+
+                    container.appendChild(card);
+                });
+            });
+        }
+
+        function switchTab(id, button) {
+            document.querySelectorAll(".tab-content").forEach(content => {
+                content.classList.remove("active");
+            });
+
+            document.querySelectorAll(".tab-btn").forEach(tab => {
+                tab.classList.remove("active");
+            });
+
+            const selectedContent = document.getElementById(id);
+            if (selectedContent) {
+                selectedContent.classList.add("active");
+            }
+
+            if (button) {
+                button.classList.add("active");
+                if (window.innerWidth < 768) {
+                    button.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+                }
             }
         }
-    }
-    
-    function switchTab(e, id) {
-        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        e.currentTarget.classList.add('active');
-    }
-    
-    render();
-</script>
+
+        document.querySelectorAll(".tab-btn").forEach(button => {
+            button.addEventListener("click", function() {
+                switchTab(this.dataset.tab, this);
+            });
+
+            button.addEventListener("keydown", function(event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    switchTab(this.dataset.tab, this);
+                }
+            });
+        });
+
+        render();
+    </script>
 </body>
 </html>
