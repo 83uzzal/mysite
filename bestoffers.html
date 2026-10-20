@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#10121c">
-  <title>Dating Links | Link Selector</title>
+
+  <title>Dating Links</title>
 
   <style>
     * {
@@ -14,10 +15,10 @@
 
     body {
       margin: 0;
-      padding: 16px;
+      padding: 14px;
       font-family: Arial, sans-serif;
       background: #10121c;
-      color: #fff;
+      color: #ffffff;
     }
 
     .container {
@@ -28,30 +29,29 @@
 
     .header {
       text-align: center;
-      padding: 18px 8px;
+      padding: 16px 5px;
     }
 
     .header h1 {
-      font-size: 25px;
-      margin: 0 0 10px;
       color: #ff6b91;
+      font-size: 25px;
+      margin: 0 0 9px;
     }
 
     .header p {
       color: #c5c7d4;
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.5;
       margin: 0;
     }
 
     .counter {
-      margin: 12px 0;
+      background: #202334;
+      border-radius: 10px;
       padding: 12px;
       text-align: center;
-      background: #202334;
-      border-radius: 12px;
       font-size: 14px;
-      color: #dfe1ee;
+      margin-bottom: 12px;
     }
 
     .links {
@@ -65,22 +65,28 @@
       align-items: center;
       justify-content: center;
       min-height: 54px;
-      padding: 12px 6px;
+      padding: 12px 5px;
       border-radius: 11px;
       background: #292d42;
       border: 1px solid #414760;
-      color: white;
+      color: #ffffff;
       text-decoration: none;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: bold;
       text-align: center;
       -webkit-tap-highlight-color: transparent;
-      transition: background .15s;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    /* ক্লিক করা লিংকের রং */
+    .link-btn.clicked {
+      background: #168344;
+      border-color: #4ade80;
+      color: #ffffff;
     }
 
     .link-btn:active {
-      background: #e94f80;
-      transform: scale(.98);
+      opacity: 0.8;
     }
 
     .footer {
@@ -107,9 +113,10 @@
 
 <body>
   <main class="container">
+
     <header class="header">
       <h1>Dating Links</h1>
-      <p>তোমার পছন্দের লিংকটি নির্বাচন করো</p>
+      <p>লিংকে ক্লিক করো। ক্লিক করা লিংক সবুজ হয়ে থাকবে।</p>
     </header>
 
     <div class="counter" id="counter">
@@ -120,9 +127,9 @@
     </nav>
 
     <footer class="footer">
-      শুধুমাত্র ১৮ বছর বা তার বেশি বয়সীদের জন্য।<br>
-      Continue করলে সংশ্লিষ্ট ওয়েবসাইটের নিয়ম প্রযোজ্য হবে।
+      শুধুমাত্র ১৮ বছর বা তার বেশি বয়সীদের জন্য।
     </footer>
+
   </main>
 
   <script>
@@ -132,12 +139,12 @@
     const linksContainer = document.getElementById("links");
     const counter = document.getElementById("counter");
 
-    const fragment = document.createDocumentFragment();
-
+    // ৫০টি লিংক তৈরি
     for (let i = 1; i <= 50; i++) {
+
       const url = baseUrl.replace(
         "sub2=Test_1",
-        `sub2=Test_${i}`
+        "sub2=Test_" + i
       );
 
       const link = document.createElement("a");
@@ -146,17 +153,37 @@
       link.href = url;
       link.target = "_blank";
       link.rel = "noopener noreferrer";
-      link.textContent = `Link ${i}`;
-      link.setAttribute(
-        "aria-label",
-        `Open dating link Test ${i}`
-      );
+      link.textContent = "Link " + i;
 
-      fragment.appendChild(link);
+      const storageKey = "clickedDatingLink_" + i;
+
+      // আগে ক্লিক করা থাকলে সবুজ দেখাবে
+      try {
+        if (localStorage.getItem(storageKey) === "yes") {
+          link.classList.add("clicked");
+          link.textContent = "Link " + i + " ✓";
+        }
+      } catch (error) {
+        // ব্রাউজারে স্টোরেজ বন্ধ থাকলেও লিংক কাজ করবে
+      }
+
+      // ক্লিক করলে সবুজ হবে
+      link.addEventListener("click", function () {
+        link.classList.add("clicked");
+        link.textContent = "Link " + i + " ✓";
+
+        try {
+          localStorage.setItem(storageKey, "yes");
+        } catch (error) {
+          // স্টোরেজ উপলব্ধ না থাকলে বর্তমান পেজে রং থাকবে
+        }
+      });
+
+      linksContainer.appendChild(link);
     }
 
-    linksContainer.appendChild(fragment);
-    counter.textContent = `মোট ${linksContainer.children.length}টি লিংক`;
+    counter.textContent =
+      "মোট " + linksContainer.children.length + "টি লিংক";
   </script>
 </body>
 </html>
