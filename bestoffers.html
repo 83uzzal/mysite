@@ -54,6 +54,30 @@
       margin-bottom: 12px;
     }
 
+    /* IP Fighter button */
+    .ipfighter-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 54px;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 11px;
+      background: #ff6b91;
+      border: 1px solid #ff8eaa;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      text-align: center;
+      transition: opacity 0.2s;
+    }
+
+    .ipfighter-btn:active {
+      opacity: 0.8;
+    }
+
     .links {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -78,7 +102,7 @@
       transition: background 0.2s, border-color 0.2s;
     }
 
-    /* ক্লিক করা লিংকের রং */
+    /* Clicked links turn green */
     .link-btn.clicked {
       background: #168344;
       border-color: #4ade80;
@@ -123,6 +147,17 @@
       মোট ৫০টি লিংক
     </div>
 
+    <!-- IP Fighter button at the top -->
+    <a
+      class="ipfighter-btn"
+      href="https://ipfighter.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Open IP Fighter
+    </a>
+
+    <!-- Dating links -->
     <nav class="links" id="links" aria-label="Dating links">
     </nav>
 
@@ -135,10 +170,11 @@
   <script>
     const baseUrl =
       "https://luckynowforever.com/P8mMrct2?aid=gzpxkdpddh&kid=hxhaaffkdag&clickid=%7Bclickid%7D&sub1=MiTel&sub2=Test_1&sub3=AdultDating&s2%7BofferId%7D%7BofferName%7D%7BofferNumber%7D%7Bregion%7D%7Bcountry%7D";
+
     const linksContainer = document.getElementById("links");
     const counter = document.getElementById("counter");
 
-    // ৫০টি লিংক তৈরি
+    // Create 50 dating links
     for (let i = 1; i <= 50; i++) {
 
       const url = baseUrl.replace(
@@ -156,17 +192,17 @@
 
       const storageKey = "clickedDatingLink_" + i;
 
-      // আগে ক্লিক করা থাকলে সবুজ দেখাবে
+      // Restore previously clicked links
       try {
         if (localStorage.getItem(storageKey) === "yes") {
           link.classList.add("clicked");
           link.textContent = "Link " + i + " ✓";
         }
       } catch (error) {
-        // ব্রাউজারে স্টোরেজ বন্ধ থাকলেও লিংক কাজ করবে
+        // Links still work if storage is unavailable
       }
 
-      // ক্লিক করলে সবুজ হবে
+      // Mark the link green when clicked
       link.addEventListener("click", function () {
         link.classList.add("clicked");
         link.textContent = "Link " + i + " ✓";
@@ -174,13 +210,14 @@
         try {
           localStorage.setItem(storageKey, "yes");
         } catch (error) {
-          // স্টোরেজ উপলব্ধ না থাকলে বর্তমান পেজে রং থাকবে
+          // Keep the green color for the current page
         }
       });
 
       linksContainer.appendChild(link);
     }
 
+    // Update total link count
     counter.textContent =
       "মোট " + linksContainer.children.length + "টি লিংক";
   </script>
