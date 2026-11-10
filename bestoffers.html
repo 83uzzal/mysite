@@ -54,7 +54,6 @@
       margin-bottom: 12px;
     }
 
-    /* IP Fighter button */
     .ipfighter-btn {
       display: flex;
       align-items: center;
@@ -102,7 +101,6 @@
       transition: background 0.2s, border-color 0.2s;
     }
 
-    /* Clicked links turn green */
     .link-btn.clicked {
       background: #168344;
       border-color: #4ade80;
@@ -136,6 +134,7 @@
 </head>
 
 <body>
+
   <main class="container">
 
     <header class="header">
@@ -147,7 +146,6 @@
       মোট ৫০টি লিংক
     </div>
 
-    <!-- IP Fighter button at the top -->
     <a
       class="ipfighter-btn"
       href="https://ipfighter.com/"
@@ -157,7 +155,6 @@
       Open IP Fighter
     </a>
 
-    <!-- Dating links -->
     <nav class="links" id="links" aria-label="Dating links">
     </nav>
 
@@ -168,14 +165,18 @@
   </main>
 
   <script>
+
+    // আপনার দেওয়া Base URL
     const baseUrl =
-     "https://herehotpussies.com/fWwWPcTf?aid=hbgbaffgab&kid=hxhaazbgxab&clickid=%7Bclickid%7D&sub1=MiTel&sub2=Test_1&sub3=AdultDating&s2%7BofferId%7D%7BofferName%7D%7BofferNumber%7D%7Bregion%7D%7Bcountry%7D";
+      "https://herehotpussies.com/fWwWPcTf?aid=hbgbaffgab&kid=hxhaazbgxab&clickid=%7Bclickid%7D&sub1=MiTel&sub2=Test_1&sub3=AdultDating&s2%7BofferId%7D%7BofferName%7D%7BofferNumber%7D%7Bregion%7D%7Bcountry%7D";
+
     const linksContainer = document.getElementById("links");
     const counter = document.getElementById("counter");
 
-    // Create 50 dating links
+    // Create 50 links
     for (let i = 1; i <= 50; i++) {
 
+      // শুধু Test number পরিবর্তন হবে
       const url = baseUrl.replace(
         "sub2=Test_1",
         "sub2=Test_" + i
@@ -198,19 +199,21 @@
           link.textContent = "Link " + i + " ✓";
         }
       } catch (error) {
-        // Links still work if storage is unavailable
+        // Storage unavailable
       }
 
-      // Mark the link green when clicked
+      // Mark clicked link green
       link.addEventListener("click", function () {
+
         link.classList.add("clicked");
         link.textContent = "Link " + i + " ✓";
 
         try {
           localStorage.setItem(storageKey, "yes");
         } catch (error) {
-          // Keep the green color for the current page
+          // Keep current page state
         }
+
       });
 
       linksContainer.appendChild(link);
@@ -219,6 +222,8 @@
     // Update total link count
     counter.textContent =
       "মোট " + linksContainer.children.length + "টি লিংক";
+
   </script>
+
 </body>
 </html>
