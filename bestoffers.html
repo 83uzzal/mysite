@@ -99,7 +99,6 @@
     .link-btn.clicked {
       background: #168344;
       border-color: #4ade80;
-      color: #ffffff;
     }
 
     .link-btn:active {
@@ -170,9 +169,9 @@
   </main>
 
   <script>
-    // Updated Base URL
+    // Your Updated Base URL
     const baseUrl =
-      "https://fellmylove.com/ZWT93cKg?aid=hbfdhpxbxg&kid=hpfxxkhxbkx&kid=hpfdkbbkddh&clickid=%7Bclickid%7D&sub1=MiTel&sub2=Nothing&sub3=AdultDating";
+      "https://luckynowforever.com/d3RpR4rr?aid=hbfdhpxbxg&kid=hpgxagagxzb&clickid=%7Bclickid%7D&sub1=MiTel&sub2=Test_1&sub3=AdultDating&s2%7BofferId%7D%7BofferName%7D%7BofferNumber%7D%7Bregion%7D%7Bcountry%7D";
 
     const linksContainer = document.getElementById("links");
     const counter = document.getElementById("counter");
@@ -181,8 +180,8 @@
     for (let i = 1; i <= 50; i++) {
 
       const url = baseUrl.replace(
-        "sub2=Nothing",
-        "sub2=Nothing_" + i
+        "sub2=Test_1",
+        "sub2=Test_1_" + i
       );
 
       const link = document.createElement("a");
@@ -201,9 +200,7 @@
           link.classList.add("clicked");
           link.textContent = "Link " + i + " ✓";
         }
-      } catch (error) {
-        // Storage unavailable
-      }
+      } catch (error) {}
 
       // Mark clicked link green
       link.addEventListener("click", function () {
@@ -213,16 +210,14 @@
 
         try {
           localStorage.setItem(storageKey, "yes");
-        } catch (error) {
-          // Keep current page state
-        }
+        } catch (error) {}
 
       });
 
       linksContainer.appendChild(link);
     }
 
-    // Update total link count
+    // Update total count
     counter.textContent =
       "মোট " + linksContainer.children.length + "টি লিংক";
 
