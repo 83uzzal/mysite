@@ -169,9 +169,9 @@
   </main>
 
   <script>
-    // Updated Base URL
+    // Your New Base URL
     const baseUrl =
-      "https://herehotpussies.com/fWwWPcTf?aid=hbgbaffgab&kid=hxhaazbgxab&clickid=%7Bclickid%7D&sub1=MiTel&sub2=Test_1&sub3=AdultDating&s2%7BofferId%7D%7BofferName%7D%7BofferNumber%7D%7Bregion%7D%7Bcountry%7D";
+      "https://luckynowforever.com/d3RpR4rr?aid=hbfdhpxbxg&kid=hpgxagagxzb";
 
     const linksContainer = document.getElementById("links");
     const counter = document.getElementById("counter");
@@ -179,15 +179,15 @@
     // Create 50 unique links
     for (let i = 1; i <= 50; i++) {
 
-      const url = baseUrl.replace(
-        "sub2=Test_1",
-        "sub2=Test_1_" + i
-      );
+      const url = new URL(baseUrl);
+
+      // Unique tracking parameter
+      url.searchParams.set("sub2", "Test_1_" + i);
 
       const link = document.createElement("a");
 
       link.className = "link-btn";
-      link.href = url;
+      link.href = url.toString();
       link.target = "_blank";
       link.rel = "noopener noreferrer";
       link.textContent = "Link " + i;
